@@ -36,16 +36,16 @@ export default function Footer() {
                             <li><Link to="/cases" className="text-slate-500 hover:text-sky-600 transition-colors block">導入実績</Link></li>
                             <li><Link to="/company" className="text-slate-500 hover:text-sky-600 transition-colors block">会社概要</Link></li>
                             <li><Link to="/#contact" className="text-slate-500 hover:text-sky-600 transition-colors block">お問い合わせ</Link></li>
-                            <li><a href="#news" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">お知らせ・ブログ</a></li>
+                            <li><Link to="/#news" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">お知らせ・ブログ</Link></li>
                         </ul>
                     </div>
 
                     <div className="md:col-span-2">
                         <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Legal</h4>
                         <ul className="space-y-4">
-                            <li><a href="#" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">プライバシーポリシー</a></li>
-                            <li><a href="#" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">利用規約</a></li>
-                            <li><a href="#" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">特商法表記</a></li>
+                            <li><Link to="/privacy" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">プライバシーポリシー</Link></li>
+                            <li><Link to="/terms" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">利用規約</Link></li>
+                            <li><Link to="/commercial-act" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">特商法表記</Link></li>
                         </ul>
                     </div>
                 </div>

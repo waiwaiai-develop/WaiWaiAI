@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Network, Building2, Users2, MapPin, Mail } from 'lucide-react';
+import { Building2, Users2, MapPin, Mail, ArrowRight, Turtle } from 'lucide-react';
+import ContactCTA from '../components/ContactCTA';
 
 export default function CompanyPage() {
     return (
-        <div className="pt-32 pb-24 relative min-h-screen overflow-hidden">
-            <div className="absolute inset-0 bg-slate-50 z-[-2]"></div>
-            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-primary-100/40 to-transparent z-[-1]"></div>
+        <div className="pt-32 pb-0 relative min-h-screen overflow-hidden bg-white">
+            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-[-1]"></div>
             <div className="absolute inset-0 bg-grid-light opacity-50 z-[-1]"></div>
 
             <div className="container mx-auto px-4 md:px-8 max-w-4xl relative z-10">
@@ -15,11 +15,9 @@ export default function CompanyPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-primary-600 font-bold tracking-wider uppercase text-sm mb-4 flex items-center justify-center gap-2"
+                        className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100"
                     >
-                        <div className="w-8 h-[2px] bg-primary-600"></div>
-                        Company
-                        <div className="w-8 h-[2px] bg-primary-600"></div>
+                        COMPANY
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
@@ -28,7 +26,7 @@ export default function CompanyPage() {
                         className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6"
                     >
                         本質的な課題解決を導く、<br />
-                        最強の<span className="text-primary-600">技術パートナー</span>
+                        最強の<span className="text-blue-600 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">技術パートナー</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -36,8 +34,8 @@ export default function CompanyPage() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-slate-600 max-w-2xl mx-auto font-medium"
                     >
-                        私たちWaiWai AIは、単に「システムを作る」集団ではありません。<br className="hidden md:block" />
-                        テクノロジーを手段とし、お客様のビジネスを共にスケールさせる同志です。
+                        テクノロジーは現場で使われ、利益を生んで初めて価値を持ちます。<br className="hidden md:block" />
+                        私たちWaiWai AIは、単に「システムを作る」集団ではなく、ビジネスをスケールさせる熱狂的な同志です。
                     </motion.p>
                 </div>
 
@@ -46,22 +44,26 @@ export default function CompanyPage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: 'spring', stiffness: 50, delay: 0.2 }}
-                    className="bg-primary-900 rounded-3xl p-10 md:p-16 mb-16 text-center relative overflow-hidden shadow-2xl"
+                    className="bg-blue-600 rounded-3xl p-10 md:p-16 mb-16 text-center relative overflow-hidden shadow-2xl shadow-blue-600/20"
                 >
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-                    <Network className="w-16 h-16 text-primary-400 mx-auto mb-6 relative z-10" />
-                    <h2 className="text-primary-400 font-bold tracking-widest uppercase text-sm mb-4 relative z-10">Mission</h2>
-                    <p className="text-2xl md:text-3xl font-extrabold text-white leading-relaxed relative z-10">
-                        「IT化の遅れ」という<br className="md:hidden" />
-                        ボトルネックを破壊し、<br />
-                        企業が本来持つ<br className="md:hidden" />ポテンシャルを解放する。
-                    </p>
-                </motion.div>
+                    <div className="absolute inset-0 bg-grid-light opacity-20"></div>
 
-                {/* Company Profiles List (if any)
-            I will leave out specific executive names as it was not provided,
-            but provide a solid structure.
-        */}
+
+                    <Turtle className="w-16 h-16 text-blue-200 mx-auto mb-6 relative z-10" />
+                    <h2 className="text-blue-200 font-bold tracking-widest uppercase text-sm mb-4 relative z-10">Our Mission</h2>
+                    <p className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight relative z-10 mb-8 tracking-tight">
+                        AIを味方に、<br className="md:hidden" />未来を豊かに。
+                    </p>
+
+                    <div className="relative z-10 max-w-2xl mx-auto text-blue-100 font-medium leading-relaxed text-lg text-left md:text-center p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                        <p className="mb-4">
+                            社名である<strong className="text-white">「WaiWai」</strong>は、ハワイの言葉で<strong className="text-white border-b-2 border-sky-400 pb-0.5">「豊かさ」</strong>を意味します。
+                        </p>
+                        <p>
+                            ハワイで幸運と繁栄の象徴とされるウミガメ（ホヌ）のように、クライアントの事業に長く確実な繁栄をもたらし、テクノロジーの力で誰もが本来のポテンシャルを発揮できる豊かな未来を創り出します。
+                        </p>
+                    </div>
+                </motion.div>
 
                 {/* Company Info Table */}
                 <motion.div
@@ -69,38 +71,42 @@ export default function CompanyPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="glass-card p-8 md:p-12 relative overflow-hidden"
+                    className="bg-white rounded-3xl border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] p-8 md:p-12 relative overflow-hidden mb-24"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent z-0"></div>
                     <div className="relative z-10">
-                        <h2 className="text-3xl font-bold text-slate-900 mb-8 pb-4 border-b border-slate-200/50">会社概要</h2>
+                        <h2 className="text-3xl font-bold text-slate-900 mb-8 pb-4 border-b border-slate-200/50 flex items-center gap-3">
+                            <span className="w-2 h-8 bg-blue-500 rounded-full inline-block"></span>
+                            会社概要
+                        </h2>
 
                         <div className="space-y-6">
                             <div className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
-                                <div className="md:w-1/3 flex items-center gap-2 text-primary-600 font-bold">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Building2 className="w-5 h-5" />
                                     会社名
                                 </div>
-                                <div className="md:w-2/3 text-slate-700 font-medium">
+                                <div className="md:w-2/3 text-slate-800 font-bold text-lg">
                                     WaiWai AI (法人化準備中 / WIP)
                                 </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
-                                <div className="md:w-1/3 flex items-center gap-2 text-primary-600 font-bold">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Users2 className="w-5 h-5" />
                                     事業内容
                                 </div>
                                 <div className="md:w-2/3 text-slate-700 font-medium leading-relaxed">
-                                    ・AIソリューションの企画・開発・運用<br />
-                                    ・オーダーメイド型Webシステム・アプリ開発<br />
-                                    ・業務効率化、RPA導入、DX推移支援<br />
-                                    ・ITコンサルティング
+                                    <ul className="space-y-2">
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> AIエージェント開発および導入支援</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> オーダーメイド型Webシステム設計・開発</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> 業務フロー再構築、RPA導入、DX実行支援</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> 中長期ITコンサルティング（外部CTO）</li>
+                                    </ul>
                                 </div>
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
-                                <div className="md:w-1/3 flex items-center gap-2 text-primary-600 font-bold">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <MapPin className="w-5 h-5" />
                                     所在地
                                 </div>
@@ -110,12 +116,14 @@ export default function CompanyPage() {
                             </div>
 
                             <div className="flex flex-col md:flex-row gap-2 md:gap-8 py-4">
-                                <div className="md:w-1/3 flex items-center gap-2 text-primary-600 font-bold">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Mail className="w-5 h-5" />
                                     お問い合わせ
                                 </div>
                                 <div className="md:w-2/3 text-slate-700 font-medium">
-                                    ホームページのお問い合わせフォームより承っております。
+                                    <a href="#contact" className="text-blue-600 hover:text-blue-800 font-bold underline underline-offset-4 decoration-blue-200 hover:decoration-blue-400 transition-colors inline-flex items-center gap-1">
+                                        お問い合わせフォームより承っております <ArrowRight className="w-4 h-4" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -123,6 +131,9 @@ export default function CompanyPage() {
                 </motion.div>
 
             </div>
+
+            {/* Global CTA */}
+            <ContactCTA />
         </div>
     );
 }

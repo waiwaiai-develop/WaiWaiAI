@@ -1,15 +1,23 @@
 import Hero from '../components/Hero';
+import PainPointsSection from '../components/PainPointsSection';
+import ProcessSection from '../components/ProcessSection';
 import Services from '../components/Services';
-import CaseStudies from '../components/CaseStudies';
+import CompanySection from '../components/CompanySection';
+import NewsSection from '../components/NewsSection';
 import ContactCTA from '../components/ContactCTA';
+import ContactForm from '../components/ContactForm';
 
 export default function TopPage() {
     return (
         <>
             <Hero />
+            <PainPointsSection />
             <Services />
-            <CaseStudies />
+            <ProcessSection />
+            <CompanySection />
+            <NewsSection />
             <ContactCTA />
+            <ContactForm />
         </>
     );
 }

@@ -9,21 +9,18 @@ import CasesPage from './pages/cases/index';
 import CompanyPage from './pages/CompanyPage';
 import ScrollToTop from './components/ScrollToTop';
 
+// Legal Pages
+import PrivacyPolicy from './pages/legal/PrivacyPolicy';
+import TermsOfService from './pages/legal/TermsOfService';
+import CommercialAct from './pages/legal/CommercialAct';
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-white text-slate-900 selection:bg-sky-500/20 font-sans flex flex-col relative overflow-hidden">
-        {/* Global Ambient Intense Backgrounds - Light Clean Theme */}
-        <div className="fixed inset-0 pointer-events-none z-[-1]">
-          {/* Base white */}
-          <div className="absolute inset-0 bg-white"></div>
-
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-sky-100/50 rounded-full filter blur-[150px] animate-blob"></div>
-          <div className="absolute top-[30%] right-[-20%] w-[40%] h-[40%] bg-indigo-50/50 rounded-full filter blur-[150px] animate-blob" style={{ animationDelay: "2s" }}></div>
-          <div className="absolute bottom-[-10%] left-[20%] w-[60%] h-[60%] bg-blue-50/50 rounded-full filter blur-[150px] animate-blob" style={{ animationDelay: "4s" }}></div>
-          <div className="absolute inset-0 bg-grid-light opacity-50"></div>
-        </div>
+        {/* Clean Global Background */}
+        <div className="fixed inset-0 pointer-events-none z-[-1] bg-white"></div>
 
         <Navbar />
         <main className="flex-grow z-10">
@@ -32,6 +29,11 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/cases" element={<CasesPage />} />
             <Route path="/company" element={<CompanyPage />} />
+
+            {/* Legal Routes */}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/commercial-act" element={<CommercialAct />} />
           </Routes>
         </main>
         <Footer />

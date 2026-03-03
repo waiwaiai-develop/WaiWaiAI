@@ -1,98 +1,127 @@
 import { motion } from 'framer-motion';
-import { Network, Database, Code, LineChart, ArrowRight } from 'lucide-react';
+import { Bot, Cpu, Settings, ArrowRight, Zap, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Services() {
-    const services = [
-        {
-            icon: <Network className="w-6 h-6 text-cyan-400" />,
-            title: 'AIソリューション導入',
-            desc: '最新のLLM・RAG技術を活用し、社内ナレッジの属人化を解消。労働集約型の業務を根本から変革し、圧倒的なタイパ改善を実現します。',
-            colSpan: 'md:col-span-2'
-        },
-        {
-            icon: <Code className="w-6 h-6 text-indigo-400" />,
-            title: 'システム・アプリ開発',
-            desc: 'モダンアーキテクチャによるスケーラブルなフルスクラッチ開発。過剰機能を削ぎ落とした最速MVP立ち上げを支援。',
-            colSpan: 'md:col-span-1'
-        },
-        {
-            icon: <Database className="w-6 h-6 text-blue-400" />,
-            title: 'DX・RPA自動化',
-            desc: 'API連携やRPAで定型業務を無人化。ヒューマンエラーをゼロにし、コア業務へリソースを集中させます。',
-            colSpan: 'md:col-span-1'
-        },
-        {
-            icon: <LineChart className="w-6 h-6 text-purple-400" />,
-            title: 'ITコンサルティング',
-            desc: 'IT投資のロードマップ策定からベンダー選定まで、経営視点で伴走する強力な外部CTOとして機能します。',
-            colSpan: 'md:col-span-2'
-        }
-    ];
-
     return (
-        <section id="services" className="py-24 lg:py-32 relative overflow-hidden">
-            <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-6xl">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-                    <div className="max-w-2xl">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6"
-                        >
-                            事業成長を加速させる<br />
-                            <span className="text-slate-500">コア・ソリューション</span>
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-lg text-slate-600 font-medium"
-                        >
-                            本質的な経営課題に直結する、ROI最強のテックスタックを提供します。
-                        </motion.p>
-                    </div>
+        <section id="services" className="py-24 lg:py-40 relative bg-slate-900 border-t border-slate-800 overflow-hidden">
+
+            {/* Deep intense background for high contrast & memorability */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-900 to-black z-0"></div>
+
+            <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 font-bold text-sm tracking-widest mb-6 backdrop-blur-md"
+                    >
+                        <Zap className="w-4 h-4" /> OUR SOLUTIONS
+                    </motion.div>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight"
+                    >
+                        破壊的スピードで、<br className="md:hidden" />事業を生まれ変わらせる
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ delay: 0.1 }}
+                        className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed font-medium"
+                    >
+                        部分最適ではなく、本質的なプロセス改革を。最新のLLMと堅牢なシステム開発力で、あなたのビジネスから「無駄」を完全に排除します。
+                    </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + 0.2 }}
-                            className={`group relative flex flex-col p-8 rounded-3xl bg-white border border-slate-200/60 shadow-sm hover:shadow-md hover:border-sky-200 hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden ${service.colSpan}`}
-                        >
-                            <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-4 group-hover:translate-x-0">
-                                <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-sky-500 transition-colors" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+                    {/* Service 1 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden"
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[40px] group-hover:bg-blue-500/20 transition-all duration-500"></div>
+                        <div className="relative z-10">
+                            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-sky-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <Bot className="w-7 h-7 text-white" />
                             </div>
-
-                            <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 shadow-sm">
-                                {service.icon}
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-wide">
-                                {service.title}
-                            </h3>
-                            <p className="text-slate-600 leading-relaxed font-medium mt-auto">
-                                {service.desc}
+                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">AIエージェント構築</h3>
+                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium pr-4">
+                                RAGを活用し「社外秘を絶対に漏らさない」自社専用チャットボットを開発。CS対応などの手作業を最大80%削減します。
                             </p>
-                        </motion.div>
-                    ))}
+                            <Link to="/services#ai-solutions" className="inline-flex items-center gap-2 text-blue-400 font-bold group-hover:text-blue-300 transition-colors uppercase tracking-widest text-xs">
+                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    </motion.div>
+
+                    {/* Service 2 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
+                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden"
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-[40px] group-hover:bg-indigo-500/20 transition-all duration-500"></div>
+                        <div className="relative z-10">
+                            <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <Cpu className="w-7 h-7 text-white" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">AIシステム・アプリ開発</h3>
+                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium pr-4">
+                                生成AIを組み込んだ新規SaaSの立ち上げや、社内業務システムのリプレイス。最新のモダンスタックで堅牢なシステムを最速構築。
+                            </p>
+                            <Link to="/services#system-development" className="inline-flex items-center gap-2 text-indigo-400 font-bold group-hover:text-indigo-300 transition-colors uppercase tracking-widest text-xs">
+                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    </motion.div>
+
+                    {/* Service 3 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden lg:col-span-1 md:col-span-2 lg:col-auto"
+                    >
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-[40px] group-hover:bg-sky-500/20 transition-all duration-500"></div>
+                        <div className="relative z-10 md:w-1/2 lg:w-full mx-auto md:text-center lg:text-left">
+                            <div className="w-14 h-14 bg-gradient-to-br from-sky-500 to-cyan-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform duration-500 md:mx-auto lg:mx-0">
+                                <Settings className="w-7 h-7 text-white" />
+                            </div>
+                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">DX・RPAコンサルティング</h3>
+                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium lg:pr-4">
+                                「何をAI化すべきか分からない」状態から、業務フローを可視化。Zapier, Make等を駆使したローコード自動化から伴走します。
+                            </p>
+                            <Link to="/services#dx-automation" className="inline-flex items-center gap-2 text-sky-400 font-bold group-hover:text-sky-300 transition-colors uppercase tracking-widest text-xs">
+                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    </motion.div>
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="mt-12 text-center"
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="mt-20 text-center"
                 >
-                    <Link to="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors group">
-                        すべてのソリューションを詳しく見る
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <Link to="/services" className="group relative inline-flex items-center justify-center px-10 py-5 rounded-full bg-white text-slate-900 font-extrabold text-lg transition-transform transform hover:scale-105 overflow-hidden">
+                        <span className="relative z-10 flex items-center gap-3">
+                            <Target className="w-5 h-5 text-blue-600 group-hover:rotate-12 transition-transform" />
+                            すべてのソリューションとROIを見る
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-sky-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </Link>
                 </motion.div>
             </div>

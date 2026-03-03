@@ -1,104 +1,86 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, CalendarDays } from 'lucide-react';
+import { ArrowRight, Calculator, CheckCircle2 } from 'lucide-react';
 
 export default function ContactCTA() {
     return (
-        <section id="contact" className="py-32 relative bg-sky-50 border-t border-slate-200">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
-            {/* Decorative subtle glow */}
-            <div className="absolute right-0 bottom-0 w-[600px] h-[600px] bg-sky-200/40 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute left-0 top-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none"></div>
+        <section id="contact" className="py-32 relative bg-blue-600 border-t border-slate-200 overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px] opacity-20"></div>
 
             <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-5xl">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+                <div className="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] flex flex-col items-center text-center relative overflow-hidden">
 
-                    <div className="lg:w-1/2 text-left">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight tracking-tight"
-                        >
-                            次世代の<br />
-                            システム開発を、<br />
-                            <span className="text-sky-600">今すぐ。</span>
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="text-slate-600 text-lg mb-8 font-medium leading-relaxed"
-                        >
-                            AI導入からフルスクラッチ開発まで、貴社のビジネスに合わせた最適なソリューションをご提案します。まずは無料のオンライン相談で、課題をお聞かせください。
-                        </motion.p>
+                    {/* Decorative subtle glow inside the white card */}
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="flex items-center gap-4 text-slate-700 text-sm font-semibold"
-                        >
-                            <div className="flex items-center gap-2">
-                                <span className="relative flex h-2.5 w-2.5">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-sky-500"></span>
-                                </span>
-                                無料相談受付中
-                            </div>
-                            <div className="w-px h-4 bg-slate-300"></div>
-                            <div className="text-slate-500">オンラインMTG対応</div>
-                        </motion.div>
-                    </div>
 
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="mb-8 w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center border border-blue-100 shadow-inner"
+                    >
+                        <Calculator className="w-8 h-8" />
+                    </motion.div>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight tracking-tight max-w-2xl"
+                    >
+                        まずは<span className="text-blue-600">30分無料</span>で、<br />どれだけコスト削減できるか診断しませんか？
+                    </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-slate-600 text-xl md:text-2xl font-bold mb-10 max-w-3xl"
+                    >
+                        「AIでできること」「削減できる具体的な工数」を、その場でお答えします。押し売りは一切いたしません。
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="lg:w-1/2 w-full"
+                        className="flex flex-col md:flex-row gap-4 w-full justify-center max-w-3xl border-b border-slate-100 pb-12 mb-12"
                     >
-                        <div className="bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-3xl border border-slate-200 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-sky-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <a
+                            href="https://calendly.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 px-8 py-5 rounded-2xl text-center bg-blue-600 border border-transparent hover:bg-blue-700 text-white shadow-xl shadow-blue-500/30 transition-all flex flex-col items-center justify-center group"
+                        >
+                            <span className="text-xl font-bold mb-2 inline-flex items-center gap-2">
+                                無料でオンライン相談を予約 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </span>
+                            <span className="text-sm text-blue-100 font-medium">空き日程カレンダーから1クリックで予約完了</span>
+                        </a>
 
-                            <h3 className="text-2xl font-bold text-slate-900 mb-8 relative z-10 text-center tracking-wide">
-                                プロジェクトについて話す
-                            </h3>
+                        <a
+                            href="/#contact-form"
+                            className="flex-1 px-8 py-5 rounded-2xl text-center bg-white border-2 border-slate-200 hover:border-blue-400 hover:bg-slate-50 transition-all flex flex-col items-center justify-center group"
+                        >
+                            <span className="text-xl font-bold text-slate-800 mb-2 inline-flex items-center gap-2">
+                                メールで要件を送信する <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                            </span>
+                            <span className="text-sm text-slate-500 font-medium">資料請求や具体的なRFPがある方はこちら</span>
+                        </a>
+                    </motion.div>
 
-                            <div className="space-y-4 mb-8 relative z-10">
-                                <a
-                                    href="#contactform"
-                                    className="w-full relative px-6 py-5 rounded-2xl text-left bg-slate-50 border border-slate-100 hover:border-sky-300 hover:bg-white hover:shadow-sm transition-all flex flex-col group/btn"
-                                >
-                                    <span className="text-xs font-mono text-sky-600 mb-2 flex items-center gap-2 uppercase tracking-wider">
-                                        <Mail className="w-3.5 h-3.5" /> Requirement Detail
-                                    </span>
-                                    <span className="text-lg font-bold text-slate-900 transition-colors">
-                                        詳細な要件や相談を送る
-                                    </span>
-                                    <ArrowRight className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-hover/btn:text-sky-500 group-hover/btn:translate-x-1 transition-all" />
-                                </a>
-
-                                <a
-                                    href="#schedule"
-                                    className="w-full relative px-6 py-5 rounded-2xl text-left bg-slate-50 border border-slate-100 hover:border-blue-300 hover:bg-white hover:shadow-sm transition-all flex flex-col group/btn"
-                                >
-                                    <span className="text-xs font-mono text-blue-600 mb-2 flex items-center gap-2 uppercase tracking-wider">
-                                        <CalendarDays className="w-3.5 h-3.5" /> Book a Meeting
-                                    </span>
-                                    <span className="text-lg font-bold text-slate-900 transition-colors">
-                                        30分の無料オンライン予約
-                                    </span>
-                                    <ArrowRight className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-hover/btn:text-blue-500 group-hover/btn:translate-x-1 transition-all" />
-                                </a>
-                            </div>
-
-                            <p className="text-xs text-slate-500 font-medium text-center relative z-10">
-                                セキュアな通信で保護されています。<br className="md:hidden" />相見積もりも大歓迎です。
-                            </p>
-                        </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 }}
+                        className="flex flex-col md:flex-row justify-center gap-6 text-sm font-bold text-slate-600"
+                    >
+                        <span className="flex items-center gap-2 justify-center"><CheckCircle2 className="w-5 h-5 text-green-500" /> 秘密保持契約（NDA）締結可能</span>
+                        <span className="flex items-center gap-2 justify-center"><CheckCircle2 className="w-5 h-5 text-green-500" /> 相見積もりのための情報収集でも歓迎</span>
+                        <span className="flex items-center gap-2 justify-center"><CheckCircle2 className="w-5 h-5 text-green-500" /> ITの専門知識がなくてもOK</span>
                     </motion.div>
                 </div>
             </div>
