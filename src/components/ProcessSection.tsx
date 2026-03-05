@@ -134,7 +134,7 @@ export default function ProcessSection() {
                                         </div>
 
                                         <div className="mt-auto pt-6 border-t border-slate-100">
-                                            <a href={step.link} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 font-bold hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all group/btn w-max shadow-sm">
+                                            <a href={step.link} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 font-bold hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all group/btn w-max shadow-sm">
                                                 詳しくはこちら <PlayCircle className="w-4 h-4 text-slate-400 group-hover/btn:text-white transition-colors" />
                                             </a>
                                         </div>

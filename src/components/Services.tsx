@@ -3,125 +3,162 @@ import { Bot, Cpu, Settings, ArrowRight, Zap, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Services() {
-    return (
-        <section id="services" className="py-24 lg:py-40 relative bg-slate-900 border-t border-slate-800 overflow-hidden">
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+        }
+    };
 
-            {/* Deep intense background for high contrast & memorability */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-900 to-black z-0"></div>
+    const itemVariants: any = {
+        hidden: { opacity: 0, y: 50 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 80, damping: 15 }
+        }
+    };
+
+    return (
+        <section id="services" className="py-24 lg:py-40 relative bg-slate-50 border-t border-slate-200 overflow-hidden">
+            {/* Structural Tech Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
                 <div className="text-center mb-20">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 font-bold text-sm tracking-widest mb-6 backdrop-blur-md"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-white font-bold text-sm tracking-wider mb-6 shadow-sm"
                     >
-                        <Zap className="w-4 h-4" /> OUR SOLUTIONS
+                        <Zap className="w-4 h-4 text-blue-400" /> CONSULTING SERVICES
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight"
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-950 mb-6 uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
                     >
-                        破壊的スピードで、<br className="md:hidden" />事業を生まれ変わらせる
+                        AIシステム開発から、<br className="md:hidden" />AI顧問・研修まで
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        transition={{ delay: 0.1 }}
-                        className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed font-medium"
+                        transition={{ delay: 0.2 }}
+                        className="text-slate-700 max-w-2xl mx-auto text-xl leading-relaxed font-bold tracking-tight drop-shadow-sm"
                     >
-                        部分最適ではなく、本質的なプロセス改革を。最新のLLMと堅牢なシステム開発力で、あなたのビジネスから「無駄」を完全に排除します。
+                        「開発」を中核に、AI顧問・ITコンサルティング・AI研修を一気通貫で提供。<br className="hidden md:block" />
+                        確かな実装力に基づいた、地に足の着いた変革を支援します。
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
-                    {/* Service 1 */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+                >
+                    {/* Pillar 1: Development (Large Bento) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden"
+                        variants={itemVariants}
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-2 lg:col-span-2 flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-[40px] group-hover:bg-blue-500/20 transition-all duration-500"></div>
-                        <div className="relative z-10">
-                            <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-sky-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
-                                <Bot className="w-7 h-7 text-white" />
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative">
+                            <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
+                            <img src="/bento-dev.png" alt="AI System Development" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-8 md:p-10 bg-white relative z-20 flex-1 flex flex-col justify-center">
+                            <div className="flex items-center gap-6 mb-4">
+                                <div className="w-16 h-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
+                                    <Cpu className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">AIシステム・<br className="md:hidden" />プロダクト開発</h3>
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">AIエージェント構築</h3>
-                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium pr-4">
-                                RAGを活用し「社外秘を絶対に漏らさない」自社専用チャットボットを開発。CS対応などの手作業を最大80%削減します。
+                            <p className="text-slate-700 leading-relaxed font-bold tracking-tight text-lg">
+                                LLMを組み込んだ独自のSaaS開発や社内システムの構築。PoCから本番実装、スケーリングまで、開発を「メイン」として技術的にリードします。
                             </p>
-                            <Link to="/services#ai-solutions" className="inline-flex items-center gap-2 text-blue-400 font-bold group-hover:text-blue-300 transition-colors uppercase tracking-widest text-xs">
-                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
                         </div>
                     </motion.div>
 
-                    {/* Service 2 */}
+                    {/* Pillar 2: Advisory / Consulting (Tall Bento) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden"
+                        variants={itemVariants}
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-[40px] group-hover:bg-indigo-500/20 transition-all duration-500"></div>
-                        <div className="relative z-10">
-                            <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-500">
-                                <Cpu className="w-7 h-7 text-white" />
+                        <div className="h-56 w-full overflow-hidden bg-slate-50 relative">
+                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
+                            <img src="/bento-consulting.png" alt="AI Consulting" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-8 bg-white pb-10 flex-1 flex flex-col">
+                            <div className="w-14 h-14 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                <Bot className="w-6 h-6" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">AIシステム・アプリ開発</h3>
-                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium pr-4">
-                                生成AIを組み込んだ新規SaaSの立ち上げや、社内業務システムのリプレイス。最新のモダンスタックで堅牢なシステムを最速構築。
+                            <h3 className="text-xl md:text-2xl font-black text-slate-950 mb-3 tracking-tight">AI顧問・ITコンサル</h3>
+                            <p className="text-slate-700 leading-relaxed font-bold text-[15px] tracking-tight flex-1">
+                                「何をAI化すべきか」の戦略策定から、最新技術選定、組織への導入支援まで。現場を知るコンサルティングを提供。
                             </p>
-                            <Link to="/services#system-development" className="inline-flex items-center gap-2 text-indigo-400 font-bold group-hover:text-indigo-300 transition-colors uppercase tracking-widest text-xs">
-                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
                         </div>
                     </motion.div>
 
-                    {/* Service 3 */}
+                    {/* Pillar 3: DX & Automation (Medium Bento) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                        className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 hover:bg-slate-800/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(59,130,246,0.3)] hover:border-blue-500/50 overflow-hidden lg:col-span-1 md:col-span-2 lg:col-auto"
+                        variants={itemVariants}
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-[40px] group-hover:bg-sky-500/20 transition-all duration-500"></div>
-                        <div className="relative z-10 md:w-1/2 lg:w-full mx-auto md:text-center lg:text-left">
-                            <div className="w-14 h-14 bg-gradient-to-br from-sky-500 to-cyan-400 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform duration-500 md:mx-auto lg:mx-0">
-                                <Settings className="w-7 h-7 text-white" />
+                        <div className="h-56 w-full overflow-hidden bg-slate-50 relative">
+                            <div className="absolute inset-0 bg-emerald-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
+                            <img src="/bento-dx.png" alt="DX & Automation" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-8 bg-white pb-10 flex-1 flex flex-col">
+                            <div className="w-14 h-14 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                                <Settings className="w-6 h-6" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">DX・RPAコンサルティング</h3>
-                            <p className="text-slate-400 mb-6 leading-relaxed flex-grow text-sm font-medium lg:pr-4">
-                                「何をAI化すべきか分からない」状態から、業務フローを可視化。Zapier, Make等を駆使したローコード自動化から伴走します。
+                            <h3 className="text-xl md:text-2xl font-black text-slate-950 mb-3 tracking-tight">DX特化型コンサル</h3>
+                            <p className="text-slate-700 leading-relaxed font-bold text-[15px] tracking-tight flex-1">
+                                ローコードツールやRPAを活用した業務プロセスの再構築。自動化で、現場のオペレーションを劇的に最適化。
                             </p>
-                            <Link to="/services#dx-automation" className="inline-flex items-center gap-2 text-sky-400 font-bold group-hover:text-sky-300 transition-colors uppercase tracking-widest text-xs">
-                                詳しく見る <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
                         </div>
                     </motion.div>
-                </div>
+
+                    {/* Pillar 4: Training (Text heavy / Call-out Bento) */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:col-span-1 lg:col-span-2 flex flex-col justify-center overflow-hidden"
+                    >
+                        {/* Decorative Background for dark card */}
+                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:16px_16px] z-0 opacity-20"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors z-0"></div>
+
+                        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+                            <div className="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all flex-shrink-0">
+                                <Target className="w-8 h-8" />
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-black text-white mb-3 tracking-tight">AI研修・リテラシー向上</h3>
+                                <p className="text-slate-300 leading-relaxed font-bold tracking-tight mb-2">
+                                    生成AIの社内活用を促進するためのハンズオン研修。プロンプトエンジニアリングからセキュアなツール活用まで、全社的なAIリテラシーを底上げします。
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="mt-20 text-center"
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="mt-24 text-center"
                 >
-                    <Link to="/services" className="group relative inline-flex items-center justify-center px-10 py-5 rounded-full bg-white text-slate-900 font-extrabold text-lg transition-transform transform hover:scale-105 overflow-hidden">
-                        <span className="relative z-10 flex items-center gap-3">
-                            <Target className="w-5 h-5 text-blue-600 group-hover:rotate-12 transition-transform" />
-                            すべてのソリューションとROIを見る
+                    <Link to="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
+                        <span className="relative z-10 flex items-center gap-3 text-white">
+                            すべてのサービスを見る <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
                         </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-sky-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </Link>
                 </motion.div>
             </div>

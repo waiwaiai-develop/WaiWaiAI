@@ -39,7 +39,7 @@ export default function CompanySection() {
                                 単なるシステム開発会社ではありません。私たちはテクノロジーを手段とし、クライアントの「IT化の遅れ」というボトルネックを破壊し、圧倒的な利益と価値を創出する実行部隊です。
                             </p>
 
-                            <Link to="/company" className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-slate-900/20 hover:shadow-blue-600/30 transform hover:-translate-y-1">
+                            <Link to="/company" className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-xl font-bold text-lg hover:bg-blue-700 transition-all duration-300 shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 transform hover:-translate-y-1">
                                 会社概要と実績を見る
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>

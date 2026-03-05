@@ -22,27 +22,30 @@ export default function Navbar() {
                     <div className="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-1.5 rounded-xl border border-slate-100 group-hover:shadow-[0_4px_15px_-4px_rgba(59,130,246,0.2)] transition-all duration-300 transform group-hover:-translate-y-0.5">
                         <img src={logo} alt="WaiWai AI Logo" className="w-7 h-7 object-contain" />
                     </div>
-                    <span className="text-2xl font-black tracking-tighter text-slate-900 leading-none group-hover:text-blue-600 transition-colors">
+                    <span className={`text-2xl font-black tracking-tighter leading-none group-hover:text-blue-400 transition-colors text-slate-900`}>
                         WaiWai AI
                     </span>
                 </Link>
 
                 {/* Desktop Menu */}
-                <nav className="hidden md:flex items-center gap-8 bg-white/40 backdrop-blur-md border border-white/60 px-6 py-2 rounded-full shadow-sm">
-                    <Link to="/services" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/services' ? 'text-blue-600' : 'text-slate-600'}`}>ソリューション</Link>
-                    <Link to="/cases" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/cases' ? 'text-blue-600' : 'text-slate-600'}`}>実績と課題解決</Link>
-                    <Link to="/company" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/company' ? 'text-blue-600' : 'text-slate-600'}`}>会社概要</Link>
+                <nav className={`hidden md:flex items-center gap-8 px-6 py-2 rounded-full shadow-sm transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border border-slate-200' : 'bg-white/60 backdrop-blur-md border border-slate-200/50'}`}>
+                    <Link to="/services" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/services' ? 'text-blue-600' : 'text-slate-700'}`}>ソリューション</Link>
+                    <Link to="/cases" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/cases' ? 'text-blue-600' : 'text-slate-700'}`}>実績と課題解決</Link>
+                    <Link to="/company" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${location.pathname === '/company' ? 'text-blue-600' : 'text-slate-700'}`}>会社概要</Link>
                 </nav>
 
                 <div className="hidden md:flex">
-                    <Link to="/#contact" className="px-6 py-2.5 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wide hover:bg-blue-600 transition-all duration-300 shadow-[0_4px_14px_0_rgba(15,23,42,0.39)] hover:shadow-[0_6px_20px_rgba(59,130,246,0.23)] hover:-translate-y-0.5 transform">
+                    <Link to="/#contact" className={`px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)]`}>
                         相談する
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="md:hidden text-slate-900 p-2 relative z-50 bg-white shadow-sm border border-slate-100 rounded-xl" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X className="w-5 h-5 text-slate-600" /> : <Menu className="w-5 h-5 text-slate-600" />}
+                <button
+                    className={`md:hidden p-2 relative z-50 shadow-sm border rounded-xl transition-all duration-300 text-slate-900 bg-white border-slate-200 hover:bg-slate-50`}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                    {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                 </button>
             </div>
 

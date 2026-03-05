@@ -54,7 +54,7 @@ export default function CaseStudies() {
                                     私たちが約束するのは、劇的なコスト削減と生産性の飛躍的な向上という「結果」のみです。
                                 </p>
                                 <div className="hidden lg:block">
-                                    <Link to="/cases" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white bg-slate-900 hover:bg-blue-600 font-bold transition-all duration-300 shadow-xl shadow-slate-900/10 hover:shadow-blue-600/30 hover:-translate-y-1 group">
+                                    <Link to="/cases" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-bold transition-all duration-300 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-1 group">
                                         すべての導入実績を見る
                                         <ArrowDown className="w-5 h-5 group-hover:-rotate-90 transition-transform duration-300" />
                                     </Link>
@@ -97,7 +97,7 @@ export default function CaseStudies() {
                         ))}
 
                         <div className="lg:hidden mt-12 text-center">
-                            <Link to="/cases" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white bg-slate-900 hover:bg-blue-600 font-bold transition-all duration-300 shadow-xl w-full">
+                            <Link to="/cases" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-bold transition-all duration-300 shadow-xl shadow-blue-600/20 w-full">
                                 すべての導入実績を見る
                             </Link>
                         </div>

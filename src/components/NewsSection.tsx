@@ -14,36 +14,35 @@ export default function NewsSection() {
                     <div className="flex flex-col lg:flex-row">
 
                         {/* Left Info Area */}
-                        <div className="lg:w-1/3 bg-slate-900 p-10 lg:p-14 text-white relative overflow-hidden">
-
+                        <div className="lg:w-1/3 bg-blue-50 p-10 lg:p-14 text-slate-900 relative overflow-hidden border-r border-slate-100">
 
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-8 border border-white/20"
+                                className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-8 border border-blue-100"
                             >
-                                <Newspaper className="w-6 h-6 text-blue-300" />
+                                <Newspaper className="w-6 h-6 text-blue-600" />
                             </motion.div>
 
                             <h2 className="text-3xl lg:text-4xl font-black mb-6 tracking-tight">
                                 INFORMATION
                             </h2>
-                            <p className="text-slate-400 leading-relaxed font-medium mb-12">
+                            <p className="text-slate-600 leading-relaxed font-bold mb-12">
                                 WaiWai AIの最新の技術動向、開発の裏側、プレスリリースをお届けします。
                             </p>
 
                             <div className="flex flex-col gap-4">
-                                <Link to="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold">
+                                <Link to="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
                                     <span>NEWS 記事一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4" />
+                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
                                     </div>
                                 </Link>
-                                <Link to="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all font-bold">
+                                <Link to="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
                                     <span>TECH BLOG 一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4" />
+                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
                                     </div>
                                 </Link>
                             </div>
@@ -65,7 +64,7 @@ export default function NewsSection() {
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                                             <div className="flex items-center gap-4 w-48 shrink-0">
                                                 <span className="text-slate-500 font-mono text-sm tracking-tighter">{item.date}</span>
-                                                <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-800 text-white' : 'bg-blue-100 text-blue-700'}`}>
+                                                <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-700'}`}>
                                                     {item.label}
                                                 </span>
                                             </div>

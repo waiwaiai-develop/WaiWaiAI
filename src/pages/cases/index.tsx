@@ -59,8 +59,9 @@ export default function CasesPage() {
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ type: 'spring', stiffness: 50, delay: index * 0.1 }}
-                            className="bg-white rounded-3xl border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] overflow-hidden flex flex-col relative"
+                            transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
+                            whileHover={{ y: -5, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                            className="bg-white rounded-3xl border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] overflow-hidden flex flex-col relative transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] group"
                         >
                             <div className="grid grid-cols-1 lg:grid-cols-12 relative z-10">
 

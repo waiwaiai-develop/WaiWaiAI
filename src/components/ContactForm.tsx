@@ -206,7 +206,7 @@ export default function ContactForm() {
                                     <button
                                         type="submit"
                                         disabled={status === 'submitting'}
-                                        className="w-full sm:w-auto px-10 py-4 bg-slate-900 hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-slate-900/10 hover:shadow-blue-600/30 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
+                                        className="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
                                     >
                                         {status === 'submitting' ? (
                                             <>

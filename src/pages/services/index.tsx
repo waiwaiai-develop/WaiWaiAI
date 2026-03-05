@@ -112,8 +112,9 @@ export default function ServicesPage() {
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ type: 'spring', stiffness: 50, delay: index * 0.1 }}
-                            className="bg-white rounded-3xl p-8 md:p-12 border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] group flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] hover:-translate-y-1"
+                            transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
+                            whileHover={{ y: -5, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                            className="bg-white rounded-3xl p-8 md:p-12 border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] group flex flex-col relative overflow-hidden transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)]"
                         >
                             <div className="relative z-10 flex flex-col md:flex-row gap-8 lg:gap-12">
                                 <div className="md:w-1/3">
