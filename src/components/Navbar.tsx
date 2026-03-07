@@ -21,7 +21,7 @@ export default function Navbar() {
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 backdrop-blur-2xl border-b border-slate-200/50 shadow-[0_2px_20px_-10px_rgba(0,0,0,0.1)] py-3' : 'bg-transparent border-b border-transparent py-6'}`}>
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between max-w-7xl">
                 <Link href="/" className="relative z-50 group">
-                    <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-8 md:h-9 w-auto object-contain group-hover:opacity-80 transition-opacity" />
+                    <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-opacity" />
                 </Link>
 
                 {/* Desktop Menu */}

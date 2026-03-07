@@ -7,7 +7,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                     <div className="md:col-span-5 pr-8">
                         <Link href="/" className="inline-block mb-8 group">
-                            <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity" />
+                            <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity" />
                         </Link>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6 font-medium">
                             本質的な課題解決を導くテクノロジーパートナー。AIの導入コンサルティングから、堅牢なシステム開発、業務プロセスの可視化と自動化まで、企業のDX推進を強力に支援します。
