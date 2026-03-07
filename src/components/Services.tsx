@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Bot, Cpu, Settings, ArrowRight, Zap, Target } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function Services() {
     const containerVariants = {
@@ -21,7 +23,7 @@ export default function Services() {
     };
 
     return (
-        <section id="services" className="py-24 lg:py-40 relative bg-slate-50 border-t border-slate-200 overflow-hidden">
+        <section id="services" className="py-24 lg:py-32 relative bg-slate-50 border-t border-slate-200 overflow-hidden">
             {/* Structural Tech Grid */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
 
@@ -30,7 +32,7 @@ export default function Services() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "-50px" }}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-white font-bold text-sm tracking-wider mb-6 shadow-sm"
                     >
                         <Zap className="w-4 h-4 text-blue-400" /> CONSULTING SERVICES
@@ -38,7 +40,7 @@ export default function Services() {
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "-50px" }}
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-950 mb-6 uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
                     >
@@ -47,7 +49,7 @@ export default function Services() {
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "-50px" }}
                         transition={{ delay: 0.2 }}
                         className="text-slate-700 max-w-2xl mx-auto text-xl leading-relaxed font-bold tracking-tight drop-shadow-sm"
                     >
@@ -60,7 +62,7 @@ export default function Services() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true, margin: "-100px" }}
+                    viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
                 >
                     {/* Pillar 1: Development (Large Bento) */}
@@ -155,7 +157,7 @@ export default function Services() {
                     transition={{ duration: 0.5, delay: 0.5 }}
                     className="mt-24 text-center"
                 >
-                    <Link to="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
+                    <Link href="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
                         <span className="relative z-10 flex items-center gap-3 text-white">
                             すべてのサービスを見る <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
                         </span>

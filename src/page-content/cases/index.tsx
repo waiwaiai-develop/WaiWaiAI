@@ -1,8 +1,10 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowDown, TrendingUp, Clock, CheckCircle2 } from 'lucide-react';
-import ContactCTA from '../../components/ContactCTA';
+import ContactCTA from '@/components/ContactCTA';
 
-import { casesData } from '../../data/casesData';
+import { casesData } from '@/data/casesData';
 
 export default function CasesPage() {
     // Map icon names to actual Lucide components for CMS compatibility

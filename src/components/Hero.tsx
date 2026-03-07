@@ -1,3 +1,5 @@
+'use client';
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
@@ -25,7 +27,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="relative min-h-[100svh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-white">
+        <section className="relative min-h-[85svh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-white">
 
             {/* Structural Tech Grid */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>

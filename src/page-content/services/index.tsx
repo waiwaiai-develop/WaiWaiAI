@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Bot, Cpu, Settings, TrendingDown, CheckCircle2, ArrowRight } from 'lucide-react';
-import ContactCTA from '../../components/ContactCTA';
+import ContactCTA from '@/components/ContactCTA';
 
 export default function ServicesPage() {
     const services = [

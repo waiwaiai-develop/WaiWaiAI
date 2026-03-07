@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Building2, Users2, MapPin, Mail, ArrowRight, Turtle } from 'lucide-react';
-import ContactCTA from '../components/ContactCTA';
+import ContactCTA from '@/components/ContactCTA';
 
 export default function CompanyPage() {
     const containerVariants = {
