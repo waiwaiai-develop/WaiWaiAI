@@ -1,0 +1,5 @@
+{"event":"task_completed","teammate":"1","task_id":"Step 1: Next.js初期化 & 依存関係更新","subject":"package.json更新、next.config.ts作成、tsconfig.json更新、Viteファイル削除","description":"","timestamp":"2026-03-07T07:01:53Z"}
+{"event":"task_completed","teammate":"2","task_id":"Step 2-3: App Router構造 & レイアウト作成","subject":"app/ディレクトリ作成、layout.tsx、全ページpage.tsx作成","description":"","timestamp":"2026-03-07T07:01:53Z"}
+{"event":"task_completed","teammate":"4","task_id":"Step 5-6: SEO機能追加","subject":"メタデータ、sitemap.ts、robots.ts、JSON-LD追加","description":"","timestamp":"2026-03-07T07:01:53Z"}
+{"event":"task_completed","teammate":"3","task_id":"Step 4: コンポーネント移行","subject":"use client追加、Link置換、next/image化","description":"","timestamp":"2026-03-07T07:03:19Z"}
+{"event":"task_completed","teammate":"5","task_id":"Step 7: クリーンアップ & ビルド検証","subject":"不要ファイル削除、ビルド確認","description":"","timestamp":"2026-03-07T07:06:16Z"}

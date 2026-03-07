@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-03-07T08:16:03.365Z",
+  "sessionId": "",
+  "wipTasks": [],
+  "recentEdits": [
+    ".gitignore",
+    "README.md",
+    "next-env.d.ts",
+    "next.config.ts",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.mjs",
+    "public/bento-consulting.png",
+    "public/bento-dev.png",
+    "public/bento-dx.png",
+    "public/hero-honu.png",
+    "public/images/case1.png",
+    "public/images/case2.png",
+    "public/images/case3.png",
+    "public/images/hero_bg.png",
+    "public/images/hero_premium.png",
+    "public/images/product_a.png",
+    "public/images/product_b.png",
+    "public/logo.png",
+    "public/vite.svg"
+  ],
+  "metrics": null
+}

@@ -28,7 +28,7 @@ export default function Services() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                <div className="text-center mb-20">
+                <div className="text-center mb-14">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -70,18 +70,18 @@ export default function Services() {
                         variants={itemVariants}
                         className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-2 lg:col-span-2 flex flex-col"
                     >
-                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative">
+                        <div className="h-44 sm:h-52 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-dev.png" alt="AI System Development" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-8 md:p-10 bg-white relative z-20 flex-1 flex flex-col justify-center">
-                            <div className="flex items-center gap-6 mb-4">
-                                <div className="w-16 h-16 bg-blue-50 border border-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
-                                    <Cpu className="w-8 h-8" />
+                        <div className="p-6 md:p-8 bg-white relative z-20 flex-1 flex flex-col justify-center">
+                            <div className="flex items-center gap-4 mb-3">
+                                <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
+                                    <Cpu className="w-6 h-6" />
                                 </div>
-                                <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">AIシステム・<br className="md:hidden" />プロダクト開発</h3>
+                                <h3 className="text-xl md:text-2xl font-black text-slate-950 tracking-tight">AIシステム・<br className="md:hidden" />プロダクト開発</h3>
                             </div>
-                            <p className="text-slate-700 leading-relaxed font-bold tracking-tight text-lg">
+                            <p className="text-slate-700 leading-relaxed font-bold tracking-tight text-base">
                                 LLMを組み込んだ独自のSaaS開発や社内システムの構築。PoCから本番実装、スケーリングまで、開発を「メイン」として技術的にリードします。
                             </p>
                         </div>
@@ -92,16 +92,16 @@ export default function Services() {
                         variants={itemVariants}
                         className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
                     >
-                        <div className="h-56 w-full overflow-hidden bg-slate-50 relative">
+                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-consulting.png" alt="AI Consulting" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-8 bg-white pb-10 flex-1 flex flex-col">
-                            <div className="w-14 h-14 bg-indigo-50 border border-indigo-100 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                                <Bot className="w-6 h-6" />
+                        <div className="p-6 bg-white pb-8 flex-1 flex flex-col">
+                            <div className="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center mb-4 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                <Bot className="w-5 h-5" />
                             </div>
-                            <h3 className="text-xl md:text-2xl font-black text-slate-950 mb-3 tracking-tight">AI顧問・ITコンサル</h3>
-                            <p className="text-slate-700 leading-relaxed font-bold text-[15px] tracking-tight flex-1">
+                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">AI顧問・ITコンサル</h3>
+                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
                                 「何をAI化すべきか」の戦略策定から、最新技術選定、組織への導入支援まで。現場を知るコンサルティングを提供。
                             </p>
                         </div>
@@ -112,16 +112,16 @@ export default function Services() {
                         variants={itemVariants}
                         className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
                     >
-                        <div className="h-56 w-full overflow-hidden bg-slate-50 relative">
+                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-emerald-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-dx.png" alt="DX & Automation" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-8 bg-white pb-10 flex-1 flex flex-col">
-                            <div className="w-14 h-14 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-center justify-center mb-6 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                                <Settings className="w-6 h-6" />
+                        <div className="p-6 bg-white pb-8 flex-1 flex flex-col">
+                            <div className="w-11 h-11 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mb-4 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                                <Settings className="w-5 h-5" />
                             </div>
-                            <h3 className="text-xl md:text-2xl font-black text-slate-950 mb-3 tracking-tight">DX特化型コンサル</h3>
-                            <p className="text-slate-700 leading-relaxed font-bold text-[15px] tracking-tight flex-1">
+                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">DX特化型コンサル</h3>
+                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
                                 ローコードツールやRPAを活用した業務プロセスの再構築。自動化で、現場のオペレーションを劇的に最適化。
                             </p>
                         </div>
@@ -130,19 +130,19 @@ export default function Services() {
                     {/* Pillar 4: Training (Text heavy / Call-out Bento) */}
                     <motion.div
                         variants={itemVariants}
-                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] p-10 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:col-span-1 lg:col-span-2 flex flex-col justify-center overflow-hidden"
+                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:col-span-1 lg:col-span-2 flex flex-col justify-center overflow-hidden"
                     >
                         {/* Decorative Background for dark card */}
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:16px_16px] z-0 opacity-20"></div>
                         <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors z-0"></div>
 
-                        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
-                            <div className="w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all flex-shrink-0">
-                                <Target className="w-8 h-8" />
+                        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+                            <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all flex-shrink-0">
+                                <Target className="w-6 h-6" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-black text-white mb-3 tracking-tight">AI研修・リテラシー向上</h3>
-                                <p className="text-slate-300 leading-relaxed font-bold tracking-tight mb-2">
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tight">AI研修・リテラシー向上</h3>
+                                <p className="text-slate-300 leading-relaxed font-bold tracking-tight text-sm mb-2">
                                     生成AIの社内活用を促進するためのハンズオン研修。プロンプトエンジニアリングからセキュアなツール活用まで、全社的なAIリテラシーを底上げします。
                                 </p>
                             </div>
@@ -155,7 +155,7 @@ export default function Services() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.5 }}
-                    className="mt-24 text-center"
+                    className="mt-16 text-center"
                 >
                     <Link href="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
                         <span className="relative z-10 flex items-center gap-3 text-white">

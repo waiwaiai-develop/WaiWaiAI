@@ -60,7 +60,14 @@ export default function ContactSection() {
         setErrorMessage('');
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (!res.ok) throw new Error('送信に失敗しました');
+
             setStatus('success');
             setFormData({
                 company: '',

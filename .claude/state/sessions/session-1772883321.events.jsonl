@@ -1,0 +1,5 @@
+{"type":"session.start","ts":"2026-03-07T11:35:21Z","state":"initialized","data":{"cc_session_id":"6e8a38c9-b7de-4aaa-b0d3-da353f55b922"}}
+{"id":"event-000001","type":"session.resume","ts":"2026-03-07T11:35:21Z","state":"initialized"}
+{"id":"event-000002","type":"tool.edit","ts":"2026-03-07T11:36:31Z","state":"initialized","data":{"file_path":"/Users/kubotatoshi/dev/WaiWaiAI/src/components/Hero.tsx"}}
+{"id":"event-000003","type":"tool.edit","ts":"2026-03-07T11:36:37Z","state":"initialized","data":{"file_path":"/Users/kubotatoshi/dev/WaiWaiAI/src/components/Hero.tsx"}}
+{"id":"event-000004","type":"session.stop","ts":"2026-03-07T11:36:40Z","state":"stopped"}

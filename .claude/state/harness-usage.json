@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-03-07T11:35:21.192Z",
+  "skills": {
+    "agent-browser": {
+      "count": 1,
+      "lastUsed": "2026-03-05T12:27:01.632Z"
+    }
+  },
+  "commands": {},
+  "agents": {
+    "Explore": {
+      "count": 7,
+      "lastUsed": "2026-03-07T07:23:57.814Z"
+    }
+  },
+  "hooks": {
+    "session-init": {
+      "triggered": 4,
+      "blocked": 0,
+      "lastTriggered": "2026-03-07T11:35:21.191Z"
+    }
+  }
+}
