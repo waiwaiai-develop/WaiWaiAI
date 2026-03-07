@@ -6,13 +6,8 @@ export default function Footer() {
             <div className="container mx-auto px-4 md:px-8 relative z-10 text-slate-600">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                     <div className="md:col-span-5 pr-8">
-                        <Link href="/" className="flex items-center gap-3 mb-8 text-slate-900 group w-max">
-                            <div className="bg-slate-50 p-2 rounded-xl border border-slate-200 group-hover:bg-slate-100 transition-colors backdrop-blur-sm">
-                                <img src="/logo.png" alt="WaiWai AI Logo" className="w-8 h-8 object-contain" />
-                            </div>
-                            <span className="text-2xl font-extrabold tracking-tight leading-none group-hover:text-blue-600 transition-colors">
-                                WaiWai AI
-                            </span>
+                        <Link href="/" className="inline-block mb-8 group">
+                            <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-10 w-auto object-contain group-hover:opacity-80 transition-opacity" />
                         </Link>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6 font-medium">
                             本質的な課題解決を導くテクノロジーパートナー。AIの導入コンサルティングから、堅牢なシステム開発、業務プロセスの可視化と自動化まで、企業のDX推進を強力に支援します。
@@ -35,7 +30,6 @@ export default function Footer() {
                             <li><Link href="/cases" className="text-slate-500 hover:text-sky-600 transition-colors block">導入実績</Link></li>
                             <li><Link href="/company" className="text-slate-500 hover:text-sky-600 transition-colors block">会社概要</Link></li>
                             <li><Link href="/#contact" className="text-slate-500 hover:text-sky-600 transition-colors block">お問い合わせ</Link></li>
-                            <li><Link href="/#news" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">お知らせ・ブログ</Link></li>
                         </ul>
                     </div>
 

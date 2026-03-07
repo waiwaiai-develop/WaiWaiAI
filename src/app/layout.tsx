@@ -27,6 +27,10 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://waiwai-ai.com'),
+  icons: {
+    icon: '/logo-symbol.png',
+    apple: '/logo-symbol.png',
+  },
   title: {
     default: 'WaiWai AI | AIシステム開発・ITコンサルティング',
     template: '%s | WaiWai AI',
@@ -74,7 +78,7 @@ export default function RootLayout({
               '@type': 'Organization',
               name: 'WaiWai AI',
               url: 'https://waiwai-ai.com',
-              logo: 'https://waiwai-ai.com/logo.png',
+              logo: 'https://waiwai-ai.com/logo-horizontal.png',
               description:
                 'AIシステム開発・ITコンサルティング・DX推進を一気通貫で支援するテクノロジーパートナー',
               address: {

@@ -20,13 +20,8 @@ export default function Navbar() {
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 backdrop-blur-2xl border-b border-slate-200/50 shadow-[0_2px_20px_-10px_rgba(0,0,0,0.1)] py-3' : 'bg-transparent border-b border-transparent py-6'}`}>
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between max-w-7xl">
-                <Link href="/" className="flex items-center gap-3 relative z-50 group">
-                    <div className="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-1.5 rounded-xl border border-slate-100 group-hover:shadow-[0_4px_15px_-4px_rgba(59,130,246,0.2)] transition-all duration-300 transform group-hover:-translate-y-0.5">
-                        <img src="/logo.png" alt="WaiWai AI Logo" className="w-7 h-7 object-contain" />
-                    </div>
-                    <span className={`text-2xl font-black tracking-tighter leading-none group-hover:text-blue-400 transition-colors text-slate-900`}>
-                        WaiWai AI
-                    </span>
+                <Link href="/" className="relative z-50 group">
+                    <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-8 md:h-9 w-auto object-contain group-hover:opacity-80 transition-opacity" />
                 </Link>
 
                 {/* Desktop Menu */}
