@@ -1,19 +1,19 @@
 import Hero from '@/components/Hero';
-import ProductsSection from '@/components/ProductsSection';
+import PainPoints from '@/components/PainPoints';
 import Services from '@/components/Services';
-import NewsSection from '@/components/NewsSection';
-import ContactCTA from '@/components/ContactCTA';
-import ContactForm from '@/components/ContactForm';
+import CaseHighlights from '@/components/CaseHighlights';
+import ProductsSection from '@/components/ProductsSection';
+import ContactSection from '@/components/ContactSection';
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProductsSection />
+      <PainPoints />
       <Services />
-      <NewsSection />
-      <ContactCTA />
-      <ContactForm />
+      <CaseHighlights />
+      <ProductsSection />
+      <ContactSection />
     </>
   );
 }

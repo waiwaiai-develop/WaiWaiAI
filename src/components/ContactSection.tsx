@@ -1,0 +1,396 @@
+'use client';
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+    ArrowRight,
+    CheckCircle2,
+    Send,
+    Loader2,
+    AlertCircle,
+    Calendar,
+    Mail,
+} from 'lucide-react';
+
+export default function ContactSection() {
+    const [formData, setFormData] = useState({
+        company: '',
+        name: '',
+        email: '',
+        phone: '',
+        category: '',
+        message: '',
+    });
+
+    const [status, setStatus] = useState<
+        'idle' | 'submitting' | 'success' | 'error'
+    >('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (
+        e: React.ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+    ) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (
+            !formData.company ||
+            !formData.name ||
+            !formData.email ||
+            !formData.category ||
+            !formData.message
+        ) {
+            setStatus('error');
+            setErrorMessage('必須項目をすべて入力してください。');
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+            setStatus('error');
+            setErrorMessage('有効なメールアドレスを入力してください。');
+            return;
+        }
+
+        setStatus('submitting');
+        setErrorMessage('');
+
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+            setStatus('success');
+            setFormData({
+                company: '',
+                name: '',
+                email: '',
+                phone: '',
+                category: '',
+                message: '',
+            });
+        } catch {
+            setStatus('error');
+            setErrorMessage(
+                '送信に失敗しました。時間をおいて再度お試しください。'
+            );
+        }
+    };
+
+    return (
+        <section
+            id="contact"
+            className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden"
+        >
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
+                        Contact
+                    </p>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight mb-6 leading-tight">
+                        ビジネスに、<br />
+                        <span className="text-blue-600">
+                            「AIの即戦力」
+                        </span>
+                        を。
+                    </h2>
+                    <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                        まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
+                        プロの視点で最短ルートを提示します。
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                    {/* Left: CTA Info */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-2 flex flex-col gap-6"
+                    >
+                        {/* Calendly Card */}
+                        <a
+                            href="https://calendly.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-start gap-5 p-7 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-[0_10px_30px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1"
+                        >
+                            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+                                <Calendar className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <span className="text-lg font-black flex items-center gap-2 mb-1">
+                                    無料相談を予約する
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </span>
+                                <span className="text-sm text-blue-100 font-bold">
+                                    Calendlyで即時予約 / 30分
+                                </span>
+                            </div>
+                        </a>
+
+                        {/* Email Card */}
+                        <div className="flex items-start gap-5 p-7 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 text-slate-600">
+                                <Mail className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <span className="text-lg font-black text-slate-900 mb-1 block">
+                                    フォームでお問い合わせ
+                                </span>
+                                <span className="text-sm text-slate-500 font-medium">
+                                    資料請求・RFPの送付はこちら。<br />
+                                    通常1〜2営業日以内にご返信。
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                                NDA締結可能
+                            </div>
+                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                                相見積もり歓迎
+                            </div>
+                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                                IT未経験の方も安心サポート
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Right: Form */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-3"
+                    >
+                        <div
+                            id="contact-form"
+                            className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100"
+                        >
+                            <AnimatePresence mode="wait">
+                                {status === 'success' ? (
+                                    <motion.div
+                                        key="success"
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="flex flex-col items-center justify-center py-12 text-center"
+                                    >
+                                        <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                                            <CheckCircle2 className="w-10 h-10 text-green-500" />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                                            送信が完了しました
+                                        </h3>
+                                        <p className="text-slate-600 mb-8 max-w-md">
+                                            お問い合わせいただきありがとうございます。内容を確認次第、担当者よりご連絡させていただきます。
+                                        </p>
+                                        <button
+                                            onClick={() => setStatus('idle')}
+                                            className="px-8 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors"
+                                        >
+                                            新しく問い合わせをする
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <motion.form
+                                        key="form"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        onSubmit={handleSubmit}
+                                        className="space-y-5"
+                                    >
+                                        {status === 'error' && (
+                                            <div className="p-4 bg-red-50 text-red-600 rounded-xl flex items-center gap-3 text-sm font-bold border border-red-100">
+                                                <AlertCircle className="w-5 h-5 shrink-0" />
+                                                {errorMessage}
+                                            </div>
+                                        )}
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                            <div className="space-y-1.5">
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    会社名{' '}
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                        必須
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="company"
+                                                    value={formData.company}
+                                                    onChange={handleChange}
+                                                    placeholder="株式会社WaiWai"
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    ご担当者名{' '}
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                        必須
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    placeholder="山田 太郎"
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                            <div className="space-y-1.5">
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    メールアドレス{' '}
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                        必須
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    placeholder="info@example.com"
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
+                                                />
+                                            </div>
+                                            <div className="space-y-1.5">
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    電話番号{' '}
+                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                        任意
+                                                    </span>
+                                                </label>
+                                                <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleChange}
+                                                    placeholder="03-0000-0000"
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-1.5">
+                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                ご相談種別{' '}
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    必須
+                                                </span>
+                                            </label>
+                                            <select
+                                                name="category"
+                                                value={formData.category}
+                                                onChange={handleChange}
+                                                disabled={
+                                                    status === 'submitting'
+                                                }
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 appearance-none"
+                                                style={{
+                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                                                    backgroundRepeat:
+                                                        'no-repeat',
+                                                    backgroundPosition:
+                                                        'right 1rem center',
+                                                    backgroundSize: '1em',
+                                                }}
+                                            >
+                                                <option value="" disabled>
+                                                    選択してください
+                                                </option>
+                                                <option value="AI導入・開発に関するご相談">
+                                                    AI導入・開発に関するご相談
+                                                </option>
+                                                <option value="無料のコスト削減診断を希望">
+                                                    無料のコスト削減診断を希望
+                                                </option>
+                                                <option value="協業・アライアンスについて">
+                                                    協業・アライアンスについて
+                                                </option>
+                                                <option value="法人化・採用について">
+                                                    法人化・採用について
+                                                </option>
+                                                <option value="その他">
+                                                    その他
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div className="space-y-1.5">
+                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                お問い合わせ内容{' '}
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    必須
+                                                </span>
+                                            </label>
+                                            <textarea
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                rows={4}
+                                                placeholder="現在抱えている課題や、実現したい要件などをご自由にお書きください。"
+                                                disabled={
+                                                    status === 'submitting'
+                                                }
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 resize-y"
+                                            ></textarea>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={status === 'submitting'}
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
+                                        >
+                                            {status === 'submitting' ? (
+                                                <>
+                                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                                    送信中...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    送信する
+                                                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </>
+                                            )}
+                                        </button>
+                                    </motion.form>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}

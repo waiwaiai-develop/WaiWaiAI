@@ -54,7 +54,7 @@ export default function ProductsSection() {
                     className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 >
                     {/* Product 1 Bento */}
-                    <motion.a href="/services#products" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                    <motion.a href="/services" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
                         <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
                             <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10"></div>
                             <img src="/images/product_a.png" alt="NEXUS AI" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
@@ -74,7 +74,7 @@ export default function ProductsSection() {
                     </motion.a>
 
                     {/* Product 2 Bento */}
-                    <motion.a href="/services#products" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                    <motion.a href="/services" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
                         <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
                             <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10"></div>
                             <img src="/images/product_b.png" alt="PRODUCTIVITY HUB" className="w-full h-full object-cover object-left-top transform group-hover:scale-105 transition-transform duration-700" />
