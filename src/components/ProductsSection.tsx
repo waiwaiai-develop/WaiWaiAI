@@ -38,7 +38,7 @@ export default function ProductsSection() {
                     <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wider mb-8 shadow-sm">
                         <Sparkles className="w-4 h-4 text-blue-400" /> 独自ソリューション
                     </motion.div>
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-950 mb-6 tracking-tighter leading-[1.1]">
+                    <motion.h2 variants={itemVariants} className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 mb-6 tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]">
                         提供プロダクト・<br className="md:hidden" />ソリューション
                     </motion.h2>
                     <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-bold tracking-tight leading-relaxed">

@@ -3,13 +3,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    ArrowRight,
     CheckCircle2,
     Send,
     Loader2,
     AlertCircle,
-    Calendar,
-    Mail,
 } from 'lucide-react';
 
 export default function ContactSection() {
@@ -101,7 +98,7 @@ export default function ContactSection() {
                     <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Contact
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight mb-6 leading-tight">
+                    <h2 className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight md:tracking-tighter mb-6 leading-[1.25] md:leading-[1.15]">
                         ビジネスに、<br />
                         <span className="text-blue-600">
                             「AIの即戦力」
@@ -114,74 +111,33 @@ export default function ContactSection() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-                    {/* Left: CTA Info */}
+                <div className="max-w-3xl mx-auto">
+                    {/* Trust Badges */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-2 flex flex-col gap-6"
+                        className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10"
                     >
-                        {/* Calendly Card */}
-                        <a
-                            href="https://calendly.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-start gap-5 p-7 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-[0_10px_30px_-10px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_40px_-10px_rgba(37,99,235,0.5)] hover:-translate-y-1"
-                        >
-                            <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
-                                <Calendar className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <span className="text-lg font-black flex items-center gap-2 mb-1">
-                                    無料相談を予約する
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                                <span className="text-sm text-blue-100 font-bold">
-                                    Calendlyで即時予約 / 30分
-                                </span>
-                            </div>
-                        </a>
-
-                        {/* Email Card */}
-                        <div className="flex items-start gap-5 p-7 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 text-slate-600">
-                                <Mail className="w-6 h-6" />
-                            </div>
-                            <div>
-                                <span className="text-lg font-black text-slate-900 mb-1 block">
-                                    フォームでお問い合わせ
-                                </span>
-                                <span className="text-sm text-slate-500 font-medium">
-                                    資料請求・RFPの送付はこちら。<br />
-                                    通常1〜2営業日以内にご返信。
-                                </span>
-                            </div>
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            NDA締結可能
                         </div>
-
-                        {/* Trust Badges */}
-                        <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
-                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                                NDA締結可能
-                            </div>
-                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
-                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                                相見積もり歓迎
-                            </div>
-                            <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
-                                <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                                IT未経験の方も安心サポート
-                            </div>
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            相見積もり歓迎
+                        </div>
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            IT未経験の方も安心サポート
                         </div>
                     </motion.div>
 
-                    {/* Right: Form */}
+                    {/* Form */}
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-3"
                     >
                         <div
                             id="contact-form"

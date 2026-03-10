@@ -42,7 +42,7 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl lg:text-[4rem] font-black text-slate-950 mb-6 uppercase tracking-tighter leading-[1.1] drop-shadow-sm"
+                        className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 mb-6 uppercase tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]"
                     >
                         AIシステム開発から、<br className="md:hidden" />AI顧問・研修まで
                     </motion.h2>
@@ -63,40 +63,38 @@ export default function Services() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
                 >
-                    {/* Pillar 1: Development (Large Bento) */}
+                    {/* Pillar 1: Development */}
                     <motion.div
                         variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-2 lg:col-span-2 flex flex-col"
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
                     >
-                        <div className="h-44 sm:h-52 w-full overflow-hidden bg-slate-50 relative">
+                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-dev.png" alt="AI System Development" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-6 md:p-8 bg-white relative z-20 flex-1 flex flex-col justify-center">
-                            <div className="flex items-center gap-4 mb-3">
-                                <div className="w-12 h-12 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all flex-shrink-0">
-                                    <Cpu className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-xl md:text-2xl font-black text-slate-950 tracking-tight">AIシステム・<br className="md:hidden" />プロダクト開発</h3>
+                        <div className="p-6 bg-white flex-1 flex flex-col">
+                            <div className="w-11 h-11 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center mb-4 text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                <Cpu className="w-5 h-5" />
                             </div>
-                            <p className="text-slate-700 leading-relaxed font-bold tracking-tight text-base">
-                                LLMを組み込んだ独自のSaaS開発や社内システムの構築。PoCから本番実装、スケーリングまで、開発を「メイン」として技術的にリードします。
+                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">AIシステム・プロダクト開発</h3>
+                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
+                                LLMを組み込んだ独自のSaaS開発や社内システムの構築。PoCから本番実装、スケーリングまで技術的にリードします。
                             </p>
                         </div>
                     </motion.div>
 
-                    {/* Pillar 2: Advisory / Consulting (Tall Bento) */}
+                    {/* Pillar 2: Advisory / Consulting */}
                     <motion.div
                         variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
                     >
                         <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-consulting.png" alt="AI Consulting" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-6 bg-white pb-8 flex-1 flex flex-col">
+                        <div className="p-6 bg-white flex-1 flex flex-col">
                             <div className="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center mb-4 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
                                 <Bot className="w-5 h-5" />
                             </div>
@@ -107,16 +105,16 @@ export default function Services() {
                         </div>
                     </motion.div>
 
-                    {/* Pillar 3: DX & Automation (Medium Bento) */}
+                    {/* Pillar 3: DX & Automation */}
                     <motion.div
                         variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-1 lg:col-span-1 flex flex-col"
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
                     >
                         <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-emerald-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
                             <img src="/bento-dx.png" alt="DX & Automation" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
-                        <div className="p-6 bg-white pb-8 flex-1 flex flex-col">
+                        <div className="p-6 bg-white flex-1 flex flex-col">
                             <div className="w-11 h-11 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mb-4 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
                                 <Settings className="w-5 h-5" />
                             </div>
@@ -127,25 +125,22 @@ export default function Services() {
                         </div>
                     </motion.div>
 
-                    {/* Pillar 4: Training (Text heavy / Call-out Bento) */}
+                    {/* Pillar 4: Training */}
                     <motion.div
                         variants={itemVariants}
-                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:col-span-1 lg:col-span-2 flex flex-col justify-center overflow-hidden"
+                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col"
                     >
-                        {/* Decorative Background for dark card */}
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:16px_16px] z-0 opacity-20"></div>
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors z-0"></div>
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors z-0"></div>
 
-                        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-                            <div className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all flex-shrink-0">
-                                <Target className="w-6 h-6" />
+                        <div className="p-6 relative z-10 flex-1 flex flex-col">
+                            <div className="w-11 h-11 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center mb-4 text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all">
+                                <Target className="w-5 h-5" />
                             </div>
-                            <div>
-                                <h3 className="text-xl font-black text-white mb-2 tracking-tight">AI研修・リテラシー向上</h3>
-                                <p className="text-slate-300 leading-relaxed font-bold tracking-tight text-sm mb-2">
-                                    生成AIの社内活用を促進するためのハンズオン研修。プロンプトエンジニアリングからセキュアなツール活用まで、全社的なAIリテラシーを底上げします。
-                                </p>
-                            </div>
+                            <h3 className="text-lg md:text-xl font-black text-white mb-2 tracking-tight">AI研修・リテラシー向上</h3>
+                            <p className="text-slate-300 leading-relaxed font-bold tracking-tight text-sm flex-1">
+                                生成AIの社内活用を促進するためのハンズオン研修。プロンプトエンジニアリングからセキュアなツール活用まで、全社的なAIリテラシーを底上げします。
+                            </p>
                         </div>
                     </motion.div>
                 </motion.div>

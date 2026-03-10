@@ -56,7 +56,7 @@ export default function PainPoints() {
                     <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Common Challenges
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+                    <h2 className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]">
                         こんな課題、<br className="md:hidden" />抱えていませんか？
                     </h2>
                 </motion.div>

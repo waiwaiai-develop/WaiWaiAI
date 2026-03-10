@@ -84,11 +84,11 @@ export default function Hero() {
                         className="text-lg md:text-xl text-slate-600 max-w-xl mb-10 leading-relaxed font-medium space-y-4"
                     >
                         <p>
-                            最新のAI技術と確かなシステム開発力で、ビジネスの非連続な成長を実現します。
+                            確かな開発力とAIで、御社のビジネスを次のステージへ導きます。
                         </p>
                         <p className="text-base text-slate-500 font-normal">
-                            社名に込めた「WaiWai（豊かさ）」と「ホヌ（繁栄）」の信念のもと、<br className="hidden md:block" />
-                            お客様の事業価値を最大化する次世代テクノロジーパートナーです。
+                            ハワイ語で「豊かさ」を意味するWaiWai。<br className="hidden md:block" />
+                            幸運と繁栄のシンボル・ホヌのように、AIで御社のビジネスをもっと豊かにします。
                         </p>
                     </motion.div>
 
