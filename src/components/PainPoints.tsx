@@ -1,27 +1,27 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { HelpCircle, Receipt, FileSpreadsheet, UserX } from 'lucide-react';
+import { Brain, Zap, Sparkles, Compass } from 'lucide-react';
 
 const painPoints = [
     {
-        icon: <HelpCircle className="w-7 h-7" />,
-        title: 'AIを導入したいが、何から始めればいいかわからない',
-        color: 'text-blue-600 bg-blue-50 border-blue-100',
-    },
-    {
-        icon: <Receipt className="w-7 h-7" />,
-        title: '既存ベンダーの見積もりが適正なのか判断できない',
+        icon: <Brain className="w-7 h-7" />,
+        title: 'AIツールは使ってるけど、本業に活かせていない',
         color: 'text-indigo-600 bg-indigo-50 border-indigo-100',
     },
     {
-        icon: <FileSpreadsheet className="w-7 h-7" />,
-        title: 'エクセルや手作業の業務が多く、ミスとコストが膨らんでいる',
+        icon: <Zap className="w-7 h-7" />,
+        title: '競合がAIで先行者利益を取っている、置いて行かれるかも',
+        color: 'text-blue-600 bg-blue-50 border-blue-100',
+    },
+    {
+        icon: <Sparkles className="w-7 h-7" />,
+        title: '反復作業から解放され、もっと創造的な仕事がしたい',
         color: 'text-sky-600 bg-sky-50 border-sky-100',
     },
     {
-        icon: <UserX className="w-7 h-7" />,
-        title: '社内にIT人材がおらず、DXが進まない',
+        icon: <Compass className="w-7 h-7" />,
+        title: 'DXと言われても、何から手を付ければいいかわからない',
         color: 'text-slate-600 bg-slate-50 border-slate-200',
     },
 ];
