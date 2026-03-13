@@ -32,25 +32,25 @@ export const metadata: Metadata = {
     apple: '/logo-symbol.png',
   },
   title: {
-    default: 'WaiWai AI | AIシステム開発・ITコンサルティング',
+    default: 'WaiWai AI 株式会社 | AIネイティブ開発・ITコンサルティング',
     template: '%s | WaiWai AI',
   },
   description:
-    'WaiWai AIは、AIシステム開発・ITコンサルティング・DX推進を一気通貫で支援するテクノロジーパートナーです。LLM/RAGを活用した業務自動化で、確実なROIを実現します。',
-  keywords: ['AI開発', 'ITコンサルティング', 'DX推進', 'RAG', 'LLM', 'RPA', '業務自動化', 'AIエージェント'],
+    'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援。最先端の技術で、あなたのビジョンを形にします。',
+  keywords: ['AI開発', 'AIネイティブ', 'ITコンサルティング', 'DX推進', 'RAG', 'LLM', 'RPA', '業務自動化', 'AIエージェント'],
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
     siteName: 'WaiWai AI',
-    title: 'WaiWai AI | AIシステム開発・ITコンサルティング',
+    title: 'WaiWai AI 株式会社 | AIネイティブ開発・ITコンサルティング',
     description:
-      'AIシステム開発・ITコンサルティング・DX推進を一気通貫で支援。LLM/RAGを活用した業務自動化で確実なROIを実現します。',
+      'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援。最先端の技術で、あなたのビジョンを形にします。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WaiWai AI | AIシステム開発・ITコンサルティング',
+    title: 'WaiWai AI 株式会社 | AIネイティブ開発・ITコンサルティング',
     description:
-      'AIシステム開発・ITコンサルティング・DX推進を一気通貫で支援。確実なROIを実現するテクノロジーパートナー。',
+      'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援。',
   },
 };
 
@@ -80,7 +80,7 @@ export default function RootLayout({
               url: 'https://waiwai-ai.com',
               logo: 'https://waiwai-ai.com/logo-horizontal.png',
               description:
-                'AIシステム開発・ITコンサルティング・DX推進を一気通貫で支援するテクノロジーパートナー',
+                'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: '東京都',

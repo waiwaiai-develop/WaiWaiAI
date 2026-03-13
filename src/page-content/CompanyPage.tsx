@@ -111,7 +111,37 @@ export default function CompanyPage() {
                                     会社名
                                 </div>
                                 <div className="md:w-2/3 text-slate-800 font-bold text-lg">
-                                    WaiWai AI (法人化準備中 / WIP)
+                                    WaiWai AI 株式会社
+                                </div>
+                            </motion.div>
+
+                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                                    <Users2 className="w-5 h-5" />
+                                    設立
+                                </div>
+                                <div className="md:w-2/3 text-slate-700 font-medium">
+                                    2025年1月23日
+                                </div>
+                            </motion.div>
+
+                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                                    <Users2 className="w-5 h-5" />
+                                    資本金
+                                </div>
+                                <div className="md:w-2/3 text-slate-700 font-medium">
+                                    50万円
+                                </div>
+                            </motion.div>
+
+                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                                    <Users2 className="w-5 h-5" />
+                                    代表者
+                                </div>
+                                <div className="md:w-2/3 text-slate-700 font-medium">
+                                    久保田 慧（Kei Kubota）
                                 </div>
                             </motion.div>
 
@@ -122,10 +152,10 @@ export default function CompanyPage() {
                                 </div>
                                 <div className="md:w-2/3 text-slate-700 font-medium leading-relaxed">
                                     <ul className="space-y-2">
-                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> AIエージェント開発および導入支援</li>
-                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> オーダーメイド型Webシステム設計・開発</li>
-                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> 業務フロー再構築、RPA導入、DX実行支援</li>
-                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> 中長期ITコンサルティング（外部CTO）</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> AIシステム・プロダクト開発（受託）</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> AI導入コンサルティング・技術顧問</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> 業務自動化（RPA/GAS/DX）</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div> AI研修・リテラシー向上支援</li>
                                     </ul>
                                 </div>
                             </motion.div>
