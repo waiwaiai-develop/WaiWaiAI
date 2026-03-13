@@ -90,10 +90,6 @@ export default function Hero() {
                             ハワイ語で「豊かさ」を意味するWaiWai。<br className="hidden md:block" />
                             幸運と繁栄のシンボル・ホヌのように、AIで御社のビジネスをもっと豊かにします。
                         </p>
-                        <p className="text-base text-slate-500 font-normal">
-                            ハワイ語で「豊かさ」を意味するWaiWai。<br className="hidden md:block" />
-                            幸運と繁栄のシンボル・ホヌのように、AIで御社のビジネスをもっと豊かにします。
-                        </p>
                     </motion.div>
 
                     {/* CTA Buttons */}
