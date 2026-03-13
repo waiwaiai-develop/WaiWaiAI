@@ -10,7 +10,7 @@ export default function Footer() {
                             <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity" />
                         </Link>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6 font-medium">
-                            本質的な課題解決を導くテクノロジーパートナー。AIの導入コンサルティングから、堅牢なシステム開発、業務プロセスの可視化と自動化まで、企業のDX推進を強力に支援します。
+                            AIネイティブ開発会社。最先端の技術で、あなたのビジョンを形に。AIシステム開発から導入コンサルティングまで、確かな実装力でビジネスのDX推進を伴走します。
                         </p>
                     </div>
 
