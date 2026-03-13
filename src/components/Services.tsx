@@ -1,174 +1,183 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Bot, Cpu, Settings, ArrowRight, Zap, Target } from 'lucide-react';
+import { Bot, Settings, Cpu, Target, ArrowRight, ArrowDown } from 'lucide-react';
 import Link from 'next/link';
 
+const services = [
+    {
+        step: 1,
+        icon: Bot,
+        title: 'AI導入コンサル',
+        price: '5万円〜',
+        desc: '現状ヒアリング(2h) + 導入ロードマップ提案。「何から始めるべきか」を明確にします。',
+        color: 'blue',
+        bgColor: 'bg-blue-50',
+        borderColor: 'border-blue-200',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600',
+        badgeBg: 'bg-blue-100',
+        badgeColor: 'text-blue-700',
+    },
+    {
+        step: 2,
+        icon: Settings,
+        title: '業務自動化',
+        price: '15万円〜',
+        desc: 'GAS/RPA等で1業務フロー完全自動化。手作業をなくし、現場の生産性を劇的に向上。',
+        color: 'sky',
+        bgColor: 'bg-sky-50',
+        borderColor: 'border-sky-200',
+        iconBg: 'bg-sky-100',
+        iconColor: 'text-sky-600',
+        badgeBg: 'bg-sky-100',
+        badgeColor: 'text-sky-700',
+    },
+    {
+        step: 3,
+        icon: Cpu,
+        title: 'AIシステム開発',
+        price: '30万円〜',
+        desc: '小規模AI機能（チャットボット等）開発。PoCから本番実装まで技術的にリードします。',
+        color: 'indigo',
+        bgColor: 'bg-indigo-50',
+        borderColor: 'border-indigo-200',
+        iconBg: 'bg-indigo-100',
+        iconColor: 'text-indigo-600',
+        badgeBg: 'bg-indigo-100',
+        badgeColor: 'text-indigo-700',
+    },
+    {
+        step: 4,
+        icon: Target,
+        title: 'AI顧問パック',
+        price: '10万円/月',
+        desc: '月4h定例MTG + 技術選定 + 導入支援。継続的なAI活用をパートナーとして伴走します。',
+        color: 'slate',
+        bgColor: 'bg-slate-900',
+        borderColor: 'border-slate-800',
+        iconBg: 'bg-slate-800',
+        iconColor: 'text-slate-200',
+        badgeBg: 'bg-slate-700',
+        badgeColor: 'text-slate-200',
+        isDark: true,
+    },
+];
+
 export default function Services() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-        }
-    };
-
-    const itemVariants: any = {
-        hidden: { opacity: 0, y: 50 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { type: "spring", stiffness: 80, damping: 15 }
-        }
-    };
-
     return (
-        <section id="services" className="py-24 lg:py-32 relative bg-slate-50 border-t border-slate-200 overflow-hidden">
-            {/* Structural Tech Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
+        <section id="services" className="py-24 lg:py-32 relative bg-white border-t border-slate-100 overflow-hidden">
+            {/* Subtle grid background */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                <div className="text-center mb-14">
+                {/* Header */}
+                <div className="text-center mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-white font-bold text-sm tracking-wider mb-6 shadow-sm"
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wider mb-6"
                     >
-                        <Zap className="w-4 h-4 text-blue-400" /> CONSULTING SERVICES
+                        4ステップで始めるAI活用
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 mb-6 uppercase tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]"
+                        className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tight leading-tight"
                     >
-                        AIシステム開発から、<br className="md:hidden" />AI顧問・研修まで
+                        あなたのビジネスに<br className="md:hidden" />最適な導入プラン
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-slate-700 max-w-2xl mx-auto text-xl leading-relaxed font-bold tracking-tight drop-shadow-sm"
+                        className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed"
                     >
-                        「開発」を中核に、AI顧問・ITコンサルティング・AI研修を一気通貫で提供。<br className="hidden md:block" />
-                        確かな実装力に基づいた、地に足の着いた変革を支援します。
+                        まずは診断から。ステップを追って、確実にAI活用を定着させます。
                     </motion.p>
                 </div>
 
+                {/* Step Cards - Zigzag Layout */}
+                <div className="max-w-4xl mx-auto space-y-8">
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={service.step}
+                            initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className={`relative ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'} w-full md:w-[80%]`}
+                        >
+                            <div
+                                className={`group relative ${service.bgColor} ${service.borderColor} border-2 rounded-3xl p-8 transition-all duration-300 hover:shadow-xl ${
+                                    service.isDark ? 'hover:shadow-slate-900/20' : 'hover:shadow-blue-500/10'
+                                }`}
+                            >
+                                {/* Step Number Badge */}
+                                <div className={`absolute -top-4 ${index % 2 === 0 ? 'left-8' : 'right-8'} w-10 h-10 rounded-full bg-white border-2 ${service.borderColor} flex items-center justify-center font-black text-lg ${service.iconColor}`}>
+                                    {service.step}
+                                </div>
+
+                                <div className="flex flex-col md:flex-row gap-6 items-start">
+                                    {/* Icon */}
+                                    <div className={`${service.iconBg} ${service.iconColor} w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                                        <service.icon className="w-8 h-8" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex-1">
+                                        <div className="flex flex-wrap items-center gap-3 mb-3">
+                                            <h3 className={`text-xl md:text-2xl font-black tracking-tight ${service.isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                {service.title}
+                                            </h3>
+                                            <span className={`${service.badgeBg} ${service.badgeColor} px-3 py-1 rounded-full text-sm font-bold`}>
+                                                {service.price}
+                                            </span>
+                                        </div>
+                                        <p className={`text-base leading-relaxed ${service.isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                            {service.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Arrow to next step */}
+                            {index < services.length - 1 && (
+                                <div className={`hidden md:flex absolute ${index % 2 === 0 ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 ${index % 2 === 0 ? 'translate-x-1/2' : '-translate-x-1/2'} z-10`}>
+                                    <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center shadow-sm">
+                                        <ArrowRight className={`w-5 h-5 text-slate-400 ${index % 2 !== 0 && 'rotate-180'}`} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Mobile Arrow Down */}
+                            {index < services.length - 1 && (
+                                <div className="flex md:hidden justify-center mt-4">
+                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
+                                        <ArrowDown className="w-5 h-5 text-slate-400" />
+                                    </div>
+                                </div>
+                            )}
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* CTA */}
                 <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
-                >
-                    {/* Service 1: AI導入コンサル */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
-                    >
-                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
-                            <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-consulting.png" alt="AI導入コンサル" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <div className="p-6 bg-white flex-1 flex flex-col">
-                            <div className="w-11 h-11 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center mb-4 text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                <Bot className="w-5 h-5" />
-                            </div>
-                            <div className="flex items-center gap-2 mb-2">
-                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">AI導入コンサル</h3>
-                                <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">5万円〜</span>
-                            </div>
-                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                現状ヒアリング(2h) + 導入ロードマップ提案。「何から始めるべきか」を明確にします。
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Service 2: 業務自動化 */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
-                    >
-                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
-                            <div className="absolute inset-0 bg-emerald-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-dx.png" alt="業務自動化" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <div className="p-6 bg-white flex-1 flex flex-col">
-                            <div className="w-11 h-11 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mb-4 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                                <Settings className="w-5 h-5" />
-                            </div>
-                            <div className="flex items-center gap-2 mb-2">
-                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">業務自動化</h3>
-                                <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">15万円〜</span>
-                            </div>
-                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                GAS/RPA等で1業務フロー完全自動化。手作業をなくし、現場の生産性を劇的に向上。
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Service 3: AIシステム開発 */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
-                    >
-                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
-                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-dev.png" alt="AIシステム開発" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <div className="p-6 bg-white flex-1 flex flex-col">
-                            <div className="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center mb-4 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                                <Cpu className="w-5 h-5" />
-                            </div>
-                            <div className="flex items-center gap-2 mb-2">
-                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">AIシステム開発</h3>
-                                <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold">30万円〜</span>
-                            </div>
-                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                小規模AI機能（チャットボット等）開発。PoCから本番実装まで技術的にリードします。
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Service 4: AI顧問パック */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col"
-                    >
-                        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:16px_16px] z-0 opacity-20"></div>
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors z-0"></div>
-
-                        <div className="p-6 relative z-10 flex-1 flex flex-col">
-                            <div className="w-11 h-11 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center mb-4 text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all">
-                                <Target className="w-5 h-5" />
-                            </div>
-                            <div className="flex items-center gap-2 mb-2">
-                                <h3 className="text-lg md:text-xl font-black text-white tracking-tight">AI顧問パック</h3>
-                                <span className="px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold">10万円/月</span>
-                            </div>
-                            <p className="text-slate-300 leading-relaxed font-bold tracking-tight text-sm flex-1">
-                                月4h定例MTG + 技術選定 + 導入支援。継続的なAI活用をパートナーとして伴走します。
-                            </p>
-                        </div>
-                    </motion.div>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="mt-16 text-center"
+                    transition={{ delay: 0.5 }}
+                    className="mt-20 text-center"
                 >
-                    <p className="text-slate-500 font-bold text-sm mb-6">相談無料・お見積もり無料</p>
-                    <Link href="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
-                        <span className="relative z-10 flex items-center gap-3 text-white">
-                            すべてのサービスを見る <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />
-                        </span>
+                    <p className="text-slate-500 text-sm mb-6">どのステップから始めればいいかわからない？</p>
+                    <Link href="/#contact" className="group inline-flex items-center gap-3 px-10 py-4 bg-slate-900 text-white font-bold text-lg rounded-full hover:bg-slate-800 transition-all hover:shadow-xl hover:-translate-y-1">
+                        無料で相談する
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </motion.div>
             </div>
