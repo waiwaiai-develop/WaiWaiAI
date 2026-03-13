@@ -53,45 +53,41 @@ export default function ProductsSection() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 >
-                    {/* Product 1 Bento */}
-                    <motion.a href="/services" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                    {/* Product 1: WaiWaiAI SNS System */}
+                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
                         <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
                             <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="/images/product_a.png" alt="NEXUS AI" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
+                            <img src="/images/product_a.png" alt="WaiWaiAI SNS System" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
                         <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">NEXUS AI</h3>
-                                    <p className="text-blue-600 font-bold tracking-tight">セキュアRAG基盤</p>
+                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">WaiWaiAI SNS System</h3>
+                                    <p className="text-blue-600 font-bold tracking-tight">SNS自動運用プラットフォーム</p>
                                 </div>
-                                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                    <ArrowRight className="w-5 h-5 group-hover:-rotate-45 transition-transform" />
-                                </div>
+                                <span className="shrink-0 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">β版受付中</span>
                             </div>
-                            <p className="text-slate-600 font-bold leading-relaxed">企業内ドキュメントを活用した社内専用の高精度AIアシスタント。機密情報を守りながら圧倒的な業務効率化を実現。</p>
+                            <p className="text-slate-600 font-bold leading-relaxed">AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。</p>
                         </div>
-                    </motion.a>
+                    </motion.div>
 
-                    {/* Product 2 Bento */}
-                    <motion.a href="/services" variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                    {/* Product 2: EstateAI */}
+                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
                         <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
                             <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="/images/product_b.png" alt="PRODUCTIVITY HUB" className="w-full h-full object-cover object-left-top transform group-hover:scale-105 transition-transform duration-700" />
+                            <img src="/images/product_b.png" alt="EstateAI" className="w-full h-full object-cover object-left-top transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
                         <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">PRODUCTIVITY HUB</h3>
-                                    <p className="text-indigo-600 font-bold tracking-tight">業務特化エージェント</p>
+                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">EstateAI</h3>
+                                    <p className="text-indigo-600 font-bold tracking-tight">不動産業向けAIソリューション</p>
                                 </div>
-                                <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                                    <ArrowRight className="w-5 h-5 group-hover:-rotate-45 transition-transform" />
-                                </div>
+                                <span className="shrink-0 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">Coming Soon</span>
                             </div>
-                            <p className="text-slate-600 font-bold leading-relaxed">人事・法務・営業など特定プロセスに特化したAI群。導入当日から実証済みのROIを提供する即効型ソリューション。</p>
+                            <p className="text-slate-600 font-bold leading-relaxed">不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。</p>
                         </div>
-                    </motion.a>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

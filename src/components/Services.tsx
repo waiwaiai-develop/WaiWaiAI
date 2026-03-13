@@ -65,67 +65,76 @@ export default function Services() {
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
                 >
-                    {/* Pillar 1: Development */}
+                    {/* Service 1: AI導入コンサル */}
                     <motion.div
                         variants={itemVariants}
                         className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
                     >
                         <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-dev.png" alt="AI System Development" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
+                            <img src="/bento-consulting.png" alt="AI導入コンサル" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
                         <div className="p-6 bg-white flex-1 flex flex-col">
                             <div className="w-11 h-11 bg-blue-50 border border-blue-100 rounded-xl flex items-center justify-center mb-4 text-blue-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                <Cpu className="w-5 h-5" />
-                            </div>
-                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">AIシステム・プロダクト開発</h3>
-                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                LLMを組み込んだ独自のSaaS開発や社内システムの構築。PoCから本番実装、スケーリングまで技術的にリードします。
-                            </p>
-                        </div>
-                    </motion.div>
-
-                    {/* Pillar 2: Advisory / Consulting */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
-                    >
-                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
-                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-consulting.png" alt="AI Consulting" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <div className="p-6 bg-white flex-1 flex flex-col">
-                            <div className="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center mb-4 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
                                 <Bot className="w-5 h-5" />
                             </div>
-                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">AI顧問・ITコンサル</h3>
+                            <div className="flex items-center gap-2 mb-2">
+                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">AI導入コンサル</h3>
+                                <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">5万円〜</span>
+                            </div>
                             <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                「何をAI化すべきか」の戦略策定から、最新技術選定、組織への導入支援まで。現場を知るコンサルティングを提供。
+                                現状ヒアリング(2h) + 導入ロードマップ提案。「何から始めるべきか」を明確にします。
                             </p>
                         </div>
                     </motion.div>
 
-                    {/* Pillar 3: DX & Automation */}
+                    {/* Service 2: 業務自動化 */}
                     <motion.div
                         variants={itemVariants}
                         className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
                     >
                         <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
                             <div className="absolute inset-0 bg-emerald-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
-                            <img src="/bento-dx.png" alt="DX & Automation" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                            <img src="/bento-dx.png" alt="業務自動化" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
                         </div>
                         <div className="p-6 bg-white flex-1 flex flex-col">
                             <div className="w-11 h-11 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center justify-center mb-4 text-emerald-600 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
                                 <Settings className="w-5 h-5" />
                             </div>
-                            <h3 className="text-lg md:text-xl font-black text-slate-950 mb-2 tracking-tight">DX特化型コンサル</h3>
+                            <div className="flex items-center gap-2 mb-2">
+                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">業務自動化</h3>
+                                <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">15万円〜</span>
+                            </div>
                             <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
-                                ローコードツールやRPAを活用した業務プロセスの再構築。自動化で、現場のオペレーションを劇的に最適化。
+                                GAS/RPA等で1業務フロー完全自動化。手作業をなくし、現場の生産性を劇的に向上。
                             </p>
                         </div>
                     </motion.div>
 
-                    {/* Pillar 4: Training */}
+                    {/* Service 3: AIシステム開発 */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="group relative bg-white border border-slate-200/80 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col"
+                    >
+                        <div className="h-40 w-full overflow-hidden bg-slate-50 relative">
+                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10 w-full h-full pointer-events-none"></div>
+                            <img src="/bento-dev.png" alt="AIシステム開発" className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-6 bg-white flex-1 flex flex-col">
+                            <div className="w-11 h-11 bg-indigo-50 border border-indigo-100 rounded-xl flex items-center justify-center mb-4 text-indigo-600 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                                <Cpu className="w-5 h-5" />
+                            </div>
+                            <div className="flex items-center gap-2 mb-2">
+                                <h3 className="text-lg md:text-xl font-black text-slate-950 tracking-tight">AIシステム開発</h3>
+                                <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold">30万円〜</span>
+                            </div>
+                            <p className="text-slate-700 leading-relaxed font-bold text-sm tracking-tight flex-1">
+                                小規模AI機能（チャットボット等）開発。PoCから本番実装まで技術的にリードします。
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* Service 4: AI顧問パック */}
                     <motion.div
                         variants={itemVariants}
                         className="group relative bg-slate-950 border border-slate-800 rounded-[2rem] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col"
@@ -137,9 +146,12 @@ export default function Services() {
                             <div className="w-11 h-11 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center mb-4 text-orange-400 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:border-transparent transition-all">
                                 <Target className="w-5 h-5" />
                             </div>
-                            <h3 className="text-lg md:text-xl font-black text-white mb-2 tracking-tight">AI研修・リテラシー向上</h3>
+                            <div className="flex items-center gap-2 mb-2">
+                                <h3 className="text-lg md:text-xl font-black text-white tracking-tight">AI顧問パック</h3>
+                                <span className="px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 text-xs font-bold">10万円/月</span>
+                            </div>
                             <p className="text-slate-300 leading-relaxed font-bold tracking-tight text-sm flex-1">
-                                生成AIの社内活用を促進するためのハンズオン研修。プロンプトエンジニアリングからセキュアなツール活用まで、全社的なAIリテラシーを底上げします。
+                                月4h定例MTG + 技術選定 + 導入支援。継続的なAI活用をパートナーとして伴走します。
                             </p>
                         </div>
                     </motion.div>
@@ -152,6 +164,7 @@ export default function Services() {
                     transition={{ duration: 0.5, delay: 0.5 }}
                     className="mt-16 text-center"
                 >
+                    <p className="text-slate-500 font-bold text-sm mb-6">相談無料・お見積もり無料</p>
                     <Link href="/services" className="group relative inline-flex items-center justify-center px-12 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-xl transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1">
                         <span className="relative z-10 flex items-center gap-3 text-white">
                             すべてのサービスを見る <ArrowRight className="w-5 h-5 group-hover:translate-x-1" />

@@ -65,7 +65,7 @@ export default function Hero() {
                     <motion.div variants={itemVariants} className="mb-6">
                         <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 border border-slate-200 text-sm font-semibold text-slate-700 shadow-sm">
                             <span className="flex h-1.5 w-1.5 rounded-full bg-blue-600"></span>
-                            次世代の開発パートナー
+                            AIネイティブ開発会社
                         </span>
                     </motion.div>
 
@@ -83,6 +83,9 @@ export default function Hero() {
                         variants={itemVariants}
                         className="text-lg md:text-xl text-slate-600 max-w-xl mb-10 leading-relaxed font-medium space-y-4"
                     >
+                        <p>
+                            社長1名＋AIエージェントで実現する、ハイパー効率の開発
+                        </p>
                         <p>
                             確かな開発力とAIで、御社のビジネスを次のステージへ導きます。
                         </p>
