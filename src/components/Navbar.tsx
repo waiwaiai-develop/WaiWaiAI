@@ -26,7 +26,7 @@ export default function Navbar() {
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
             isScrolled
-                ? 'bg-[#0f1115]/80 backdrop-blur-xl border-b border-white/[0.06] py-3'
+                ? 'bg-white/90 backdrop-blur-xl border-b border-slate-100 py-3 shadow-sm'
                 : 'bg-transparent border-b border-transparent py-5'
         }`}>
             <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
@@ -34,7 +34,7 @@ export default function Navbar() {
                     <img
                         src="/logo-horizontal.png"
                         alt="WaiWai AI"
-                        className="h-7 sm:h-8 w-auto object-contain group-hover:opacity-80 transition-opacity brightness-0 invert"
+                        className="h-7 sm:h-8 w-auto object-contain group-hover:opacity-80 transition-opacity"
                     />
                 </Link>
 
@@ -46,8 +46,8 @@ export default function Navbar() {
                             href={link.href}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                                 pathname === link.href
-                                    ? 'text-white bg-white/[0.06]'
-                                    : 'text-[#8b8b9e] hover:text-white hover:bg-white/[0.04]'
+                                    ? 'text-blue-600 bg-blue-50'
+                                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                             }`}
                         >
                             {link.label}
@@ -58,7 +58,7 @@ export default function Navbar() {
                 <div className="hidden md:flex">
                     <Link
                         href="/#contact"
-                        className="px-5 py-2 rounded-lg text-sm font-semibold bg-[#7c5bf5] text-white hover:bg-[#6b4ae4] transition-all"
+                        className="px-5 py-2 rounded-xl text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20"
                     >
                         お問い合わせ
                     </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden p-2 relative z-50 rounded-lg transition-all text-white/70 hover:text-white hover:bg-white/[0.06]"
+                    className="md:hidden p-2 relative z-50 rounded-lg transition-all text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -81,7 +81,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden absolute top-0 left-0 w-full h-screen bg-[#0f1115] z-40 flex flex-col pt-20"
+                        className="md:hidden absolute top-0 left-0 w-full h-screen bg-white z-40 flex flex-col pt-20"
                     >
                         <div className="flex flex-col px-6 space-y-2">
                             {navLinks.map((link) => (
@@ -89,7 +89,7 @@ export default function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="text-2xl font-bold text-white/80 hover:text-white py-4 border-b border-white/[0.06] transition-colors"
+                                    className="text-2xl font-bold text-slate-800 hover:text-blue-600 py-4 border-b border-slate-100 transition-colors"
                                 >
                                     {link.label}
                                 </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
                                 <Link
                                     href="/#contact"
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block w-full py-4 rounded-xl bg-[#7c5bf5] text-white font-semibold text-lg text-center"
+                                    className="block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-lg text-center shadow-xl shadow-blue-600/20"
                                 >
                                     お問い合わせ
                                 </Link>

@@ -13,7 +13,7 @@ const clients = [
 
 export default function PainPoints() {
     return (
-        <section className="py-16 border-y border-white/[0.06] bg-[#0f1115]">
+        <section className="py-16 border-y border-slate-100 bg-white">
             <div className="max-w-7xl mx-auto px-6 md:px-8">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -21,14 +21,14 @@ export default function PainPoints() {
                     viewport={{ once: true }}
                     className="flex flex-col md:flex-row items-center gap-8 md:gap-16"
                 >
-                    <p className="text-sm text-[#5a5a6e] font-medium tracking-wider uppercase whitespace-nowrap">
+                    <p className="text-sm text-slate-400 font-bold tracking-wider uppercase whitespace-nowrap">
                         Trusted by
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 w-full">
                         {clients.map((name, i) => (
                             <span
                                 key={i}
-                                className="text-[#5a5a6e] text-sm font-semibold tracking-wide hover:text-[#8b8b9e] transition-colors"
+                                className="text-slate-400 text-sm font-semibold tracking-wide hover:text-slate-600 transition-colors"
                             >
                                 {name}
                             </span>

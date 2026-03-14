@@ -61,7 +61,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={`${inter.variable} ${outfit.variable} ${notoSansJP.variable}`}>
-      <body className="bg-[#0f1115] text-[#f5f5f7] font-sans antialiased overflow-x-hidden">
+      <body className="bg-white text-slate-900 font-sans antialiased overflow-x-hidden">
         <div className="min-h-screen flex flex-col relative">
           <Navbar />
           <main className="flex-grow">{children}</main>

@@ -20,8 +20,7 @@ const rows = [
 
 export default function CommercialAct() {
     return (
-        <div className="pt-32 pb-24 relative min-h-screen">
-            <div className="absolute inset-0 bg-[#0f1115]" />
+        <div className="pt-32 pb-24 relative min-h-screen bg-white">
 
             <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
                 <motion.div
@@ -29,13 +28,13 @@ export default function CommercialAct() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-12 text-center"
                 >
-                    <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Legal
                     </p>
-                    <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+                    <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
                         特定商取引法に基づく表記
                     </h1>
-                    <p className="text-[#5a5a6e] font-medium tracking-widest text-sm">
+                    <p className="text-slate-400 font-medium tracking-widest text-sm">
                         SPECIFIED COMMERCIAL TRANSACTIONS ACT
                     </p>
                 </motion.div>
@@ -44,20 +43,20 @@ export default function CommercialAct() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="rounded-2xl border border-white/[0.06] bg-[#16181f] p-8 md:p-12"
+                    className="bg-white rounded-2xl border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] p-8 md:p-12"
                 >
                     <div className="space-y-0">
                         {rows.map((row, index) => (
                             <div
                                 key={row.label}
                                 className={`flex flex-col md:flex-row py-6 ${
-                                    index < rows.length - 1 ? 'border-b border-white/[0.06]' : ''
+                                    index < rows.length - 1 ? 'border-b border-slate-100' : ''
                                 }`}
                             >
-                                <div className="md:w-1/3 font-semibold text-white mb-2 md:mb-0 text-sm">
+                                <div className="md:w-1/3 font-semibold text-slate-900 mb-2 md:mb-0 text-sm">
                                     {row.label}
                                 </div>
-                                <div className="md:w-2/3 text-[#8b8b9e] text-sm leading-relaxed whitespace-pre-line">
+                                <div className="md:w-2/3 text-slate-600 text-sm leading-relaxed whitespace-pre-line">
                                     {row.value}
                                 </div>
                             </div>
@@ -69,7 +68,7 @@ export default function CommercialAct() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-center mt-8 text-[#5a5a6e] text-xs"
+                    className="text-center mt-8 text-slate-400 text-xs"
                 >
                     最終更新日: 2026年3月14日
                 </motion.p>

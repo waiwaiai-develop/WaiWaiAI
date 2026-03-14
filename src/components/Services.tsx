@@ -34,7 +34,8 @@ export default function Services() {
     return (
         <section id="services" className="py-28 lg:py-36 relative overflow-hidden">
             {/* Subtle background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0f1115] via-[#12141a] to-[#0f1115]" />
+            <div className="absolute inset-0 bg-white" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 {/* Section header */}
@@ -44,13 +45,13 @@ export default function Services() {
                     viewport={{ once: true }}
                     className="text-center mb-24"
                 >
-                    <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Solutions
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-white">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-slate-900">
                         段階的に進化する<br className="md:hidden" />AI活用
                     </h2>
-                    <p className="text-lg text-[#8b8b9e] max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         御社のフェーズに合わせた最適なソリューションを提供します。
                     </p>
                 </motion.div>
@@ -71,22 +72,22 @@ export default function Services() {
                             {/* Text side */}
                             <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                                 <div className="flex items-center gap-3 mb-6">
-                                    <span className="px-3 py-1 rounded-md bg-[#7c5bf5]/10 text-[#7c5bf5] text-sm font-bold border border-[#7c5bf5]/20">
+                                    <span className="px-3 py-1 rounded-md bg-blue-50 text-blue-600 text-sm font-bold border border-blue-100">
                                         v{feature.version}
                                     </span>
-                                    <div className="h-[1px] flex-1 bg-white/[0.06]" />
+                                    <div className="h-[1px] flex-1 bg-blue-100" />
                                 </div>
 
                                 <div className="flex items-center gap-4 mb-4">
-                                    <div className="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
-                                        <feature.icon className="w-6 h-6 text-[#7c5bf5]" />
+                                    <div className="w-12 h-12 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-center">
+                                        <feature.icon className="w-6 h-6 text-blue-600" />
                                     </div>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
                                         {feature.title}
                                     </h3>
                                 </div>
 
-                                <p className="text-[#8b8b9e] text-lg leading-relaxed mb-6">
+                                <p className="text-slate-600 text-lg leading-relaxed mb-6">
                                     {feature.description}
                                 </p>
 
@@ -94,7 +95,7 @@ export default function Services() {
                                     {feature.capabilities.map((cap) => (
                                         <span
                                             key={cap}
-                                            className="px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-sm text-[#8b8b9e] font-medium"
+                                            className="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-500 font-medium"
                                         >
                                             {cap}
                                         </span>
@@ -104,7 +105,7 @@ export default function Services() {
 
                             {/* Image side */}
                             <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                                <div className="rounded-2xl overflow-hidden border border-white/[0.06] bg-[#1a1d29]">
+                                <div className="rounded-2xl overflow-hidden border border-blue-100 bg-white shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)]">
                                     <img
                                         src={feature.image}
                                         alt={feature.title}
@@ -125,12 +126,12 @@ export default function Services() {
                 >
                     <a
                         href="#contact"
-                        className="group inline-flex items-center gap-3 px-8 py-4 bg-[#7c5bf5] text-white font-semibold text-lg rounded-lg hover:bg-[#6b4ae4] transition-all"
+                        className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20"
                     >
                         最適なプランを相談する
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </a>
-                    <p className="mt-3 text-[#5a5a6e] text-sm">相談無料・お見積もり無料</p>
+                    <p className="mt-3 text-slate-400 text-sm">相談無料・お見積もり無料</p>
                 </motion.div>
             </div>
         </section>

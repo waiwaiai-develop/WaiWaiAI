@@ -29,7 +29,7 @@ const products = [
 export default function ProductsSection() {
     return (
         <section id="products" className="py-28 lg:py-36 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#0f1115]" />
+            <div className="absolute inset-0 bg-white" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 {/* Stats grid - Stripe style */}
@@ -40,10 +40,10 @@ export default function ProductsSection() {
                     className="mb-28"
                 >
                     <div className="text-center mb-16">
-                        <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                        <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                             Numbers
                         </p>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
                             数字で見る実績
                         </h2>
                     </div>
@@ -56,13 +56,13 @@ export default function ProductsSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="text-center p-8 rounded-2xl glass-card-hover"
+                                className="text-center p-8 rounded-2xl bg-white border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
                             >
-                                <div className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2">
+                                <div className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-2">
                                     {stat.value}
-                                    <span className="text-[#7c5bf5]">{stat.unit}</span>
+                                    <span className="text-blue-600">{stat.unit}</span>
                                 </div>
-                                <p className="text-[#8b8b9e] text-sm font-medium">{stat.label}</p>
+                                <p className="text-slate-600 text-sm font-medium">{stat.label}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -75,13 +75,13 @@ export default function ProductsSection() {
                     viewport={{ once: true }}
                 >
                     <div className="text-center mb-16">
-                        <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                        <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                             Products
                         </p>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mb-6">
                             自社プロダクト
                         </h2>
-                        <p className="text-lg text-[#8b8b9e] max-w-2xl mx-auto">
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                             すぐに現場へ導入し、圧倒的なROIを生み出す独自開発のAIプロダクト。
                         </p>
                     </div>
@@ -94,9 +94,9 @@ export default function ProductsSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.15 }}
-                                className="group rounded-2xl overflow-hidden border border-white/[0.06] bg-[#16181f] hover:border-white/[0.12] transition-all duration-300"
+                                className="group rounded-2xl overflow-hidden border border-blue-100 bg-white hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
                             >
-                                <div className="h-64 sm:h-72 overflow-hidden bg-[#1a1d29] relative">
+                                <div className="h-64 sm:h-72 overflow-hidden bg-blue-50/50 relative">
                                     <img
                                         src={product.image}
                                         alt={product.name}
@@ -106,18 +106,18 @@ export default function ProductsSection() {
                                 <div className="p-8">
                                     <div className="flex justify-between items-start mb-3">
                                         <div>
-                                            <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">
                                                 {product.name}
                                             </h3>
-                                            <p className="text-[#8b8b9e] text-sm font-medium">
+                                            <p className="text-slate-600 text-sm font-medium">
                                                 {product.tagline}
                                             </p>
                                         </div>
-                                        <span className="shrink-0 px-3 py-1 rounded-md bg-[#7c5bf5]/10 text-[#7c5bf5] text-xs font-bold border border-[#7c5bf5]/20">
+                                        <span className="shrink-0 px-3 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
                                             {product.status}
                                         </span>
                                     </div>
-                                    <p className="text-[#8b8b9e] leading-relaxed">
+                                    <p className="text-slate-600 leading-relaxed">
                                         {product.description}
                                     </p>
                                 </div>

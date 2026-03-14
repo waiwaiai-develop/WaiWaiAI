@@ -77,14 +77,14 @@ export default function ContactSection() {
         }
     };
 
-    const inputClass = "w-full px-4 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] focus:outline-none focus:ring-2 focus:ring-[#7c5bf5]/30 focus:border-[#7c5bf5]/50 transition-all font-medium text-white placeholder:text-[#5a5a6e]";
+    const inputClass = "w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400";
 
     return (
         <section
             id="contact-form"
             className="py-28 lg:py-36 relative overflow-hidden"
         >
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0f1115] via-[#12141a] to-[#0f1115]" />
+            <div className="absolute inset-0 bg-white" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 {/* Header */}
@@ -94,13 +94,13 @@ export default function ContactSection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Contact
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-6">
                         お問い合わせ
                     </h2>
-                    <p className="text-lg text-[#8b8b9e] max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
                         まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
                         プロの視点で最短ルートを提示します。
                     </p>
@@ -114,16 +114,16 @@ export default function ContactSection() {
                         viewport={{ once: true }}
                         className="flex flex-wrap justify-center gap-6 mb-10"
                     >
-                        <div className="flex items-center gap-2 text-sm font-medium text-[#8b8b9e]">
-                            <CheckCircle2 className="w-4 h-4 text-[#7c5bf5]" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
                             NDA締結可能
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-medium text-[#8b8b9e]">
-                            <CheckCircle2 className="w-4 h-4 text-[#7c5bf5]" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
                             相見積もり歓迎
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-medium text-[#8b8b9e]">
-                            <CheckCircle2 className="w-4 h-4 text-[#7c5bf5]" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
                             IT未経験の方も安心サポート
                         </div>
                     </motion.div>
@@ -134,7 +134,7 @@ export default function ContactSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <div className="rounded-2xl p-8 md:p-10 border border-white/[0.06] bg-[#16181f]">
+                        <div className="rounded-2xl p-8 md:p-10 border border-blue-100 bg-white shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)]">
                             <AnimatePresence mode="wait">
                                 {status === 'success' ? (
                                     <motion.div
@@ -143,18 +143,18 @@ export default function ContactSection() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         className="flex flex-col items-center justify-center py-12 text-center"
                                     >
-                                        <div className="w-20 h-20 bg-[#7c5bf5]/10 rounded-full flex items-center justify-center mb-6">
-                                            <CheckCircle2 className="w-10 h-10 text-[#7c5bf5]" />
+                                        <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
+                                            <CheckCircle2 className="w-10 h-10 text-green-500" />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-4">
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-4">
                                             送信が完了しました
                                         </h3>
-                                        <p className="text-[#8b8b9e] mb-8 max-w-md">
+                                        <p className="text-slate-600 mb-8 max-w-md">
                                             お問い合わせいただきありがとうございます。内容を確認次第、担当者よりご連絡させていただきます。
                                         </p>
                                         <button
                                             onClick={() => setStatus('idle')}
-                                            className="px-8 py-3 bg-white/[0.06] hover:bg-white/[0.1] text-white font-semibold rounded-lg transition-colors border border-white/[0.08]"
+                                            className="px-8 py-3 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-lg transition-colors border border-slate-200"
                                         >
                                             新しく問い合わせをする
                                         </button>
@@ -169,7 +169,7 @@ export default function ContactSection() {
                                         className="space-y-5"
                                     >
                                         {status === 'error' && (
-                                            <div className="p-4 bg-red-500/10 text-red-400 rounded-lg flex items-center gap-3 text-sm font-medium border border-red-500/20">
+                                            <div className="p-4 bg-red-50 text-red-600 rounded-lg flex items-center gap-3 text-sm font-medium border border-red-100">
                                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                                 {errorMessage}
                                             </div>
@@ -177,9 +177,9 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                     会社名
-                                                    <span className="bg-[#7c5bf5]/10 text-[#7c5bf5] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-[#7c5bf5]/20">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
                                                 </label>
@@ -194,9 +194,9 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                     ご担当者名
-                                                    <span className="bg-[#7c5bf5]/10 text-[#7c5bf5] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-[#7c5bf5]/20">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
                                                 </label>
@@ -214,9 +214,9 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                     メールアドレス
-                                                    <span className="bg-[#7c5bf5]/10 text-[#7c5bf5] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-[#7c5bf5]/20">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
                                                 </label>
@@ -231,9 +231,9 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                     電話番号
-                                                    <span className="bg-white/[0.04] text-[#5a5a6e] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-white/[0.06]">
+                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         任意
                                                     </span>
                                                 </label>
@@ -250,9 +250,9 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                            <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                 ご相談種別
-                                                <span className="bg-[#7c5bf5]/10 text-[#7c5bf5] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-[#7c5bf5]/20">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                     必須
                                                 </span>
                                             </label>
@@ -263,7 +263,7 @@ export default function ContactSection() {
                                                 disabled={status === 'submitting'}
                                                 className={`${inputClass} appearance-none`}
                                                 style={{
-                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b8b9e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                                                     backgroundRepeat: 'no-repeat',
                                                     backgroundPosition: 'right 1rem center',
                                                     backgroundSize: '1em',
@@ -279,9 +279,9 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-[#8b8b9e] flex items-center gap-2">
+                                            <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
                                                 お問い合わせ内容
-                                                <span className="bg-[#7c5bf5]/10 text-[#7c5bf5] text-[10px] px-2 py-0.5 rounded uppercase tracking-wider border border-[#7c5bf5]/20">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                     必須
                                                 </span>
                                             </label>
@@ -299,7 +299,7 @@ export default function ContactSection() {
                                         <button
                                             type="submit"
                                             disabled={status === 'submitting'}
-                                            className="w-full py-4 bg-[#7c5bf5] hover:bg-[#6b4ae4] text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none shadow-xl shadow-blue-600/20"
                                         >
                                             {status === 'submitting' ? (
                                                 <>
