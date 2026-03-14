@@ -4,7 +4,6 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AiAssistant from '@/components/AiAssistant';
-import ScrollProgress from '@/components/ScrollProgress';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -64,9 +63,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${inter.variable} ${outfit.variable} ${notoSansJP.variable}`}>
       <body className="bg-white text-slate-900 font-sans antialiased overflow-x-hidden">
-        <ScrollProgress />
-
-        <div className="min-h-screen flex flex-col relative z-[1]">
+        <div className="min-h-screen flex flex-col relative">
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />
