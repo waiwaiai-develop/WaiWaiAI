@@ -17,29 +17,56 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const navLinks = [
+        { href: '/services', label: 'ソリューション' },
+        { href: '/cases', label: '導入実績' },
+        { href: '/company', label: '会社概要' },
+    ];
+
     return (
-        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/80 backdrop-blur-2xl border-b border-slate-200/50 shadow-[0_2px_20px_-10px_rgba(0,0,0,0.1)] py-3' : 'bg-transparent border-b border-transparent py-6'}`}>
-            <div className="container mx-auto px-4 md:px-8 flex items-center justify-between max-w-7xl">
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            isScrolled
+                ? 'bg-[#0f1115]/80 backdrop-blur-xl border-b border-white/[0.06] py-3'
+                : 'bg-transparent border-b border-transparent py-5'
+        }`}>
+            <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
                 <Link href="/" className="relative z-50 group">
-                    <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-8 sm:h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-opacity" />
+                    <img
+                        src="/logo-horizontal.png"
+                        alt="WaiWai AI"
+                        className="h-7 sm:h-8 w-auto object-contain group-hover:opacity-80 transition-opacity brightness-0 invert"
+                    />
                 </Link>
 
-                {/* Desktop Menu */}
-                <nav className={`hidden md:flex items-center gap-8 px-6 py-2 rounded-full shadow-sm transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border border-slate-200' : 'bg-white/60 backdrop-blur-md border border-slate-200/50'}`}>
-                    <Link href="/services" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/services' ? 'text-blue-600' : 'text-slate-700'}`}>ソリューション</Link>
-                    <Link href="/cases" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/cases' ? 'text-blue-600' : 'text-slate-700'}`}>実績と課題解決</Link>
-                    <Link href="/company" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/company' ? 'text-blue-600' : 'text-slate-700'}`}>会社概要</Link>
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex items-center gap-1">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                                pathname === link.href
+                                    ? 'text-white bg-white/[0.06]'
+                                    : 'text-[#8b8b9e] hover:text-white hover:bg-white/[0.04]'
+                            }`}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
                 </nav>
 
                 <div className="hidden md:flex">
-                    <Link href="/#contact" className={`px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)]`}>
-                        相談する
+                    <Link
+                        href="/#contact"
+                        className="px-5 py-2 rounded-lg text-sm font-semibold bg-[#7c5bf5] text-white hover:bg-[#6b4ae4] transition-all"
+                    >
+                        お問い合わせ
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
-                    className={`md:hidden p-2 relative z-50 shadow-sm border rounded-xl transition-all duration-300 text-slate-900 bg-white border-slate-200 hover:bg-slate-50`}
+                    className="md:hidden p-2 relative z-50 rounded-lg transition-all text-white/70 hover:text-white hover:bg-white/[0.06]"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -50,19 +77,30 @@ export default function Navbar() {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                        exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
-                        transition={{ duration: 0.3 }}
-                        className="md:hidden absolute top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-xl border-b border-slate-200 z-40 flex flex-col pt-24"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="md:hidden absolute top-0 left-0 w-full h-screen bg-[#0f1115] z-40 flex flex-col pt-20"
                     >
-                        <div className="flex flex-col px-8 space-y-8">
-                            <Link href="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-black text-slate-800 tracking-tight hover:text-blue-600 transition-colors">ソリューション</Link>
-                            <Link href="/cases" onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-black text-slate-800 tracking-tight hover:text-blue-600 transition-colors">実績と課題解決</Link>
-                            <Link href="/company" onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-black text-slate-800 tracking-tight hover:text-blue-600 transition-colors">会社概要</Link>
-                            <div className="pt-8 border-t border-slate-100">
-                                <Link href="/#contact" onClick={() => setIsMobileMenuOpen(false)} className="block w-full py-5 rounded-2xl bg-blue-600 text-white font-bold text-xl text-center shadow-lg shadow-blue-500/30">
-                                    無料で相談する
+                        <div className="flex flex-col px-6 space-y-2">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="text-2xl font-bold text-white/80 hover:text-white py-4 border-b border-white/[0.06] transition-colors"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                            <div className="pt-6">
+                                <Link
+                                    href="/#contact"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block w-full py-4 rounded-xl bg-[#7c5bf5] text-white font-semibold text-lg text-center"
+                                >
+                                    お問い合わせ
                                 </Link>
                             </div>
                         </div>
