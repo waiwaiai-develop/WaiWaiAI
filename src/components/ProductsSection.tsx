@@ -1,129 +1,93 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const stats = [
-    { value: '200+', label: '月間削減工数', unit: '時間' },
-    { value: '250', label: '成約率向上', unit: '% UP' },
-    { value: '50,000', label: '月間処理件数', unit: '+' },
-    { value: '0', label: 'データ入力ミス', unit: '件' },
-];
-
-const products = [
-    {
-        name: 'WaiWaiAI SNS System',
-        tagline: 'SNS自動運用プラットフォーム',
-        description: 'AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。',
-        status: 'β版受付中',
-        image: '/images/product_a.png',
-    },
-    {
-        name: 'EstateAI',
-        tagline: '不動産業向けAIソリューション',
-        description: '不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。',
-        status: 'Coming Soon',
-        image: '/images/product_b.png',
-    },
-];
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function ProductsSection() {
+    // Stagger animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+        }
+    };
+
+    const itemVariants: any = {
+        hidden: { opacity: 0, y: 50 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: { type: "spring", stiffness: 80, damping: 15 }
+        }
+    };
+
     return (
-        <section id="products" className="py-28 lg:py-36 relative overflow-hidden">
-            <div className="absolute inset-0 bg-white" />
+        <section id="products" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-100">
+            {/* Ambient Background Elements */}
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
 
-            <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-                {/* Stats grid - Stripe style */}
+            <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-28"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={containerVariants}
+                    className="text-center mb-24"
                 >
-                    <div className="text-center mb-16">
-                        <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
-                            Numbers
-                        </p>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
-                            数字で見る実績
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="text-center p-8 rounded-2xl bg-white border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
-                            >
-                                <div className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-2">
-                                    {stat.value}
-                                    <span className="text-blue-600">{stat.unit}</span>
-                                </div>
-                                <p className="text-slate-600 text-sm font-medium">{stat.label}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wider mb-8 shadow-sm">
+                        <Sparkles className="w-4 h-4 text-blue-400" /> 独自ソリューション
+                    </motion.div>
+                    <motion.h2 variants={itemVariants} className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 mb-6 tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]">
+                        提供プロダクト・<br className="md:hidden" />ソリューション
+                    </motion.h2>
+                    <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-bold tracking-tight leading-relaxed">
+                        すぐに現場へ導入し、圧倒的なROIを生み出す独自開発のAIプロダクト。
+                    </motion.p>
                 </motion.div>
 
-                {/* Products */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 >
-                    <div className="text-center mb-16">
-                        <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
-                            Products
-                        </p>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mb-6">
-                            自社プロダクト
-                        </h2>
-                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                            すぐに現場へ導入し、圧倒的なROIを生み出す独自開発のAIプロダクト。
-                        </p>
-                    </div>
+                    {/* Product 1: WaiWaiAI SNS System */}
+                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
+                            <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="/images/product_a.png" alt="WaiWaiAI SNS System" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">WaiWaiAI SNS System</h3>
+                                    <p className="text-blue-600 font-bold tracking-tight">SNS自動運用プラットフォーム</p>
+                                </div>
+                                <span className="shrink-0 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">β版受付中</span>
+                            </div>
+                            <p className="text-slate-600 font-bold leading-relaxed">AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。</p>
+                        </div>
+                    </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {products.map((product, index) => (
-                            <motion.div
-                                key={product.name}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.15 }}
-                                className="group rounded-2xl overflow-hidden border border-blue-100 bg-white hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
-                            >
-                                <div className="h-64 sm:h-72 overflow-hidden bg-blue-50/50 relative">
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
-                                    />
+                    {/* Product 2: EstateAI */}
+                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
+                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="/images/product_b.png" alt="EstateAI" className="w-full h-full object-cover object-left-top transform group-hover:scale-105 transition-transform duration-700" />
+                        </div>
+                        <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
+                            <div className="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">EstateAI</h3>
+                                    <p className="text-indigo-600 font-bold tracking-tight">不動産業向けAIソリューション</p>
                                 </div>
-                                <div className="p-8">
-                                    <div className="flex justify-between items-start mb-3">
-                                        <div>
-                                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">
-                                                {product.name}
-                                            </h3>
-                                            <p className="text-slate-600 text-sm font-medium">
-                                                {product.tagline}
-                                            </p>
-                                        </div>
-                                        <span className="shrink-0 px-3 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
-                                            {product.status}
-                                        </span>
-                                    </div>
-                                    <p className="text-slate-600 leading-relaxed">
-                                        {product.description}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <span className="shrink-0 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">Coming Soon</span>
+                            </div>
+                            <p className="text-slate-600 font-bold leading-relaxed">不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。</p>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

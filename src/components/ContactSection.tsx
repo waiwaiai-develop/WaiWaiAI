@@ -2,7 +2,12 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Send, Loader2, AlertCircle } from 'lucide-react';
+import {
+    CheckCircle2,
+    Send,
+    Loader2,
+    AlertCircle,
+} from 'lucide-react';
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -77,19 +82,15 @@ export default function ContactSection() {
         }
     };
 
-    const inputClass = "w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400";
-
     return (
         <section
-            id="contact-form"
-            className="py-28 lg:py-36 relative overflow-hidden"
+            id="contact"
+            className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden"
         >
-            <div className="absolute inset-0 bg-white" />
-
-            <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
@@ -97,10 +98,14 @@ export default function ContactSection() {
                     <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
                         Contact
                     </p>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-6">
-                        お問い合わせ
+                    <h2 className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight md:tracking-tighter mb-6 leading-[1.25] md:leading-[1.15]">
+                        ビジネスに、<br />
+                        <span className="text-blue-600">
+                            「AIの即戦力」
+                        </span>
+                        を。
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
                         まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
                         プロの視点で最短ルートを提示します。
                     </p>
@@ -112,29 +117,32 @@ export default function ContactSection() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="flex flex-wrap justify-center gap-6 mb-10"
+                        className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10"
                     >
-                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             NDA締結可能
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             相見積もり歓迎
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             IT未経験の方も安心サポート
                         </div>
                     </motion.div>
 
                     {/* Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 16 }}
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <div className="rounded-2xl p-8 md:p-10 border border-blue-100 bg-white shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)]">
+                        <div
+                            id="contact-form"
+                            className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100"
+                        >
                             <AnimatePresence mode="wait">
                                 {status === 'success' ? (
                                     <motion.div
@@ -154,7 +162,7 @@ export default function ContactSection() {
                                         </p>
                                         <button
                                             onClick={() => setStatus('idle')}
-                                            className="px-8 py-3 bg-white hover:bg-slate-50 text-slate-700 font-semibold rounded-lg transition-colors border border-slate-200"
+                                            className="px-8 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-colors"
                                         >
                                             新しく問い合わせをする
                                         </button>
@@ -169,7 +177,7 @@ export default function ContactSection() {
                                         className="space-y-5"
                                     >
                                         {status === 'error' && (
-                                            <div className="p-4 bg-red-50 text-red-600 rounded-lg flex items-center gap-3 text-sm font-medium border border-red-100">
+                                            <div className="p-4 bg-red-50 text-red-600 rounded-xl flex items-center gap-3 text-sm font-bold border border-red-100">
                                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                                 {errorMessage}
                                             </div>
@@ -177,8 +185,8 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                    会社名
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    会社名{' '}
                                                     <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
@@ -189,13 +197,15 @@ export default function ContactSection() {
                                                     value={formData.company}
                                                     onChange={handleChange}
                                                     placeholder="株式会社WaiWai"
-                                                    disabled={status === 'submitting'}
-                                                    className={inputClass}
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                    ご担当者名
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    ご担当者名{' '}
                                                     <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
@@ -206,16 +216,18 @@ export default function ContactSection() {
                                                     value={formData.name}
                                                     onChange={handleChange}
                                                     placeholder="山田 太郎"
-                                                    disabled={status === 'submitting'}
-                                                    className={inputClass}
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                    メールアドレス
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    メールアドレス{' '}
                                                     <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         必須
                                                     </span>
@@ -226,13 +238,15 @@ export default function ContactSection() {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     placeholder="info@example.com"
-                                                    disabled={status === 'submitting'}
-                                                    className={inputClass}
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                    電話番号
+                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                    電話番号{' '}
                                                     <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                         任意
                                                     </span>
@@ -243,15 +257,17 @@ export default function ContactSection() {
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     placeholder="03-0000-0000"
-                                                    disabled={status === 'submitting'}
-                                                    className={inputClass}
+                                                    disabled={
+                                                        status === 'submitting'
+                                                    }
+                                                    className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900"
                                                 />
                                             </div>
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                ご相談種別
+                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                ご相談種別{' '}
                                                 <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                     必須
                                                 </span>
@@ -260,27 +276,43 @@ export default function ContactSection() {
                                                 name="category"
                                                 value={formData.category}
                                                 onChange={handleChange}
-                                                disabled={status === 'submitting'}
-                                                className={`${inputClass} appearance-none`}
+                                                disabled={
+                                                    status === 'submitting'
+                                                }
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 appearance-none"
                                                 style={{
-                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
-                                                    backgroundRepeat: 'no-repeat',
-                                                    backgroundPosition: 'right 1rem center',
+                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                                                    backgroundRepeat:
+                                                        'no-repeat',
+                                                    backgroundPosition:
+                                                        'right 1rem center',
                                                     backgroundSize: '1em',
                                                 }}
                                             >
-                                                <option value="" disabled>選択してください</option>
-                                                <option value="AI導入・開発に関するご相談">AI導入・開発に関するご相談</option>
-                                                <option value="無料のコスト削減診断を希望">無料のコスト削減診断を希望</option>
-                                                <option value="協業・アライアンスについて">協業・アライアンスについて</option>
-                                                <option value="法人化・採用について">法人化・採用について</option>
-                                                <option value="その他">その他</option>
+                                                <option value="" disabled>
+                                                    選択してください
+                                                </option>
+                                                <option value="AI導入・開発に関するご相談">
+                                                    AI導入・開発に関するご相談
+                                                </option>
+                                                <option value="無料のコスト削減診断を希望">
+                                                    無料のコスト削減診断を希望
+                                                </option>
+                                                <option value="協業・アライアンスについて">
+                                                    協業・アライアンスについて
+                                                </option>
+                                                <option value="法人化・採用について">
+                                                    法人化・採用について
+                                                </option>
+                                                <option value="その他">
+                                                    その他
+                                                </option>
                                             </select>
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-medium text-slate-600 flex items-center gap-2">
-                                                お問い合わせ内容
+                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                お問い合わせ内容{' '}
                                                 <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
                                                     必須
                                                 </span>
@@ -291,15 +323,17 @@ export default function ContactSection() {
                                                 onChange={handleChange}
                                                 rows={4}
                                                 placeholder="現在抱えている課題や、実現したい要件などをご自由にお書きください。"
-                                                disabled={status === 'submitting'}
-                                                className={`${inputClass} resize-y`}
+                                                disabled={
+                                                    status === 'submitting'
+                                                }
+                                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all font-medium text-slate-900 resize-y"
                                             ></textarea>
                                         </div>
 
                                         <button
                                             type="submit"
                                             disabled={status === 'submitting'}
-                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none shadow-xl shadow-blue-600/20"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
                                         >
                                             {status === 'submitting' ? (
                                                 <>

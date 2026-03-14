@@ -3,7 +3,6 @@ import { Inter, Outfit, Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import AiAssistant from '@/components/AiAssistant';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -63,11 +62,11 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${inter.variable} ${outfit.variable} ${notoSansJP.variable}`}>
       <body className="bg-white text-slate-900 font-sans antialiased overflow-x-hidden">
-        <div className="min-h-screen flex flex-col relative">
+        <div className="min-h-screen bg-white text-slate-900 selection:bg-sky-500/20 font-sans flex flex-col relative overflow-hidden">
+          <div className="fixed inset-0 pointer-events-none z-[-1] bg-white"></div>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow z-10">{children}</main>
           <Footer />
-          <AiAssistant />
         </div>
 
         {/* JSON-LD Organization Schema */}

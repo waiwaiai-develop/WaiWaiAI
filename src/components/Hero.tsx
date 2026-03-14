@@ -33,6 +33,9 @@ export default function Hero() {
     return (
         <section className="relative min-h-[85svh] flex items-center pt-24 pb-16 overflow-hidden bg-[#fafafa]">
 
+            {/* Very subtle background noise/texture for premium feel without being distracting */}
+            <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.015] mix-blend-overlay z-0 pointer-events-none"></div>
+
             {/* Subtle Gradient Backdrop */}
             <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-100/40 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
@@ -62,7 +65,7 @@ export default function Hero() {
                     <motion.div variants={itemVariants} className="mb-6">
                         <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 border border-slate-200 text-sm font-semibold text-slate-700 shadow-sm">
                             <span className="flex h-1.5 w-1.5 rounded-full bg-blue-600"></span>
-                            次世代の開発パートナー
+                            AIネイティブ開発会社
                         </span>
                     </motion.div>
 
@@ -81,11 +84,11 @@ export default function Hero() {
                         className="text-lg md:text-xl text-slate-600 max-w-xl mb-10 leading-relaxed font-medium space-y-4"
                     >
                         <p>
-                            最新のAI技術と確かなシステム開発力で、ビジネスの非連続な成長を実現します。
+                            最先端の技術で、あなたのビジョンを形に。
                         </p>
                         <p className="text-base text-slate-500 font-normal">
-                            社名に込めた「WaiWai（豊かさ）」と「ホヌ（繁栄）」の信念のもと、<br className="hidden md:block" />
-                            お客様の事業価値を最大化する次世代テクノロジーパートナーです。
+                            ハワイ語で「豊かさ」を意味するWaiWai。<br className="hidden md:block" />
+                            幸運と繁栄のシンボル・ホヌのように、AIで御社のビジネスをもっと豊かにします。
                         </p>
                     </motion.div>
 
