@@ -9,7 +9,7 @@ export default function CaseHighlights() {
     return (
         <section className="py-28 lg:py-36 relative overflow-hidden">
             <div className="absolute inset-0 bg-white" />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-transparent" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 <motion.div
@@ -37,14 +37,14 @@ export default function CaseHighlights() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 }}
-                            className="group rounded-2xl overflow-hidden border border-blue-100 bg-white hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
+                            className="group rounded-2xl overflow-hidden holo-card"
                         >
                             {/* Results bar */}
-                            <div className="bg-gradient-to-r from-blue-50 to-sky-50 p-6 flex gap-4 border-b border-blue-100">
+                            <div className="bg-gradient-to-r from-blue-50/80 to-sky-50/60 backdrop-blur-sm p-6 flex gap-4 border-b border-blue-100/30">
                                 {project.results.map((r, i) => (
                                     <div
                                         key={i}
-                                        className="flex-1 bg-white rounded-xl p-4 border border-blue-100"
+                                        className="flex-1 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-100/30"
                                     >
                                         <div className="text-xs text-slate-500 font-medium mb-1">
                                             {r.label}
@@ -59,7 +59,7 @@ export default function CaseHighlights() {
                             {/* Content */}
                             <div className="p-8">
                                 <div className="flex items-center gap-3 mb-4">
-                                    <span className="px-3 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100">
+                                    <span className="px-3 py-1 rounded-md bg-blue-50/80 backdrop-blur-sm text-blue-700 text-xs font-bold border border-blue-100/50">
                                         {project.category}
                                     </span>
                                     <span className="text-sm text-slate-400 font-medium">
@@ -73,7 +73,7 @@ export default function CaseHighlights() {
                                     {project.tags.map((tag, i) => (
                                         <span
                                             key={i}
-                                            className="px-2.5 py-1 rounded-md bg-slate-50 text-slate-500 text-xs font-medium border border-slate-200"
+                                            className="px-2.5 py-1 rounded-md bg-slate-50/80 text-slate-500 text-xs font-medium border border-slate-200/50"
                                         >
                                             {tag}
                                         </span>
@@ -92,7 +92,7 @@ export default function CaseHighlights() {
                 >
                     <Link
                         href="/cases"
-                        className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-white border border-blue-100 text-slate-900 hover:shadow-[0_8px_40px_-12px_rgba(59,130,246,0.15)] font-semibold text-lg transition-all"
+                        className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg holo-card text-slate-900 font-semibold text-lg"
                     >
                         すべての事例を見る
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

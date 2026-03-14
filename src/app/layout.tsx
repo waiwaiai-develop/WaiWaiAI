@@ -4,6 +4,12 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AiAssistant from '@/components/AiAssistant';
+import CustomCursor from '@/components/CustomCursor';
+import ParticleBackground from '@/components/ParticleBackground';
+import GradientMesh from '@/components/GradientMesh';
+import ScrollProgress from '@/components/ScrollProgress';
+import TouchRipple from '@/components/TouchRipple';
+import BottomFloatingNav from '@/components/BottomFloatingNav';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -63,7 +69,17 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${inter.variable} ${outfit.variable} ${notoSansJP.variable}`}>
       <body className="bg-white text-slate-900 font-sans antialiased overflow-x-hidden">
-        <div className="min-h-screen flex flex-col relative">
+        {/* Futuristic overlays */}
+        <CustomCursor />
+        <TouchRipple />
+        <ScrollProgress />
+        <GradientMesh />
+        <ParticleBackground />
+        <div className="scanline-overlay" aria-hidden="true" />
+        <div className="noise-overlay" aria-hidden="true" />
+        <BottomFloatingNav />
+
+        <div className="min-h-screen flex flex-col relative z-[1]">
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />
