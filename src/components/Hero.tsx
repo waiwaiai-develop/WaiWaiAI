@@ -1,126 +1,135 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 1000], [0, 150]);
-    const opacityHero = useTransform(scrollY, [0, 600], [1, 0]);
-
-    // Refined, crisp animations (no blur or scale, just clean fade-in up)
-    const containerVariants: any = {
+    const containerVariants = {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.12,
-                delayChildren: 0.1,
-                ease: "easeOut"
-            }
-        }
+                delayChildren: 0.2,
+            },
+        },
     };
 
     const itemVariants: any = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 24 },
         show: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } // Elegant ease curve
-        }
+            transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+        },
     };
 
     return (
-        <section className="relative min-h-[85svh] flex items-center pt-24 pb-16 overflow-hidden bg-[#fafafa]">
-
-            {/* Very subtle background noise/texture for premium feel without being distracting */}
-            <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.015] mix-blend-overlay z-0 pointer-events-none"></div>
-
-            {/* Subtle Gradient Backdrop */}
-            <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-100/40 rounded-full blur-[100px] pointer-events-none z-0"></div>
-
-            {/* Immersive Background Image - "正攻法" for positioning without hacks */}
-            <motion.div
-                style={{ y: y1, opacity: opacityHero }}
-                className="absolute top-0 right-0 w-[90%] lg:w-[65%] h-full z-0 pointer-events-none opacity-85 mix-blend-multiply"
-            >
-                {/* Standard gradient mask to blend with the white space */}
-                <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#fafafa] via-[#fafafa]/50 to-transparent z-10"></div>
-                <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#fafafa] to-transparent z-10"></div>
-                <img
-                    src="/hero-honu.png"
-                    alt="WaiWai AI Honu Motif"
-                    className="w-full h-full object-cover object-[75%_center] lg:object-[65%_center]"
-                />
-            </motion.div>
-
-            <div className="container mx-auto px-6 md:px-12 relative z-20">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="show"
-                    className="max-w-3xl"
-                >
-                    {/* Badge */}
-                    <motion.div variants={itemVariants} className="mb-6">
-                        <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/60 border border-slate-200 text-sm font-semibold text-slate-700 shadow-sm">
-                            <span className="flex h-1.5 w-1.5 rounded-full bg-blue-600"></span>
-                            AIネイティブ開発会社
-                        </span>
-                    </motion.div>
-
-                    {/* Main Title */}
-                    <motion.h1
-                        variants={itemVariants}
-                        className="text-5xl md:text-6xl lg:text-[4.5rem] font-bold tracking-tight mb-8 leading-[1.12] text-slate-900"
-                    >
-                        AIを味方に、<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">未来を豊かに。</span>
-                    </motion.h1>
-
-                    {/* Sub Description */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="text-lg md:text-xl text-slate-600 max-w-xl mb-10 leading-relaxed font-medium space-y-4"
-                    >
-                        <p>
-                            最先端の技術で、あなたのビジョンを形に。
-                        </p>
-                        <p className="text-base text-slate-500 font-normal">
-                            ハワイ語で「豊かさ」を意味するWaiWai。<br className="hidden md:block" />
-                            幸運と繁栄のシンボル・ホヌのように、AIで御社のビジネスをもっと豊かにします。
-                        </p>
-                    </motion.div>
-
-                    {/* CTA Buttons */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex flex-col sm:flex-row gap-4"
-                    >
-                        <a href="#products" className="group w-full sm:w-auto px-7 py-3.5 rounded-lg bg-slate-900 text-white font-medium text-[15px] border border-transparent transition-all hover:bg-slate-800 hover:-translate-y-0.5 hover:shadow-md flex items-center justify-center gap-2">
-                            プロダクトを見る
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a href="#contact" className="group w-full sm:w-auto px-7 py-3.5 rounded-lg bg-white text-slate-900 font-medium text-[15px] border border-slate-200 transition-all hover:bg-slate-50 hover:-translate-y-0.5 hover:shadow-sm flex items-center justify-center">
-                            まずは無料相談
-                        </a>
-                    </motion.div>
-                </motion.div>
+        <section className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden">
+            {/* Background gradient orbs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#7c5bf5]/[0.06] blur-[120px]" />
+                <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#5b8cf5]/[0.04] blur-[120px]" />
             </div>
 
-            {/* Scroll Indicator - Aligned with main content */}
-            <div className="absolute bottom-6 md:bottom-10 left-0 w-full z-20 pointer-events-none">
-                <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    {/* Left: Text */}
                     <motion.div
-                        style={{ opacity: opacityHero }}
-                        className="flex items-center gap-3 opacity-50"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
                     >
-                        <div className="w-12 h-[1px] bg-slate-400"></div>
-                        <span className="text-[10px] tracking-[0.2em] font-medium uppercase text-slate-500">Scroll down</span>
+                        <motion.div variants={itemVariants} className="mb-6">
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm font-medium text-[#8b8b9e]">
+                                <span className="flex h-1.5 w-1.5 rounded-full bg-[#7c5bf5]" />
+                                AIネイティブ開発会社
+                            </span>
+                        </motion.div>
+
+                        <motion.h1
+                            variants={itemVariants}
+                            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]"
+                        >
+                            <span className="text-white">AIを味方に、</span>
+                            <br />
+                            <span className="gradient-text-accent">未来を豊かに。</span>
+                        </motion.h1>
+
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-lg md:text-xl text-[#8b8b9e] max-w-lg mb-10 leading-relaxed"
+                        >
+                            最先端のAI技術で、あなたのビジョンを形に。
+                            <br className="hidden md:block" />
+                            開発から導入、運用まで一気通貫で支援します。
+                        </motion.p>
+
+                        <motion.div
+                            variants={itemVariants}
+                            className="flex flex-col sm:flex-row gap-4"
+                        >
+                            <a
+                                href="#contact"
+                                className="group px-7 py-3.5 rounded-lg bg-[#7c5bf5] text-white font-semibold text-[15px] transition-all hover:bg-[#6b4ae4] flex items-center justify-center gap-2"
+                            >
+                                無料で相談する
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </a>
+                            <a
+                                href="#products"
+                                className="group px-7 py-3.5 rounded-lg bg-white/[0.04] text-white/80 font-semibold text-[15px] border border-white/[0.08] transition-all hover:bg-white/[0.08] hover:text-white flex items-center justify-center"
+                            >
+                                プロダクトを見る
+                            </a>
+                        </motion.div>
+                    </motion.div>
+
+                    {/* Right: Product Screenshot */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] as any }}
+                        className="relative hidden lg:block"
+                    >
+                        <div className="relative rounded-2xl overflow-hidden border border-white/[0.08] glow-purple">
+                            {/* Browser chrome mockup */}
+                            <div className="bg-[#1a1d29] px-4 py-3 flex items-center gap-2 border-b border-white/[0.06]">
+                                <div className="flex gap-1.5">
+                                    <div className="w-3 h-3 rounded-full bg-white/10" />
+                                    <div className="w-3 h-3 rounded-full bg-white/10" />
+                                    <div className="w-3 h-3 rounded-full bg-white/10" />
+                                </div>
+                                <div className="flex-1 mx-8">
+                                    <div className="bg-white/[0.06] rounded-md px-4 py-1.5 text-xs text-[#5a5a6e] text-center">
+                                        waiwai-ai.com
+                                    </div>
+                                </div>
+                            </div>
+                            <img
+                                src="/images/product_a.png"
+                                alt="WaiWaiAI SNS System"
+                                className="w-full h-auto"
+                            />
+                        </div>
+                        {/* Floating accent card */}
+                        <div className="absolute -bottom-6 -left-6 glass-card rounded-xl px-5 py-4">
+                            <div className="text-xs text-[#8b8b9e] mb-1">月間処理件数</div>
+                            <div className="text-2xl font-bold text-white">50,000<span className="text-[#7c5bf5]">+</span></div>
+                        </div>
                     </motion.div>
                 </div>
             </div>
 
+            {/* Scroll indicator */}
+            <div className="absolute bottom-8 left-0 w-full z-20 pointer-events-none">
+                <div className="max-w-7xl mx-auto px-6 md:px-8">
+                    <div className="flex items-center gap-3 opacity-30">
+                        <div className="w-8 h-[1px] bg-white/40" />
+                        <span className="text-[10px] tracking-[0.2em] font-medium uppercase text-[#5a5a6e]">Scroll</span>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 }
