@@ -1,0 +1,37 @@
+{
+  "session_id": "session-1773422663",
+  "parent_session_id": null,
+  "state": "stopped",
+  "started_at": "2026-03-13T17:24:23Z",
+  "updated_at": "2026-03-13T17:25:03Z",
+  "event_seq": 4,
+  "last_event_id": "event-000004",
+  "state_version": 1,
+  "cwd": "/Users/kubotatoshi/dev/WaiWaiAI",
+  "project_name": "WaiWaiAI",
+  "resumed_at": "2026-03-13T17:24:23Z",
+  "git": {
+    "branch": "main",
+    "uncommitted_changes": 17,
+    "last_commit": "749c240"
+  },
+  "plans": {
+    "exists": false,
+    "last_modified": 0,
+    "wip_tasks": 0,
+    "todo_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 0
+  },
+  "orchestration": {
+    "max_state_retries": 3,
+    "retry_backoff_seconds": 10
+  },
+  "prompt_seq": 1,
+  "intent": "semantic",
+  "last_message_length": 732,
+  "last_message_hash": "96062ecbd30ece4f",
+  "ended_at": "2026-03-13T17:25:03Z",
+  "duration_minutes": 540,
+  "memory_logged": true
+}
