@@ -141,7 +141,7 @@ export default function CompanyPage() {
                                     代表者
                                 </div>
                                 <div className="md:w-2/3 text-slate-700 font-medium">
-                                    久保田 慧（Kei Kubota）
+                                    久保田慧（Kei Kubota）
                                 </div>
                             </motion.div>
 
