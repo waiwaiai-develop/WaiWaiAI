@@ -33,9 +33,6 @@ export default function Hero() {
     return (
         <section className="relative min-h-[85svh] flex items-center pt-24 pb-16 overflow-hidden bg-[#fafafa]">
 
-            {/* Very subtle background noise/texture for premium feel without being distracting */}
-            <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.015] mix-blend-overlay z-0 pointer-events-none"></div>
-
             {/* Subtle Gradient Backdrop */}
             <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-100/40 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
