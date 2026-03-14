@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Newspaper, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { newsData } from '@/data/newsData';
@@ -9,50 +9,39 @@ import { newsData } from '@/data/newsData';
 export default function NewsSection() {
 
     return (
-        <section id="news" className="py-24 lg:py-32 relative bg-slate-50 overflow-hidden">
-            <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
+        <section id="news" className="py-28 lg:py-36 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[#0f1115]" />
 
-                <div className="border border-slate-200 bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgba(15,23,42,0.04)] overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+
+                <div className="rounded-2xl overflow-hidden border border-white/[0.06] bg-[#16181f]">
                     <div className="flex flex-col lg:flex-row">
 
                         {/* Left Info Area */}
-                        <div className="lg:w-1/3 bg-blue-50 p-10 lg:p-14 text-slate-900 relative overflow-hidden border-r border-slate-100">
+                        <div className="lg:w-1/3 p-10 lg:p-14 relative overflow-hidden border-r border-white/[0.06] bg-gradient-to-br from-[#7c5bf5]/10 to-transparent">
 
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-8 border border-blue-100"
-                            >
-                                <Newspaper className="w-6 h-6 text-blue-600" />
-                            </motion.div>
-
-                            <h2 className="text-3xl lg:text-4xl font-black mb-6 tracking-tight">
+                            <h2 className="text-3xl lg:text-4xl font-bold mb-6 tracking-tight text-white">
                                 INFORMATION
                             </h2>
-                            <p className="text-slate-600 leading-relaxed font-bold mb-12">
+                            <p className="text-[#8b8b9e] leading-relaxed mb-12">
                                 WaiWai AIの最新の技術動向、開発の裏側、プレスリリースをお届けします。
                             </p>
 
-                            <div className="flex flex-col gap-4">
-                                <Link href="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
+                            <div className="flex flex-col gap-3">
+                                <Link href="#" className="group flex items-center justify-between px-5 py-3.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.12] transition-all font-medium text-white/80 hover:text-white">
                                     <span>NEWS 記事一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
-                                    </div>
+                                    <ArrowRight className="w-4 h-4 text-[#5a5a6e] group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </Link>
-                                <Link href="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
+                                <Link href="#" className="group flex items-center justify-between px-5 py-3.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.06] hover:border-white/[0.12] transition-all font-medium text-white/80 hover:text-white">
                                     <span>TECH BLOG 一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
-                                    </div>
+                                    <ArrowRight className="w-4 h-4 text-[#5a5a6e] group-hover:text-white group-hover:translate-x-1 transition-all" />
                                 </Link>
                             </div>
                         </div>
 
                         {/* Right Content Area */}
-                        <div className="lg:w-2/3 p-6 lg:p-14 bg-white">
-                            <div className="flex flex-col space-y-2">
+                        <div className="lg:w-2/3 p-6 lg:p-10">
+                            <div className="flex flex-col">
                                 {newsData.map((item, index) => (
                                     <motion.a
                                         href={item.link}
@@ -60,21 +49,21 @@ export default function NewsSection() {
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="group block p-6 rounded-2xl border border-transparent hover:border-blue-100 hover:bg-blue-50/50 transition-all duration-300"
+                                        transition={{ delay: index * 0.08 }}
+                                        className="group block p-5 rounded-lg border border-transparent hover:border-white/[0.06] hover:bg-white/[0.02] transition-all duration-300"
                                     >
                                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                                             <div className="flex items-center gap-4 w-48 shrink-0">
-                                                <span className="text-slate-500 font-mono text-sm tracking-tighter">{item.date}</span>
-                                                <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-700'}`}>
+                                                <span className="text-[#5a5a6e] font-mono text-sm tracking-tighter">{item.date}</span>
+                                                <span className={`text-xs font-bold px-3 py-1 rounded-md uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-white/[0.06] text-[#8b8b9e] border border-white/[0.06]' : 'bg-[#7c5bf5]/10 text-[#7c5bf5] border border-[#7c5bf5]/20'}`}>
                                                     {item.label}
                                                 </span>
                                             </div>
-                                            <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors flex-1 line-clamp-2 md:line-clamp-1">
+                                            <h3 className="text-base font-medium text-white/80 group-hover:text-white transition-colors flex-1 line-clamp-2 md:line-clamp-1">
                                                 {item.title}
                                             </h3>
-                                            <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm border border-slate-100 shrink-0 group-hover:shadow-md group-hover:border-blue-200 transition-all">
-                                                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:rotate-45 transition-transform" />
+                                            <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.04] border border-white/[0.06] shrink-0 group-hover:bg-white/[0.08] group-hover:border-white/[0.12] transition-all">
+                                                <ArrowUpRight className="w-3.5 h-3.5 text-[#5a5a6e] group-hover:text-white transition-colors" />
                                             </div>
                                         </div>
                                     </motion.a>
