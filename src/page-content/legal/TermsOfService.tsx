@@ -4,39 +4,43 @@ import { motion } from 'framer-motion';
 
 export default function TermsOfService() {
     return (
-        <div className="pt-32 pb-24 relative min-h-screen bg-white">
-            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-[-1]"></div>
-            <div className="container mx-auto px-4 md:px-8 max-w-4xl relative z-10">
+        <div className="pt-32 pb-24 relative min-h-screen">
+            <div className="absolute inset-0 bg-[#0f1115]" />
+
+            <div className="max-w-4xl mx-auto px-6 md:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-12 text-center"
                 >
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    <p className="text-[#7c5bf5] font-semibold tracking-widest uppercase text-sm mb-4">
+                        Legal
+                    </p>
+                    <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
                         利用規約
                     </h1>
-                    <p className="text-slate-500 font-medium tracking-widest text-sm">TERMS OF SERVICE</p>
+                    <p className="text-[#5a5a6e] font-medium tracking-widest text-sm">TERMS OF SERVICE</p>
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white rounded-3xl p-8 md:p-12 border border-blue-50 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] prose prose-slate max-w-none text-slate-600 leading-loose"
+                    className="rounded-2xl border border-white/[0.06] bg-[#16181f] p-8 md:p-12 text-[#8b8b9e] leading-relaxed text-sm"
                 >
                     <p className="mb-8">
-                        この利用規約（以下、「本規約」といいます。）は、WaiWai AI（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。
+                        この利用規約（以下、「本規約」といいます。）は、WaiWai AI 株式会社（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。ユーザーの皆さま（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。
                     </p>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第1条（適用）</h2>
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第1条（適用）</h2>
                     <p>
                         本規約は、ユーザーと当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。
                         当社は本サービスに関し、本規約のほか、ご利用にあたってのルール等、各種の定め（以下、「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず、本規約の一部を構成するものとします。
                     </p>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第2条（禁止事項）</h2>
-                    <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-                    <ul className="list-disc pl-6 space-y-2 mt-4 mb-4">
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第2条（禁止事項）</h2>
+                    <p className="mb-4">ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
+                    <ul className="list-disc pl-6 space-y-2">
                         <li>法令または公序良俗に違反する行為</li>
                         <li>犯罪行為に関連する行為</li>
                         <li>本サービスの内容等、本サービスに含まれる著作権、商標権ほか知的財産権を侵害する行為</li>
@@ -53,11 +57,11 @@ export default function TermsOfService() {
                         <li>その他、当社が不適切と判断する行為</li>
                     </ul>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第3条（本サービスの提供の停止等）</h2>
-                    <p>
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第3条（本サービスの提供の停止等）</h2>
+                    <p className="mb-4">
                         当社は、以下のいずれかの事由があると判断した場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。
                     </p>
-                    <ul className="list-disc pl-6 space-y-2 mt-4 mb-4">
+                    <ul className="list-disc pl-6 space-y-2 mb-4">
                         <li>本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
                         <li>地震、落雷、火災、停電または天災などの不可抗力により、本サービスの提供が困難となった場合</li>
                         <li>コンピュータまたは通信回線等が事故により停止した場合</li>
@@ -65,11 +69,11 @@ export default function TermsOfService() {
                     </ul>
                     <p>当社は、本サービスの提供の停止または中断により、ユーザーまたは第三者が被ったいかなる不利益または損害についても、一切の責任を負わないものとします。</p>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第4条（利用制限および登録抹消）</h2>
-                    <p>
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第4条（利用制限および登録抹消）</h2>
+                    <p className="mb-4">
                         当社は、ユーザーが以下のいずれかに該当する場合には、事前の通知なく、ユーザーに対して、本サービスの全部もしくは一部の利用を制限し、またはユーザーとしての登録を抹消することができるものとします。
                     </p>
-                    <ul className="list-disc pl-6 space-y-2 mt-4 mb-4">
+                    <ul className="list-disc pl-6 space-y-2 mb-4">
                         <li>本規約のいずれかの条項に違反した場合</li>
                         <li>登録事項に虚偽の事実があることが判明した場合</li>
                         <li>当社からの連絡に対し、一定期間返答がない場合</li>
@@ -78,20 +82,26 @@ export default function TermsOfService() {
                     </ul>
                     <p>当社は、本条に基づき当社が行った行為によりユーザーに生じた損害について、一切の責任を負いません。</p>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第5条（免責事項）</h2>
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第5条（免責事項）</h2>
                     <p>
                         当社の債務不履行責任は、当社の故意または重過失によらない場合には免責されるものとします。
                         当社は、何らかの理由によって責任を負う場合にも、通常生じうる損害の範囲内かつ有料サービスにおいては代金額（継続的サービスの場合には1か月分相当額）の範囲内においてのみ賠償の責任を負うものとします。
                         当社は、本サービスに関して、ユーザーと他のユーザーまたは第三者との間において生じた取引、連絡または紛争等について一切責任を負いません。
                     </p>
 
-                    <h2 className="text-xl font-bold text-slate-900 mt-10 mb-4 border-b border-blue-100 pb-2">第6条（利用規約の変更）</h2>
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第6条（準拠法・裁判管轄）</h2>
+                    <p>
+                        本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、東京地方裁判所を第一審の専属的合意管轄裁判所とします。
+                    </p>
+
+                    <h2 className="text-lg font-bold text-white mt-10 mb-4 pb-3 border-b border-white/[0.06]">第7条（利用規約の変更）</h2>
                     <p>
                         当社は必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。なお、本規約の変更後、本サービスの利用を開始した場合には、当該ユーザーは変更後の規約に同意したものとみなします。
                     </p>
 
-                    <div className="mt-12 pt-8 border-t border-slate-100 text-sm text-slate-400 font-medium">
-                        制定日：2026年3月1日
+                    <div className="mt-12 pt-8 border-t border-white/[0.06] text-xs text-[#5a5a6e]">
+                        制定日：2026年3月1日<br />
+                        最終更新日：2026年3月14日
                     </div>
                 </motion.div>
             </div>
