@@ -1,7 +1,11 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
-  // Output static HTML for all pages (best for SEO + Vercel)
+  outputFileTracingRoot: path.join(__dirname, './'),
+  images: {
+    formats: ['image/webp'],
+  },
 };
 
 export default nextConfig;

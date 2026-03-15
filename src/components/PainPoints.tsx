@@ -5,24 +5,24 @@ import { Brain, Zap, Sparkles, Compass } from 'lucide-react';
 
 const painPoints = [
     {
-        icon: <Brain className="w-7 h-7" />,
-        title: 'AIツールは使ってるけど、本業に活かせていない',
-        color: 'text-indigo-600 bg-indigo-50 border-indigo-100',
+        icon: <Brain className="w-6 h-6" />,
+        title: 'AIツールは使ってるけど、\n本業に活かせていない',
+        color: 'text-indigo-600 bg-indigo-50/50 border-indigo-100/50',
     },
     {
-        icon: <Zap className="w-7 h-7" />,
-        title: '競合がAIで先行者利益を取っている、置いて行かれるかも',
-        color: 'text-blue-600 bg-blue-50 border-blue-100',
+        icon: <Zap className="w-6 h-6" />,
+        title: '競合がAIで先行者利益を\n取っている気がする',
+        color: 'text-blue-600 bg-blue-50/50 border-blue-100/50',
     },
     {
-        icon: <Sparkles className="w-7 h-7" />,
-        title: '反復作業から解放され、もっと創造的な仕事がしたい',
-        color: 'text-sky-600 bg-sky-50 border-sky-100',
+        icon: <Sparkles className="w-6 h-6" />,
+        title: '反復作業から解放され、\nもっと創造的な仕事がしたい',
+        color: 'text-sky-600 bg-sky-50/50 border-sky-100/50',
     },
     {
-        icon: <Compass className="w-7 h-7" />,
-        title: 'DXと言われても、何から手を付ければいいかわからない',
-        color: 'text-slate-600 bg-slate-50 border-slate-200',
+        icon: <Compass className="w-6 h-6" />,
+        title: 'DXと言われても、\n何から手を付ければいいかわからない',
+        color: 'text-slate-600 bg-slate-50 border-slate-200/50',
     },
 ];
 
@@ -31,33 +31,34 @@ export default function PainPoints() {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+            transition: { staggerChildren: 0.1, delayChildren: 0.1 },
         },
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 20 },
         show: {
             opacity: 1,
             y: 0,
-            transition: { type: 'spring' as const, stiffness: 100, damping: 20 },
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
         },
     };
 
     return (
         <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-            <div className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
+            <div className="container mx-auto px-6 max-w-5xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    className="text-center mb-16"
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-center mb-16 flex flex-col items-center"
                 >
-                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
+                    <span className="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs tracking-wider uppercase mb-6 border border-slate-200/60">
                         Common Challenges
-                    </p>
-                    <h2 className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]">
-                        こんな課題、<br className="md:hidden" />抱えていませんか？
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2]">
+                        こんな課題を<br className="md:hidden" />抱えていませんか？
                     </h2>
                 </motion.div>
 
@@ -66,35 +67,37 @@ export default function PainPoints() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
                 >
                     {painPoints.map((point, index) => (
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="group flex items-start gap-5 p-7 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:shadow-[0_8px_30px_-10px_rgba(59,130,246,0.1)] transition-all duration-300"
+                            className="group flex flex-col items-start gap-4 p-8 rounded-2xl bg-white border border-slate-200/60 hover:border-slate-300 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] transition-all duration-300"
                         >
                             <div
-                                className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border ${point.color} group-hover:scale-110 transition-transform`}
+                                className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.color} transition-transform duration-500`}
                             >
                                 {point.icon}
                             </div>
-                            <p className="text-lg font-bold text-slate-800 leading-relaxed pt-2">
+                            <p className="text-[17px] font-semibold text-slate-800 leading-relaxed whitespace-pre-line">
                                 {point.title}
                             </p>
                         </motion.div>
                     ))}
                 </motion.div>
 
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                <motion.div
+                    initial={{ opacity: 0, filter: 'blur(10px)' }}
+                    whileInView={{ opacity: 1, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="text-center mt-12 text-slate-500 font-bold text-lg"
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="text-center mt-16"
                 >
-                    WaiWai AI が、これらすべてを解決します。
-                </motion.p>
+                    <p className="text-slate-500 font-medium text-lg">
+                        WaiWai AI が、これらすべてを解決します。
+                    </p>
+                </motion.div>
             </div>
         </section>
     );

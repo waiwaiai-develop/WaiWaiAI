@@ -85,27 +85,28 @@ export default function ContactSection() {
     return (
         <section
             id="contact"
-            className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden"
+            className="py-24 lg:py-32 bg-[#fafafa] relative overflow-hidden border-t border-slate-100/60"
         >
-            <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-center mb-16 flex flex-col items-center"
                 >
-                    <p className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4">
-                        Contact
-                    </p>
-                    <h2 className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 tracking-tight md:tracking-tighter mb-6 leading-[1.25] md:leading-[1.15]">
+                    <span className="inline-block py-1 px-3 rounded-full bg-slate-200/50 text-slate-600 font-semibold text-xs tracking-wider uppercase mb-6 border border-slate-300/30">
+                        Contact Us
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]">
                         ビジネスに、<br />
-                        <span className="text-blue-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">
                             「AIの即戦力」
                         </span>
                         を。
                     </h2>
-                    <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
                         まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
                         プロの視点で最短ルートを提示します。
                     </p>
@@ -117,17 +118,18 @@ export default function ContactSection() {
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-10"
+                        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12"
                     >
-                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             NDA締結可能
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             相見積もり歓迎
                         </div>
-                        <div className="flex items-center gap-2 text-sm font-bold text-slate-600">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-slate-600">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             IT未経験の方も安心サポート
                         </div>
@@ -138,6 +140,7 @@ export default function ContactSection() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <div
                             id="contact-form"

@@ -4,46 +4,43 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function ProductsSection() {
-    // Stagger animation variants
     const containerVariants = {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
-            transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
         }
     };
 
-    const itemVariants: any = {
-        hidden: { opacity: 0, y: 50 },
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
         show: {
             opacity: 1,
             y: 0,
-            transition: { type: "spring", stiffness: 80, damping: 15 }
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
         }
     };
 
     return (
-        <section id="products" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-100">
-            {/* Ambient Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-
-            <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
+        <section id="products" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-100/60">
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 <motion.div
-                    initial="hidden"
-                    whileInView="show"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    variants={containerVariants}
-                    className="text-center mb-24"
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="text-center mb-20 flex flex-col items-center"
                 >
-                    <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-white font-bold text-sm tracking-wider mb-8 shadow-sm">
-                        <Sparkles className="w-4 h-4 text-blue-400" /> 独自ソリューション
-                    </motion.div>
-                    <motion.h2 variants={itemVariants} className="text-[1.75rem] sm:text-3xl md:text-4xl font-black text-slate-950 mb-6 tracking-tight md:tracking-tighter leading-[1.25] md:leading-[1.15]">
+                    <span className="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs tracking-wider uppercase mb-6 border border-slate-200/60">
+                        Our Products
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-[1.2]">
                         提供プロダクト・<br className="md:hidden" />ソリューション
-                    </motion.h2>
-                    <motion.p variants={itemVariants} className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto font-bold tracking-tight leading-relaxed">
-                        すぐに現場へ導入し、圧倒的なROIを生み出す独自開発のAIプロダクト。
-                    </motion.p>
+                    </h2>
+                    <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                        すぐに現場へ導入し、圧倒的なROIを生み出す<br className="hidden md:block" />
+                        独自開発のAIプロダクト。
+                    </p>
                 </motion.div>
 
                 <motion.div
@@ -51,41 +48,49 @@ export default function ProductsSection() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                 >
                     {/* Product 1: WaiWaiAI SNS System */}
-                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
-                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
-                            <div className="absolute inset-0 bg-blue-100/30 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="/images/product_a.png" alt="WaiWaiAI SNS System" className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700" />
+                    <motion.div variants={itemVariants} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative border-b border-slate-100">
+                            <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
+                            <img src="/images/product_a.png" alt="WaiWaiAI SNS System" className="w-full h-full object-cover object-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" />
                         </div>
-                        <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
-                            <div className="flex justify-between items-start mb-4">
+                        <div className="p-8 md:p-10 relative bg-white h-full flex flex-col">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
                                 <div>
-                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">WaiWaiAI SNS System</h3>
-                                    <p className="text-blue-600 font-bold tracking-tight">SNS自動運用プラットフォーム</p>
+                                    <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-2">WaiWaiAI SNS System</h3>
+                                    <p className="text-blue-600 font-semibold text-sm">SNS自動運用プラットフォーム</p>
                                 </div>
-                                <span className="shrink-0 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">β版受付中</span>
+                                <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[11px] font-bold tracking-wider uppercase border border-blue-100/50">
+                                    β版受付中
+                                </span>
                             </div>
-                            <p className="text-slate-600 font-bold leading-relaxed">AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。</p>
+                            <p className="text-slate-500 leading-relaxed font-medium">
+                                AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。
+                            </p>
                         </div>
                     </motion.div>
 
                     {/* Product 2: EstateAI */}
-                    <motion.div variants={itemVariants} className="group block relative rounded-[2rem] bg-slate-50 border border-slate-200/60 overflow-hidden hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500">
-                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-white/50 relative">
-                            <div className="absolute inset-0 bg-indigo-100/30 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="/images/product_b.png" alt="EstateAI" className="w-full h-full object-cover object-left-top transform group-hover:scale-105 transition-transform duration-700" />
+                    <motion.div variants={itemVariants} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative border-b border-slate-100">
+                            <div className="absolute inset-0 bg-indigo-500/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
+                            <img src="/images/product_b.png" alt="EstateAI" className="w-full h-full object-cover object-left-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" />
                         </div>
-                        <div className="p-8 md:p-10 relative bg-white h-full border-t border-slate-100">
-                            <div className="flex justify-between items-start mb-4">
+                        <div className="p-8 md:p-10 relative bg-white h-full flex flex-col">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
                                 <div>
-                                    <h3 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tight">EstateAI</h3>
-                                    <p className="text-indigo-600 font-bold tracking-tight">不動産業向けAIソリューション</p>
+                                    <h3 className="text-2xl font-bold text-slate-900 tracking-tight mb-2">EstateAI</h3>
+                                    <p className="text-indigo-600 font-semibold text-sm">不動産業向けAIソリューション</p>
                                 </div>
-                                <span className="shrink-0 px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-xs font-bold">Coming Soon</span>
+                                <span className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold tracking-wider uppercase border border-slate-200/50">
+                                    Coming Soon
+                                </span>
                             </div>
-                            <p className="text-slate-600 font-bold leading-relaxed">不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。</p>
+                            <p className="text-slate-500 leading-relaxed font-medium">
+                                不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。
+                            </p>
                         </div>
                     </motion.div>
                 </motion.div>

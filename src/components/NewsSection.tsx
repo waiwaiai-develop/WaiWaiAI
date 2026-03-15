@@ -53,32 +53,41 @@ export default function NewsSection() {
                         {/* Right Content Area */}
                         <div className="lg:w-2/3 p-6 lg:p-14 bg-white">
                             <div className="flex flex-col space-y-2">
-                                {newsData.map((item, index) => (
-                                    <motion.a
-                                        href={item.link}
-                                        key={item.id}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="group block p-6 rounded-2xl border border-transparent hover:border-blue-100 hover:bg-blue-50/50 transition-all duration-300"
-                                    >
-                                        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                                            <div className="flex items-center gap-4 w-48 shrink-0">
-                                                <span className="text-slate-500 font-mono text-sm tracking-tighter">{item.date}</span>
-                                                <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-700'}`}>
-                                                    {item.label}
-                                                </span>
-                                            </div>
-                                            <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors flex-1 line-clamp-2 md:line-clamp-1">
-                                                {item.title}
-                                            </h3>
-                                            <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm border border-slate-100 shrink-0 group-hover:shadow-md group-hover:border-blue-200 transition-all">
-                                                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:rotate-45 transition-transform" />
-                                            </div>
-                                        </div>
-                                    </motion.a>
-                                ))}
+                                {newsData.map((item, index) => {
+                                    const Wrapper = item.link ? 'a' : 'div';
+                                    const linkProps = item.link ? { href: item.link } : {};
+                                    return (
+                                        <motion.div
+                                            key={item.id}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ delay: index * 0.1 }}
+                                        >
+                                            <Wrapper
+                                                {...linkProps}
+                                                className={`block p-6 rounded-2xl border border-transparent transition-all duration-300 ${item.link ? 'group hover:border-blue-100 hover:bg-blue-50/50 cursor-pointer' : ''}`}
+                                            >
+                                                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                                                    <div className="flex items-center gap-4 w-48 shrink-0">
+                                                        <span className="text-slate-500 font-mono text-sm tracking-tighter">{item.date}</span>
+                                                        <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-700'}`}>
+                                                            {item.label}
+                                                        </span>
+                                                    </div>
+                                                    <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors flex-1 line-clamp-2 md:line-clamp-1">
+                                                        {item.title}
+                                                    </h3>
+                                                    {item.link && (
+                                                        <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm border border-slate-100 shrink-0 group-hover:shadow-md group-hover:border-blue-200 transition-all">
+                                                            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:rotate-45 transition-transform" />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </Wrapper>
+                                        </motion.div>
+                                    );
+                                })}
                             </div>
                         </div>
 

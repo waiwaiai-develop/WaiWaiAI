@@ -64,6 +64,44 @@
   }
 }
 
+@keyframes float-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(40px, -60px, 0) scale(1.05); }
+  66% { transform: translate3d(-30px, 30px, 0) scale(0.95); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(-50px, 40px, 0) scale(1.08); }
+  66% { transform: translate3d(35px, -35px, 0) scale(0.92); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(30px, -30px, 0) scale(1.12); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes dot-float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.4; }
+  50% { transform: translate3d(0, -20px, 0); opacity: 0.8; }
+}
+
+@keyframes line-pulse {
+  0%, 100% { transform: scaleX(0.4); opacity: 0.4; }
+  50% { transform: scaleX(1); opacity: 0.7; }
+}
+
 @layer base {
   body {
     @apply antialiased font-sans text-slate-800 bg-white;
