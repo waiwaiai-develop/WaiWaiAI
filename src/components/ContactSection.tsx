@@ -188,15 +188,18 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                                <label htmlFor="contact-company" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     会社名{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
                                                 <input
+                                                    id="contact-company"
                                                     type="text"
                                                     name="company"
+                                                    required
+                                                    aria-required="true"
                                                     value={formData.company}
                                                     onChange={handleChange}
                                                     placeholder="株式会社WaiWai"
@@ -207,15 +210,18 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                <label htmlFor="contact-name" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     ご担当者名{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
                                                 <input
+                                                    id="contact-name"
                                                     type="text"
                                                     name="name"
+                                                    required
+                                                    aria-required="true"
                                                     value={formData.name}
                                                     onChange={handleChange}
                                                     placeholder="山田 太郎"
@@ -229,15 +235,18 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                <label htmlFor="contact-email" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     メールアドレス{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
                                                 <input
+                                                    id="contact-email"
                                                     type="email"
                                                     name="email"
+                                                    required
+                                                    aria-required="true"
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     placeholder="info@example.com"
@@ -248,15 +257,17 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                                <label htmlFor="contact-phone" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     電話番号{' '}
-                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="任意項目">
                                                         任意
                                                     </span>
                                                 </label>
                                                 <input
+                                                    id="contact-phone"
                                                     type="tel"
                                                     name="phone"
+                                                    aria-required="false"
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     placeholder="03-0000-0000"
@@ -269,14 +280,17 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                            <label htmlFor="contact-category" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                 ご相談種別{' '}
-                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                     必須
                                                 </span>
                                             </label>
                                             <select
+                                                id="contact-category"
                                                 name="category"
+                                                required
+                                                aria-required="true"
                                                 value={formData.category}
                                                 onChange={handleChange}
                                                 disabled={
@@ -314,14 +328,17 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                                            <label htmlFor="contact-message" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                 お問い合わせ内容{' '}
-                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                     必須
                                                 </span>
                                             </label>
                                             <textarea
+                                                id="contact-message"
                                                 name="message"
+                                                required
+                                                aria-required="true"
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 rows={4}
@@ -336,17 +353,19 @@ export default function ContactSection() {
                                         <button
                                             type="submit"
                                             disabled={status === 'submitting'}
+                                            aria-busy={status === 'submitting'}
+                                            aria-label={status === 'submitting' ? '送信中' : 'お問い合わせを送信する'}
                                             className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
                                         >
                                             {status === 'submitting' ? (
                                                 <>
-                                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                                    <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
                                                     送信中...
                                                 </>
                                             ) : (
                                                 <>
                                                     送信する
-                                                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                                 </>
                                             )}
                                         </button>

@@ -2,47 +2,32 @@
 
 import { motion } from 'framer-motion';
 import { Brain, Zap, Sparkles, Compass } from 'lucide-react';
+import { staggerContainer, fadeInUp } from '@/lib/animations';
 
 const painPoints = [
     {
-        icon: <Brain className="w-6 h-6" />,
+        icon: Brain,
         title: 'AIツールは使ってるけど、\n本業に活かせていない',
         color: 'text-indigo-600 bg-indigo-50/50 border-indigo-100/50',
     },
     {
-        icon: <Zap className="w-6 h-6" />,
+        icon: Zap,
         title: '競合がAIで先行者利益を\n取っている気がする',
         color: 'text-blue-600 bg-blue-50/50 border-blue-100/50',
     },
     {
-        icon: <Sparkles className="w-6 h-6" />,
+        icon: Sparkles,
         title: '反復作業から解放され、\nもっと創造的な仕事がしたい',
         color: 'text-sky-600 bg-sky-50/50 border-sky-100/50',
     },
     {
-        icon: <Compass className="w-6 h-6" />,
+        icon: Compass,
         title: 'DXと言われても、\n何から手を付ければいいかわからない',
         color: 'text-slate-600 bg-slate-50 border-slate-200/50',
     },
 ];
 
 export default function PainPoints() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-        },
-    };
 
     return (
         <section className="py-24 md:py-32 bg-white relative overflow-hidden">
@@ -63,7 +48,7 @@ export default function PainPoints() {
                 </motion.div>
 
                 <motion.div
-                    variants={containerVariants}
+                    variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
@@ -72,13 +57,13 @@ export default function PainPoints() {
                     {painPoints.map((point, index) => (
                         <motion.div
                             key={index}
-                            variants={itemVariants}
+                            variants={fadeInUp}
                             className="group flex flex-col items-start gap-4 p-8 rounded-2xl bg-white border border-slate-200/60 hover:border-slate-300 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] transition-all duration-300"
                         >
                             <div
                                 className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.color} transition-transform duration-500`}
                             >
-                                {point.icon}
+                                <point.icon className="w-6 h-6" />
                             </div>
                             <p className="text-[17px] font-semibold text-slate-800 leading-relaxed whitespace-pre-line">
                                 {point.title}

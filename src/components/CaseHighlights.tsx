@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Clock, TrendingUp, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { casesData } from '@/data/casesData';
+import { staggerContainer, springItem } from '@/lib/animations';
 
 const renderIcon = (iconName: string, className: string) => {
     switch (iconName) {
@@ -19,22 +20,6 @@ const renderIcon = (iconName: string, className: string) => {
 };
 
 export default function CaseHighlights() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 40 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { type: 'spring' as const, stiffness: 80, damping: 15 },
-        },
-    };
 
     return (
         <section className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-100">
@@ -57,7 +42,7 @@ export default function CaseHighlights() {
                 </motion.div>
 
                 <motion.div
-                    variants={containerVariants}
+                    variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
@@ -66,7 +51,7 @@ export default function CaseHighlights() {
                     {casesData.map((project) => (
                         <motion.div
                             key={project.id}
-                            variants={itemVariants}
+                            variants={springItem}
                             className="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.12)] hover:-translate-y-1 transition-all duration-500"
                         >
                             {/* Results bar */}
@@ -128,10 +113,11 @@ export default function CaseHighlights() {
                 >
                     <Link
                         href="/cases"
+                        aria-label="すべての導入事例を見る"
                         className="group inline-flex items-center gap-3 px-10 py-5 rounded-full bg-slate-900 text-white hover:bg-slate-800 font-extrabold text-lg transition-all shadow-[0_8px_20px_rgb(0,0,0,0.12)] hover:-translate-y-1"
                     >
                         すべての事例を見る
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>
                 </motion.div>
             </div>

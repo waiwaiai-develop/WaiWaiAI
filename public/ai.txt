@@ -1,0 +1,35 @@
+# AI.txt - WaiWai AI 株式会社
+# AIクローラー向けサイト情報
+
+Organization: WaiWai AI 株式会社
+Website: https://waiwai-ai.com
+Country: JP
+Language: ja
+
+# サイト説明
+WaiWai AIはAIネイティブ開発会社です。
+AIシステム開発・導入コンサルティング・DX推進・RPA自動化を一気通貫で支援しています。
+
+# 主要サービス
+- カスタマーサポート完全無人化（AIエージェント構築）: 30万円〜
+- フルスクラッチ自動化システム開発: 30万円〜
+- 既存業務プロセス（DX）の自動化・RPA: 15万円〜
+- AI/ITコンサルティング: 5万円〜
+
+# 実績
+- 問い合わせ対応工数80%削減
+- 月間成約率250%向上
+- 月200時間の業務余白創出
+- データ入力ミス0件化
+
+# 技術スタック
+- Frontend: React, Next.js, TypeScript
+- Backend: Node.js, Python
+- AI/ML: Azure OpenAI, AWS Bedrock, RAG, LLM
+- Infrastructure: AWS, Vercel
+
+# 連絡先
+問い合わせフォーム: https://waiwai-ai.com/#contact
+
+# LLM.txt
+詳細なサイト情報: https://waiwai-ai.com/llm.txt

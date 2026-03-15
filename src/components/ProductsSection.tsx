@@ -2,24 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import { staggerContainer, fadeInUp } from '@/lib/animations';
 
 export default function ProductsSection() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
-        }
-    };
 
     return (
         <section id="products" className="py-24 md:py-32 bg-white relative overflow-hidden border-t border-slate-100/60">
@@ -44,17 +30,17 @@ export default function ProductsSection() {
                 </motion.div>
 
                 <motion.div
-                    variants={containerVariants}
+                    variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                 >
                     {/* Product 1: WaiWaiAI SNS System */}
-                    <motion.div variants={itemVariants} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
-                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative border-b border-slate-100">
+                    <motion.div variants={fadeInUp} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 border-b border-slate-100 relative">
                             <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-                            <img src="/images/product_a.png" alt="WaiWaiAI SNS System" className="w-full h-full object-cover object-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" />
+                            <Image src="/images/product_a.png" alt="WaiWaiAI SNS System" fill className="object-cover object-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 50vw" />
                         </div>
                         <div className="p-8 md:p-10 relative bg-white h-full flex flex-col">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">
@@ -73,10 +59,10 @@ export default function ProductsSection() {
                     </motion.div>
 
                     {/* Product 2: EstateAI */}
-                    <motion.div variants={itemVariants} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
-                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 relative border-b border-slate-100">
+                    <motion.div variants={fadeInUp} className="group block relative rounded-3xl bg-white border border-slate-200/60 overflow-hidden shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] hover:border-slate-300 transition-all duration-500">
+                        <div className="h-64 sm:h-80 w-full overflow-hidden bg-slate-50 border-b border-slate-100 relative">
                             <div className="absolute inset-0 bg-indigo-500/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-                            <img src="/images/product_b.png" alt="EstateAI" className="w-full h-full object-cover object-left-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" />
+                            <Image src="/images/product_b.png" alt="EstateAI" fill className="object-cover object-left-top transform group-hover:scale-[1.03] transition-transform duration-700 ease-out" sizes="(max-width: 768px) 100vw, 50vw" />
                         </div>
                         <div className="p-8 md:p-10 relative bg-white h-full flex flex-col">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-6">

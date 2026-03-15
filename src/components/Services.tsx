@@ -98,10 +98,11 @@ export default function Services() {
                     >
                         <Link
                             href="/#contact"
+                            aria-label="無料で相談する"
                             className="group inline-flex items-center justify-center gap-2 h-14 px-10 bg-slate-900 text-white font-medium text-[15px] rounded-full hover:bg-slate-800 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                         >
-                            無料で専門家に相談する
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            無料で相談する
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </Link>
                         <p className="mt-5 text-slate-400 text-sm font-medium">相談無料・お見積もり無料</p>
                     </motion.div>

@@ -25,7 +25,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Desktop Menu */}
-                <nav className={`hidden md:flex items-center gap-8 px-6 py-2 rounded-full shadow-sm transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border border-slate-200' : 'bg-white/60 backdrop-blur-md border border-slate-200/50'}`}>
+                <nav aria-label="メインナビゲーション" className={`hidden md:flex items-center gap-8 px-6 py-2 rounded-full shadow-sm transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md border border-slate-200' : 'bg-white/60 backdrop-blur-md border border-slate-200/50'}`}>
                     <Link href="/services" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/services' ? 'text-blue-600' : 'text-slate-700'}`}>ソリューション</Link>
                     <Link href="/cases" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/cases' ? 'text-blue-600' : 'text-slate-700'}`}>実績と課題解決</Link>
                     <Link href="/company" className={`text-sm font-bold tracking-wide transition-all hover:text-blue-600 ${pathname === '/company' ? 'text-blue-600' : 'text-slate-700'}`}>会社概要</Link>
@@ -33,12 +33,14 @@ export default function Navbar() {
 
                 <div className="hidden md:flex">
                     <Link href="/#contact" className={`px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 transform hover:-translate-y-0.5 bg-blue-600 text-white shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)]`}>
-                        相談する
+                        無料で相談する
                     </Link>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
+                    aria-label={isMobileMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
+                    aria-expanded={isMobileMenuOpen}
                     className={`md:hidden p-2 relative z-50 shadow-sm border rounded-xl transition-all duration-300 text-slate-900 bg-white border-slate-200 hover:bg-slate-50`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
@@ -49,7 +51,8 @@ export default function Navbar() {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <motion.div
+                    <motion.nav
+                        aria-label="モバイルナビゲーション"
                         initial={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
                         animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                         exit={{ opacity: 0, y: -10, filter: 'blur(10px)' }}
@@ -66,7 +69,7 @@ export default function Navbar() {
                                 </Link>
                             </div>
                         </div>
-                    </motion.div>
+                    </motion.nav>
                 )}
             </AnimatePresence>
         </header>

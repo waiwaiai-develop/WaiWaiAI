@@ -3,24 +3,9 @@
 import { motion } from 'framer-motion';
 import { Building2, Users2, MapPin, Mail, ArrowRight, Turtle } from 'lucide-react';
 import ContactCTA from '@/components/ContactCTA';
+import { staggerContainer, springItem } from '@/lib/animations';
 
 export default function CompanyPage() {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.2 }
-        }
-    };
-
-    const itemVariants: any = {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { type: "spring", stiffness: 100, damping: 20 }
-        }
-    };
 
     return (
         <div className="pt-32 pb-0 relative min-h-screen overflow-hidden bg-white">
@@ -99,13 +84,13 @@ export default function CompanyPage() {
                         </h2>
 
                         <motion.div
-                            variants={containerVariants}
+                            variants={staggerContainer}
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true }}
                             className="space-y-6"
                         >
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Building2 className="w-5 h-5" />
                                     会社名
@@ -115,7 +100,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Users2 className="w-5 h-5" />
                                     設立
@@ -125,7 +110,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Users2 className="w-5 h-5" />
                                     資本金
@@ -135,7 +120,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Users2 className="w-5 h-5" />
                                     代表者
@@ -145,7 +130,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Users2 className="w-5 h-5" />
                                     事業内容
@@ -160,7 +145,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-50">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <MapPin className="w-5 h-5" />
                                     所在地
@@ -170,7 +155,7 @@ export default function CompanyPage() {
                                 </div>
                             </motion.div>
 
-                            <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4">
+                            <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4">
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Mail className="w-5 h-5" />
                                     お問い合わせ

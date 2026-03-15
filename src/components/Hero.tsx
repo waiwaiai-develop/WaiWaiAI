@@ -121,13 +121,15 @@ export default function Hero() {
                     >
                         <a
                             href="#contact"
+                            aria-label="無料で相談する"
                             className="group h-14 px-8 rounded-full bg-slate-900 text-white font-medium text-[15px] transition-all hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                         >
-                            無料相談を予約する
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            無料で相談する
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </a>
                         <a
                             href="#products"
+                            aria-label="ソリューションを見る"
                             className="group h-14 px-8 rounded-full bg-white text-slate-700 font-medium text-[15px] border border-slate-200 transition-all hover:border-slate-300 hover:bg-slate-50 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center shadow-sm"
                         >
                             ソリューションを見る

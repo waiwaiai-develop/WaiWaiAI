@@ -58,10 +58,11 @@ export default function ContactCTA() {
                             href="https://calendly.com/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Calendlyで無料相談を予約する"
                             className="flex-1 px-10 py-6 rounded-3xl text-center bg-blue-600 border border-transparent hover:bg-blue-700 text-white shadow-[0_20px_40px_-10px_rgba(59,130,246,0.5)] flex flex-col items-center justify-center group"
                         >
                             <span className="text-xl font-black mb-1 inline-flex items-center gap-2">
-                                無料相談を予約する <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                無料で相談する <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                             </span>
                             <span className="text-sm text-blue-100 font-bold opacity-80 uppercase tracking-widest">Calendlyで即時予約</span>
                         </motion.a>
@@ -71,10 +72,11 @@ export default function ContactCTA() {
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 17 }}
                             href="/#contact-form"
+                            aria-label="メールでお問い合わせする"
                             className="flex-1 px-10 py-6 rounded-3xl text-center bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:border-slate-300 text-slate-800 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] flex flex-col items-center justify-center group"
                         >
                             <span className="text-xl font-black mb-1 inline-flex items-center gap-2">
-                                メールでお問い合わせ <ArrowRight className="w-5 h-5 text-slate-500 group-hover:translate-x-1 transition-all" />
+                                メールでお問い合わせ <ArrowRight className="w-5 h-5 text-slate-500 group-hover:translate-x-1 transition-all" aria-hidden="true" />
                             </span>
                             <span className="text-sm text-slate-500 font-bold uppercase tracking-widest">資料請求・RFPの送付はこちら</span>
                         </motion.a>

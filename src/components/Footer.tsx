@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
     return (
@@ -6,39 +7,30 @@ export default function Footer() {
             <div className="container mx-auto px-4 md:px-8 relative z-10 text-slate-600">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                     <div className="md:col-span-5 pr-8">
-                        <Link href="/" className="inline-block mb-8 group">
-                            <img src="/logo-horizontal.png" alt="WaiWai AI" className="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity" />
+                        <Link href="/" className="inline-block mb-8 group relative w-[180px] h-[56px]">
+                            <Image src="/logo-horizontal.png" alt="WaiWai AI" fill className="object-contain object-left group-hover:opacity-80 transition-opacity" sizes="180px" />
                         </Link>
                         <p className="text-slate-500 text-sm leading-relaxed mb-6 font-medium">
                             AIネイティブ開発会社。最先端の技術で、あなたのビジョンを形に。AIシステム開発から導入コンサルティングまで、確かな実装力でビジネスのDX推進を伴走します。
                         </p>
                     </div>
 
+                    <div className="md:col-span-4">
+                        <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Menu</h4>
+                        <ul className="space-y-3" role="list">
+                            <li><Link href="/services" aria-label="ソリューションページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">ソリューション</Link></li>
+                            <li><Link href="/cases" aria-label="導入実績ページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">導入実績</Link></li>
+                            <li><Link href="/company" aria-label="会社概要ページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">会社概要</Link></li>
+                            <li><Link href="/#contact" aria-label="お問い合わせフォームへ" className="text-slate-500 hover:text-sky-600 transition-colors block">お問い合わせ</Link></li>
+                        </ul>
+                    </div>
+
                     <div className="md:col-span-3">
-                        <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Services</h4>
-                        <ul className="space-y-3">
-                            <li><Link href="/services" className="text-slate-500 hover:text-sky-600 transition-colors block">ソリューション</Link></li>
-                            <li><Link href="/services#ai-solutions" className="text-slate-500 hover:text-sky-600 transition-colors block">AI開発</Link></li>
-                            <li><Link href="/services#system-development" className="text-slate-500 hover:text-sky-600 transition-colors block">システム開発</Link></li>
-                            <li><Link href="/services#dx-automation" className="text-slate-500 hover:text-sky-600 transition-colors block">RPA導入</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="md:col-span-2">
-                        <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Company</h4>
-                        <ul className="space-y-3">
-                            <li><Link href="/cases" className="text-slate-500 hover:text-sky-600 transition-colors block">導入実績</Link></li>
-                            <li><Link href="/company" className="text-slate-500 hover:text-sky-600 transition-colors block">会社概要</Link></li>
-                            <li><Link href="/#contact" className="text-slate-500 hover:text-sky-600 transition-colors block">お問い合わせ</Link></li>
-                        </ul>
-                    </div>
-
-                    <div className="md:col-span-2">
                         <h4 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Legal</h4>
-                        <ul className="space-y-4">
-                            <li><Link href="/privacy" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">プライバシーポリシー</Link></li>
-                            <li><Link href="/terms" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">利用規約</Link></li>
-                            <li><Link href="/commercial-act" className="text-slate-500 hover:text-sky-600 transition-colors text-sm font-medium">特商法表記</Link></li>
+                        <ul className="space-y-3" role="list">
+                            <li><Link href="/privacy" aria-label="プライバシーポリシーページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">プライバシーポリシー</Link></li>
+                            <li><Link href="/terms" aria-label="利用規約ページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">利用規約</Link></li>
+                            <li><Link href="/commercial-act" aria-label="特定商取引法に基づく表記ページへ" className="text-slate-500 hover:text-sky-600 transition-colors block">特商法表記</Link></li>
                         </ul>
                     </div>
                 </div>
