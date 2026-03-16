@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-03-07T11:35:21.192Z",
+  "updatedAt": "2026-03-15T03:33:54.290Z",
   "skills": {
     "agent-browser": {
       "count": 1,
@@ -16,9 +16,9 @@
   },
   "hooks": {
     "session-init": {
-      "triggered": 4,
+      "triggered": 5,
       "blocked": 0,
-      "lastTriggered": "2026-03-07T11:35:21.191Z"
+      "lastTriggered": "2026-03-15T03:33:54.287Z"
     }
   }
 }

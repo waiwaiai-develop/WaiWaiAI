@@ -122,7 +122,7 @@
   body {
     @apply font-sans text-slate-800;
     font-family: var(--font-sans);
-    background: linear-gradient(160deg, #bfdbfe 0%, #a5c8f5 15%, #dbeafe 35%, #c7d8f5 55%, #e0ecff 75%, #bfdbfe 100%);
+    background: linear-gradient(160deg, #1e3a8a 0%, #1e40af 20%, #2563eb 40%, #3b82f6 60%, #60a5fa 80%, #1d4ed8 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
