@@ -251,17 +251,18 @@ export default function RootLayout({
       <body className="antialiased font-sans text-slate-900 overflow-x-hidden">
         {/* ガラスモーフィズム背景 - Apple Vision Pro風 */}
         <div className="fixed inset-0 z-0 pointer-events-none">
-          {/* グラデーション背景 */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50" />
-          
-          {/* フローティングオーブ */}
-          <div className="orb orb-1 -top-[20%] -left-[10%]" />
-          <div className="orb orb-2 top-[40%] -right-[10%]" />
-          <div className="orb orb-3 bottom-[10%] left-[30%]" />
-          
-          {/* 追加の光の球体 */}
-          <div className="absolute top-[20%] right-[20%] w-[300px] h-[300px] rounded-full bg-blue-400/20 blur-[100px] animate-pulse" />
-          <div className="absolute bottom-[30%] left-[10%] w-[250px] h-[250px] rounded-full bg-sky-400/15 blur-[80px] animate-pulse" style={{ animationDelay: '1s' }} />
+          {/* グラデーション背景 - リッチなブルー */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50/80 to-sky-100" />
+
+          {/* フローティングオーブ - 大きく濃く */}
+          <div className="orb orb-1 -top-[15%] -left-[5%]" />
+          <div className="orb orb-2 top-[35%] -right-[5%]" />
+          <div className="orb orb-3 bottom-[5%] left-[25%]" />
+
+          {/* 追加の光の球体 - 強化 */}
+          <div className="absolute top-[15%] right-[15%] w-[400px] h-[400px] rounded-full bg-blue-400/35 blur-[120px]" />
+          <div className="absolute bottom-[25%] left-[5%] w-[350px] h-[350px] rounded-full bg-sky-400/30 blur-[100px]" />
+          <div className="absolute top-[60%] right-[30%] w-[300px] h-[300px] rounded-full bg-indigo-400/20 blur-[100px]" />
           
           {/* ドットパターン */}
           <div className="absolute inset-0 bg-dot-light opacity-50" />

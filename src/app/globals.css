@@ -118,7 +118,7 @@
   body {
     @apply antialiased font-sans text-slate-800;
     font-family: var(--font-sans);
-    background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 25%, #f5f9ff 50%, #edf6ff 75%, #f0f7ff 100%);
+    background: linear-gradient(160deg, #dbeafe 0%, #c7d8f5 20%, #e0ecff 40%, #bfdbfe 60%, #d4e4fc 80%, #dbeafe 100%);
     background-attachment: fixed;
   }
 
@@ -272,23 +272,23 @@
   }
 
   .orb-1 {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%);
     animation: orb-float-1 20s ease-in-out infinite;
   }
 
   .orb-2 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.45) 0%, rgba(14, 165, 233, 0.15) 40%, transparent 70%);
     animation: orb-float-2 25s ease-in-out infinite;
   }
 
   .orb-3 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.05) 50%, transparent 70%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, rgba(96, 165, 250, 0.1) 40%, transparent 70%);
     animation: orb-float-3 18s ease-in-out infinite;
   }
 
