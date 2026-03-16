@@ -72,7 +72,13 @@ export default function FAQSection() {
           __html: JSON.stringify(faqSchema),
         }}
       />
-      <section id="faq" className="py-24 lg:py-32 relative bg-white overflow-hidden">
+      <section id="faq" className="py-24 lg:py-32 relative overflow-hidden">
+        {/* 背景エフェクト */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[150px]" />
+          <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-[120px]" />
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
@@ -83,20 +89,20 @@ export default function FAQSection() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-center mb-16"
             >
-              <span className="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs tracking-wider uppercase mb-6 border border-slate-200">
+              <span className="inline-block py-1.5 px-4 rounded-full glass text-slate-700 font-bold text-xs tracking-wider uppercase mb-6">
                 FAQ
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                 よくある質問
               </h2>
-              <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              <p className="text-slate-600 max-w-2xl mx-auto text-lg">
                 AI導入やシステム開発について、よくいただく質問をまとめました。
                 <br />
                 その他のご質問はお気軽にご相談ください。
               </p>
             </motion.div>
 
-            {/* FAQ List */}
+            {/* FAQ List - ガラススタイル */}
             <div className="space-y-4">
               {faqs.map((faq, index) => (
                 <motion.div
@@ -109,15 +115,15 @@ export default function FAQSection() {
                     delay: index * 0.05,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden"
+                  className="glass-card border border-white/50 overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-slate-100 transition-colors"
+                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/20 transition-colors"
                     aria-expanded={openIndex === index}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl glass flex items-center justify-center shrink-0">
                         <HelpCircle className="w-5 h-5 text-blue-600" />
                       </div>
                       <span className="font-bold text-slate-900 text-base md:text-lg">
@@ -154,7 +160,7 @@ export default function FAQSection() {
               <p className="text-slate-500 mb-4">その他のご質問があればお気軽にどうぞ</p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-[0_8px_24px_-4px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_32px_-4px_rgba(37,99,235,0.5)]"
               >
                 無料で相談する
               </a>

@@ -1,21 +1,21 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit, Noto_Sans_JP } from 'next/font/google';
+import { DM_Sans, Sora, Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-inter',
+  variable: '--font-dm-sans',
   display: 'swap',
   preload: true,
 });
 
-const outfit = Outfit({
+const sora = Sora({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
-  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-sora',
   display: 'swap',
   preload: true,
 });
@@ -243,16 +243,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`${inter.variable} ${outfit.variable} ${notoSansJP.variable}`}>
+    <html lang="ja" className={`${dmSans.variable} ${sora.variable} ${notoSansJP.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="bg-white text-slate-900 font-sans antialiased overflow-x-hidden">
-        <div className="min-h-screen bg-white text-slate-900 selection:bg-sky-500/20 font-sans flex flex-col relative overflow-hidden">
-          <div className="fixed inset-0 pointer-events-none z-[-1] bg-white"></div>
+      <body className="antialiased font-sans text-slate-900 overflow-x-hidden">
+        {/* ガラスモーフィズム背景 - Apple Vision Pro風 */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          {/* グラデーション背景 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50" />
+          
+          {/* フローティングオーブ */}
+          <div className="orb orb-1 -top-[20%] -left-[10%]" />
+          <div className="orb orb-2 top-[40%] -right-[10%]" />
+          <div className="orb orb-3 bottom-[10%] left-[30%]" />
+          
+          {/* 追加の光の球体 */}
+          <div className="absolute top-[20%] right-[20%] w-[300px] h-[300px] rounded-full bg-blue-400/20 blur-[100px] animate-pulse" />
+          <div className="absolute bottom-[30%] left-[10%] w-[250px] h-[250px] rounded-full bg-sky-400/15 blur-[80px] animate-pulse" style={{ animationDelay: '1s' }} />
+          
+          {/* ドットパターン */}
+          <div className="absolute inset-0 bg-dot-light opacity-50" />
+          
+          {/* グリッドパターン */}
+          <div className="absolute inset-0 bg-grid-light opacity-30" />
+          
+          {/* ノイズテクスチャ */}
+          <div className="noise-overlay" />
+        </div>
+
+        <div className="relative z-10 min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-grow z-10">{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </div>
 

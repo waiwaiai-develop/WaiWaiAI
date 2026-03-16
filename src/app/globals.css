@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: "Outfit", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Sora", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
 
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
@@ -20,48 +20,24 @@
   --animate-blob: blob 7s infinite;
   --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
   --animate-pulse-slow: pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-grain: grain 8s steps(10) infinite;
 }
 
 @keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulseSlow {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 @keyframes float-1 {
@@ -92,6 +68,19 @@
   100% { background-position: 0% 50%; }
 }
 
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+
 @keyframes dot-float {
   0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.4; }
   50% { transform: translate3d(0, -20px, 0); opacity: 0.8; }
@@ -102,48 +91,218 @@
   50% { transform: scaleX(1); opacity: 0.7; }
 }
 
+@keyframes glass-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -30px) scale(1.1); }
+  50% { transform: translate(20px, 50px) scale(0.95); }
+  75% { transform: translate(-40px, 20px) scale(1.05); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-60px, 40px) scale(1.15); }
+  66% { transform: translate(30px, -50px) scale(0.9); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(40px, 30px) scale(1.2); opacity: 0.8; }
+}
+
 @layer base {
   body {
-    @apply antialiased font-sans text-slate-800 bg-white;
-    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    @apply antialiased font-sans text-slate-800;
+    font-family: var(--font-sans);
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 25%, #f5f9ff 50%, #edf6ff 75%, #f0f7ff 100%);
+    background-attachment: fixed;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply tracking-tight font-black;
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-extrabold;
+    font-family: var(--font-display);
   }
 }
 
 @layer utilities {
+  /* ガラスモーフィズム - Apple Vision Pro風 */
   .glass {
-    @apply bg-white/70 backdrop-blur-2xl border border-white/40 shadow-[0_8px_32px_-8px_rgba(59,130,246,0.1)];
+    @apply backdrop-blur-2xl border border-white/40;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 
+      0 8px 32px -8px rgba(31, 110, 255, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-3xl border border-white/50;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      0 8px 32px -8px rgba(31, 110, 255, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-subtle {
+    @apply backdrop-blur-xl border border-white/30;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 4px 24px -4px rgba(31, 110, 255, 0.08),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-3xl rounded-[2rem] shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] border border-white/60 hover:shadow-[0_24px_60px_-15px_rgba(59,130,246,0.2)] hover:border-blue-100 hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)];
+    @apply backdrop-blur-2xl rounded-3xl border border-white/40;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 8px 32px -8px rgba(31, 110, 255, 0.12),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 
+      0 20px 60px -15px rgba(31, 110, 255, 0.2),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
   }
 
   .glass-panel {
-    @apply bg-white/60 backdrop-blur-3xl border border-white/50 shadow-[0_16px_40px_rgba(59,130,246,0.05)] rounded-[2.5rem];
+    @apply backdrop-blur-3xl rounded-[2.5rem] border border-white/40;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 16px 48px -12px rgba(31, 110, 255, 0.15),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
   }
 
+  .glass-input {
+    @apply backdrop-blur-xl rounded-2xl border border-white/50;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.02),
+      0 2px 8px rgba(31, 110, 255, 0.05);
+  }
+
+  .glass-input:focus {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 
+      0 0 0 3px rgba(59, 130, 246, 0.1),
+      inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  }
+
+  /* 光の反射効果 */
+  .glass-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-shimmer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.4) 45%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0.4) 55%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: glass-shimmer 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* 背景パターン */
   .bg-grid-light {
     background-size: 40px 40px;
     background-image:
-      linear-gradient(to right, rgba(59,130,246,0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(59,130,246,0.03) 1px, transparent 1px);
+      linear-gradient(to right, rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(59,130,246,0.04) 1px, transparent 1px);
   }
 
   .bg-dot-light {
-    background-image: radial-gradient(rgba(59,130,246,0.05) 1px, transparent 1px);
-    background-size: 30px 30px;
+    background-image: radial-gradient(rgba(59,130,246,0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
+  /* グラデーションテキスト */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-600 to-blue-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-sky-500;
+  }
+
+  .text-gradient-deep {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-800 via-blue-600 to-sky-500;
+  }
+
+  /* ノイズオーバーレイ */
+  .noise-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%3Cnoise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    animation: grain 8s steps(10) infinite;
+    z-index: 1;
+  }
+
+  /* セクションディバイダー */
+  .section-divider {
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+  }
+
+  /* フローティングオーブ - Apple Vision Pro風 */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  .orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+    animation: orb-float-1 20s ease-in-out infinite;
+  }
+
+  .orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%);
+    animation: orb-float-2 25s ease-in-out infinite;
+  }
+
+  .orb-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, rgba(96, 165, 250, 0.05) 50%, transparent 70%);
+    animation: orb-float-3 18s ease-in-out infinite;
+  }
+
+  /* ホログラフィック効果 */
+  .holographic {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(59, 130, 246, 0.1) 25%,
+      rgba(14, 165, 233, 0.15) 50%,
+      rgba(59, 130, 246, 0.1) 75%,
+      rgba(255, 255, 255, 0.4) 100%
+    );
+    background-size: 400% 400%;
+    animation: shimmer 15s ease infinite;
   }
 }

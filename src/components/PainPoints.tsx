@@ -6,32 +6,58 @@ import { staggerContainer, fadeInUp } from '@/lib/animations';
 
 const painPoints = [
     {
+        number: '01',
         icon: Brain,
         title: 'AIツールは使ってるけど、\n本業に活かせていない',
-        color: 'text-indigo-600 bg-indigo-50/50 border-indigo-100/50',
+        iconColor: 'text-blue-600',
+        iconBg: 'bg-blue-500/10',
+        borderColor: 'border-blue-200/50',
+        accentColor: 'from-blue-500/20 to-transparent',
+        numberColor: 'text-blue-200',
     },
     {
+        number: '02',
         icon: Zap,
         title: '競合がAIで先行者利益を\n取っている気がする',
-        color: 'text-blue-600 bg-blue-50/50 border-blue-100/50',
+        iconColor: 'text-sky-500',
+        iconBg: 'bg-sky-500/10',
+        borderColor: 'border-sky-200/50',
+        accentColor: 'from-sky-500/20 to-transparent',
+        numberColor: 'text-sky-200',
     },
     {
+        number: '03',
         icon: Sparkles,
         title: '反復作業から解放され、\nもっと創造的な仕事がしたい',
-        color: 'text-sky-600 bg-sky-50/50 border-sky-100/50',
+        iconColor: 'text-indigo-600',
+        iconBg: 'bg-indigo-500/10',
+        borderColor: 'border-indigo-200/50',
+        accentColor: 'from-indigo-500/20 to-transparent',
+        numberColor: 'text-indigo-200',
     },
     {
+        number: '04',
         icon: Compass,
         title: 'DXと言われても、\n何から手を付ければいいかわからない',
-        color: 'text-slate-600 bg-slate-50 border-slate-200/50',
+        iconColor: 'text-slate-600',
+        iconBg: 'bg-slate-500/10',
+        borderColor: 'border-slate-200/50',
+        accentColor: 'from-slate-400/15 to-transparent',
+        numberColor: 'text-slate-200',
     },
 ];
 
 export default function PainPoints() {
-
     return (
-        <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <section className="py-24 md:py-32 relative overflow-hidden">
+            {/* 背景エフェクト */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-[100px]" />
+            </div>
+
             <div className="container mx-auto px-6 max-w-5xl relative z-10">
+                {/* Header - ガラスカード */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -39,49 +65,70 @@ export default function PainPoints() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="inline-block py-1 px-3 rounded-full bg-slate-100 text-slate-600 font-semibold text-xs tracking-wider uppercase mb-6 border border-slate-200/60">
+                    <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-600 font-bold text-xs tracking-wider uppercase mb-6">
                         Common Challenges
                     </span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2]">
+                    <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2]">
                         こんな課題を<br className="md:hidden" />抱えていませんか？
                     </h2>
                 </motion.div>
 
+                {/* Cards Grid */}
                 <motion.div
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-5"
                 >
                     {painPoints.map((point, index) => (
                         <motion.div
                             key={index}
                             variants={fadeInUp}
-                            className="group flex flex-col items-start gap-4 p-8 rounded-2xl bg-white border border-slate-200/60 hover:border-slate-300 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] transition-all duration-300"
+                            className={`group relative flex items-start gap-5 p-7 md:p-8 rounded-3xl glass-card border ${point.borderColor} overflow-hidden`}
+                            style={{
+                                marginTop: index % 2 === 1 ? '1.5rem' : undefined,
+                            }}
                         >
-                            <div
-                                className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 border ${point.color} transition-transform duration-500`}
-                            >
-                                <point.icon className="w-6 h-6" />
+                            {/* 背景アクセントグラデーション */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${point.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+
+                            {/* 大きな背景番号 */}
+                            <span className={`absolute right-5 bottom-3 font-display text-7xl font-black ${point.numberColor} leading-none select-none pointer-events-none transition-opacity duration-300 group-hover:opacity-70`}>
+                                {point.number}
+                            </span>
+
+                            {/* Icon - ガラススタイル */}
+                            <div className={`relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${point.iconBg} backdrop-blur-sm border border-white/50 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                                <point.icon className={`w-6 h-6 ${point.iconColor}`} />
                             </div>
-                            <p className="text-[17px] font-semibold text-slate-800 leading-relaxed whitespace-pre-line">
-                                {point.title}
-                            </p>
+
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col gap-1 pt-1">
+                                <span className={`text-xs font-bold tracking-widest ${point.iconColor} uppercase opacity-70`}>
+                                    {point.number}
+                                </span>
+                                <p className="font-sans text-[17px] font-semibold text-slate-800 leading-relaxed whitespace-pre-line">
+                                    {point.title}
+                                </p>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
 
+                {/* Bottom Message - ガラスカード */}
                 <motion.div
-                    initial={{ opacity: 0, filter: 'blur(10px)' }}
+                    initial={{ opacity: 0, filter: 'blur(8px)' }}
                     whileInView={{ opacity: 1, filter: 'blur(0px)' }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mt-16"
                 >
-                    <p className="text-slate-500 font-medium text-lg">
-                        WaiWai AI が、これらすべてを解決します。
-                    </p>
+                    <div className="inline-block px-8 py-4 rounded-2xl glass-strong">
+                        <p className="font-sans text-slate-700 font-bold text-lg">
+                            WaiWai AI が、これらすべてを解決します。
+                        </p>
+                    </div>
                 </motion.div>
             </div>
         </section>
