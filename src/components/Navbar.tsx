@@ -19,15 +19,11 @@ export default function Navbar() {
 
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-            isScrolled 
-                ? 'py-3' 
-                : 'py-5'
+            isScrolled ? 'py-3' : 'py-5'
         }`}>
             {/* ガラス背景 */}
             <div className={`absolute inset-0 transition-all duration-500 ${
-                isScrolled 
-                    ? 'glass-strong' 
-                    : 'glass-subtle'
+                isScrolled ? 'glass-strong' : 'glass-subtle'
             }`} />
             
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between max-w-7xl relative z-10">
@@ -41,17 +37,13 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <nav aria-label="メインナビゲーション" className="hidden md:flex items-center">
-                    <div className={`flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-300 ${
-                        isScrolled 
-                            ? 'bg-white/40 backdrop-blur-xl border border-white/50' 
-                            : 'bg-white/30 backdrop-blur-xl border border-white/40'
-                    }`}>
+                    <div className="flex items-center gap-1 px-2 py-1.5 rounded-full glass border border-white/50">
                         <Link 
                             href="/services" 
                             className={`px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ${
                                 pathname === '/services' 
-                                    ? 'bg-white/60 text-blue-600 shadow-sm' 
-                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/40'
+                                    ? 'bg-white/70 text-blue-600 shadow-sm' 
+                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/50'
                             }`}
                         >
                             ソリューション
@@ -60,8 +52,8 @@ export default function Navbar() {
                             href="/cases" 
                             className={`px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ${
                                 pathname === '/cases' 
-                                    ? 'bg-white/60 text-blue-600 shadow-sm' 
-                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/40'
+                                    ? 'bg-white/70 text-blue-600 shadow-sm' 
+                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/50'
                             }`}
                         >
                             実績と課題解決
@@ -70,8 +62,8 @@ export default function Navbar() {
                             href="/company" 
                             className={`px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ${
                                 pathname === '/company' 
-                                    ? 'bg-white/60 text-blue-600 shadow-sm' 
-                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/40'
+                                    ? 'bg-white/70 text-blue-600 shadow-sm' 
+                                    : 'text-slate-700 hover:text-blue-600 hover:bg-white/50'
                             }`}
                         >
                             会社概要
@@ -82,7 +74,7 @@ export default function Navbar() {
                 <div className="hidden md:flex">
                     <Link 
                         href="/#contact" 
-                        className="px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 bg-blue-600 text-white shadow-[0_4px_16px_0_rgba(37,99,235,0.4)] hover:bg-blue-700 hover:shadow-[0_6px_24px_rgba(37,99,235,0.5)] hover:-translate-y-0.5"
+                        className="px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 bg-blue-600 text-white shadow-[0_4px_16px_0_rgba(37,99,235,0.4)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.5)] hover:-translate-y-0.5"
                     >
                         無料で相談する
                     </Link>
@@ -92,7 +84,7 @@ export default function Navbar() {
                 <button
                     aria-label={isMobileMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
                     aria-expanded={isMobileMenuOpen}
-                    className="md:hidden p-2.5 relative z-50 glass-strong rounded-xl text-slate-900 hover:scale-105 transition-transform"
+                    className="md:hidden p-2.5 relative z-50 glass rounded-xl text-slate-900 hover:scale-105 transition-transform"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -136,7 +128,7 @@ export default function Navbar() {
                                 <Link 
                                     href="/#contact" 
                                     onClick={() => setIsMobileMenuOpen(false)} 
-                                    className="block w-full py-4 rounded-2xl bg-blue-600 text-white font-bold text-lg text-center shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-colors"
+                                    className="block w-full py-5 rounded-2xl bg-blue-600 text-white font-bold text-xl text-center shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-colors"
                                 >
                                     無料で相談する
                                 </Link>

@@ -73,12 +73,6 @@ export default function FAQSection() {
         }}
       />
       <section id="faq" className="py-24 lg:py-32 relative overflow-hidden">
-        {/* 背景エフェクト */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[150px]" />
-          <div className="absolute bottom-1/3 right-0 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-[120px]" />
-        </div>
-
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
@@ -95,7 +89,7 @@ export default function FAQSection() {
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                 よくある質問
               </h2>
-              <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              <p className="text-slate-700 max-w-2xl mx-auto text-lg">
                 AI導入やシステム開発について、よくいただく質問をまとめました。
                 <br />
                 その他のご質問はお気軽にご相談ください。
@@ -142,7 +136,7 @@ export default function FAQSection() {
                     }`}
                   >
                     <div className="px-6 pb-5 pl-20">
-                      <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                      <p className="text-slate-700 leading-relaxed">{faq.answer}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -157,7 +151,7 @@ export default function FAQSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-center mt-12"
             >
-              <p className="text-slate-500 mb-4">その他のご質問があればお気軽にどうぞ</p>
+              <p className="text-slate-600 mb-4">その他のご質問があればお気軽にどうぞ</p>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-[0_8px_24px_-4px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_32px_-4px_rgba(37,99,235,0.5)]"

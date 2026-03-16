@@ -50,12 +50,6 @@ const painPoints = [
 export default function PainPoints() {
     return (
         <section className="py-24 md:py-32 relative overflow-hidden">
-            {/* 背景エフェクト */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-[100px]" />
-            </div>
-
             <div className="container mx-auto px-6 max-w-5xl relative z-10">
                 {/* Header - ガラスカード */}
                 <motion.div
@@ -65,7 +59,7 @@ export default function PainPoints() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-600 font-bold text-xs tracking-wider uppercase mb-6">
+                    <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
                         Common Challenges
                     </span>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2]">
@@ -125,7 +119,7 @@ export default function PainPoints() {
                     className="text-center mt-16"
                 >
                     <div className="inline-block px-8 py-4 rounded-2xl glass-strong">
-                        <p className="font-sans text-slate-700 font-bold text-lg">
+                        <p className="font-sans text-slate-800 font-bold text-lg">
                             WaiWai AI が、これらすべてを解決します。
                         </p>
                     </div>

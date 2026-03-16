@@ -8,12 +8,6 @@ import { staggerContainer, fadeInUp } from '@/lib/animations';
 export default function ProductsSection() {
     return (
         <section id="products" className="py-24 md:py-32 relative overflow-hidden">
-            {/* 背景エフェクト */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 right-1/3 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[150px]" />
-                <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-[120px]" />
-            </div>
-
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -22,13 +16,13 @@ export default function ProductsSection() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-20 flex flex-col items-center"
                 >
-                    <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full glass text-blue-600 font-bold text-xs tracking-wider uppercase mb-6">
+                    <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
                         Our Products
                     </span>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-[1.2]">
                         提供プロダクト・<br className="md:hidden" />ソリューション
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed">
                         すぐに現場へ導入し、圧倒的なROIを生み出す<br className="hidden md:block" />
                         独自開発のAIプロダクト。
                     </p>
@@ -62,11 +56,11 @@ export default function ProductsSection() {
                                     <h3 className="font-display text-2xl font-bold text-slate-900 tracking-tight mb-2">WaiWaiAI SNS System</h3>
                                     <p className="text-blue-600 font-semibold text-sm">SNS自動運用プラットフォーム</p>
                                 </div>
-                                <span className="inline-flex items-center px-3 py-1.5 rounded-full glass text-blue-600 text-[11px] font-bold tracking-wider uppercase border border-blue-200/50 shrink-0">
+                                <span className="inline-flex items-center px-3 py-1.5 rounded-full glass text-blue-700 text-[11px] font-bold tracking-wider uppercase border border-blue-200/50 shrink-0">
                                     β版受付中
                                 </span>
                             </div>
-                            <p className="text-slate-600 leading-relaxed mb-6">
+                            <p className="text-slate-700 leading-relaxed mb-6">
                                 AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。
                             </p>
                             <div className="mt-auto flex items-center gap-1.5 text-blue-600 font-semibold text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -100,7 +94,7 @@ export default function ProductsSection() {
                                     Coming Soon
                                 </span>
                             </div>
-                            <p className="text-slate-600 leading-relaxed mb-6">
+                            <p className="text-slate-700 leading-relaxed mb-6">
                                 不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。
                             </p>
                             <div className="mt-auto flex items-center gap-1.5 text-indigo-600 font-semibold text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">

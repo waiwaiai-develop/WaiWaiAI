@@ -82,19 +82,11 @@ export default function ContactSection() {
         }
     };
 
-    const inputClassName = "w-full px-4 py-3.5 rounded-2xl glass-input focus:outline-none transition-all font-medium text-slate-900 placeholder:text-slate-400";
-
     return (
         <section
             id="contact"
             className="py-24 lg:py-32 relative overflow-hidden"
         >
-            {/* Background effects */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-blue-400/12 rounded-full blur-[150px]" />
-                <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-[120px]" />
-            </div>
-
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
@@ -107,37 +99,43 @@ export default function ContactSection() {
                     <span className="inline-block py-1.5 px-4 rounded-full glass text-slate-700 font-bold text-xs tracking-wider uppercase mb-6">
                         Contact Us
                     </span>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]">
+                    <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]">
                         ビジネスに、<br />
                         <span className="text-gradient-deep">
                             「AIの即戦力」
                         </span>
                         を。
                     </h2>
-                    <p className="text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed">
                         まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
                         プロの視点で最短ルートを提示します。
                     </p>
                 </motion.div>
 
                 <div className="max-w-3xl mx-auto">
-                    {/* Trust Badges */}
+                    {/* Trust Badges - ガラススタイル */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-12"
+                        className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12"
                     >
-                        {['NDA締結可能', '相見積もり歓迎', 'IT未経験の方も安心サポート'].map((text) => (
-                            <div key={text} className="flex items-center gap-2 px-4 py-2 rounded-full glass-subtle text-sm font-semibold text-slate-700">
-                                <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                                {text}
-                            </div>
-                        ))}
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            NDA締結可能
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            相見積もり歓迎
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                            IT未経験の方も安心サポート
+                        </div>
                     </motion.div>
 
-                    {/* Form - Glass Panel */}
+                    {/* Form - ガラススタイル */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +144,7 @@ export default function ContactSection() {
                     >
                         <div
                             id="contact-form"
-                            className="glass-panel rounded-3xl p-8 md:p-10"
+                            className="glass-panel p-8 md:p-10"
                         >
                             <AnimatePresence mode="wait">
                                 {status === 'success' ? (
@@ -156,18 +154,18 @@ export default function ContactSection() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         className="flex flex-col items-center justify-center py-12 text-center"
                                     >
-                                        <div className="w-20 h-20 glass rounded-full flex items-center justify-center mb-6">
-                                            <CheckCircle2 className="w-10 h-10 text-green-500" />
+                                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 glass">
+                                            <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                                         </div>
                                         <h3 className="text-2xl font-bold text-slate-900 mb-4">
                                             送信が完了しました
                                         </h3>
-                                        <p className="text-slate-600 mb-8 max-w-md">
+                                        <p className="text-slate-700 mb-8 max-w-md">
                                             お問い合わせいただきありがとうございます。内容を確認次第、担当者よりご連絡させていただきます。
                                         </p>
                                         <button
                                             onClick={() => setStatus('idle')}
-                                            className="px-8 py-3 glass-strong hover:bg-white/50 text-slate-700 font-bold rounded-2xl transition-all"
+                                            className="px-8 py-3 glass-strong text-slate-700 font-bold rounded-xl hover:bg-white/60 transition-colors"
                                         >
                                             新しく問い合わせをする
                                         </button>
@@ -182,7 +180,7 @@ export default function ContactSection() {
                                         className="space-y-5"
                                     >
                                         {status === 'error' && (
-                                            <div className="p-4 glass rounded-2xl flex items-center gap-3 text-sm font-bold text-red-600 border border-red-200/50">
+                                            <div className="p-4 bg-red-50/80 backdrop-blur-sm text-red-600 rounded-xl flex items-center gap-3 text-sm font-bold border border-red-100">
                                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                                 {errorMessage}
                                             </div>
@@ -192,7 +190,7 @@ export default function ContactSection() {
                                             <div className="space-y-1.5">
                                                 <label htmlFor="contact-company" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     会社名{' '}
-                                                    <span className="glass-subtle text-blue-600 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="必須項目">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
@@ -206,13 +204,13 @@ export default function ContactSection() {
                                                     onChange={handleChange}
                                                     placeholder="株式会社WaiWai"
                                                     disabled={status === 'submitting'}
-                                                    className={inputClassName}
+                                                    className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 placeholder:text-slate-400"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
                                                 <label htmlFor="contact-name" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     ご担当者名{' '}
-                                                    <span className="glass-subtle text-blue-600 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="必須項目">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
@@ -226,7 +224,7 @@ export default function ContactSection() {
                                                     onChange={handleChange}
                                                     placeholder="山田 太郎"
                                                     disabled={status === 'submitting'}
-                                                    className={inputClassName}
+                                                    className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 placeholder:text-slate-400"
                                                 />
                                             </div>
                                         </div>
@@ -235,7 +233,7 @@ export default function ContactSection() {
                                             <div className="space-y-1.5">
                                                 <label htmlFor="contact-email" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     メールアドレス{' '}
-                                                    <span className="glass-subtle text-blue-600 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="必須項目">
+                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                         必須
                                                     </span>
                                                 </label>
@@ -249,13 +247,13 @@ export default function ContactSection() {
                                                     onChange={handleChange}
                                                     placeholder="info@example.com"
                                                     disabled={status === 'submitting'}
-                                                    className={inputClassName}
+                                                    className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 placeholder:text-slate-400"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
                                                 <label htmlFor="contact-phone" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                     電話番号{' '}
-                                                    <span className="glass-subtle text-slate-500 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="任意項目">
+                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="任意項目">
                                                         任意
                                                     </span>
                                                 </label>
@@ -268,7 +266,7 @@ export default function ContactSection() {
                                                     onChange={handleChange}
                                                     placeholder="03-0000-0000"
                                                     disabled={status === 'submitting'}
-                                                    className={inputClassName}
+                                                    className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 placeholder:text-slate-400"
                                                 />
                                             </div>
                                         </div>
@@ -276,7 +274,7 @@ export default function ContactSection() {
                                         <div className="space-y-1.5">
                                             <label htmlFor="contact-category" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                 ご相談種別{' '}
-                                                <span className="glass-subtle text-blue-600 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="必須項目">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                     必須
                                                 </span>
                                             </label>
@@ -288,9 +286,9 @@ export default function ContactSection() {
                                                 value={formData.category}
                                                 onChange={handleChange}
                                                 disabled={status === 'submitting'}
-                                                className={`${inputClassName} appearance-none`}
+                                                className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 appearance-none cursor-pointer"
                                                 style={{
-                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                                                    backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                                                     backgroundRepeat: 'no-repeat',
                                                     backgroundPosition: 'right 1rem center',
                                                     backgroundSize: '1em',
@@ -320,7 +318,7 @@ export default function ContactSection() {
                                         <div className="space-y-1.5">
                                             <label htmlFor="contact-message" className="text-sm font-bold text-slate-700 flex items-center gap-2">
                                                 お問い合わせ内容{' '}
-                                                <span className="glass-subtle text-blue-600 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-bold" aria-label="必須項目">
+                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
                                                     必須
                                                 </span>
                                             </label>
@@ -334,7 +332,7 @@ export default function ContactSection() {
                                                 rows={4}
                                                 placeholder="現在抱えている課題や、実現したい要件などをご自由にお書きください。"
                                                 disabled={status === 'submitting'}
-                                                className={`${inputClassName} resize-y`}
+                                                className="w-full px-4 py-3.5 rounded-xl glass-input font-medium text-slate-900 resize-y placeholder:text-slate-400"
                                             ></textarea>
                                         </div>
 
@@ -343,7 +341,7 @@ export default function ContactSection() {
                                             disabled={status === 'submitting'}
                                             aria-busy={status === 'submitting'}
                                             aria-label={status === 'submitting' ? '送信中' : 'お問い合わせを送信する'}
-                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl transition-all duration-300 shadow-[0_8px_28px_-4px_rgba(37,99,235,0.5)] hover:shadow-[0_12px_36px_-4px_rgba(37,99,235,0.6)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-[0_8px_28px_-4px_rgba(37,99,235,0.45)] hover:shadow-[0_12px_36px_-4px_rgba(37,99,235,0.55)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none hover:-translate-y-0.5"
                                         >
                                             {status === 'submitting' ? (
                                                 <>

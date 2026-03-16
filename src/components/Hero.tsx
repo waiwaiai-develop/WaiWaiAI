@@ -47,12 +47,6 @@ export default function Hero() {
 
     return (
         <section className="relative min-h-[95svh] flex items-center overflow-hidden">
-            {/* ガラスモーフィズム背景エフェクト */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* 中央の大きな光 */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-radial from-blue-400/20 via-blue-300/10 to-transparent blur-3xl" />
-            </div>
-
             {/* Main Content */}
             <motion.div
                 style={{ y: yShift, opacity: opacityHero }}
@@ -88,7 +82,7 @@ export default function Hero() {
                     {/* Sub Description */}
                     <motion.p
                         variants={itemVariants}
-                        className="font-sans text-lg md:text-xl text-slate-600 mb-10 leading-[1.8] max-w-lg"
+                        className="font-sans text-lg md:text-xl text-slate-700 mb-10 leading-[1.8] max-w-lg"
                     >
                         最先端のAI技術で、あなたのビジョンを形に。<br className="hidden lg:block" />
                         開発・コンサル・自動化から社内研修まで、<br className="hidden lg:block" />
@@ -111,7 +105,7 @@ export default function Hero() {
                         <a
                             href="#products"
                             aria-label="ソリューションを見る"
-                            className="group h-14 px-10 py-4 rounded-full glass-strong text-slate-700 font-bold text-[15px] transition-all duration-300 hover:bg-white/50 hover:text-blue-700 hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center"
+                            className="group h-14 px-10 py-4 rounded-full glass-strong text-slate-700 font-bold text-[15px] transition-all duration-300 hover:bg-white/60 hover:text-blue-700 hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center"
                         >
                             ソリューションを見る
                         </a>
@@ -126,30 +120,30 @@ export default function Hero() {
                     className="flex-1 relative w-full max-w-sm lg:max-w-none aspect-square flex items-center justify-center"
                 >
                     {/* ガラス球体の背景 */}
-                    <div className="absolute inset-[5%] rounded-full glass-panel opacity-80" />
-                    <div className="absolute inset-[15%] rounded-full glass-card opacity-60" />
+                    <div className="absolute inset-[5%] rounded-full glass-panel opacity-90" />
+                    <div className="absolute inset-[15%] rounded-full glass-card opacity-70" />
                     
                     {/* リッチなグラデーション背景 */}
-                    <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-blue-200/40 via-sky-100/30 to-blue-300/20 blur-2xl" />
-                    <div className="absolute inset-[25%] rounded-full bg-gradient-to-tr from-blue-500/10 via-sky-400/10 to-transparent blur-3xl" />
+                    <div className="absolute inset-[10%] rounded-full bg-gradient-to-br from-blue-200/50 via-sky-100/40 to-blue-300/30 blur-2xl" />
+                    <div className="absolute inset-[25%] rounded-full bg-gradient-to-tr from-blue-500/15 via-sky-400/15 to-transparent blur-3xl" />
 
                     {/* リング装飾 - ガラス風 */}
                     <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                        className="absolute inset-[2%] rounded-full border border-white/40 border-dashed pointer-events-none"
+                        className="absolute inset-[2%] rounded-full border border-white/50 border-dashed pointer-events-none"
                     />
                     <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-                        className="absolute inset-[12%] rounded-full border border-blue-300/30 border-dashed pointer-events-none"
+                        className="absolute inset-[12%] rounded-full border border-blue-300/40 border-dashed pointer-events-none"
                     />
 
                     {/* The Turtle */}
                     <motion.div
                         variants={turtleVariants}
                         animate={floatAnimation}
-                        className="relative z-20 w-[75%] h-[75%] flex items-center justify-center drop-shadow-[0_32px_64px_rgba(37,99,235,0.2)]"
+                        className="relative z-20 w-[75%] h-[75%] flex items-center justify-center drop-shadow-[0_32px_64px_rgba(37,99,235,0.25)]"
                     >
                         <picture>
                             <source srcSet="/hero-honu.webp" type="image/webp" />
@@ -164,27 +158,24 @@ export default function Hero() {
                         </picture>
                     </motion.div>
 
-                    {/* フローティングアクセントドット */}
+                    {/* フローティングアクセントドット - ガラス */}
                     <motion.div
-                        animate={{ y: [0, -12, 0], opacity: [0.6, 1, 0.6] }}
+                        animate={{ y: [0, -12, 0], opacity: [0.7, 1, 0.7] }}
                         transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                        className="absolute top-[12%] right-[18%] w-3 h-3 rounded-full bg-blue-400/80 z-30 glass-strong"
+                        className="absolute top-[12%] right-[18%] w-3 h-3 rounded-full glass z-30"
                     />
                     <motion.div
-                        animate={{ y: [0, 14, 0], opacity: [0.4, 0.9, 0.4] }}
+                        animate={{ y: [0, 14, 0], opacity: [0.5, 0.9, 0.5] }}
                         transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-                        className="absolute bottom-[22%] left-[14%] w-4 h-4 rounded-full bg-sky-400/70 z-30 glass-strong"
+                        className="absolute bottom-[22%] left-[14%] w-4 h-4 rounded-full glass z-30"
                     />
                     <motion.div
-                        animate={{ y: [0, -10, 0], opacity: [0.3, 0.8, 0.3] }}
+                        animate={{ y: [0, -10, 0], opacity: [0.4, 0.9, 0.4] }}
                         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                        className="absolute top-[35%] left-[8%] w-2.5 h-2.5 rounded-full bg-blue-300/90 z-30 glass-strong"
+                        className="absolute top-[35%] left-[8%] w-2.5 h-2.5 rounded-full glass z-30"
                     />
                 </motion.div>
             </motion.div>
-
-            {/* ボトムグラデーション */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/50 to-transparent pointer-events-none" />
         </section>
     );
 }

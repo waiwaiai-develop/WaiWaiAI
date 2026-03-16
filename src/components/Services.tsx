@@ -14,7 +14,7 @@ const services = [
         iconColor: 'text-blue-600',
         iconBg: 'bg-blue-500/10',
         borderColor: 'border-blue-200/50',
-        glowColor: 'rgba(37,99,235,0.15)',
+        glowColor: 'rgba(37,99,235,0.2)',
     },
     {
         icon: Settings,
@@ -24,7 +24,7 @@ const services = [
         iconColor: 'text-sky-500',
         iconBg: 'bg-sky-500/10',
         borderColor: 'border-sky-200/50',
-        glowColor: 'rgba(14,165,233,0.15)',
+        glowColor: 'rgba(14,165,233,0.2)',
     },
     {
         icon: Cpu,
@@ -34,7 +34,7 @@ const services = [
         iconColor: 'text-indigo-600',
         iconBg: 'bg-indigo-500/10',
         borderColor: 'border-indigo-200/50',
-        glowColor: 'rgba(79,70,229,0.15)',
+        glowColor: 'rgba(79,70,229,0.2)',
     },
     {
         icon: Target,
@@ -44,19 +44,13 @@ const services = [
         iconColor: 'text-slate-600',
         iconBg: 'bg-slate-500/10',
         borderColor: 'border-slate-200/50',
-        glowColor: 'rgba(71,85,105,0.12)',
+        glowColor: 'rgba(71,85,105,0.15)',
     },
 ];
 
 export default function Services() {
     return (
         <section id="services" className="py-24 lg:py-32 relative overflow-hidden">
-            {/* 背景エフェクト */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[150px] -translate-y-1/2" />
-                <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-sky-400/10 rounded-full blur-[120px]" />
-            </div>
-
             <div className="container mx-auto px-6 relative z-10">
                 <div className="max-w-6xl mx-auto flex flex-col items-center">
 
@@ -68,13 +62,13 @@ export default function Services() {
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                         className="text-center mb-16"
                     >
-                        <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-600 font-bold text-xs tracking-wider uppercase mb-6">
+                        <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
                             Our Solutions
                         </span>
                         <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
                             あなたに最適な<br className="md:hidden" />AI活用プランを
                         </h2>
-                        <p className="font-sans text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
+                        <p className="font-sans text-slate-700 max-w-2xl mx-auto text-lg leading-relaxed">
                             どのサービスが必要かわからない？<br className="hidden md:block" />
                             まずは無料で相談してください。一緒に最適なプランを考えます。
                         </p>
@@ -114,7 +108,7 @@ export default function Services() {
                                     <p className="font-sans text-sm font-bold text-blue-600 mb-3">
                                         {service.price}
                                     </p>
-                                    <p className="font-sans text-sm text-slate-600 leading-relaxed mt-auto">
+                                    <p className="font-sans text-sm text-slate-700 leading-relaxed mt-auto">
                                         {service.description}
                                     </p>
                                 </div>
@@ -133,12 +127,12 @@ export default function Services() {
                         <Link
                             href="/#contact"
                             aria-label="無料で相談する"
-                            className="group inline-flex items-center justify-center gap-2 h-14 px-10 glass-strong text-slate-800 font-bold text-[15px] rounded-full hover:bg-white/50 transition-all hover:scale-[1.02] active:scale-[0.98] border border-white/50"
+                            className="group inline-flex items-center justify-center gap-2 h-14 px-10 glass-strong text-slate-800 font-bold text-[15px] rounded-full hover:bg-white/60 transition-all hover:scale-[1.02] active:scale-[0.98] border border-white/50"
                         >
                             無料で相談する
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </Link>
-                        <p className="mt-5 font-sans text-slate-500 text-sm font-medium">相談無料・お見積もり無料</p>
+                        <p className="mt-5 font-sans text-slate-600 text-sm font-medium">相談無料・お見積もり無料</p>
                     </motion.div>
 
                 </div>
