@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import PainPoints from '@/components/PainPoints';
 import Services from '@/components/Services';
 import ProductsSection from '@/components/ProductsSection';
-import FAQSection from '@/components/FAQSection';
+import CompanySection from '@/components/CompanySection';
 import ContactSection from '@/components/ContactSection';
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ export default function HomePage() {
       <PainPoints />
       <Services />
       <ProductsSection />
-      <FAQSection />
+      <CompanySection />
       <ContactSection />
     </>
   );

@@ -9,7 +9,6 @@ const services = [
     {
         icon: Bot,
         title: 'AI導入コンサル',
-        price: '5万円〜',
         description: '最適なAIツールの選定から社内浸透までサポート。',
         iconColor: 'text-blue-600',
         iconBg: 'bg-blue-500/10',
@@ -19,8 +18,7 @@ const services = [
     {
         icon: Settings,
         title: '業務自動化',
-        price: '15万円〜',
-        description: 'ルーチンワークをAIとRPAで徹底的に効率化します。',
+        description: '繰り返し作業をAIとRPAで効率化します。',
         iconColor: 'text-sky-500',
         iconBg: 'bg-sky-500/10',
         borderColor: 'border-sky-200/50',
@@ -29,8 +27,7 @@ const services = [
     {
         icon: Cpu,
         title: 'AIシステム開発',
-        price: '30万円〜',
-        description: '御社独自のカスタムAIソリューションをアジャイル開発。',
+        description: '御社専用のAIシステムをスピーディに開発。',
         iconColor: 'text-indigo-600',
         iconBg: 'bg-indigo-500/10',
         borderColor: 'border-indigo-200/50',
@@ -39,7 +36,6 @@ const services = [
     {
         icon: Target,
         title: 'AI顧問パック',
-        price: '10万円/月',
         description: '専属のAI専門家が、継続的に戦略立案と実行を支援。',
         iconColor: 'text-slate-600',
         iconBg: 'bg-slate-500/10',
@@ -69,8 +65,8 @@ export default function Services() {
                             あなたに最適な<br className="md:hidden" />AI活用プランを
                         </h2>
                         <p className="font-sans text-slate-700 max-w-2xl mx-auto text-lg leading-relaxed">
-                            どのサービスが必要かわからない？<br className="hidden md:block" />
-                            まずは無料で相談してください。一緒に最適なプランを考えます。
+                            課題に合わせて最適なサービスをご提案します。<br className="hidden md:block" />
+                            まずはお気軽にご相談ください。
                         </p>
                     </motion.div>
 
@@ -102,12 +98,9 @@ export default function Services() {
                                     <div className={`${service.iconBg} backdrop-blur-sm w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/50`}>
                                         <service.icon className={`w-6 h-6 ${service.iconColor}`} />
                                     </div>
-                                    <h3 className="font-display font-bold text-lg text-slate-900 mb-1 leading-snug">
+                                    <h3 className="font-display font-bold text-lg text-slate-900 mb-3 leading-snug">
                                         {service.title}
                                     </h3>
-                                    <p className="font-sans text-sm font-bold text-blue-600 mb-3">
-                                        {service.price}
-                                    </p>
                                     <p className="font-sans text-sm text-slate-700 leading-relaxed mt-auto">
                                         {service.description}
                                     </p>

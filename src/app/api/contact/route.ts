@@ -2,19 +2,31 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 // APIキーがない場合はResendを初期化しない
-const resend = process.env.RESEND_API_KEY?.startsWith('re_') 
+const resend = process.env.RESEND_API_KEY?.startsWith('re_')
     ? new Resend(process.env.RESEND_API_KEY)
     : null;
 
+/**
+ * スプレッドシートにデータを転記（GAS Web App経由）
+ * 失敗してもメール送信には影響させない
+ */
+async function writeToSpreadsheet(data: Record<string, string>) {
+    const gasUrl = process.env.GAS_WEBHOOK_URL;
+    if (!gasUrl) return;
+
+    try {
+        await fetch(gasUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+    } catch (error) {
+        console.error('Spreadsheet write error:', error);
+    }
+}
+
 export async function POST(req: Request) {
     try {
-        // Resend未設定時はサービス停止中を返す
-        if (!resend) {
-            return NextResponse.json(
-                { error: '現在お問い合わせフォームは停止中です。直接メールでご連絡ください。' },
-                { status: 503 }
-            );
-        }
         const { company, name, email, phone, category, message } =
             await req.json();
 
@@ -25,11 +37,20 @@ export async function POST(req: Request) {
             );
         }
 
+        // スプレッドシートへの転記（非同期・失敗しても続行）
+        const sheetPromise = writeToSpreadsheet({ company, name, email, phone, category, message });
+
         const fromAddress = process.env.EMAIL_FROM || 'noreply@example.com';
         const toAddress = process.env.EMAIL_TO || '';
 
+        // Resend未設定時はスプレッドシート転記のみ実行
+        if (!resend) {
+            await sheetPromise;
+            return NextResponse.json({ success: true });
+        }
+
         // 管理者への通知メール
-        await resend.emails.send({
+        const adminMailPromise = resend.emails.send({
             from: fromAddress,
             to: toAddress,
             subject: `【お問い合わせ】${company} ${name}様`,
@@ -46,7 +67,7 @@ export async function POST(req: Request) {
         });
 
         // ユーザーへの自動返信メール
-        await resend.emails.send({
+        const userMailPromise = resend.emails.send({
             from: fromAddress,
             to: email,
             subject: '【WaiWaiAI】お問い合わせありがとうございます',
@@ -69,6 +90,9 @@ export async function POST(req: Request) {
                 'WaiWaiAI',
             ].join('\n'),
         });
+
+        // メール2通 + スプレッドシート転記を並列実行
+        await Promise.all([adminMailPromise, userMailPromise, sheetPromise]);
 
         return NextResponse.json({ success: true });
     } catch (error) {

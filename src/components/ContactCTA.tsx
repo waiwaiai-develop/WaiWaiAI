@@ -40,8 +40,8 @@ export default function ContactCTA() {
                         transition={{ delay: 0.1 }}
                         className="text-slate-600 text-lg md:text-xl font-medium mb-10 max-w-3xl leading-relaxed"
                     >
-                        「どこまで自動化できるか？」「費用対効果は？」<br className="hidden md:block" />
-                        まずは30分、御社の課題をヒアリングさせてください。プロの視点で最短ルートを提示します。
+                        「どこまで自動化できる？」「費用対効果は？」<br className="hidden md:block" />
+                        まずは30分、御社の課題をお聞かせください。最適な進め方をご提案します。
                     </motion.p>
 
                     <motion.div
@@ -93,7 +93,7 @@ export default function ContactCTA() {
                             <CheckCircle2 className="w-5 h-5 text-emerald-600" /> NDA締結可能
                         </div>
                         <div className="flex items-center gap-2 justify-center bg-slate-50 py-3 px-4 rounded-2xl border border-slate-200">
-                            <CheckCircle2 className="w-5 h-5 text-emerald-600" /> 相見積もり歓迎
+                            <CheckCircle2 className="w-5 h-5 text-emerald-600" /> 最短即日で対応可能
                         </div>
                         <div className="flex items-center gap-2 justify-center bg-slate-50 py-3 px-4 rounded-2xl border border-slate-200">
                             <CheckCircle2 className="w-5 h-5 text-emerald-600" /> IT未経験歓迎

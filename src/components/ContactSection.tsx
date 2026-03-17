@@ -107,8 +107,8 @@ export default function ContactSection() {
                         を。
                     </h2>
                     <p className="text-lg text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed">
-                        まずは30分、御社の課題をヒアリングさせてください。<br className="hidden md:block" />
-                        プロの視点で最短ルートを提示します。
+                        まずは30分、御社の課題をお聞かせください。<br className="hidden md:block" />
+                        最適な進め方をご提案します。
                     </p>
                 </motion.div>
 
@@ -127,7 +127,7 @@ export default function ContactSection() {
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                            相見積もり歓迎
+                            最短即日で対応可能
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />

@@ -151,7 +151,7 @@ export default function CompanyPage() {
                                     所在地
                                 </div>
                                 <div className="md:w-2/3 text-slate-700 font-medium">
-                                    東京都内
+                                    〒150-0043 東京都渋谷区道玄坂１丁目１０−８ 渋谷道玄坂東急ビル 2F-C
                                 </div>
                             </motion.div>
 
