@@ -80,9 +80,6 @@ export default function PainPoints() {
                             key={index}
                             variants={fadeInUp}
                             className={`group relative flex items-start gap-5 p-7 md:p-8 rounded-3xl glass-card border ${point.borderColor} overflow-hidden`}
-                            style={{
-                                marginTop: index % 2 === 1 ? '1.5rem' : undefined,
-                            }}
                         >
                             {/* 背景アクセントグラデーション */}
                             <div className={`absolute inset-0 bg-gradient-to-br ${point.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />

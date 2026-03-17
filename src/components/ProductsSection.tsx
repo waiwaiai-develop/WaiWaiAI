@@ -14,7 +14,7 @@ export default function ProductsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-center mb-20 flex flex-col items-center"
+                    className="text-center mb-16 flex flex-col items-center"
                 >
                     <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
                         Our Products
@@ -40,7 +40,7 @@ export default function ProductsSection() {
                         variants={fadeInUp}
                         className="group relative rounded-3xl overflow-hidden glass-card border border-blue-200/50"
                     >
-                        <div className="h-64 sm:h-80 w-full overflow-hidden relative">
+                        <div className="h-48 sm:h-56 w-full overflow-hidden relative">
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent group-hover:opacity-0 transition-opacity duration-500 z-10" />
                             <Image
                                 src="/images/product_a.png"
@@ -50,17 +50,17 @@ export default function ProductsSection() {
                                 sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
-                        <div className="p-8 md:p-10 relative flex flex-col">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
+                        <div className="p-6 md:p-8 relative flex flex-col">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
                                 <div>
-                                    <h3 className="font-display text-2xl font-bold text-slate-900 tracking-tight mb-2">WaiWaiAI SNS System</h3>
+                                    <h3 className="font-display text-xl font-bold text-slate-900 tracking-tight mb-2">WaiWaiAI SNS System</h3>
                                     <p className="text-blue-600 font-semibold text-sm">SNS自動運用プラットフォーム</p>
                                 </div>
                                 <span className="inline-flex items-center px-3 py-1.5 rounded-full glass text-blue-700 text-[11px] font-bold tracking-wider uppercase border border-blue-200/50 shrink-0">
                                     β版受付中
                                 </span>
                             </div>
-                            <p className="text-slate-700 leading-relaxed mb-6">
+                            <p className="text-slate-700 leading-relaxed mb-4">
                                 AIがSNS投稿を自動生成・予約投稿。複数アカウント管理にも対応し、運用コストを大幅に削減します。
                             </p>
                             <div className="mt-auto flex items-center gap-1.5 text-blue-600 font-semibold text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -74,7 +74,7 @@ export default function ProductsSection() {
                         variants={fadeInUp}
                         className="group relative rounded-3xl overflow-hidden glass-card border border-indigo-200/50"
                     >
-                        <div className="h-64 sm:h-80 w-full overflow-hidden relative">
+                        <div className="h-48 sm:h-56 w-full overflow-hidden relative">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent group-hover:opacity-0 transition-opacity duration-500 z-10" />
                             <Image
                                 src="/images/product_b.png"
@@ -84,17 +84,17 @@ export default function ProductsSection() {
                                 sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
-                        <div className="p-8 md:p-10 relative flex flex-col">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-5">
+                        <div className="p-6 md:p-8 relative flex flex-col">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
                                 <div>
-                                    <h3 className="font-display text-2xl font-bold text-slate-900 tracking-tight mb-2">EstateAI</h3>
+                                    <h3 className="font-display text-xl font-bold text-slate-900 tracking-tight mb-2">EstateAI</h3>
                                     <p className="text-indigo-600 font-semibold text-sm">不動産業向けAIソリューション</p>
                                 </div>
                                 <span className="inline-flex items-center px-3 py-1.5 rounded-full glass text-slate-600 text-[11px] font-bold tracking-wider uppercase border border-slate-200/50 shrink-0">
                                     Coming Soon
                                 </span>
                             </div>
-                            <p className="text-slate-700 leading-relaxed mb-6">
+                            <p className="text-slate-700 leading-relaxed mb-4">
                                 不動産業向けAI。物件情報管理＋顧客対応自動化で、業務効率と顧客満足度を同時に向上させます。
                             </p>
                             <div className="mt-auto flex items-center gap-1.5 text-indigo-600 font-semibold text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
