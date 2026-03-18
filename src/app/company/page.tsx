@@ -37,7 +37,10 @@ const aboutPageSchema = {
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: '東京都',
+      postalCode: '150-0043',
+      addressRegion: '東京都',
+      addressLocality: '渋谷区',
+      streetAddress: '道玄坂１丁目１０−８ 渋谷道玄坂東急ビル 2F-C',
       addressCountry: 'JP',
     },
     slogan: 'AIを味方に、未来を豊かに。',

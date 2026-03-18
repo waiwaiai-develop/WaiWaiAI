@@ -8,14 +8,9 @@ export default function CommercialAct() {
         { label: '運営統括責任者名', value: '代表取締役 久保田慧' },
         {
             label: '所在地',
-            value: 'お問い合わせいただければ、遅滞なく開示いたします。',
+            value: '〒150-0043 東京都渋谷区道玄坂１丁目１０−８ 渋谷道玄坂東急ビル 2F-C',
         },
-        {
-            label: '電話番号',
-            value: 'お問い合わせいただければ、遅滞なく開示いたします。',
-        },
-        { label: 'メールアドレス', value: 'kei.kubota@waiwaiai.com' },
-        { label: '販売URL', value: 'https://waiwai-ai.com' },
+{ label: 'メールアドレス', value: 'kei.kubota@waiwaiai.com' },
         {
             label: '販売価格',
             value: '各サービス・ソリューションの詳細ページまたは個別契約書・御見積書に記載された金額となります。消費税は別途加算されます。',
