@@ -29,7 +29,7 @@ export const mdxComponents: MDXComponents = {
   ),
   p: (props) => (
     <p
-      className="text-slate-700 text-[17px] leading-[1.85] mb-6"
+      className="text-slate-700 text-base md:text-[17px] leading-[1.85] mb-6"
       {...props}
     />
   ),
@@ -42,13 +42,13 @@ export const mdxComponents: MDXComponents = {
   ),
   ul: (props) => (
     <ul
-      className="list-disc list-outside pl-6 mb-7 space-y-2.5 text-slate-700 text-[17px]"
+      className="list-disc list-outside pl-6 mb-7 space-y-2.5 text-slate-700 text-base md:text-[17px]"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="list-decimal list-outside pl-6 mb-7 space-y-2.5 text-slate-700 text-[17px]"
+      className="list-decimal list-outside pl-6 mb-7 space-y-2.5 text-slate-700 text-base md:text-[17px]"
       {...props}
     />
   ),

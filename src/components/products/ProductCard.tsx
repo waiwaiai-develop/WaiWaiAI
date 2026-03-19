@@ -13,7 +13,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, type: 'spring', stiffness: 100, damping: 20 }}
-      className="glass-card p-8 flex flex-col h-full group"
+      className="glass-card p-5 md:p-8 flex flex-col h-full group"
     >
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">

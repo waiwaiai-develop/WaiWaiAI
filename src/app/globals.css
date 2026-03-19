@@ -283,6 +283,15 @@
     background-size: 200px 200px;
   }
 
+  /* スクロールバー非表示 */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   /* セクションディバイダー */
   .section-divider {
     width: 100%;

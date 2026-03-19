@@ -7,10 +7,10 @@ import { productsData } from '@/data/productsData';
 
 export default function ProductsPageContent() {
   return (
-    <div className="pt-32 pb-0 relative min-h-screen">
+    <div className="pt-24 md:pt-32 pb-0 relative min-h-screen">
       <div className="container mx-auto px-4 md:px-8 max-w-6xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
