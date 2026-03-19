@@ -83,174 +83,154 @@ export default function Hero() {
                     animate="show"
                     className="absolute inset-0 z-0 lg:relative lg:z-auto lg:flex-1 w-full lg:aspect-square flex items-center justify-center opacity-20 lg:opacity-100"
                 >
-                    {/* 外側のグロー - より派手に */}
-                    <motion.div
-                        animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.7, 0.4] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                        className="absolute inset-[2%] rounded-full bg-gradient-to-br from-blue-400/30 via-violet-300/20 to-sky-400/25 blur-3xl"
-                    />
-                    <motion.div
-                        animate={{ scale: [1.05, 0.95, 1.05], opacity: [0.3, 0.6, 0.3] }}
-                        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-                        className="absolute inset-[12%] rounded-full bg-gradient-to-tr from-indigo-500/20 via-sky-400/15 to-blue-600/20 blur-3xl"
-                    />
+                    {/* --- New Advanced AI Core Visualization --- */}
 
-                    {/* 3D Orbital Rings */}
-                    <div className="absolute inset-0 pointer-events-none" style={{ perspective: '800px' }}>
-                        {/* Ring 1 - 外側、ゆっくり */}
+                    {/* 1. Ambient Background Mesh Glowing Aura */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                         <motion.div
-                            style={{ rotateX: 75 }}
-                            animate={{ rotateZ: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                            className="absolute inset-[1%] rounded-full"
+                            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+                            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+                            className="absolute w-full h-full opacity-50 mix-blend-multiply blur-[60px]"
                         >
-                            <div
-                                className="w-full h-full rounded-full"
-                                style={{
-                                    background: 'conic-gradient(from 0deg, rgba(59,130,246,0.7), rgba(139,92,246,0.3) 20%, transparent 40%, rgba(59,130,246,0.2) 60%, transparent 80%)',
-                                    WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2.5px))',
-                                    mask: 'radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2.5px))',
-                                }}
-                            />
-                        </motion.div>
-
-                        {/* Ring 2 - 中間、逆回転 */}
-                        <motion.div
-                            style={{ rotateX: 65, rotateY: 30 }}
-                            animate={{ rotateZ: -360 }}
-                            transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
-                            className="absolute inset-[6%] rounded-full"
-                        >
-                            <div
-                                className="w-full h-full rounded-full"
-                                style={{
-                                    background: 'conic-gradient(from 120deg, rgba(56,189,248,0.6), transparent 25%, rgba(139,92,246,0.2) 50%, transparent 75%)',
-                                    WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))',
-                                    mask: 'radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))',
-                                }}
-                            />
-                        </motion.div>
-
-                        {/* Ring 3 - 内側、高速 */}
-                        <motion.div
-                            style={{ rotateX: 80, rotateY: -20 }}
-                            animate={{ rotateZ: 360 }}
-                            transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                            className="absolute inset-[14%] rounded-full"
-                        >
-                            <div
-                                className="w-full h-full rounded-full"
-                                style={{
-                                    background: 'conic-gradient(from 240deg, rgba(99,102,241,0.5), transparent 30%, rgba(56,189,248,0.3) 60%, transparent 85%)',
-                                    WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px))',
-                                    mask: 'radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px))',
-                                }}
-                            />
+                            <div className="absolute top-[10%] right-[20%] w-[40%] h-[40%] bg-blue-300/40 rounded-full" />
+                            <div className="absolute bottom-[20%] right-[10%] w-[50%] h-[50%] bg-violet-200/40 rounded-full" />
+                            <div className="absolute top-[30%] left-[10%] w-[45%] h-[45%] bg-sky-300/40 rounded-full" />
                         </motion.div>
                     </div>
 
-                    {/* パルスリング */}
-                    <motion.div
-                        animate={{ scale: [0.5, 1.1], opacity: [0.6, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
-                        className="absolute inset-[20%] rounded-full border-2 border-blue-400/40 z-10"
-                    />
-                    <motion.div
-                        animate={{ scale: [0.5, 1.1], opacity: [0.4, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeOut', delay: 1.5 }}
-                        className="absolute inset-[20%] rounded-full border-2 border-violet-400/30 z-10"
-                    />
+                    {/* 2. Complex Orbital Data Rings */}
+                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center" style={{ perspective: '1200px' }}>
+                        {/* Outer Grid Ring */}
+                        <motion.div
+                            style={{ rotateX: 60, rotateY: -15 }}
+                            animate={{ rotateZ: 360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            className="absolute w-[80%] aspect-square rounded-full border-[1.5px] border-blue-200/50 flex items-center justify-center shadow-[inset_0_0_20px_rgba(59,130,246,0.1)]"
+                        >
+                            <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-blue-300/50 to-transparent" />
+                            <div className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-blue-300/50 to-transparent" />
+                            {/* Outer Orbit Nodes */}
+                            <div className="absolute top-0 w-2.5 h-2.5 -translate-y-1/2 bg-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
+                            <div className="absolute bottom-0 w-2 h-2 translate-y-1/2 bg-indigo-400 rounded-full shadow-[0_0_12px_rgba(99,102,241,0.6)]" />
+                        </motion.div>
 
-                    {/* ガラス球体 */}
+                        {/* Mid Dashed Ring */}
+                        <motion.div
+                            style={{ rotateX: 55, rotateY: 20 }}
+                            animate={{ rotateZ: -360 }}
+                            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                            className="absolute w-[60%] aspect-square rounded-full border border-sky-400/30 border-dashed"
+                        />
+
+                        {/* Inner Glowing Aura Ring */}
+                        <motion.div
+                            style={{ rotateX: 45 }}
+                            animate={{ rotateZ: 360 }}
+                            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                            className="absolute w-[40%] aspect-square rounded-full border-t-2 border-r-2 border-violet-400/50 filter blur-[1px]"
+                        />
+                    </div>
+
+                    {/* 3. The Central Generative Crystal (AI Core) */}
                     <motion.div
                         variants={sphereVariants}
-                        className="relative z-20 w-[50%] h-[50%] rounded-full flex items-center justify-center"
+                        className="relative z-20 w-[45%] aspect-square flex items-center justify-center"
                     >
-                        {/* 球体の外殻 */}
-                        <div
-                            className="absolute inset-0 rounded-full border border-white/70"
-                            style={{
-                                background: 'radial-gradient(circle at 30% 25%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.15) 35%, rgba(59,130,246,0.12) 70%, rgba(139,92,246,0.08) 100%)',
-                                backdropFilter: 'blur(16px)',
-                                WebkitBackdropFilter: 'blur(16px)',
-                                boxShadow: '0 40px 100px -15px rgba(59,130,246,0.35), 0 20px 60px -10px rgba(139,92,246,0.15), inset 0 2px 2px rgba(255,255,255,0.7), inset 0 -6px 16px rgba(59,130,246,0.1)',
-                            }}
-                        />
-
-                        {/* 内部グラデーション */}
+                        {/* Central Breathing Light */}
                         <motion.div
-                            animate={{ rotate: [0, 360] }}
-                            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                            className="absolute inset-[6%] rounded-full"
-                            style={{
-                                background: 'conic-gradient(from 0deg, rgba(147,197,253,0.25), rgba(139,92,246,0.15), rgba(59,130,246,0.2), rgba(56,189,248,0.15), rgba(147,197,253,0.25))',
-                            }}
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-[15%] rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-violet-500 blur-2xl opacity-60"
                         />
 
-                        {/* ハイライト */}
+                        {/* Outer Glass Crystal Layer */}
                         <motion.div
-                            animate={{ opacity: [0.5, 1, 0.5] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                            className="absolute top-[10%] left-[15%] w-[45%] h-[30%] rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-[10%] rounded-[2rem] border border-white/60 bg-white/10 shadow-[0_8px_32px_rgba(31,38,135,0.06)] overflow-hidden"
                             style={{
-                                background: 'radial-gradient(ellipse, rgba(255,255,255,0.8) 0%, transparent 65%)',
-                                filter: 'blur(5px)',
+                                backdropFilter: 'blur(12px)',
+                                WebkitBackdropFilter: 'blur(12px)',
                             }}
-                        />
-
-                        {/* コアグロー */}
-                        <motion.div
-                            animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.9, 0.4] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                            className="absolute inset-[20%] rounded-full"
-                            style={{
-                                background: 'radial-gradient(circle, rgba(59,130,246,0.4) 0%, rgba(139,92,246,0.2) 40%, transparent 70%)',
-                                filter: 'blur(10px)',
-                            }}
-                        />
-
-                        {/* 球面反射 */}
-                        <div className="absolute inset-[4%] rounded-full overflow-hidden">
-                            <div
-                                className="absolute top-[55%] left-[-10%] w-[120%] h-[45%] rounded-full"
-                                style={{
-                                    background: 'linear-gradient(to bottom, transparent, rgba(139,92,246,0.06) 30%, rgba(59,130,246,0.04))',
-                                }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent opacity-40" />
+                            {/* Inner structural lines mimicking neural paths */}
+                            <motion.div
+                                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute inset-x-[20%] top-0 bottom-[20%] border-r border-b border-white/40 rotate-45"
                             />
-                        </div>
+                        </motion.div>
+
+                        {/* Inner Dense Processing Core */}
+                        <motion.div
+                            animate={{ rotate: -360 }}
+                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-[25%] rounded-3xl border border-white/90 bg-gradient-to-tr from-blue-50/40 to-violet-50/40 backdrop-blur-md flex items-center justify-center shadow-inner mt-0"
+                        >
+                            <motion.div
+                                animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.9, 1, 0.9] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                className="w-[45%] h-[45%] rounded-full bg-gradient-to-br from-blue-500 to-violet-600 shadow-[0_0_25px_rgba(99,102,241,0.5)] border border-white flex items-center justify-center"
+                            >
+                                <div className="w-[40%] h-[40%] bg-white rounded-full blur-[2px] opacity-90" />
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Orbiting Quantum Sparkles around crystal */}
+                        <motion.div
+                            animate={{ rotateZ: 360 }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 pointer-events-none"
+                        >
+                            <div className="absolute top-[10%] left-[50%] w-1.5 h-1.5 bg-sky-300 rounded-full shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
+                            <div className="absolute bottom-[20%] right-[10%] w-1 h-1 bg-violet-300 rounded-full shadow-[0_0_8px_rgba(139,92,246,0.8)]" />
+                        </motion.div>
                     </motion.div>
 
-                    {/* 光の粒子 - 多め */}
-                    <motion.div
-                        animate={{ y: [0, -14, 0], x: [0, 4, 0], opacity: [0.2, 1, 0.2], scale: [0.6, 1.4, 0.6] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                        className="absolute top-[12%] right-[18%] w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.8)] z-30"
-                    />
-                    <motion.div
-                        animate={{ y: [0, 10, 0], x: [0, -3, 0], opacity: [0.15, 0.9, 0.15], scale: [0.5, 1.3, 0.5] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
-                        className="absolute bottom-[18%] left-[14%] w-2.5 h-2.5 rounded-full bg-sky-300 shadow-[0_0_14px_rgba(56,189,248,0.7)] z-30"
-                    />
-                    <motion.div
-                        animate={{ y: [0, -8, 0], opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
-                        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                        className="absolute top-[35%] left-[8%] w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_10px_rgba(139,92,246,0.7)] z-30"
-                    />
-                    <motion.div
-                        animate={{ y: [0, -12, 0], x: [0, -5, 0], opacity: [0.1, 0.8, 0.1], scale: [0.9, 1.5, 0.9] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                        className="absolute bottom-[28%] right-[10%] w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_10px_rgba(99,102,241,0.6)] z-30"
-                    />
-                    <motion.div
-                        animate={{ y: [0, 6, 0], opacity: [0.2, 0.7, 0.2], scale: [0.7, 1.1, 0.7] }}
-                        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-                        className="absolute top-[22%] left-[28%] w-1 h-1 rounded-full bg-blue-300 shadow-[0_0_8px_rgba(59,130,246,0.5)] z-30"
-                    />
-                    <motion.div
-                        animate={{ y: [0, -9, 0], x: [0, 6, 0], opacity: [0.15, 0.85, 0.15], scale: [0.6, 1.3, 0.6] }}
-                        transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
-                        className="absolute bottom-[14%] right-[25%] w-1 h-1 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.6)] z-30"
-                    />
+                    {/* 4. Synapse Network Particles (Floating Nodes) */}
+                    <div className="absolute inset-0 z-30 pointer-events-none">
+                        {[
+                            { color: 'bg-blue-500', size: 'w-2 h-2', delay: 0, x: 20, y: 30, xMove: 15, yMove: -20 },
+                            { color: 'bg-violet-500', size: 'w-1.5 h-1.5', delay: 1, x: 75, y: 25, xMove: -10, yMove: -25 },
+                            { color: 'bg-sky-400', size: 'w-2 h-2', delay: 2, x: 15, y: 70, xMove: 20, yMove: -15 },
+                            { color: 'bg-indigo-500', size: 'w-1.5 h-1.5', delay: 0.5, x: 80, y: 65, xMove: -15, yMove: -20 },
+                            { color: 'bg-blue-400', size: 'w-1 h-1', delay: 1.5, x: 40, y: 85, xMove: 10, yMove: -30 },
+                            { color: 'bg-violet-400', size: 'w-1 h-1', delay: 2.5, x: 60, y: 15, xMove: -5, yMove: -15 },
+                        ].map((node, i) => (
+                            <motion.div
+                                key={i}
+                                className={`absolute ${node.size} rounded-full ${node.color} shadow-[0_0_12px_currentColor]`}
+                                style={{ top: `${node.y}%`, left: `${node.x}%` }}
+                                animate={{
+                                    y: [0, node.yMove, 0],
+                                    x: [0, node.xMove, 0],
+                                    opacity: [0.1, 0.9, 0.1],
+                                    scale: [0.6, 1.2, 0.6]
+                                }}
+                                transition={{
+                                    duration: 4 + i * 0.5,
+                                    repeat: Infinity,
+                                    delay: node.delay,
+                                    ease: "easeInOut"
+                                }}
+                            />
+                        ))}
+
+                        {/* Synaptic Connecting Beams (Subtle) */}
+                        <div className="absolute inset-0 flex items-center justify-center opacity-30 mix-blend-overlay">
+                            <motion.div
+                                animate={{ rotateZ: [0, 90, 180, 270, 360], opacity: [0, 0.5, 0] }}
+                                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                                className="absolute w-[80%] h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+                            />
+                            <motion.div
+                                animate={{ rotateZ: [45, 135, 225, 315, 405], opacity: [0, 0.4, 0] }}
+                                transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 2 }}
+                                className="absolute w-[70%] h-[1px] bg-gradient-to-r from-transparent via-violet-400 to-transparent"
+                            />
+                        </div>
+                    </div>
                 </motion.div>
             </motion.div>
         </section>
