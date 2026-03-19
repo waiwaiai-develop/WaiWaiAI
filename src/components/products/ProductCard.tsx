@@ -53,15 +53,21 @@ export default function ProductCard({ product, index }: { product: Product; inde
           </span>
           <span className="text-slate-500 text-sm ml-1">（税込）</span>
         </div>
-        <a
-          href={product.stripePaymentLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
-        >
-          購入する
-          <ArrowUpRight className="w-4 h-4" />
-        </a>
+        {product.stripePaymentLink && product.stripePaymentLink !== '#' ? (
+          <a
+            href={product.stripePaymentLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+          >
+            購入する
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        ) : (
+          <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-200 text-slate-500 font-bold cursor-default">
+            準備中
+          </span>
+        )}
       </div>
     </motion.div>
   );
