@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import path from 'path';
 import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 
@@ -14,6 +15,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       [rehypePrettyCode, { theme: 'one-dark-pro' }],
