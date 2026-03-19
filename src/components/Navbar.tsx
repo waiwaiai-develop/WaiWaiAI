@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const navLinks = [
-    { href: '#services', label: 'サービス' },
+    { href: '/#services', label: 'サービス' },
     { href: '/blog', label: 'ブログ' },
     { href: '/products', label: '商品' },
-    { href: '#company', label: '会社概要' },
+    { href: '/#company', label: '会社概要' },
 ];
 
 export default function Navbar() {
@@ -44,16 +44,14 @@ export default function Navbar() {
                 <nav aria-label="メインナビゲーション" className="hidden md:flex items-center">
                     <div className="flex items-center gap-1 px-2 py-1.5 rounded-full glass border border-white/50">
                         {navLinks.map(({ href, label }) => {
-                            const isExternal = href.startsWith('/');
-                            const Tag = isExternal ? Link : 'a';
                             return (
-                                <Tag
+                                <Link
                                     key={href}
                                     href={href}
                                     className="px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 text-slate-700 hover:text-blue-600 hover:bg-white/50"
                                 >
                                     {label}
-                                </Tag>
+                                </Link>
                             );
                         })}
                     </div>
@@ -61,7 +59,7 @@ export default function Navbar() {
 
                 <div className="hidden md:flex">
                     <a
-                        href="#contact"
+                        href="/#contact"
                         className="px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 bg-blue-600 text-white shadow-[0_4px_16px_0_rgba(37,99,235,0.4)] hover:bg-blue-700 hover:shadow-[0_6px_20px_rgba(37,99,235,0.5)] hover:-translate-y-0.5"
                     >
                         無料で相談する
@@ -92,22 +90,20 @@ export default function Navbar() {
                     >
                         <div className="flex flex-col space-y-4">
                             {navLinks.map(({ href, label }) => {
-                                const isExternal = href.startsWith('/');
-                                const Tag = isExternal ? Link : 'a';
                                 return (
-                                    <Tag
+                                    <Link
                                         key={href}
                                         href={href}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className="text-2xl font-bold text-slate-800 tracking-tight hover:text-blue-600 transition-colors p-4 rounded-2xl hover:bg-white/30"
                                     >
                                         {label}
-                                    </Tag>
+                                    </Link>
                                 );
                             })}
                             <div className="pt-6 border-t border-white/30 mt-4">
                                 <a
-                                    href="#contact"
+                                    href="/#contact"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="block w-full py-5 rounded-2xl bg-blue-600 text-white font-bold text-xl text-center shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition-colors"
                                 >
