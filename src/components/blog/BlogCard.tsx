@@ -27,8 +27,18 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group block bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.08)] hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300"
+        className="group block bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.08)] hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300"
       >
+        {post.image && (
+          <div className="aspect-[16/9] overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        )}
+        <div className="p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-2 mb-4">
           <span className={`text-xs font-bold px-3 py-1 rounded-full ${colorClass}`}>
             {post.category}
@@ -59,6 +69,7 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
           <div className="w-10 h-10 rounded-full bg-white shadow-sm border border-slate-100 flex items-center justify-center group-hover:shadow-md group-hover:border-blue-200 transition-all shrink-0">
             <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:rotate-45 transition-transform" />
           </div>
+        </div>
         </div>
       </Link>
     </motion.div>

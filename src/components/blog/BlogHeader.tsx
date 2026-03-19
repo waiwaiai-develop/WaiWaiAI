@@ -38,7 +38,7 @@ export default function BlogHeader({ post }: { post: BlogPost }) {
         {post.description}
       </p>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mb-8">
         {post.tags.map((tag) => (
           <span
             key={tag}
@@ -49,6 +49,16 @@ export default function BlogHeader({ post }: { post: BlogPost }) {
           </span>
         ))}
       </div>
+
+      {post.image && (
+        <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      )}
     </header>
   );
 }

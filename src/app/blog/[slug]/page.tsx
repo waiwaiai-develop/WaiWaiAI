@@ -33,7 +33,7 @@ export async function generateMetadata({
       images: post.image ? [{ url: post.image, width: 1200, height: 630 }] : undefined,
     },
     alternates: {
-      canonical: `https://waiwai-ai.com/blog/${slug}`,
+      canonical: `https://waiwaiai.com/blog/${slug}`,
     },
   };
 }
@@ -57,6 +57,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    image: post.image ? `https://waiwaiai.com${post.image}` : undefined,
     author: {
       '@type': 'Organization',
       name: 'WaiWai AI 株式会社',
@@ -66,10 +67,10 @@ export default async function BlogPostPage({
       name: 'WaiWai AI 株式会社',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://waiwai-ai.com/logo-horizontal.png',
+        url: 'https://waiwaiai.com/logo-horizontal.png',
       },
     },
-    mainEntityOfPage: `https://waiwai-ai.com/blog/${slug}`,
+    mainEntityOfPage: `https://waiwaiai.com/blog/${slug}`,
   };
 
   return (
