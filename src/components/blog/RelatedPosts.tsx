@@ -13,7 +13,7 @@ export default function RelatedPosts({ posts }: { posts: BlogPost[] }) {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group glass-card p-6 hover:bg-white/90"
+            className="group bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-blue-200 hover:shadow-md transition-all"
           >
             <span className="text-xs font-bold text-blue-600 mb-2 block">{post.category}</span>
             <h3 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-tight">

@@ -20,7 +20,7 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
         className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${
           selected === null
             ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-            : 'bg-white/70 text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
+            : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
         }`}
       >
         すべて
@@ -32,7 +32,7 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
           className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${
             selected === cat
               ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-              : 'bg-white/70 text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
           }`}
         >
           {cat}

@@ -27,7 +27,7 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group block glass-card p-6 md:p-8 hover:bg-white/90"
+        className="group block bg-white rounded-3xl p-6 md:p-8 border border-slate-200 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.08)] hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300"
       >
         <div className="flex items-center gap-3 mb-4">
           <span className={`text-xs font-bold px-3 py-1 rounded-full ${colorClass}`}>

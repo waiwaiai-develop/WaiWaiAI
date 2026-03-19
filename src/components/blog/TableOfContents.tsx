@@ -40,7 +40,7 @@ export default function TableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="glass-card p-6 sticky top-28">
+    <nav className="bg-slate-50 rounded-2xl border border-slate-200 p-6 sticky top-28">
       <div className="flex items-center gap-2 mb-4">
         <List className="w-4 h-4 text-blue-600" />
         <h4 className="font-bold text-slate-800 text-sm uppercase tracking-wider">目次</h4>
