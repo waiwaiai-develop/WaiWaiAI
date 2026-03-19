@@ -8,6 +8,8 @@ import Link from 'next/link';
 const navLinks = [
     { href: '#services', label: 'サービス' },
     { href: '#products', label: 'プロダクト' },
+    { href: '/blog', label: 'ブログ' },
+    { href: '/products', label: '商品' },
     { href: '#company', label: '会社概要' },
 ];
 
@@ -42,15 +44,19 @@ export default function Navbar() {
                 {/* Desktop Nav */}
                 <nav aria-label="メインナビゲーション" className="hidden md:flex items-center">
                     <div className="flex items-center gap-1 px-2 py-1.5 rounded-full glass border border-white/50">
-                        {navLinks.map(({ href, label }) => (
-                            <a
-                                key={href}
-                                href={href}
-                                className="px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 text-slate-700 hover:text-blue-600 hover:bg-white/50"
-                            >
-                                {label}
-                            </a>
-                        ))}
+                        {navLinks.map(({ href, label }) => {
+                            const isExternal = href.startsWith('/');
+                            const Tag = isExternal ? Link : 'a';
+                            return (
+                                <Tag
+                                    key={href}
+                                    href={href}
+                                    className="px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 text-slate-700 hover:text-blue-600 hover:bg-white/50"
+                                >
+                                    {label}
+                                </Tag>
+                            );
+                        })}
                     </div>
                 </nav>
 
@@ -86,16 +92,20 @@ export default function Navbar() {
                         className="md:hidden absolute top-0 left-0 w-full min-h-screen glass-strong z-40 flex flex-col pt-24 px-6"
                     >
                         <div className="flex flex-col space-y-4">
-                            {navLinks.map(({ href, label }) => (
-                                <a
-                                    key={href}
-                                    href={href}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="text-2xl font-bold text-slate-800 tracking-tight hover:text-blue-600 transition-colors p-4 rounded-2xl hover:bg-white/30"
-                                >
-                                    {label}
-                                </a>
-                            ))}
+                            {navLinks.map(({ href, label }) => {
+                                const isExternal = href.startsWith('/');
+                                const Tag = isExternal ? Link : 'a';
+                                return (
+                                    <Tag
+                                        key={href}
+                                        href={href}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                        className="text-2xl font-bold text-slate-800 tracking-tight hover:text-blue-600 transition-colors p-4 rounded-2xl hover:bg-white/30"
+                                    >
+                                        {label}
+                                    </Tag>
+                                );
+                            })}
                             <div className="pt-6 border-t border-white/30 mt-4">
                                 <a
                                     href="#contact"

@@ -1,8 +1,17 @@
 import type { MetadataRoute } from 'next';
+import { getPostSlugs } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://waiwai-ai.com';
   const now = new Date();
+
+  const blogSlugs = getPostSlugs();
+  const blogEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
 
   return [
     {
@@ -22,6 +31,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    ...blogEntries,
+    {
+      url: `${baseUrl}/products`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/company`,

@@ -35,13 +35,7 @@ export default function NewsSection() {
                             </p>
 
                             <div className="flex flex-col gap-4">
-                                <Link href="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
-                                    <span>NEWS 記事一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
-                                    </div>
-                                </Link>
-                                <Link href="#" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
+                                <Link href="/blog" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
                                     <span>TECH BLOG 一覧</span>
                                     <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
                                         <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
