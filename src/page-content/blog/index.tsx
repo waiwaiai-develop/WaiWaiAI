@@ -18,12 +18,12 @@ export default function BlogPageContent({ posts, categories }: BlogPageProps) {
     : posts;
 
   return (
-    <div className="pt-32 pb-24 relative min-h-screen bg-white overflow-hidden">
+    <div className="pt-24 md:pt-32 pb-24 relative min-h-screen bg-white overflow-hidden">
       <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-0" />
       <div className="absolute inset-0 bg-grid-light opacity-50 z-0" />
       <div className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

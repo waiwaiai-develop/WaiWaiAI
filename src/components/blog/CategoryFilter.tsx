@@ -13,11 +13,11 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="flex flex-wrap gap-2 mb-10"
+      className="flex overflow-x-auto gap-2 mb-10 pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-none"
     >
       <button
         onClick={() => onSelect(null)}
-        className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${
+        className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all border ${
           selected === null
             ? 'bg-blue-600 text-white border-blue-600 shadow-md'
             : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
