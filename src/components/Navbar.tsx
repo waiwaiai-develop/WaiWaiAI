@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 const navLinks = [
     { href: '#services', label: 'サービス' },
-    { href: '#products', label: 'プロダクト' },
     { href: '/blog', label: 'ブログ' },
     { href: '/products', label: '商品' },
     { href: '#company', label: '会社概要' },
