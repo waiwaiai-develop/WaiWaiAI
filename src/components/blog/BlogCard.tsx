@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Clock } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import type { BlogPost } from '@/lib/blog';
 
 const categoryColors: Record<string, string> = {
@@ -30,17 +29,6 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
         href={`/blog/${post.slug}`}
         className="group block bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.08)] hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300"
       >
-        {post.image && (
-          <div className="relative aspect-[16/9] overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-          </div>
-        )}
         <div className="p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-2 mb-4">
           <span className={`text-xs font-bold px-3 py-1 rounded-full ${colorClass}`}>
