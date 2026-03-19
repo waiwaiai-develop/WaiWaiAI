@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com/products',
+    canonical: 'https://waiwaiai.com/products',
   },
 };
 

@@ -1,4 +1,5 @@
 import { Clock, Tag, Calendar } from 'lucide-react';
+import Image from 'next/image';
 import type { BlogPost } from '@/lib/blog';
 
 const categoryColors: Record<string, string> = {
@@ -51,11 +52,14 @@ export default function BlogHeader({ post }: { post: BlogPost }) {
       </div>
 
       {post.image && (
-        <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-          <img
+        <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+          <Image
             src={post.image}
             alt={post.title}
-            className="w-full h-auto object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 768px"
+            priority
+            className="object-cover"
           />
         </div>
       )}

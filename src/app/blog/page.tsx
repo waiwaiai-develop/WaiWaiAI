@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com/blog',
+    canonical: 'https://waiwaiai.com/blog',
   },
 };
 
@@ -24,7 +24,7 @@ const blogSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'WaiWai AI Tech Blog',
-  url: 'https://waiwai-ai.com/blog',
+  url: 'https://waiwaiai.com/blog',
   description: '各業界のAI活用事例と、AI開発の実践ノウハウを公開。',
   publisher: {
     '@type': 'Organization',

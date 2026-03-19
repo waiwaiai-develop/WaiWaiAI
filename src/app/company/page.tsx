@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com/company',
+    canonical: 'https://waiwaiai.com/company',
   },
 };
 
@@ -26,14 +26,14 @@ const aboutPageSchema = {
   '@type': 'AboutPage',
   name: '会社概要・企業情報',
   description: 'WaiWai AI 株式会社の会社情報、ミッション、事業内容について',
-  url: 'https://waiwai-ai.com/company',
+  url: 'https://waiwaiai.com/company',
   mainEntity: {
     '@type': 'Organization',
     name: 'WaiWai AI 株式会社',
     alternateName: 'WaiWai AI',
     description: 'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援。',
-    url: 'https://waiwai-ai.com',
-    logo: 'https://waiwai-ai.com/logo-horizontal.png',
+    url: 'https://waiwaiai.com',
+    logo: 'https://waiwaiai.com/logo-horizontal.png',
     foundingDate: '2024',
     address: {
       '@type': 'PostalAddress',

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com',
+    canonical: 'https://waiwaiai.com',
   },
 };
 
@@ -34,7 +34,7 @@ const homePageSchema = {
   name: 'WaiWai AI 株式会社 | AIネイティブ開発・ITコンサルティング',
   description:
     'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進・RPA自動化を一気通貫で支援。',
-  url: 'https://waiwai-ai.com',
+  url: 'https://waiwaiai.com',
   mainEntity: {
     '@type': 'Organization',
     name: 'WaiWai AI 株式会社',

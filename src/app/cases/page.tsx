@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com/cases',
+    canonical: 'https://waiwaiai.com/cases',
   },
 };
 
@@ -39,7 +39,7 @@ const caseStudiesSchema = {
         name: 'WaiWai AI 株式会社',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://waiwai-ai.com/logo-horizontal.png',
+          url: 'https://waiwaiai.com/logo-horizontal.png',
         },
       },
       datePublished: '2024-01-01',
@@ -62,7 +62,7 @@ const caseStudiesSchema = {
         name: 'WaiWai AI 株式会社',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://waiwai-ai.com/logo-horizontal.png',
+          url: 'https://waiwaiai.com/logo-horizontal.png',
         },
       },
       datePublished: '2024-01-01',

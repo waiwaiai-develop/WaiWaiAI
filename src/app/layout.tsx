@@ -29,7 +29,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://waiwai-ai.com'),
+  metadataBase: new URL('https://waiwaiai.com'),
   icons: {
     icon: '/logo-symbol.png',
     apple: '/logo-symbol.png',
@@ -80,9 +80,9 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   alternates: {
-    canonical: 'https://waiwai-ai.com',
+    canonical: 'https://waiwaiai.com',
     languages: {
-      'ja-JP': 'https://waiwai-ai.com',
+      'ja-JP': 'https://waiwaiai.com',
     },
   },
   robots: {
@@ -110,10 +110,10 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'WaiWai AI 株式会社',
   alternateName: ['WaiWai AI', 'ワイワイエーアイ'],
-  url: 'https://waiwai-ai.com',
+  url: 'https://waiwaiai.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://waiwai-ai.com/logo-horizontal.png',
+    url: 'https://waiwaiai.com/logo-horizontal.png',
     width: 400,
     height: 100,
   },
@@ -195,7 +195,7 @@ const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'WaiWai AI 株式会社',
-  url: 'https://waiwai-ai.com',
+  url: 'https://waiwaiai.com',
   description: 'AIネイティブ開発・ITコンサルティング・DX推進のプロフェッショナル',
   inLanguage: 'ja-JP',
   publisher: {
@@ -206,7 +206,7 @@ const websiteSchema = {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://waiwai-ai.com/search?q={search_term_string}',
+      urlTemplate: 'https://waiwaiai.com/search?q={search_term_string}',
     },
     'query-input': 'required name=search_term_string',
   },
@@ -217,9 +217,9 @@ const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'LocalBusiness'],
   name: 'WaiWai AI 株式会社',
-  image: 'https://waiwai-ai.com/logo-horizontal.png',
-  '@id': 'https://waiwai-ai.com',
-  url: 'https://waiwai-ai.com',
+  image: 'https://waiwaiai.com/logo-horizontal.png',
+  '@id': 'https://waiwaiai.com',
+  url: 'https://waiwaiai.com',
   telephone: '',
   priceRange: '¥¥',
   address: {

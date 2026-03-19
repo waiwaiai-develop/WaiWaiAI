@@ -44,7 +44,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://waiwai-ai.com/sitemap.xml',
-    host: 'https://waiwai-ai.com',
+    sitemap: 'https://waiwaiai.com/sitemap.xml',
+    host: 'https://waiwaiai.com',
   };
 }
