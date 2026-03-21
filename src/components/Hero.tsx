@@ -32,13 +32,20 @@ export default function Hero() {
                         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 relative"
                     >
                         {/* Mobile only: ghosted video behind text */}
-                        <div className="absolute inset-0 lg:hidden pointer-events-none flex items-center justify-center overflow-hidden rounded-2xl" aria-hidden="true">
+                        <div
+                            className="absolute inset-0 lg:hidden pointer-events-none flex items-center justify-center overflow-hidden"
+                            style={{
+                                WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 70%)',
+                                maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 70%)',
+                            }}
+                            aria-hidden="true"
+                        >
                             <video
                                 autoPlay
                                 muted
                                 loop
                                 playsInline
-                                className="w-[130%] h-auto opacity-[0.15] object-cover"
+                                className="w-[140%] h-auto opacity-[0.2] object-cover"
                             >
                                 <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
                             </video>
@@ -96,13 +103,19 @@ export default function Hero() {
                         transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                         className="hidden lg:block w-full lg:w-[50%] relative z-[6] order-1 lg:order-2"
                     >
-                        <div className="relative lg:max-w-none mx-auto lg:-mr-8">
+                        <div
+                            className="relative lg:max-w-none mx-auto lg:-mr-16"
+                            style={{
+                                WebkitMaskImage: 'radial-gradient(ellipse 85% 80% at 60% 50%, black 40%, transparent 75%)',
+                                maskImage: 'radial-gradient(ellipse 85% 80% at 60% 50%, black 40%, transparent 75%)',
+                            }}
+                        >
                             <video
                                 autoPlay
                                 muted
                                 loop
                                 playsInline
-                                className="w-full h-auto"
+                                className="w-full h-auto scale-110"
                             >
                                 <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
                             </video>
