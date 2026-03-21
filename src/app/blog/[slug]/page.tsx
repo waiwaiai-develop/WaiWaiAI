@@ -85,11 +85,11 @@ export default async function BlogPostPage({
         <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Main Content */}
-            <div className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
+            <div className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0 overflow-hidden">
               <BlogHeader post={post} />
-              <article className="prose-custom">
+              <div className="overflow-hidden">
                 <Content />
-              </article>
+              </div>
               <BlogCTA />
               <RelatedPosts posts={related} />
             </div>
