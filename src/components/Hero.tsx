@@ -96,14 +96,13 @@ export default function Hero() {
                         transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                         className="hidden lg:block w-full lg:w-[50%] relative z-[6] order-1 lg:order-2"
                     >
-                        <div className="relative lg:max-w-none mx-auto lg:-mr-8 rounded-2xl overflow-hidden">
+                        <div className="relative lg:max-w-none mx-auto lg:-mr-8">
                             <video
                                 autoPlay
                                 muted
                                 loop
                                 playsInline
-                                className="w-full h-auto rounded-2xl"
-                                style={{ filter: 'drop-shadow(0 12px 32px rgba(30,58,138,0.1))' }}
+                                className="w-full h-auto"
                             >
                                 <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
                             </video>
