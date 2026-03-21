@@ -64,7 +64,7 @@ export default function Hero() {
                                 alt=""
                                 width={640}
                                 height={427}
-                                className="w-[110%] max-w-md h-auto opacity-[0.12]"
+                                className="w-[120%] max-w-lg h-auto opacity-[0.22]"
                                 sizes="80vw"
                             />
                         </div>
