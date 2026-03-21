@@ -74,21 +74,21 @@ export default function Hero() {
                         <h1 className="font-display text-5xl sm:text-6xl lg:text-[4.5rem] xl:text-[5rem] font-bold tracking-tight leading-[1.1] text-slate-900 mb-8">
                             AIを味方に、
                             <br />
-                            未来を豊かに。
+                            <span className="text-gradient-deep">未来を豊かに。</span>
                         </h1>
 
                         <h2 className="font-display text-xl sm:text-2xl font-bold text-slate-800 mb-5">
-                            &ldquo;WaiWai AI&rdquo;がつくる、新しい「豊かさ」。
+                            &ldquo;WaiWai AI&rdquo;がつくる、新しい<span className="text-blue-600">「豊かさ」</span>。
                         </h2>
 
                         <ul className="text-sm sm:text-base text-slate-600 mb-5 space-y-1">
                             <li className="flex items-start gap-2">
                                 <span className="text-blue-500 mt-1.5 shrink-0">•</span>
-                                社名「WaiWai」は、ハワイ語で『豊かさ』。
+                                社名<strong className="text-slate-800">「WaiWai」</strong>は、ハワイ語で<strong className="text-blue-600">『豊かさ』</strong>。
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-blue-500 mt-1.5 shrink-0">•</span>
-                                幸運と繁栄の象徴「ホヌ（ウミガメ）」のように。
+                                幸運と繁栄の象徴<strong className="text-blue-600">「ホヌ（ウミガメ）」</strong>のように。
                             </li>
                         </ul>
 
