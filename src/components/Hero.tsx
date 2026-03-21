@@ -55,8 +55,20 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1"
+                        className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 relative"
                     >
+                        {/* Mobile only: ghosted honu behind text */}
+                        <div className="absolute inset-0 lg:hidden pointer-events-none flex items-center justify-center overflow-hidden" aria-hidden="true">
+                            <Image
+                                src="/ホヌ_背景透過.png"
+                                alt=""
+                                width={640}
+                                height={427}
+                                className="w-[90%] max-w-sm h-auto opacity-[0.06] blur-[1px]"
+                                sizes="80vw"
+                            />
+                        </div>
+
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900 mb-6">
                             AIを味方に、
                             <br />
