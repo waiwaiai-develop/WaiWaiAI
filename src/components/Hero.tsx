@@ -5,103 +5,67 @@ import Image from 'next/image';
 
 export default function Hero() {
     const { scrollY } = useScroll();
-    const opacityHero = useTransform(scrollY, [0, 500], [1, 0]);
-    const yShift = useTransform(scrollY, [0, 500], [0, 50]);
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.14, delayChildren: 0.1 },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        show: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-        },
-    };
-
-    const imageVariants = {
-        hidden: { opacity: 0, x: 60 },
-        show: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 1.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-        },
-    };
+    const opacityHero = useTransform(scrollY, [0, 600], [1, 0]);
+    const yText = useTransform(scrollY, [0, 600], [0, 80]);
+    const yImage = useTransform(scrollY, [0, 600], [0, 40]);
+    const scaleImage = useTransform(scrollY, [0, 400], [1, 1.05]);
 
     return (
-        <section className="relative min-h-[70svh] lg:min-h-[95svh] flex items-center overflow-hidden bg-white pt-24 pb-8 lg:pt-0 lg:pb-0">
+        <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-white">
+            {/* Headline — absolute, top center */}
             <motion.div
-                style={{ y: yShift, opacity: opacityHero }}
-                className="w-full"
+                style={{ y: yText, opacity: opacityHero }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute top-[18vh] sm:top-[16vh] left-0 right-0 z-20 text-center px-6"
             >
-                {/* Desktop: text left, image extends to right edge */}
-                <div className="flex flex-col lg:flex-row items-center lg:items-center">
-                    {/* Text */}
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="show"
-                        className="w-full lg:w-[42%] px-6 md:px-12 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-8 flex flex-col items-center lg:items-start text-center lg:text-left"
+                <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] text-slate-900 mb-5">
+                    AIを味方に、
+                    <br />
+                    <span className="text-gradient-deep">未来を豊かに。</span>
+                </h1>
+                <p className="text-base sm:text-lg text-slate-500 max-w-lg mx-auto leading-relaxed mb-8">
+                    ハワイの言葉で「豊かさ」を意味するWaiWai。
+                    <br className="hidden sm:block" />
+                    テクノロジーの力で、確実な繁栄をもたらします。
+                </p>
+                <div className="flex items-center justify-center gap-5">
+                    <a
+                        href="#contact"
+                        className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors"
+                        style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }}
                     >
-                        <motion.h1
-                            variants={itemVariants}
-                            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.08] text-slate-900"
-                        >
-                            <span className="block">AIを味方に、</span>
-                            <span className="block text-gradient-deep">未来を豊かに。</span>
-                        </motion.h1>
-
-                        <motion.p
-                            variants={itemVariants}
-                            className="text-base md:text-lg text-slate-500 font-normal mb-8 leading-relaxed max-w-md"
-                        >
-                            ハワイの言葉で「豊かさ」を意味するWaiWai。ウミガメ（ホヌ）のように、テクノロジーの力でクライアントの事業に長く確実な繁栄をもたらします。
-                        </motion.p>
-
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex items-center gap-5"
-                        >
-                            <a
-                                href="#contact"
-                                className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors duration-200"
-                                style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}
-                            >
-                                無料で相談する
-                            </a>
-                            <a
-                                href="#services"
-                                className="text-sm text-slate-500 hover:text-slate-700 transition-colors duration-200"
-                            >
-                                サービスを見る →
-                            </a>
-                        </motion.div>
-                    </motion.div>
-
-                    {/* Honu image — fills remaining space, bleeds to right edge */}
-                    <motion.div
-                        variants={imageVariants}
-                        initial="hidden"
-                        animate="show"
-                        className="w-full lg:w-[58%] mt-10 lg:mt-0"
+                        無料で相談する
+                    </a>
+                    <a
+                        href="#services"
+                        className="text-sm text-slate-400 hover:text-slate-600 transition-colors"
                     >
-                        <div className="relative w-full aspect-[3392/1216]">
-                            <Image
-                                src="/hero-honu.png"
-                                alt="WaiWai AI - テクノロジーの力で豊かな未来を"
-                                fill
-                                className="object-contain object-center lg:object-right"
-                                sizes="(max-width: 1024px) 100vw, 58vw"
-                                priority
-                            />
-                        </div>
-                    </motion.div>
+                        サービスを見る →
+                    </a>
+                </div>
+            </motion.div>
+
+            {/* Honu — large, bottom-anchored, cinematic */}
+            <motion.div
+                style={{ y: yImage, scale: scaleImage, opacity: opacityHero }}
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 w-full mt-auto"
+            >
+                <div className="relative w-full max-w-5xl mx-auto px-6">
+                    <div className="relative w-full" style={{ aspectRatio: '3392/1216' }}>
+                        <Image
+                            src="/hero-honu.png"
+                            alt="WaiWai AI"
+                            fill
+                            className="object-contain"
+                            sizes="100vw"
+                            priority
+                        />
+                    </div>
                 </div>
             </motion.div>
         </section>
