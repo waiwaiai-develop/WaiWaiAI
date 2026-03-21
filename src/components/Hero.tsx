@@ -119,7 +119,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full lg:w-[50%] relative z-[6] order-1 lg:order-2"
+                        className="hidden lg:block w-full lg:w-[50%] relative z-[6] order-1 lg:order-2"
                     >
                         <div className="relative max-w-md sm:max-w-lg lg:max-w-none mx-auto lg:-mr-8">
                             <Image
