@@ -14,7 +14,7 @@ export default function Hero() {
             <div
                 className="absolute inset-0"
                 style={{
-                    background: 'linear-gradient(160deg, #eff6ff 0%, #dbeafe 20%, #e0f2fe 45%, #f0f9ff 70%, #ffffff 100%)',
+                    background: 'linear-gradient(160deg, #f8faff 0%, #f0f5ff 20%, #f5f9ff 45%, #fafcff 70%, #ffffff 100%)',
                 }}
                 aria-hidden="true"
             />
