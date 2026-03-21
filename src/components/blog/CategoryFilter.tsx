@@ -17,10 +17,10 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
     >
       <button
         onClick={() => onSelect(null)}
-        className={`shrink-0 px-4 py-2 text-sm font-bold transition-all border ${
+        className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all border ${
           selected === null
-            ? 'bg-stone-900 text-white border-stone-900'
-            : 'bg-white text-stone-600 border-stone-200 hover:border-amber-300 hover:text-amber-700'
+            ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+            : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
         }`}
       >
         すべて
@@ -29,10 +29,10 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
         <button
           key={cat}
           onClick={() => onSelect(cat)}
-          className={`px-4 py-2 text-sm font-bold transition-all border ${
+          className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${
             selected === cat
-              ? 'bg-stone-900 text-white border-stone-900'
-              : 'bg-white text-stone-600 border-stone-200 hover:border-amber-300 hover:text-amber-700'
+              ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
           }`}
         >
           {cat}

@@ -79,15 +79,17 @@ export default async function BlogPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <div className="pt-24 md:pt-32 pb-24 bg-white border-t border-stone-200 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+      <div className="pt-24 md:pt-32 pb-24 relative min-h-screen bg-white overflow-hidden">
+        <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-0" />
+        <div className="absolute inset-0 bg-grid-light opacity-30 z-0" />
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
           <div className="flex flex-col lg:flex-row gap-10">
             {/* Main Content */}
-            <div className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0 overflow-hidden">
+            <div className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
               <BlogHeader post={post} />
-              <div>
+              <article className="prose-custom">
                 <Content />
-              </div>
+              </article>
               <BlogCTA />
               <RelatedPosts posts={related} />
             </div>
