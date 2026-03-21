@@ -21,12 +21,12 @@ export default function Hero() {
     const yImage = useTransform(scrollY, [0, 600], [0, 25]);
 
     return (
-        <section className="relative min-h-[85svh] lg:min-h-screen flex items-center overflow-hidden pt-24 lg:pt-0">
-            {/* ── Blue gradient background ── */}
+        <section className="relative min-h-[85svh] lg:min-h-screen flex items-center overflow-hidden pt-24 lg:pt-0 bg-white">
+            {/* ── Blue gradient background (opaque to block layout bg) ── */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: 'linear-gradient(135deg, rgba(239,246,255,1) 0%, rgba(219,234,254,0.8) 30%, rgba(191,219,254,0.5) 60%, rgba(224,242,254,0.4) 80%, rgba(255,255,255,0.9) 100%)',
+                    background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #e0f2fe 50%, #eff6ff 75%, #ffffff 100%)',
                 }}
                 aria-hidden="true"
             />
