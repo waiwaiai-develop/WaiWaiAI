@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import NetworkCanvas from './NetworkCanvas';
+import Image from 'next/image';
 
 export default function Hero() {
     const { scrollY } = useScroll();
@@ -25,55 +25,28 @@ export default function Hero() {
         },
     };
 
-    const sphereVariants = {
-        hidden: { opacity: 0, scale: 0.85 },
+    const imageVariants = {
+        hidden: { opacity: 0, x: 40 },
         show: {
             opacity: 1,
-            scale: 1,
-            transition: { duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+            x: 0,
+            transition: { duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
         },
     };
 
     return (
         <section className="relative min-h-[70svh] lg:min-h-[95svh] flex items-center justify-center overflow-hidden bg-white pt-24 pb-16 lg:pt-0 lg:pb-0">
-            {/* Subtle blue gradient at top */}
-            <div
-                className="absolute inset-x-0 top-0 h-[400px] pointer-events-none"
-                style={{
-                    background: 'linear-gradient(180deg, rgba(219,234,254,0.45) 0%, rgba(191,219,254,0.18) 50%, transparent 100%)',
-                }}
-                aria-hidden="true"
-            />
-
             <motion.div
                 style={{ y: yShift, opacity: opacityHero }}
-                className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row-reverse items-center justify-between gap-16 lg:gap-20"
+                className="container mx-auto px-6 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8"
             >
-                {/* Right / Top: NetworkCanvas in clean circle */}
-                <motion.div
-                    variants={sphereVariants}
-                    initial="hidden"
-                    animate="show"
-                    className="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[460px] aspect-square flex-shrink-0"
-                >
-                    <div
-                        className="w-full h-full rounded-full overflow-hidden border border-slate-200"
-                        style={{
-                            boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
-                        }}
-                    >
-                        <NetworkCanvas />
-                    </div>
-                </motion.div>
-
-                {/* Left / Bottom: Text & CTA */}
+                {/* Left: Text & CTA */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
-                    className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left w-full mx-auto lg:mx-0"
+                    className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left w-full mx-auto lg:mx-0 lg:max-w-xl"
                 >
-                    {/* Main Heading */}
                     <motion.h1
                         variants={itemVariants}
                         className="font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-7 leading-[1.05] text-slate-900"
@@ -82,7 +55,6 @@ export default function Hero() {
                         <span className="block whitespace-nowrap text-gradient-deep">未来を豊かに。</span>
                     </motion.h1>
 
-                    {/* Description */}
                     <motion.div
                         variants={itemVariants}
                         className="font-sans text-base md:text-lg text-slate-500 font-normal mb-10 leading-[1.9] max-w-xl [text-wrap:pretty]"
@@ -98,7 +70,6 @@ export default function Hero() {
                         </p>
                     </motion.div>
 
-                    {/* CTA */}
                     <motion.div
                         variants={itemVariants}
                         className="flex flex-col items-center lg:items-start gap-4"
@@ -117,6 +88,25 @@ export default function Hero() {
                             サービスを見る →
                         </a>
                     </motion.div>
+                </motion.div>
+
+                {/* Right: Honu (turtle) hero image */}
+                <motion.div
+                    variants={imageVariants}
+                    initial="hidden"
+                    animate="show"
+                    className="flex-1 w-full max-w-[560px] lg:max-w-[640px]"
+                >
+                    <div className="relative w-full aspect-[16/9]">
+                        <Image
+                            src="/hero-honu.png"
+                            alt="WaiWai AI - テクノロジーの力で豊かな未来を"
+                            fill
+                            className="object-contain object-right"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
+                        />
+                    </div>
                 </motion.div>
             </motion.div>
         </section>
