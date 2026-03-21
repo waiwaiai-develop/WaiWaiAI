@@ -87,6 +87,13 @@ export default function ContactSection() {
             id="contact"
             className="py-24 lg:py-32 relative overflow-hidden"
         >
+            {/* Floating glass orbs in background */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-blue-200/20 backdrop-blur-3xl blur-3xl" />
+                <div className="absolute bottom-1/3 -right-16 w-64 h-64 rounded-full bg-indigo-200/20 backdrop-blur-3xl blur-3xl" />
+                <div className="absolute top-2/3 left-1/3 w-48 h-48 rounded-full bg-sky-100/30 backdrop-blur-3xl blur-2xl" />
+            </div>
+
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
@@ -96,7 +103,7 @@ export default function ContactSection() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="inline-block py-1.5 px-4 rounded-full glass text-slate-700 font-bold text-xs tracking-wider uppercase mb-6">
+                    <span className="inline-block py-1.5 px-4 rounded-full glass-shimmer text-blue-700 font-bold text-xs tracking-wider uppercase mb-6 border border-blue-200/40">
                         Contact Us
                     </span>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]">
@@ -113,7 +120,7 @@ export default function ContactSection() {
                 </motion.div>
 
                 <div className="max-w-3xl mx-auto">
-                    {/* Trust Badges - ガラススタイル */}
+                    {/* Trust Badges */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -121,21 +128,21 @@ export default function ContactSection() {
                         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                         className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12"
                     >
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             NDA締結可能
                         </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             最短即日で対応可能
                         </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-semibold text-slate-700">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
                             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                             IT未経験の方も安心サポート
                         </div>
                     </motion.div>
 
-                    {/* Form - ガラススタイル */}
+                    {/* Form - glass-panel */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -144,7 +151,7 @@ export default function ContactSection() {
                     >
                         <div
                             id="contact-form"
-                            className="glass-panel p-8 md:p-10"
+                            className="glass-panel p-8 md:p-10 shadow-[0_24px_80px_-12px_rgba(37,99,235,0.15)]"
                         >
                             <AnimatePresence mode="wait">
                                 {status === 'success' ? (
@@ -154,7 +161,7 @@ export default function ContactSection() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         className="flex flex-col items-center justify-center py-12 text-center"
                                     >
-                                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 glass">
+                                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 glass border border-white/60">
                                             <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                                         </div>
                                         <h3 className="text-2xl font-bold text-slate-900 mb-4">
@@ -341,7 +348,7 @@ export default function ContactSection() {
                                             disabled={status === 'submitting'}
                                             aria-busy={status === 'submitting'}
                                             aria-label={status === 'submitting' ? '送信中' : 'お問い合わせを送信する'}
-                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-[0_8px_28px_-4px_rgba(37,99,235,0.45)] hover:shadow-[0_12px_36px_-4px_rgba(37,99,235,0.55)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none hover:-translate-y-0.5"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-[0_10px_36px_-4px_rgba(37,99,235,0.55)] hover:shadow-[0_16px_48px_-4px_rgba(37,99,235,0.70)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none hover:-translate-y-0.5"
                                         >
                                             {status === 'submitting' ? (
                                                 <>

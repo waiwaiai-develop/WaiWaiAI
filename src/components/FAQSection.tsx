@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
@@ -83,7 +83,7 @@ export default function FAQSection() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-center mb-16"
             >
-              <span className="inline-block py-1.5 px-4 rounded-full glass text-slate-700 font-bold text-xs tracking-wider uppercase mb-6">
+              <span className="inline-block py-1.5 px-4 rounded-full glass-shimmer text-blue-700 font-bold text-xs tracking-wider uppercase mb-6 border border-blue-200/40">
                 FAQ
               </span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
@@ -96,51 +96,71 @@ export default function FAQSection() {
               </p>
             </motion.div>
 
-            {/* FAQ List - ガラススタイル */}
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.05,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="glass-card border border-white/50 overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/20 transition-colors"
-                    aria-expanded={openIndex === index}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl glass flex items-center justify-center shrink-0">
-                        <HelpCircle className="w-5 h-5 text-blue-600" />
-                      </div>
-                      <span className="font-bold text-slate-900 text-base md:text-lg">
-                        {faq.question}
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0 ml-4 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? 'max-h-96' : 'max-h-0'
+            {/* FAQ List */}
+            <div className="space-y-3">
+              {faqs.map((faq, index) => {
+                const isOpen = openIndex === index;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.05,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className={`glass-card border overflow-hidden rounded-2xl transition-all duration-300 ${
+                      isOpen
+                        ? 'border-blue-300/60 shadow-[0_8px_32px_-8px_rgba(37,99,235,0.18)]'
+                        : 'border-white/50 hover:border-blue-200/50'
                     }`}
                   >
-                    <div className="px-6 pb-5 pl-20">
-                      <p className="text-slate-700 leading-relaxed">{faq.answer}</p>
+                    {/* Active left border indicator */}
+                    <div className={`flex transition-all duration-300 ${isOpen ? 'border-l-4 border-blue-400' : 'border-l-4 border-transparent'}`}>
+                      <div className="flex-1">
+                        <button
+                          onClick={() => setOpenIndex(isOpen ? null : index)}
+                          className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/20 transition-colors duration-200"
+                          aria-expanded={isOpen}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-blue-100/60 backdrop-blur-sm' : 'glass'}`}>
+                              <HelpCircle className={`w-5 h-5 transition-colors duration-300 ${isOpen ? 'text-blue-600' : 'text-blue-500'}`} />
+                            </div>
+                            <span className="font-bold text-slate-900 text-base md:text-lg">
+                              {faq.question}
+                            </span>
+                          </div>
+                          <ChevronDown
+                            className={`w-5 h-5 text-slate-400 transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] shrink-0 ml-4 ${
+                              isOpen ? 'rotate-180 text-blue-500' : ''
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              key="answer"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-6 pb-5 pl-20">
+                                <p className="text-slate-700 leading-relaxed">{faq.answer}</p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* CTA */}
@@ -154,7 +174,7 @@ export default function FAQSection() {
               <p className="text-slate-600 mb-4">その他のご質問があればお気軽にどうぞ</p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-[0_8px_24px_-4px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_32px_-4px_rgba(37,99,235,0.5)]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all duration-300 shadow-[0_8px_28px_-4px_rgba(37,99,235,0.45)] hover:shadow-[0_14px_40px_-4px_rgba(37,99,235,0.60)] hover:-translate-y-0.5"
               >
                 無料で相談する
               </a>

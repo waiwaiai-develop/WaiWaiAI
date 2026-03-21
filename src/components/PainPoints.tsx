@@ -14,6 +14,7 @@ const painPoints = [
         borderColor: 'border-blue-200/50',
         accentColor: 'from-blue-500/20 to-transparent',
         numberColor: 'text-blue-200',
+        glowColor: 'rgba(37,99,235,0.35)',
     },
     {
         number: '02',
@@ -24,6 +25,7 @@ const painPoints = [
         borderColor: 'border-sky-200/50',
         accentColor: 'from-sky-500/20 to-transparent',
         numberColor: 'text-sky-200',
+        glowColor: 'rgba(14,165,233,0.35)',
     },
     {
         number: '03',
@@ -34,6 +36,7 @@ const painPoints = [
         borderColor: 'border-indigo-200/50',
         accentColor: 'from-indigo-500/20 to-transparent',
         numberColor: 'text-indigo-200',
+        glowColor: 'rgba(79,70,229,0.35)',
     },
     {
         number: '04',
@@ -44,6 +47,7 @@ const painPoints = [
         borderColor: 'border-slate-200/50',
         accentColor: 'from-slate-400/15 to-transparent',
         numberColor: 'text-slate-200',
+        glowColor: 'rgba(71,85,105,0.25)',
     },
 ];
 
@@ -73,25 +77,40 @@ export default function PainPoints() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-5"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
                 >
                     {painPoints.map((point, index) => (
                         <motion.div
                             key={index}
                             variants={fadeInUp}
-                            className={`group relative flex items-start gap-5 p-7 md:p-8 rounded-3xl glass-card border ${point.borderColor} overflow-hidden`}
+                            className={`group relative flex items-start gap-5 p-7 md:p-8 rounded-3xl glass-card glass-shimmer border ${point.borderColor} overflow-hidden`}
                         >
                             {/* 背景アクセントグラデーション */}
                             <div className={`absolute inset-0 bg-gradient-to-br ${point.accentColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
-                            {/* 大きな背景番号 */}
-                            <span className={`absolute right-5 bottom-3 font-display text-7xl font-black ${point.numberColor} leading-none select-none pointer-events-none transition-opacity duration-300 group-hover:opacity-70`}>
+                            {/* ホバー時のブルーグロー */}
+                            <div
+                                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                                style={{
+                                    boxShadow: `0 20px 60px -15px ${point.glowColor}`,
+                                }}
+                            />
+
+                            {/* 大きな背景番号 - より迫力のある表示 */}
+                            <span className={`absolute right-5 bottom-2 font-display text-8xl font-black ${point.numberColor} leading-none select-none pointer-events-none transition-opacity duration-300 group-hover:opacity-70`}>
                                 {point.number}
                             </span>
 
-                            {/* Icon - ガラススタイル */}
-                            <div className={`relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${point.iconBg} backdrop-blur-sm border border-white/50 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-                                <point.icon className={`w-6 h-6 ${point.iconColor}`} />
+                            {/* Icon - ガラススタイル + ホバー時ブルーグロー */}
+                            <div className={`relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${point.iconBg} backdrop-blur-sm border border-white/50 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                                {/* アイコンのグロー効果 */}
+                                <div
+                                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    style={{
+                                        boxShadow: `0 0 20px 4px ${point.glowColor}`,
+                                    }}
+                                />
+                                <point.icon className={`relative z-10 w-6 h-6 ${point.iconColor}`} />
                             </div>
 
                             {/* Content */}
@@ -107,7 +126,7 @@ export default function PainPoints() {
                     ))}
                 </motion.div>
 
-                {/* Bottom Message - ガラスカード */}
+                {/* Bottom Message - 強調されたガラスカード + ブルーボーダーグロー */}
                 <motion.div
                     initial={{ opacity: 0, filter: 'blur(8px)' }}
                     whileInView={{ opacity: 1, filter: 'blur(0px)' }}
@@ -115,7 +134,12 @@ export default function PainPoints() {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="text-center mt-16"
                 >
-                    <div className="inline-block px-8 py-4 rounded-2xl glass-strong">
+                    <div
+                        className="inline-block px-10 py-5 rounded-2xl glass-strong border border-blue-200/60"
+                        style={{
+                            boxShadow: '0 0 40px -10px rgba(59,130,246,0.25), 0 0 0 1px rgba(59,130,246,0.1)',
+                        }}
+                    >
                         <p className="font-sans text-slate-800 font-bold text-lg">
                             WaiWai AI が、これらすべてを解決します。
                         </p>

@@ -57,7 +57,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className="border-l-4 border-blue-400 bg-blue-50 pl-6 py-4 my-8 rounded-r-xl text-slate-700 italic"
+      className="glass rounded-2xl border-l-4 border-blue-400 pl-6 py-4 my-8 text-slate-700 italic"
       {...props}
     />
   ),
@@ -74,7 +74,7 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   table: (props) => (
-    <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 shadow-sm bg-white">
+    <div className="overflow-x-auto my-8 rounded-2xl border border-slate-200 shadow-sm glass">
       <table className="w-full text-left border-collapse" {...props} />
     </div>
   ),

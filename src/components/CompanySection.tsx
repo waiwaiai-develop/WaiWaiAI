@@ -30,7 +30,7 @@ export default function CompanySection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block glass px-4 py-2 rounded-full border border-white/50">
+                    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block glass-shimmer px-4 py-2 rounded-full border border-blue-200/40">
                         COMPANY
                     </span>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mt-4">
@@ -44,17 +44,21 @@ export default function CompanySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="glass rounded-3xl border border-white/50 shadow-lg p-8 md:p-12"
+                    className="glass-panel glass-shimmer rounded-3xl border border-white/60 shadow-[0_24px_80px_-12px_rgba(37,99,235,0.12)] p-8 md:p-12"
                 >
                     <motion.div
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="space-y-6"
+                        className="space-y-0"
                     >
-                        {companyInfo.map(({ icon: Icon, label, value }) => (
-                            <motion.div key={label} variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-200/30">
+                        {companyInfo.map(({ icon: Icon, label, value }, index) => (
+                            <motion.div
+                                key={label}
+                                variants={springItem}
+                                className="flex flex-col md:flex-row gap-2 md:gap-8 py-5"
+                            >
                                 <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                     <Icon className="w-5 h-5" />
                                     {label}
@@ -62,10 +66,16 @@ export default function CompanySection() {
                                 <div className="md:w-2/3 text-slate-800 font-medium">
                                     {value}
                                 </div>
+                                {index < companyInfo.length - 1 && (
+                                    <div className="hidden md:block absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-200/40 to-transparent" style={{ display: 'none' }} />
+                                )}
                             </motion.div>
                         ))}
 
-                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-200/30">
+                        {/* Gradient divider after companyInfo items */}
+                        <div className="h-px bg-gradient-to-r from-transparent via-blue-200/50 to-transparent my-1" />
+
+                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-5">
                             <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                 <Users2 className="w-5 h-5" />
                                 事業内容
@@ -82,7 +92,9 @@ export default function CompanySection() {
                             </div>
                         </motion.div>
 
-                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4">
+                        <div className="h-px bg-gradient-to-r from-transparent via-blue-200/50 to-transparent my-1" />
+
+                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-5">
                             <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
                                 <Mail className="w-5 h-5" />
                                 お問い合わせ

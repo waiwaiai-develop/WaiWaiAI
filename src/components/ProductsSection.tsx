@@ -16,7 +16,7 @@ export default function ProductsSection() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
+                    <span className="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full glass-shimmer text-blue-700 font-bold text-xs tracking-wider uppercase mb-6 border border-blue-200/40">
                         Our Products
                     </span>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-[1.2]">
@@ -38,10 +38,11 @@ export default function ProductsSection() {
                     {/* Product 1: WaiWaiAI SNS System */}
                     <motion.div
                         variants={fadeInUp}
-                        className="group relative rounded-2xl overflow-hidden glass-card border border-blue-200/50"
+                        className="group relative rounded-2xl overflow-hidden glass-card glass-shimmer border border-blue-200/50 hover:border-blue-300/70 transition-all duration-500 hover:shadow-[0_20px_60px_-10px_rgba(37,99,235,0.2)]"
                     >
                         <div className="h-40 w-full overflow-hidden relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-blue-200/10 to-transparent group-hover:from-blue-400/10 group-hover:via-transparent transition-all duration-700 z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent z-10 group-hover:opacity-0 transition-opacity duration-500" />
                             <Image
                                 src="/images/product_a.png"
                                 alt="WaiWaiAI SNS System"
@@ -56,7 +57,7 @@ export default function ProductsSection() {
                                     <h3 className="font-display text-base font-bold text-slate-900 tracking-tight mb-1">WaiWaiAI SNS System</h3>
                                     <p className="text-blue-600 font-semibold text-xs">SNS自動運用プラットフォーム</p>
                                 </div>
-                                <span className="inline-flex items-center px-2.5 py-1 rounded-full glass text-blue-700 text-[10px] font-bold tracking-wider uppercase border border-blue-200/50 shrink-0">
+                                <span className="inline-flex items-center px-2.5 py-1 rounded-full glass-shimmer text-blue-700 text-[10px] font-bold tracking-wider uppercase border border-blue-200/50 shrink-0">
                                     β版受付中
                                 </span>
                             </div>
@@ -69,10 +70,11 @@ export default function ProductsSection() {
                     {/* Product 2: EstateAI */}
                     <motion.div
                         variants={fadeInUp}
-                        className="group relative rounded-2xl overflow-hidden glass-card border border-indigo-200/50"
+                        className="group relative rounded-2xl overflow-hidden glass-card glass-shimmer border border-indigo-200/50 hover:border-indigo-300/70 transition-all duration-500 hover:shadow-[0_20px_60px_-10px_rgba(99,102,241,0.2)]"
                     >
                         <div className="h-40 w-full overflow-hidden relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent group-hover:opacity-0 transition-opacity duration-500 z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-400/20 via-indigo-200/10 to-transparent group-hover:from-indigo-400/10 group-hover:via-transparent transition-all duration-700 z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-white/30 to-transparent z-10 group-hover:opacity-0 transition-opacity duration-500" />
                             <Image
                                 src="/images/product_b.png"
                                 alt="EstateAI"
@@ -100,10 +102,11 @@ export default function ProductsSection() {
                     {/* Product 3: WaiWai AI Chat */}
                     <motion.div
                         variants={fadeInUp}
-                        className="group relative rounded-2xl overflow-hidden glass-card border border-emerald-200/50"
+                        className="group relative rounded-2xl overflow-hidden glass-card glass-shimmer border border-emerald-200/50 hover:border-emerald-300/70 transition-all duration-500 hover:shadow-[0_20px_60px_-10px_rgba(16,185,129,0.2)]"
                     >
                         <div className="h-40 w-full overflow-hidden relative bg-gradient-to-br from-emerald-50 to-sky-50 flex items-center justify-center">
-                            <div className="text-5xl">💬</div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/20 via-sky-100/10 to-transparent z-10" />
+                            <div className="text-5xl relative z-20">💬</div>
                         </div>
                         <div className="p-5 relative flex flex-col">
                             <div className="flex items-start justify-between gap-3 mb-3">
