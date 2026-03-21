@@ -9,7 +9,7 @@ export default function Hero() {
     const yVideo = useTransform(scrollY, [0, 600], [0, 20]);
 
     return (
-        <section className="relative min-h-[90svh] lg:min-h-screen flex items-center overflow-hidden pt-20 pb-12 lg:pt-0 lg:pb-0 bg-white">
+        <section className="relative min-h-[80svh] lg:min-h-[90vh] flex items-center overflow-hidden pt-20 pb-8 lg:pt-16 lg:pb-0 bg-white">
             {/* ── Background: soft blue gradient ── */}
             <div
                 className="absolute inset-0"
@@ -45,7 +45,7 @@ export default function Hero() {
                                 muted
                                 loop
                                 playsInline
-                                className="w-[140%] h-auto opacity-[0.2] object-cover"
+                                className="w-[160%] h-auto opacity-[0.3] object-cover"
                             >
                                 <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
                             </video>
