@@ -4,14 +4,14 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 /* Floating particles */
-const particles = Array.from({ length: 14 }, (_, i) => ({
+const particles = Array.from({ length: 12 }, (_, i) => ({
     id: i,
     size: 2 + Math.random() * 4,
-    x: 30 + Math.random() * 60,
-    startY: 50 + Math.random() * 40,
+    x: 25 + Math.random() * 65,
+    startY: 40 + Math.random() * 45,
     duration: 7 + Math.random() * 10,
     delay: Math.random() * 6,
-    opacity: 0.12 + Math.random() * 0.2,
+    opacity: 0.1 + Math.random() * 0.2,
 }));
 
 export default function Hero() {
@@ -22,7 +22,7 @@ export default function Hero() {
 
     return (
         <section className="relative min-h-[85svh] lg:min-h-screen flex items-center overflow-hidden pt-24 lg:pt-0 bg-white">
-            {/* ── Blue gradient background (opaque to block layout bg) ── */}
+            {/* ── Blue gradient background ── */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -31,7 +31,7 @@ export default function Hero() {
                 aria-hidden="true"
             />
 
-            {/* Subtle tech grid lines */}
+            {/* Tech grid */}
             <div
                 className="absolute inset-0 pointer-events-none opacity-[0.04]"
                 style={{
@@ -40,6 +40,96 @@ export default function Hero() {
                 }}
                 aria-hidden="true"
             />
+
+            {/* ── Tech waves — full-width, bottom-anchored ── */}
+            <div className="absolute bottom-0 left-0 right-0 pointer-events-none z-[5]" aria-hidden="true">
+                <svg
+                    className="w-full"
+                    viewBox="0 0 1440 320"
+                    preserveAspectRatio="none"
+                    style={{ height: '45vh', minHeight: '200px' }}
+                >
+                    <defs>
+                        <linearGradient id="wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(59,130,246,0.08)" />
+                            <stop offset="50%" stopColor="rgba(96,165,250,0.15)" />
+                            <stop offset="100%" stopColor="rgba(147,197,253,0.08)" />
+                        </linearGradient>
+                        <linearGradient id="wave-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(96,165,250,0.06)" />
+                            <stop offset="50%" stopColor="rgba(59,130,246,0.12)" />
+                            <stop offset="100%" stopColor="rgba(191,219,254,0.06)" />
+                        </linearGradient>
+                        <linearGradient id="wave-grad-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(147,197,253,0.05)" />
+                            <stop offset="50%" stopColor="rgba(59,130,246,0.1)" />
+                            <stop offset="100%" stopColor="rgba(96,165,250,0.05)" />
+                        </linearGradient>
+                        <linearGradient id="wave-line-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(59,130,246,0)" />
+                            <stop offset="20%" stopColor="rgba(59,130,246,0.3)" />
+                            <stop offset="50%" stopColor="rgba(96,165,250,0.5)" />
+                            <stop offset="80%" stopColor="rgba(59,130,246,0.3)" />
+                            <stop offset="100%" stopColor="rgba(59,130,246,0)" />
+                        </linearGradient>
+                        <linearGradient id="wave-line-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(96,165,250,0)" />
+                            <stop offset="30%" stopColor="rgba(96,165,250,0.25)" />
+                            <stop offset="70%" stopColor="rgba(147,197,253,0.35)" />
+                            <stop offset="100%" stopColor="rgba(96,165,250,0)" />
+                        </linearGradient>
+                        <linearGradient id="wave-line-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="rgba(147,197,253,0)" />
+                            <stop offset="40%" stopColor="rgba(147,197,253,0.2)" />
+                            <stop offset="60%" stopColor="rgba(191,219,254,0.3)" />
+                            <stop offset="100%" stopColor="rgba(147,197,253,0)" />
+                        </linearGradient>
+                    </defs>
+
+                    {/* Wave fill layers (back to front) */}
+                    <path
+                        d="M0 220 C240 180 480 260 720 200 S1200 240 1440 190 L1440 320 L0 320 Z"
+                        fill="url(#wave-grad-3)"
+                        className="animate-[wave-drift_12s_ease-in-out_infinite]"
+                    />
+                    <path
+                        d="M0 240 C200 200 440 280 720 220 S1100 260 1440 210 L1440 320 L0 320 Z"
+                        fill="url(#wave-grad-2)"
+                        className="animate-[wave-drift_10s_ease-in-out_0.5s_infinite_reverse]"
+                    />
+                    <path
+                        d="M0 260 C300 230 500 290 720 240 S1000 270 1440 230 L1440 320 L0 320 Z"
+                        fill="url(#wave-grad-1)"
+                        className="animate-[wave-drift_8s_ease-in-out_1s_infinite]"
+                    />
+
+                    {/* Animated stroke lines on wave crests — tech feel */}
+                    <path
+                        d="M0 225 C240 185 480 265 720 205 S1200 245 1440 195"
+                        fill="none"
+                        stroke="url(#wave-line-3)"
+                        strokeWidth="1"
+                        className="animate-[wave-drift_12s_ease-in-out_infinite]"
+                    />
+                    <path
+                        d="M0 245 C200 205 440 285 720 225 S1100 265 1440 215"
+                        fill="none"
+                        stroke="url(#wave-line-2)"
+                        strokeWidth="1.5"
+                        strokeDasharray="12 8"
+                        className="animate-[wave-drift_10s_ease-in-out_0.5s_infinite_reverse] animate-[wave-dash_4s_linear_infinite]"
+                        style={{ animation: 'wave-drift 10s ease-in-out 0.5s infinite reverse, wave-dash 4s linear infinite' }}
+                    />
+                    <path
+                        d="M0 265 C300 235 500 295 720 245 S1000 275 1440 235"
+                        fill="none"
+                        stroke="url(#wave-line-1)"
+                        strokeWidth="1.5"
+                        strokeDasharray="8 6"
+                        style={{ animation: 'wave-drift 8s ease-in-out 1s infinite, wave-dash 3s linear infinite' }}
+                    />
+                </svg>
+            </div>
 
             {/* Floating particles */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -115,15 +205,15 @@ export default function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* Honu — right side, overlapping into center */}
+                    {/* Honu — riding on the waves */}
                     <motion.div
                         style={{ y: yImage, opacity: opacityHero }}
                         initial={{ opacity: 0, x: 40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1.3, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 relative"
+                        className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-[45%] relative z-[6]"
                     >
-                        {/* Blue glow halo behind honu */}
+                        {/* Glow halo */}
                         <div
                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                             style={{
@@ -136,61 +226,13 @@ export default function Hero() {
                             aria-hidden="true"
                         />
 
-                        {/* Tech trace lines behind honu */}
-                        <svg
-                            className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]"
-                            viewBox="0 0 600 400"
-                            fill="none"
-                            aria-hidden="true"
-                        >
-                            <path
-                                d="M50 300 Q150 250 250 280 T450 220 T600 180"
-                                stroke="url(#trace1)"
-                                strokeWidth="1.5"
-                                strokeDasharray="8 6"
-                                className="animate-[hero-trace_6s_linear_infinite]"
-                            />
-                            <path
-                                d="M0 200 Q100 180 200 210 T400 170 T580 140"
-                                stroke="url(#trace2)"
-                                strokeWidth="1"
-                                strokeDasharray="6 8"
-                                className="animate-[hero-trace_8s_linear_1s_infinite]"
-                            />
-                            <path
-                                d="M100 350 Q200 320 300 340 T500 280 T620 250"
-                                stroke="url(#trace3)"
-                                strokeWidth="1"
-                                strokeDasharray="4 10"
-                                className="animate-[hero-trace_10s_linear_2s_infinite]"
-                            />
-                            <defs>
-                                <linearGradient id="trace1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="rgba(59,130,246,0)" />
-                                    <stop offset="30%" stopColor="rgba(59,130,246,1)" />
-                                    <stop offset="70%" stopColor="rgba(147,197,253,1)" />
-                                    <stop offset="100%" stopColor="rgba(59,130,246,0)" />
-                                </linearGradient>
-                                <linearGradient id="trace2" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="rgba(96,165,250,0)" />
-                                    <stop offset="40%" stopColor="rgba(96,165,250,0.8)" />
-                                    <stop offset="100%" stopColor="rgba(96,165,250,0)" />
-                                </linearGradient>
-                                <linearGradient id="trace3" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="rgba(147,197,253,0)" />
-                                    <stop offset="50%" stopColor="rgba(147,197,253,0.6)" />
-                                    <stop offset="100%" stopColor="rgba(147,197,253,0)" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-
                         <div className="relative max-w-xl lg:max-w-none mx-auto">
                             <Image
                                 src="/ホヌ_背景透過.png"
                                 alt="WaiWai AI - ホヌ（ウミガメ）"
                                 width={1280}
                                 height={853}
-                                className="w-full h-auto drop-shadow-[0_16px_40px_rgba(37,99,235,0.1)]"
+                                className="w-full h-auto drop-shadow-[0_16px_40px_rgba(37,99,235,0.12)]"
                                 sizes="(max-width: 1024px) 100vw, 55vw"
                                 priority
                             />
@@ -212,9 +254,14 @@ export default function Hero() {
                     0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
                     50% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.6; }
                 }
-                @keyframes hero-trace {
+                @keyframes wave-drift {
+                    0% { transform: translateX(0); }
+                    50% { transform: translateX(-30px); }
+                    100% { transform: translateX(0); }
+                }
+                @keyframes wave-dash {
                     0% { stroke-dashoffset: 0; }
-                    100% { stroke-dashoffset: -100; }
+                    100% { stroke-dashoffset: -40; }
                 }
             `}</style>
         </section>
