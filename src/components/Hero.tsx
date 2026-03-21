@@ -1,46 +1,20 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
 
 export default function Hero() {
     const { scrollY } = useScroll();
     const opacityHero = useTransform(scrollY, [0, 600], [1, 0]);
     const yText = useTransform(scrollY, [0, 600], [0, 50]);
-    const yImage = useTransform(scrollY, [0, 600], [0, 20]);
+    const yVideo = useTransform(scrollY, [0, 600], [0, 20]);
 
     return (
         <section className="relative min-h-[90svh] lg:min-h-screen flex items-center overflow-hidden pt-20 pb-12 lg:pt-0 lg:pb-0 bg-white">
-            {/* ── Background: soft blue gradient only ── */}
+            {/* ── Background: soft blue gradient ── */}
             <div
                 className="absolute inset-0"
                 style={{
                     background: 'linear-gradient(160deg, #eff6ff 0%, #dbeafe 20%, #e0f2fe 45%, #f0f9ff 70%, #ffffff 100%)',
-                }}
-                aria-hidden="true"
-            />
-
-            {/* ── Soft wave shapes (CSS only, no SVG) ── */}
-            <div
-                className="absolute bottom-0 left-0 right-0 h-[30%] pointer-events-none"
-                style={{
-                    background: 'linear-gradient(to top, rgba(219,234,254,0.4) 0%, transparent 100%)',
-                }}
-                aria-hidden="true"
-            />
-            <div
-                className="absolute -bottom-20 -left-[10%] w-[120%] h-[220px] pointer-events-none opacity-30"
-                style={{
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(147,197,253,0.6) 30%, rgba(96,165,250,0.4) 60%, transparent 100%)',
-                    borderRadius: '50% 50% 0 0',
-                }}
-                aria-hidden="true"
-            />
-            <div
-                className="absolute -bottom-32 -left-[5%] w-[110%] h-[180px] pointer-events-none opacity-20"
-                style={{
-                    background: 'linear-gradient(90deg, transparent 10%, rgba(59,130,246,0.5) 40%, rgba(147,197,253,0.4) 70%, transparent 100%)',
-                    borderRadius: '50% 50% 0 0',
                 }}
                 aria-hidden="true"
             />
@@ -57,16 +31,17 @@ export default function Hero() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 relative"
                     >
-                        {/* Mobile only: ghosted honu behind text */}
-                        <div className="absolute inset-0 lg:hidden pointer-events-none flex items-center justify-center overflow-hidden" aria-hidden="true">
-                            <Image
-                                src="/ホヌ_背景透過.png"
-                                alt=""
-                                width={640}
-                                height={427}
-                                className="w-[120%] max-w-lg h-auto opacity-[0.22]"
-                                sizes="80vw"
-                            />
+                        {/* Mobile only: ghosted video behind text */}
+                        <div className="absolute inset-0 lg:hidden pointer-events-none flex items-center justify-center overflow-hidden rounded-2xl" aria-hidden="true">
+                            <video
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-[130%] h-auto opacity-[0.15] object-cover"
+                            >
+                                <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
+                            </video>
                         </div>
 
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900 mb-6">
@@ -113,24 +88,25 @@ export default function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* Honu */}
+                    {/* Honu video — desktop */}
                     <motion.div
-                        style={{ y: yImage, opacity: opacityHero }}
+                        style={{ y: yVideo, opacity: opacityHero }}
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                         className="hidden lg:block w-full lg:w-[50%] relative z-[6] order-1 lg:order-2"
                     >
-                        <div className="relative max-w-md sm:max-w-lg lg:max-w-none mx-auto lg:-mr-8">
-                            <Image
-                                src="/ホヌ_背景透過.png"
-                                alt="WaiWai AI - ホヌ（ウミガメ）"
-                                width={1280}
-                                height={853}
-                                className="w-full h-auto drop-shadow-[0_12px_32px_rgba(30,58,138,0.1)]"
-                                sizes="(max-width: 1024px) 80vw, 50vw"
-                                priority
-                            />
+                        <div className="relative lg:max-w-none mx-auto lg:-mr-8 rounded-2xl overflow-hidden">
+                            <video
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="w-full h-auto rounded-2xl"
+                                style={{ filter: 'drop-shadow(0 12px 32px rgba(30,58,138,0.1))' }}
+                            >
+                                <source src="/電脳の海を泳ぐホヌ動画.mp4" type="video/mp4" />
+                            </video>
                         </div>
                     </motion.div>
 
