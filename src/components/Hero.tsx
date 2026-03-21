@@ -55,13 +55,13 @@ export default function Hero() {
                 transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="relative z-10 w-full mt-auto"
             >
-                <div className="relative w-full max-w-5xl mx-auto px-6">
-                    <div className="relative w-full" style={{ aspectRatio: '3392/1216' }}>
+                <div className="relative w-full max-w-4xl mx-auto px-6 overflow-hidden">
+                    <div className="relative w-[130%] -ml-[5%]" style={{ aspectRatio: '3392/1216' }}>
                         <Image
                             src="/hero-honu.png"
                             alt="WaiWai AI"
                             fill
-                            className="object-contain"
+                            className="object-cover object-right"
                             sizes="100vw"
                             priority
                         />
