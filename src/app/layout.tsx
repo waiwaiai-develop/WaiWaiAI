@@ -1,21 +1,13 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Sora, Noto_Sans_JP } from 'next/font/google';
+import { Plus_Jakarta_Sans, Noto_Sans_JP } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const dmSans = DM_Sans({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-  preload: true,
-});
-
-const sora = Sora({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-sora',
+  variable: '--font-plus-jakarta',
   display: 'swap',
   preload: true,
 });
@@ -249,7 +241,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={`${dmSans.variable} ${sora.variable} ${notoSansJP.variable}`}>
+    <html lang="ja" className={`${plusJakarta.variable} ${notoSansJP.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
