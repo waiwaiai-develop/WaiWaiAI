@@ -48,7 +48,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
 
       <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-100">
         <div>
-          <span className="text-3xl font-extrabold text-slate-900">
+          <span className="text-3xl font-bold text-slate-900">
             ¥{product.price.toLocaleString()}
           </span>
           <span className="text-slate-500 text-sm ml-1">（税込）</span>

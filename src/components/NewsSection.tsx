@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Newspaper, ArrowUpRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 import { newsData } from '@/data/newsData';
@@ -12,41 +12,37 @@ export default function NewsSection() {
         <section id="news" className="py-24 lg:py-32 relative bg-slate-50 overflow-hidden">
             <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-7xl">
 
-                <div className="border border-slate-200 bg-white rounded-[2.5rem] shadow-[0_8px_30px_rgba(15,23,42,0.04)] overflow-hidden">
+                <div className="border border-slate-200 bg-white rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] overflow-hidden">
                     <div className="flex flex-col lg:flex-row">
 
                         {/* Left Info Area */}
                         <div className="lg:w-1/3 bg-blue-50 p-10 lg:p-14 text-slate-900 relative overflow-hidden border-r border-slate-100">
 
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 10 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="w-14 h-14 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-8 border border-blue-100"
                             >
-                                <Newspaper className="w-6 h-6 text-blue-600" />
-                            </motion.div>
+                                <h2 className="text-3xl lg:text-4xl font-bold mb-6 tracking-tight">
+                                    INFORMATION
+                                </h2>
+                                <p className="text-slate-600 leading-relaxed font-medium mb-12">
+                                    WaiWai AIの最新の技術動向、開発の裏側、プレスリリースをお届けします。
+                                </p>
 
-                            <h2 className="text-3xl lg:text-4xl font-black mb-6 tracking-tight">
-                                INFORMATION
-                            </h2>
-                            <p className="text-slate-600 leading-relaxed font-bold mb-12">
-                                WaiWai AIの最新の技術動向、開発の裏側、プレスリリースをお届けします。
-                            </p>
-
-                            <div className="flex flex-col gap-4">
-                                <Link href="/blog" className="group flex items-center justify-between px-6 py-4 rounded-xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 hover:text-white transition-all font-bold shadow-sm text-slate-800">
-                                    <span>TECH BLOG 一覧</span>
-                                    <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors">
-                                        <ArrowRight className="w-4 h-4 group-hover:text-white text-slate-600" />
-                                    </div>
+                                <Link
+                                    href="/blog"
+                                    className="group inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                                >
+                                    TECH BLOG 一覧
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                                 </Link>
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Right Content Area */}
                         <div className="lg:w-2/3 p-6 lg:p-14 bg-white">
-                            <div className="flex flex-col space-y-2">
+                            <div className="flex flex-col">
                                 {newsData.map((item, index) => {
                                     const Wrapper = item.link ? 'a' : 'div';
                                     const linkProps = item.link ? { href: item.link } : {};
@@ -60,23 +56,21 @@ export default function NewsSection() {
                                         >
                                             <Wrapper
                                                 {...linkProps}
-                                                className={`block p-6 rounded-2xl border border-transparent transition-all duration-300 ${item.link ? 'group hover:border-blue-100 hover:bg-blue-50/50 cursor-pointer' : ''}`}
+                                                className={`block py-5 border-b border-slate-100 last:border-0 transition-colors duration-200 ${item.link ? 'group cursor-pointer' : ''}`}
                                             >
-                                                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                                                    <div className="flex items-center gap-4 w-48 shrink-0">
-                                                        <span className="text-slate-500 font-mono text-sm tracking-tighter">{item.date}</span>
-                                                        <span className={`text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-200 text-slate-800' : 'bg-blue-100 text-blue-700'}`}>
+                                                <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                                                    <div className="flex items-center gap-3 shrink-0">
+                                                        <span className="text-slate-400 font-mono text-sm">{item.date}</span>
+                                                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${item.label === 'NEWS' ? 'bg-slate-100 text-slate-500' : 'bg-blue-50 text-blue-600'}`}>
                                                             {item.label}
                                                         </span>
                                                     </div>
-                                                    <h3 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors flex-1 line-clamp-2 md:line-clamp-1">
+                                                    <h3 className="text-sm font-semibold text-slate-700 group-hover:text-blue-600 transition-colors flex-1 line-clamp-2 md:line-clamp-1">
                                                         {item.title}
+                                                        {item.link && (
+                                                            <span className="ml-1.5 inline-block text-slate-300 group-hover:text-blue-400 transition-colors">↗</span>
+                                                        )}
                                                     </h3>
-                                                    {item.link && (
-                                                        <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm border border-slate-100 shrink-0 group-hover:shadow-md group-hover:border-blue-200 transition-all">
-                                                            <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 group-hover:rotate-45 transition-transform" />
-                                                        </div>
-                                                    )}
                                                 </div>
                                             </Wrapper>
                                         </motion.div>

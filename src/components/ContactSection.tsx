@@ -87,13 +87,6 @@ export default function ContactSection() {
             id="contact"
             className="py-24 lg:py-32 relative overflow-hidden"
         >
-            {/* Floating glass orbs in background */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-blue-200/20 backdrop-blur-3xl blur-3xl" />
-                <div className="absolute bottom-1/3 -right-16 w-64 h-64 rounded-full bg-indigo-200/20 backdrop-blur-3xl blur-3xl" />
-                <div className="absolute top-2/3 left-1/3 w-48 h-48 rounded-full bg-sky-100/30 backdrop-blur-3xl blur-2xl" />
-            </div>
-
             <div className="container mx-auto px-6 max-w-7xl relative z-10">
                 {/* Header */}
                 <motion.div
@@ -103,7 +96,7 @@ export default function ContactSection() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="text-center mb-16 flex flex-col items-center"
                 >
-                    <span className="inline-block py-1.5 px-4 rounded-full glass-shimmer text-blue-700 font-bold text-xs tracking-wider uppercase mb-6 border border-blue-200/40">
+                    <span className="text-blue-600 font-semibold text-xs tracking-widest uppercase mb-5">
                         Contact Us
                     </span>
                     <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]">
@@ -126,18 +119,18 @@ export default function ContactSection() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12"
+                        className="flex flex-wrap justify-center gap-5 mb-12"
                     >
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                             NDA締結可能
                         </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                             最短即日で対応可能
                         </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/60 text-sm font-semibold text-slate-700 shadow-sm">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                        <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                             IT未経験の方も安心サポート
                         </div>
                     </motion.div>
@@ -151,7 +144,7 @@ export default function ContactSection() {
                     >
                         <div
                             id="contact-form"
-                            className="glass-panel p-8 md:p-10 shadow-[0_24px_80px_-12px_rgba(37,99,235,0.15)]"
+                            className="glass-panel p-8 md:p-10 shadow-[0_8px_40px_rgba(0,0,0,0.07)]"
                         >
                             <AnimatePresence mode="wait">
                                 {status === 'success' ? (
@@ -161,18 +154,18 @@ export default function ContactSection() {
                                         animate={{ opacity: 1, scale: 1 }}
                                         className="flex flex-col items-center justify-center py-12 text-center"
                                     >
-                                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6 glass border border-white/60">
+                                        <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6">
                                             <CheckCircle2 className="w-10 h-10 text-emerald-500" />
                                         </div>
                                         <h3 className="text-2xl font-bold text-slate-900 mb-4">
                                             送信が完了しました
                                         </h3>
-                                        <p className="text-slate-700 mb-8 max-w-md">
+                                        <p className="text-slate-600 mb-8 max-w-md">
                                             お問い合わせいただきありがとうございます。内容を確認次第、担当者よりご連絡させていただきます。
                                         </p>
                                         <button
                                             onClick={() => setStatus('idle')}
-                                            className="px-8 py-3 glass-strong text-slate-700 font-bold rounded-xl hover:bg-white/60 transition-colors"
+                                            className="px-8 py-3 text-sm font-semibold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
                                         >
                                             新しく問い合わせをする
                                         </button>
@@ -187,7 +180,7 @@ export default function ContactSection() {
                                         className="space-y-5"
                                     >
                                         {status === 'error' && (
-                                            <div className="p-4 bg-red-50/80 backdrop-blur-sm text-red-600 rounded-xl flex items-center gap-3 text-sm font-bold border border-red-100">
+                                            <div className="p-4 bg-red-50 text-red-600 rounded-xl flex items-center gap-3 text-sm border border-red-100">
                                                 <AlertCircle className="w-5 h-5 shrink-0" />
                                                 {errorMessage}
                                             </div>
@@ -195,11 +188,9 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label htmlFor="contact-company" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                    会社名{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
-                                                        必須
-                                                    </span>
+                                                <label htmlFor="contact-company" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                    会社名
+                                                    <span className="text-red-400 text-[10px]" aria-label="必須項目">必須</span>
                                                 </label>
                                                 <input
                                                     id="contact-company"
@@ -215,11 +206,9 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label htmlFor="contact-name" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                    ご担当者名{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
-                                                        必須
-                                                    </span>
+                                                <label htmlFor="contact-name" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                    ご担当者名
+                                                    <span className="text-red-400 text-[10px]" aria-label="必須項目">必須</span>
                                                 </label>
                                                 <input
                                                     id="contact-name"
@@ -238,11 +227,9 @@ export default function ContactSection() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                             <div className="space-y-1.5">
-                                                <label htmlFor="contact-email" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                    メールアドレス{' '}
-                                                    <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
-                                                        必須
-                                                    </span>
+                                                <label htmlFor="contact-email" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                    メールアドレス
+                                                    <span className="text-red-400 text-[10px]" aria-label="必須項目">必須</span>
                                                 </label>
                                                 <input
                                                     id="contact-email"
@@ -258,11 +245,9 @@ export default function ContactSection() {
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label htmlFor="contact-phone" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                    電話番号{' '}
-                                                    <span className="bg-slate-200 text-slate-500 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="任意項目">
-                                                        任意
-                                                    </span>
+                                                <label htmlFor="contact-phone" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                    電話番号
+                                                    <span className="text-slate-400 text-[10px]" aria-label="任意項目">任意</span>
                                                 </label>
                                                 <input
                                                     id="contact-phone"
@@ -279,11 +264,9 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label htmlFor="contact-category" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                ご相談種別{' '}
-                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
-                                                    必須
-                                                </span>
+                                            <label htmlFor="contact-category" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                ご相談種別
+                                                <span className="text-red-400 text-[10px]" aria-label="必須項目">必須</span>
                                             </label>
                                             <select
                                                 id="contact-category"
@@ -323,11 +306,9 @@ export default function ContactSection() {
                                         </div>
 
                                         <div className="space-y-1.5">
-                                            <label htmlFor="contact-message" className="text-sm font-bold text-slate-700 flex items-center gap-2">
-                                                お問い合わせ内容{' '}
-                                                <span className="bg-blue-100 text-blue-700 text-[10px] px-2 py-0.5 rounded-sm uppercase tracking-wider" aria-label="必須項目">
-                                                    必須
-                                                </span>
+                                            <label htmlFor="contact-message" className="text-sm font-semibold text-slate-700 flex items-center gap-1.5">
+                                                お問い合わせ内容
+                                                <span className="text-red-400 text-[10px]" aria-label="必須項目">必須</span>
                                             </label>
                                             <textarea
                                                 id="contact-message"
@@ -348,7 +329,7 @@ export default function ContactSection() {
                                             disabled={status === 'submitting'}
                                             aria-busy={status === 'submitting'}
                                             aria-label={status === 'submitting' ? '送信中' : 'お問い合わせを送信する'}
-                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 shadow-[0_10px_36px_-4px_rgba(37,99,235,0.55)] hover:shadow-[0_16px_48px_-4px_rgba(37,99,235,0.70)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none hover:-translate-y-0.5"
+                                            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 group disabled:opacity-70 disabled:pointer-events-none"
                                         >
                                             {status === 'submitting' ? (
                                                 <>
@@ -358,7 +339,7 @@ export default function ContactSection() {
                                             ) : (
                                                 <>
                                                     送信する
-                                                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                                                    <Send className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                                                 </>
                                             )}
                                         </button>

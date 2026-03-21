@@ -30,10 +30,10 @@ export default function CompanySection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block glass-shimmer px-4 py-2 rounded-full border border-blue-200/40">
+                    <span className="text-blue-600 text-xs font-semibold tracking-[0.2em] uppercase mb-4 inline-block">
                         COMPANY
                     </span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mt-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 mt-2">
                         会社概要
                     </h2>
                 </motion.div>
@@ -44,7 +44,8 @@ export default function CompanySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="glass-panel glass-shimmer rounded-3xl border border-white/60 shadow-[0_24px_80px_-12px_rgba(37,99,235,0.12)] p-8 md:p-12"
+                    className="glass-panel rounded-2xl border border-white/60 p-8 md:p-12"
+                    style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.06)' }}
                 >
                     <motion.div
                         variants={staggerContainer}

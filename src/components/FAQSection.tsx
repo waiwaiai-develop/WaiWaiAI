@@ -83,7 +83,7 @@ export default function FAQSection() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-center mb-16"
             >
-              <span className="inline-block py-1.5 px-4 rounded-full glass-shimmer text-blue-700 font-bold text-xs tracking-wider uppercase mb-6 border border-blue-200/40">
+              <span className="text-blue-600 text-xs font-semibold tracking-[0.2em] uppercase mb-5 inline-block">
                 FAQ
               </span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">

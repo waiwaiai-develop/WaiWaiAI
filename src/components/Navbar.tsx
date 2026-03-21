@@ -45,15 +45,13 @@ export default function Navbar() {
 
                 {/* Desktop Nav */}
                 <nav aria-label="メインナビゲーション" className="hidden md:flex items-center">
-                    <div className="relative flex items-center gap-1 px-2 py-1.5 rounded-full glass border border-white/50 overflow-hidden">
-                        {/* light sweep shimmer */}
-                        <div className="glass-shimmer pointer-events-none" />
+                    <div className="flex items-center gap-1 px-2 py-1.5 rounded-full glass border border-white/50">
                         {navLinks.map(({ href, label }) => {
                             return (
                                 <Link
                                     key={href}
                                     href={href}
-                                    className="relative z-10 px-4 py-2 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 text-slate-700 hover:text-blue-600 hover:bg-white/50"
+                                    className="px-4 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-200 text-slate-700 hover:text-blue-600 hover:bg-white/50"
                                 >
                                     {label}
                                 </Link>

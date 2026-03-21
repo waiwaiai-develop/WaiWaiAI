@@ -27,7 +27,8 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group block bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-[0_4px_20px_-6px_rgba(59,130,246,0.08)] hover:shadow-[0_12px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-1 transition-all duration-300"
+        className="group block bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-slate-300 transition-all duration-300"
+        style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
       >
         <div className="p-6 md:p-8">
         <div className="flex flex-wrap items-center gap-2 mb-4">
