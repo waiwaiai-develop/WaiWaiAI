@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Noto_Sans_JP } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+const GA_MEASUREMENT_ID = 'G-PCFC14QV8B';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -245,6 +248,18 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </head>
       <body className="antialiased font-sans text-slate-900 overflow-x-hidden bg-white">
         <div className="min-h-screen flex flex-col">
