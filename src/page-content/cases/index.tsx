@@ -7,7 +7,6 @@ import ContactCTA from '@/components/ContactCTA';
 import { casesData } from '@/data/casesData';
 
 export default function CasesPage() {
-    // Map icon names to actual Lucide components for CMS compatibility
     const renderIcon = (iconName: string, className: string) => {
         switch (iconName) {
             case 'Clock': return <Clock className={className} />;
@@ -19,34 +18,33 @@ export default function CasesPage() {
 
     return (
         <div className="pt-32 pb-0 relative min-h-screen overflow-hidden bg-white">
-            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-[-1]"></div>
-            <div className="absolute inset-0 bg-grid-light opacity-50 z-[-1]"></div>
-
-            <div className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-5xl relative z-10">
 
                 {/* Page Header */}
-                <div className="text-center mb-20 animate-fade-in-up">
+                <div className="text-center mb-20">
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex items-center gap-3 justify-center mb-6"
                     >
-                        CASE STUDIES
+                        <div className="w-12 h-px bg-amber-500" />
+                        <span className="text-amber-600 text-xs font-semibold tracking-[0.3em] uppercase">Case Studies</span>
+                        <div className="w-12 h-px bg-amber-500" />
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6"
+                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-stone-900 leading-tight mb-6"
                     >
                         課題解決から導いた、<br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">圧倒的なROI事例</span>。
+                        <span className="text-gradient-amber">圧倒的なROI事例</span>。
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed"
+                        className="text-lg text-stone-600 max-w-2xl mx-auto font-medium leading-relaxed"
                     >
                         「AIを入れただけ」の自己満足で終わらせない。<br />
                         WaiWai AIが実際にコスト削減・売上向上（ROI）を実現したプロジェクトの一部をご紹介します。
@@ -54,7 +52,7 @@ export default function CasesPage() {
                 </div>
 
                 {/* Case Studies */}
-                <div className="space-y-24 pb-24">
+                <div className="space-y-6 pb-24">
                     {casesData.map((project, index) => (
                         <motion.div
                             key={project.id}
@@ -62,24 +60,21 @@ export default function CasesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.1 }}
-                            whileHover={{ y: -5, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-                            className="bg-white rounded-3xl border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] overflow-hidden flex flex-col relative transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] group"
+                            className="bg-white border border-stone-200 hover:border-amber-300 overflow-hidden flex flex-col relative transition-all duration-500 group"
                         >
                             <div className="grid grid-cols-1 lg:grid-cols-12 relative z-10">
 
-                                {/* Visual / Abstract Data Side */}
+                                {/* Visual / Data Side */}
                                 <div className={`lg:col-span-5 relative overflow-hidden flex flex-col justify-center items-center p-8 lg:p-12 ${project.bgImage}`}>
-                                    <div className="absolute inset-0 bg-grid-light opacity-20"></div>
                                     <div className="absolute top-6 left-6 z-10">
-                                        <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-white/95 backdrop-blur-sm shadow-sm text-blue-800`}>
+                                        <span className="inline-block px-4 py-1.5 text-sm font-bold bg-white/95 backdrop-blur-sm text-stone-800">
                                             {project.category}
                                         </span>
                                     </div>
 
-                                    {/* Big Data Visualization directly pointing to the ROI */}
                                     <div className="w-full max-w-sm mt-8 relative z-10 flex flex-col gap-4">
                                         {project.results.map((r, i) => (
-                                            <div key={i} className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-white shadow-xl">
+                                            <div key={i} className="bg-white/10 backdrop-blur-md p-6 border border-white/20 text-white shadow-xl">
                                                 <div className="flex items-center gap-3 mb-2 opacity-80">
                                                     {renderIcon(r.iconName, "w-6 h-6")} <span className="font-bold text-sm tracking-widest">{r.label}</span>
                                                 </div>
@@ -93,42 +88,41 @@ export default function CasesPage() {
 
                                 {/* Content Side */}
                                 <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-center bg-white">
-                                    <div className="text-sm font-bold text-slate-500 mb-3 flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    <div className="text-sm font-bold text-stone-500 mb-3 flex items-center gap-2">
+                                        <span className="w-2 h-2 bg-amber-500"></span>
                                         {project.client}
                                     </div>
-                                    <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 leading-tight mb-8">
+                                    <h2 className="text-2xl lg:text-3xl font-bold text-stone-900 leading-tight mb-8">
                                         {project.title}
                                     </h2>
 
                                     <div className="space-y-6 mb-8 relative">
-                                        {/* Connector Line */}
-                                        <div className="absolute left-[20px] top-6 bottom-6 w-px bg-slate-200 hidden sm:block"></div>
+                                        <div className="absolute left-[20px] top-6 bottom-6 w-px bg-stone-200 hidden sm:block"></div>
 
                                         <div className="relative pl-0 sm:pl-12">
-                                            <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-rose-50 border border-rose-100 text-rose-500 items-center justify-center font-bold text-xs">課題</div>
-                                            <h4 className="text-sm font-bold text-rose-500 mb-2 sm:hidden">抱えていた課題</h4>
-                                            <p className="text-slate-700 font-medium leading-relaxed bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                                            <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 bg-red-50 border border-red-100 text-red-500 items-center justify-center font-bold text-xs">課題</div>
+                                            <h4 className="text-sm font-bold text-red-500 mb-2 sm:hidden">抱えていた課題</h4>
+                                            <p className="text-stone-700 font-medium leading-relaxed bg-stone-50 p-5 border border-stone-200">
                                                 {project.problem}
                                             </p>
                                         </div>
 
-                                        <div className="relative pl-0 sm:pl-12 flex justify-center text-slate-300 py-1">
+                                        <div className="relative pl-0 sm:pl-12 flex justify-center text-stone-300 py-1">
                                             <ArrowDown className="w-5 h-5" />
                                         </div>
 
                                         <div className="relative pl-0 sm:pl-12">
-                                            <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-blue-50 border border-blue-100 text-blue-600 items-center justify-center font-bold text-xs">解決</div>
-                                            <h4 className="text-sm font-bold text-blue-600 mb-2 sm:hidden">解決策</h4>
-                                            <p className="text-slate-700 font-medium leading-relaxed bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                                            <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 bg-amber-50 border border-amber-200 text-amber-600 items-center justify-center font-bold text-xs">解決</div>
+                                            <h4 className="text-sm font-bold text-amber-600 mb-2 sm:hidden">解決策</h4>
+                                            <p className="text-stone-700 font-medium leading-relaxed bg-amber-50/50 p-5 border border-amber-200">
                                                 {project.solution}
                                             </p>
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-slate-100">
+                                    <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-stone-200">
                                         {project.tags.map((tag, tagIndex) => (
-                                            <span key={tagIndex} className="px-3 py-1.5 rounded-md bg-slate-50 text-slate-500 font-bold text-xs border border-slate-200">
+                                            <span key={tagIndex} className="px-3 py-1.5 bg-stone-50 text-stone-500 font-bold text-xs border border-stone-200">
                                                 {tag}
                                             </span>
                                         ))}

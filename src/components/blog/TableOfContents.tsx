@@ -14,7 +14,7 @@ export default function TableOfContents() {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    const article = document.querySelector('article');
+    const article = document.querySelector('article') || document.querySelector('[class*="prose"]')?.parentElement;
     if (!article) return;
 
     const elements = article.querySelectorAll('h2, h3');
@@ -40,10 +40,10 @@ export default function TableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="bg-slate-50 rounded-2xl border border-slate-200 p-6 sticky top-28">
+    <nav className="bg-stone-50 border border-stone-200 p-6 sticky top-28">
       <div className="flex items-center gap-2 mb-4">
-        <List className="w-4 h-4 text-blue-600" />
-        <h4 className="font-bold text-slate-800 text-sm uppercase tracking-wider">目次</h4>
+        <List className="w-4 h-4 text-amber-600" />
+        <h4 className="font-bold text-stone-800 text-sm uppercase tracking-wider">目次</h4>
       </div>
       <ul className="space-y-1.5">
         {headings.map((h) => (
@@ -54,8 +54,8 @@ export default function TableOfContents() {
                 h.level === 3 ? 'pl-6' : 'pl-3'
               } ${
                 activeId === h.id
-                  ? 'text-blue-600 border-blue-500'
-                  : 'text-slate-500 border-transparent hover:text-slate-800 hover:border-slate-300'
+                  ? 'text-amber-600 border-amber-500'
+                  : 'text-stone-500 border-transparent hover:text-stone-800 hover:border-stone-300'
               }`}
             >
               {h.text}

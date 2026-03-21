@@ -66,32 +66,32 @@ export default function CommercialAct() {
 
     return (
         <div className="pt-32 pb-24 relative min-h-screen bg-white">
-            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-[-1]"></div>
+            <div className="absolute top-0 w-full h-96 hidden z-[-1]"></div>
             <div className="container mx-auto px-4 md:px-8 max-w-4xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-12 text-center"
                 >
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    <h1 className="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight mb-4">
                         特定商取引法に基づく表記
                     </h1>
-                    <p className="text-slate-500 font-medium tracking-widest text-sm">SPECIFIED COMMERCIAL TRANSACTIONS ACT</p>
+                    <p className="text-stone-500 font-medium tracking-widest text-sm">SPECIFIED COMMERCIAL TRANSACTIONS ACT</p>
                 </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white rounded-3xl p-8 md:p-12 border border-blue-50 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)]"
+                    className="bg-white  p-8 md:p-12 border border-stone-200 "
                 >
-                    <div className="space-y-0 text-slate-700">
+                    <div className="space-y-0 text-stone-700">
                         {rows.map((row, i) => (
                             <div
                                 key={row.label}
-                                className={`flex flex-col md:flex-row py-5 ${i < rows.length - 1 ? 'border-b border-slate-100' : ''}`}
+                                className={`flex flex-col md:flex-row py-5 ${i < rows.length - 1 ? 'border-b border-stone-100' : ''}`}
                             >
-                                <div className="md:w-1/3 font-bold text-slate-900 mb-2 md:mb-0">{row.label}</div>
+                                <div className="md:w-1/3 font-bold text-stone-900 mb-2 md:mb-0">{row.label}</div>
                                 <div className="md:w-2/3">
                                     {row.value && <span>{row.value}</span>}
                                     {row.list && (
@@ -107,7 +107,7 @@ export default function CommercialAct() {
                         ))}
                     </div>
 
-                    <div className="mt-10 pt-6 border-t border-slate-100 text-sm text-slate-400 font-medium">
+                    <div className="mt-10 pt-6 border-t border-stone-100 text-sm text-stone-400 font-medium">
                         <p>制定日：2025年1月23日</p>
                         <p>最終改定日：2026年3月15日</p>
                     </div>

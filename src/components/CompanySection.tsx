@@ -21,19 +21,22 @@ const businessItems = [
 
 export default function CompanySection() {
     return (
-        <section id="company" className="py-24 md:py-32 relative">
+        <section id="company" className="py-24 md:py-32 bg-stone-950 relative">
             <div className="container mx-auto px-4 md:px-8 max-w-5xl">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="mb-16"
                 >
-                    <span className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block glass px-4 py-2 rounded-full border border-white/50">
-                        COMPANY
-                    </span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mt-4">
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-8 h-px bg-amber-500" />
+                        <span className="text-amber-500 font-bold text-xs tracking-widest uppercase">
+                            COMPANY
+                        </span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
                         会社概要
                     </h2>
                 </motion.div>
@@ -44,37 +47,36 @@ export default function CompanySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="glass rounded-3xl border border-white/50 shadow-lg p-8 md:p-12"
+                    className="border border-stone-800"
                 >
                     <motion.div
                         variants={staggerContainer}
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="space-y-6"
                     >
                         {companyInfo.map(({ icon: Icon, label, value }) => (
-                            <motion.div key={label} variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-200/30">
-                                <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                            <motion.div key={label} variants={springItem} className="flex flex-col md:flex-row border-b border-stone-800">
+                                <div className="md:w-1/3 flex items-center gap-2 text-amber-500 font-bold px-6 py-4 border-b border-stone-800 md:border-b-0 md:border-r md:border-stone-800">
                                     <Icon className="w-5 h-5" />
                                     {label}
                                 </div>
-                                <div className="md:w-2/3 text-slate-800 font-medium">
+                                <div className="md:w-2/3 text-stone-300 font-medium px-6 py-4">
                                     {value}
                                 </div>
                             </motion.div>
                         ))}
 
-                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4 border-b border-slate-200/30">
-                            <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                        <motion.div variants={springItem} className="flex flex-col md:flex-row border-b border-stone-800">
+                            <div className="md:w-1/3 flex items-center gap-2 text-amber-500 font-bold px-6 py-4 border-b border-stone-800 md:border-b-0 md:border-r md:border-stone-800">
                                 <Users2 className="w-5 h-5" />
                                 事業内容
                             </div>
-                            <div className="md:w-2/3 text-slate-700 font-medium leading-relaxed">
+                            <div className="md:w-2/3 text-stone-300 font-medium px-6 py-4">
                                 <ul className="space-y-2">
                                     {businessItems.map((item) => (
                                         <li key={item} className="flex items-center gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                                             {item}
                                         </li>
                                     ))}
@@ -82,13 +84,13 @@ export default function CompanySection() {
                             </div>
                         </motion.div>
 
-                        <motion.div variants={springItem} className="flex flex-col md:flex-row gap-2 md:gap-8 py-4">
-                            <div className="md:w-1/3 flex items-center gap-2 text-blue-600 font-bold">
+                        <motion.div variants={springItem} className="flex flex-col md:flex-row">
+                            <div className="md:w-1/3 flex items-center gap-2 text-amber-500 font-bold px-6 py-4 border-b border-stone-800 md:border-b-0 md:border-r md:border-stone-800">
                                 <Mail className="w-5 h-5" />
                                 お問い合わせ
                             </div>
-                            <div className="md:w-2/3 text-slate-700 font-medium">
-                                <a href="#contact" className="text-blue-600 hover:text-blue-800 font-bold underline underline-offset-4 decoration-blue-200 hover:decoration-blue-400 transition-colors inline-flex items-center gap-1 group">
+                            <div className="md:w-2/3 text-stone-300 font-medium px-6 py-4">
+                                <a href="#contact" className="text-amber-500 hover:text-amber-400 font-bold underline underline-offset-4 decoration-amber-700 hover:decoration-amber-500 transition-colors inline-flex items-center gap-1 group">
                                     お問い合わせフォームより承っております <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </a>
                             </div>

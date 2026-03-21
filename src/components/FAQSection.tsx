@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { HelpCircle, ChevronDown } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
 
 const faqs = [
@@ -72,7 +72,7 @@ export default function FAQSection() {
           __html: JSON.stringify(faqSchema),
         }}
       />
-      <section id="faq" className="py-24 lg:py-32 relative overflow-hidden">
+      <section id="faq" className="py-24 lg:py-32 bg-stone-50 relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
@@ -81,23 +81,26 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="text-center mb-16"
+              className="mb-16"
             >
-              <span className="inline-block py-1.5 px-4 rounded-full glass text-slate-700 font-bold text-xs tracking-wider uppercase mb-6">
-                FAQ
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-px bg-amber-500" />
+                <span className="text-amber-600 font-bold text-xs tracking-widest uppercase">
+                  FAQ
+                </span>
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 mb-6 tracking-tight">
                 よくある質問
               </h2>
-              <p className="text-slate-700 max-w-2xl mx-auto text-lg">
+              <p className="text-stone-500 max-w-2xl text-lg">
                 AI導入やシステム開発について、よくいただく質問をまとめました。
                 <br />
                 その他のご質問はお気軽にご相談ください。
               </p>
             </motion.div>
 
-            {/* FAQ List - ガラススタイル */}
-            <div className="space-y-4">
+            {/* FAQ List */}
+            <div className="divide-y divide-stone-200 border-t border-stone-200">
               {faqs.map((faq, index) => (
                 <motion.div
                   key={index}
@@ -109,35 +112,29 @@ export default function FAQSection() {
                     delay: index * 0.05,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="glass-card border border-white/50 overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/20 transition-colors"
+                    className="w-full py-5 flex items-center justify-between text-left group"
                     aria-expanded={openIndex === index}
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl glass flex items-center justify-center shrink-0">
-                        <HelpCircle className="w-5 h-5 text-blue-600" />
-                      </div>
-                      <span className="font-bold text-slate-900 text-base md:text-lg">
-                        {faq.question}
-                      </span>
-                    </div>
-                    <ChevronDown
-                      className={`w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0 ml-4 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                    />
+                    <span className="font-bold text-stone-900 text-base md:text-lg group-hover:text-amber-700 transition-colors pr-4">
+                      {faq.question}
+                    </span>
+                    <span className="shrink-0 w-6 h-6 flex items-center justify-center text-stone-400 group-hover:text-amber-600 transition-colors">
+                      {openIndex === index ? (
+                        <Minus className="w-5 h-5" />
+                      ) : (
+                        <Plus className="w-5 h-5" />
+                      )}
+                    </span>
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? 'max-h-96' : 'max-h-0'
+                      openIndex === index ? 'max-h-96 pb-5' : 'max-h-0'
                     }`}
                   >
-                    <div className="px-6 pb-5 pl-20">
-                      <p className="text-slate-700 leading-relaxed">{faq.answer}</p>
-                    </div>
+                    <p className="text-stone-500 leading-relaxed">{faq.answer}</p>
                   </div>
                 </motion.div>
               ))}
@@ -151,10 +148,10 @@ export default function FAQSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-center mt-12"
             >
-              <p className="text-slate-600 mb-4">その他のご質問があればお気軽にどうぞ</p>
+              <p className="text-stone-500 mb-4">その他のご質問があればお気軽にどうぞ</p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors shadow-[0_8px_24px_-4px_rgba(37,99,235,0.4)] hover:shadow-[0_12px_32px_-4px_rgba(37,99,235,0.5)]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-500 text-stone-950 font-bold hover:bg-amber-400 transition-colors"
               >
                 無料で相談する
               </a>

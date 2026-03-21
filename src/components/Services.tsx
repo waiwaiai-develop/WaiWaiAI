@@ -10,45 +10,29 @@ const services = [
         icon: Bot,
         title: 'AI導入コンサル',
         description: '最適なAIツールの選定から社内浸透までサポート。',
-        iconColor: 'text-blue-600',
-        iconBg: 'bg-blue-500/10',
-        borderColor: 'border-blue-200/50',
-        glowColor: 'rgba(37,99,235,0.2)',
     },
     {
         icon: Settings,
         title: '業務自動化',
         description: '繰り返し作業をAIとRPAで効率化します。',
-        iconColor: 'text-sky-500',
-        iconBg: 'bg-sky-500/10',
-        borderColor: 'border-sky-200/50',
-        glowColor: 'rgba(14,165,233,0.2)',
     },
     {
         icon: Cpu,
         title: 'AIシステム開発',
         description: '御社専用のAIシステムをスピーディに開発。',
-        iconColor: 'text-indigo-600',
-        iconBg: 'bg-indigo-500/10',
-        borderColor: 'border-indigo-200/50',
-        glowColor: 'rgba(79,70,229,0.2)',
     },
     {
         icon: Target,
         title: 'AI顧問パック',
         description: '専属のAI専門家が、継続的に戦略立案と実行を支援。',
-        iconColor: 'text-slate-600',
-        iconBg: 'bg-slate-500/10',
-        borderColor: 'border-slate-200/50',
-        glowColor: 'rgba(71,85,105,0.15)',
     },
 ];
 
 export default function Services() {
     return (
-        <section id="services" className="py-24 lg:py-32 relative overflow-hidden">
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-6xl mx-auto flex flex-col items-center">
+        <section id="services" className="py-24 lg:py-32 bg-stone-50">
+            <div className="container mx-auto px-6">
+                <div className="max-w-6xl mx-auto">
 
                     {/* Header */}
                     <motion.div
@@ -56,21 +40,24 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: '-50px' }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-center mb-16"
+                        className="mb-16"
                     >
-                        <span className="inline-block py-1.5 px-4 rounded-full glass text-blue-700 font-bold text-xs tracking-wider uppercase mb-6">
-                            Our Solutions
-                        </span>
-                        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-amber-600" />
+                            <span className="text-amber-600 font-bold text-xs tracking-widest uppercase">
+                                Our Solutions
+                            </span>
+                        </div>
+                        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 mb-6 tracking-tight leading-tight">
                             あなたに最適な<br className="md:hidden" />AI活用プランを
                         </h2>
-                        <p className="font-sans text-slate-700 max-w-2xl mx-auto text-lg leading-relaxed">
+                        <p className="font-sans text-stone-600 max-w-2xl text-lg leading-relaxed">
                             課題に合わせて最適なサービスをご提案します。<br className="hidden md:block" />
                             まずはお気軽にご相談ください。
                         </p>
                     </motion.div>
 
-                    {/* Service Cards - ガラススタイル */}
+                    {/* Service Cards */}
                     <motion.div
                         variants={staggerContainer}
                         initial="hidden"
@@ -82,50 +69,38 @@ export default function Services() {
                             <motion.div
                                 key={service.title}
                                 variants={fadeInUp}
-                                className={`group relative rounded-3xl p-6 md:p-7 flex flex-col h-full glass-card border ${service.borderColor} transition-all duration-500`}
-                                style={{ '--glow': service.glowColor } as React.CSSProperties}
+                                className="group relative bg-white border border-stone-200 hover:border-amber-300 p-6 md:p-7 flex flex-col h-full transition-all duration-300"
                             >
-                                {/* ホバー時のグロー効果 */}
-                                <div 
-                                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                                    style={{ 
-                                        boxShadow: `0 20px 60px -15px ${service.glowColor}`,
-                                    }}
-                                />
-
-                                {/* Card content */}
-                                <div className="relative z-10 flex flex-col h-full">
-                                    <div className={`${service.iconBg} backdrop-blur-sm w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/50`}>
-                                        <service.icon className={`w-6 h-6 ${service.iconColor}`} />
-                                    </div>
-                                    <h3 className="font-display font-bold text-lg text-slate-900 mb-3 leading-snug">
-                                        {service.title}
-                                    </h3>
-                                    <p className="font-sans text-sm text-slate-700 leading-relaxed mt-auto">
-                                        {service.description}
-                                    </p>
+                                {/* Icon */}
+                                <div className="w-12 h-12 flex items-center justify-center mb-5">
+                                    <service.icon className="w-6 h-6 text-amber-600" />
                                 </div>
+                                <h3 className="font-display font-bold text-lg text-stone-900 mb-3 leading-snug">
+                                    {service.title}
+                                </h3>
+                                <p className="font-sans text-sm text-stone-600 leading-relaxed mt-auto">
+                                    {service.description}
+                                </p>
                             </motion.div>
                         ))}
                     </motion.div>
 
-                    {/* CTA Bottom - ガラススタイル */}
+                    {/* CTA Bottom */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="text-center"
                     >
                         <Link
                             href="/#contact"
                             aria-label="無料で相談する"
-                            className="group inline-flex items-center justify-center gap-2 h-14 px-10 glass-strong text-slate-800 font-bold text-[15px] rounded-full hover:bg-white/60 transition-all hover:scale-[1.02] active:scale-[0.98] border border-white/50"
+                            className="group inline-flex items-center justify-center gap-2 h-14 px-10 bg-stone-950 text-white font-bold text-[15px] hover:bg-stone-800 transition-colors duration-200 active:scale-[0.98]"
                         >
                             無料で相談する
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </Link>
-                        <p className="mt-5 font-sans text-slate-600 text-sm font-medium">相談無料・お見積もり無料</p>
+                        <p className="mt-5 font-sans text-stone-500 text-sm font-medium">相談無料・お見積もり無料</p>
                     </motion.div>
 
                 </div>

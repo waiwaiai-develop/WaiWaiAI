@@ -31,8 +31,8 @@ export const casesData: CaseStudy[] = [
             { iconName: 'TrendingUp', label: '新人の即戦力化', value: '期間半減', desc: 'オンボーディング工数大幅減' },
         ],
         tags: ['RAG', 'LLM', 'Azure OpenAI', 'Teams連携'],
-        color: 'bg-blue-50 text-blue-700 border-blue-200',
-        bgImage: 'bg-gradient-to-br from-blue-600 to-sky-500'
+        color: 'bg-amber-50 text-amber-700 border-amber-200',
+        bgImage: 'bg-gradient-to-br from-stone-800 to-stone-900'
     },
     {
         id: "case-matching",
@@ -46,7 +46,7 @@ export const casesData: CaseStudy[] = [
             { iconName: 'CheckCircle2', label: 'データ入力ミス', value: '0件に', desc: 'ヒューマンエラー完全排除' },
         ],
         tags: ['React', 'Node.js', 'Next.js', 'AWS'],
-        color: 'bg-sky-50 text-sky-700 border-sky-200',
-        bgImage: 'bg-gradient-to-br from-slate-800 to-blue-900'
+        color: 'bg-stone-50 text-stone-700 border-stone-200',
+        bgImage: 'bg-gradient-to-br from-stone-900 to-stone-800'
     }
 ];
