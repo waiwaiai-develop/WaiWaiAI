@@ -1,345 +1,331 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     Brain, Cpu, Repeat, CheckCircle2, ArrowRight, TrendingUp,
     Clock, AlertTriangle, BarChart3, Users, Zap, Shield,
-    Building2, Rocket, Target, ChevronDown
+    Building2, Rocket, Target, ChevronDown, Minus, Plus
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ContactCTA from '@/components/ContactCTA';
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+/* ── FAQ Accordion ── */
+function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
     const [open, setOpen] = useState(false);
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="border border-blue-100 rounded-2xl overflow-hidden bg-white"
+            transition={{ delay: index * 0.08, duration: 0.5 }}
+            className="border-b border-stone-200 last:border-b-0"
         >
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-colors"
+                className="w-full flex items-center justify-between py-7 text-left group"
             >
-                <span className="font-bold text-slate-900 text-lg pr-4">{q}</span>
-                <ChevronDown className={`w-5 h-5 text-blue-500 shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+                <span className="font-medium text-stone-900 text-lg pr-6 group-hover:text-amber-700 transition-colors">{q}</span>
+                {open
+                    ? <Minus className="w-5 h-5 text-amber-600 shrink-0" />
+                    : <Plus className="w-5 h-5 text-stone-400 group-hover:text-amber-600 shrink-0 transition-colors" />
+                }
             </button>
-            {open && (
-                <div className="px-6 pb-6 text-slate-600 leading-relaxed font-medium">
+            <motion.div
+                initial={false}
+                animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+            >
+                <div className="pb-7 text-stone-500 leading-relaxed max-w-2xl">
                     {a}
                 </div>
-            )}
+            </motion.div>
         </motion.div>
     );
 }
 
 export default function ATPPage() {
+    const heroRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+    const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+    const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
     const plans = [
         {
             name: 'Entry',
             price: '10',
-            unit: '万円',
-            period: '/ 月（税別）',
             description: 'まず1つ、AIで変えてみる',
             features: [
                 '業務診断 & 1つの業務をAI化',
                 '月1回のオンラインMTG',
-                'KPI設定 & 月次レポート自動送付',
-                'チャット相談（営業日対応）',
+                'KPI設定 & 月次レポート',
+                'チャット相談（営業日）',
             ],
-            cta: 'まずは相談する',
             accent: false,
         },
         {
             name: 'Standard',
             price: '25',
-            unit: '万円',
-            period: '/ 月（税別）',
             description: 'AI部門を月額でレンタル',
             features: [
                 '月2回の戦略 & レビューMTG',
                 '月3件の業務自動化を実装',
                 'KPIダッシュボード & 月次レポート',
-                'チャット相談（営業日対応）',
-                '社内向け簡易マニュアル作成',
+                'チャット相談（営業日）',
+                '社内向けマニュアル作成',
             ],
-            cta: '導入を相談する',
             accent: true,
         },
         {
             name: 'Transform',
             price: '50',
-            unit: '万円',
-            period: '/ 月（税別）',
             description: '会社ごとAI化する',
             features: [
-                '週1回のMTG + 臨時MTG無制限',
+                '週1回MTG + 臨時MTG無制限',
                 '自動化ツール実装 無制限',
                 '経営ダッシュボード構築',
-                '社内AI推進者の育成プログラム',
+                '社内AI推進者の育成',
                 '四半期ロードマップ策定',
             ],
-            cta: '導入を相談する',
             accent: false,
         },
     ];
 
-    const layers = [
-        {
-            icon: <Brain className="w-8 h-8" />,
-            title: '頭脳',
-            subtitle: '戦略 & 判断',
-            desc: '7,000人規模企業でAI普及率60%を達成した経験に基づき、「何をAI化すべきか」「どの順番で進めるか」を的確に判断。机上の空論ではなく、現場で実証済みの知見でロードマップを設計します。',
-            color: 'blue',
-        },
-        {
-            icon: <Cpu className="w-8 h-8" />,
-            title: '手足',
-            subtitle: 'AIエージェントが自動実装',
-            desc: '戦略を立てるだけでは終わりません。AIエージェントが自動でツールを開発し、業務自動化を実装。通常の開発会社に外注するよりも圧倒的に速く、低コストで実現します。',
-            color: 'sky',
-        },
-        {
-            icon: <Repeat className="w-8 h-8" />,
-            title: '定着',
-            subtitle: '仕組み化 & 改善',
-            desc: '作って終わりにしません。KPIを自動計測し、成果を数字で可視化。社内にAI推進者を育て、四半期ごとに次のフェーズへ進む仕組みを構築します。',
-            color: 'indigo',
-        },
-    ];
-
-    const painPoints = [
-        { icon: <AlertTriangle className="w-6 h-6" />, title: 'アドバイスだけで\n実装してくれない', desc: '「こうしましょう」で終わるコンサル。結局、社内で誰もやらない。' },
-        { icon: <Clock className="w-6 h-6" />, title: '導入したけど\n成果が見えない', desc: 'AI導入に投資したのに、何が変わったか説明できない。' },
-        { icon: <Users className="w-6 h-6" />, title: '社内に\n推進者がいない', desc: 'ツールを導入しても、使いこなせる人がいないから放置される。' },
-    ];
-
-    const comparisons = [
-        { label: '月額費用', us: '10〜50万円', bigConsul: '30〜100万円', freelance: '100万円〜', other: '10〜30万円' },
-        { label: '実装', us: 'AIが自動開発', bigConsul: '別会社に外注', freelance: '本人が手動', other: 'なし' },
-        { label: 'KPI計測', us: '自動', bigConsul: '手動レポート', freelance: 'なし', other: 'なし' },
-        { label: '対応速度', us: '即日〜翌日', bigConsul: '1〜2週間', freelance: '数日', other: '数日' },
-        { label: '放置リスク', us: 'なし', bigConsul: '高い', freelance: '低い', other: '高い' },
-    ];
-
     const faqs = [
-        { q: '最低契約期間はありますか？', a: '3ヶ月からとなります。AI導入の効果を正しく測定するために最低限必要な期間です。3ヶ月後は月単位で継続・解約が可能です。' },
-        { q: 'ITに詳しい社員がいなくても大丈夫ですか？', a: 'はい。むしろIT人材がいない企業こそ、このサービスの価値を最も感じていただけます。導入・運用・改善まですべてお任せいただけます。' },
-        { q: '自動化の「実装」とは具体的に何をしてもらえますか？', a: 'チャットボット構築、メール自動返信、レポート自動生成、データ入力自動化、SaaS間のデータ連携など、御社の業務に合わせたツールをAIエージェントが開発します。' },
-        { q: '補助金は使えますか？', a: 'IT導入支援事業者として登録予定（2026年度）です。デジタル化・AI導入補助金（最大450万円）やものづくり補助金（最大2,500万円）の活用をご支援できます。提携の中小企業診断士が申請をサポートします。' },
-        { q: '大企業でも対応できますか？', a: 'はい。Transformプランは上場企業・中堅企業向けに設計しています。7,000人規模の企業でのAI推進経験があり、大規模組織特有の課題（部門間調整、セキュリティ要件、ガバナンス）にも対応可能です。' },
+        { q: '最低契約期間はありますか？', a: '3ヶ月からです。AI導入の効果を正しく測定するために必要な期間です。3ヶ月後は月単位で継続・解約が可能です。' },
+        { q: 'ITに詳しい社員がいなくても大丈夫ですか？', a: 'はい。IT人材がいない企業こそ、このサービスの価値を最も感じていただけます。導入・運用・改善まですべてお任せいただけます。' },
+        { q: '「自動実装」とは具体的に何ですか？', a: 'チャットボット、メール自動返信、レポート自動生成、データ入力自動化、SaaS間連携など。御社の業務に合わせたツールをAIエージェントが開発します。' },
+        { q: '補助金は使えますか？', a: 'IT導入支援事業者として登録予定です。デジタル化・AI導入補助金（最大450万円）やものづくり補助金（最大2,500万円）の活用を支援します。' },
+        { q: '大企業でも対応できますか？', a: 'Transformプランは上場企業向けに設計しています。7,000人規模でのAI推進経験があり、大規模組織特有の課題にも対応可能です。' },
     ];
 
     return (
-        <div className="pt-32 pb-0 relative min-h-screen overflow-hidden bg-white">
-            <div className="absolute top-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent z-[-1]" />
-            <div className="absolute inset-0 bg-grid-light opacity-50 z-[-1]" />
+        <div className="relative overflow-hidden" style={{ fontFamily: "'Sora', 'Noto Sans JP', sans-serif" }}>
 
-            {/* ===== HERO ===== */}
-            <section className="container mx-auto px-4 md:px-8 max-w-6xl relative z-10 mb-24">
-                <div className="text-center">
+            {/* ═══════ HERO — Editorial, dark, dramatic ═══════ */}
+            <section ref={heroRef} className="relative min-h-[100svh] flex items-center bg-stone-950 overflow-hidden">
+                {/* Grain overlay */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'1\'/%3E%3C/svg%3E")', backgroundRepeat: 'repeat', backgroundSize: '128px' }} />
+                {/* Ambient glow */}
+                <div className="absolute top-1/4 -right-1/4 w-[60vw] h-[60vw] rounded-full bg-amber-500/5 blur-[120px]" />
+                <div className="absolute -bottom-1/4 -left-1/4 w-[50vw] h-[50vw] rounded-full bg-stone-500/5 blur-[100px]" />
+
+                <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10 py-40">
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-6 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100"
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="max-w-4xl"
                     >
-                        AI Transformation Partner
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6"
-                    >
-                        御社に、<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">AI部門</span>を<br className="md:hidden" />インストールする。
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed mb-10"
-                    >
-                        アドバイスで終わらない。<br className="hidden md:block" />
-                        戦略を立て、AIが自動で実装し、成果を数字で証明する。
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center"
-                    >
-                        <a
-                            href="#pricing"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-blue-600 text-white font-bold text-lg hover:bg-blue-700 transition-colors shadow-[0_20px_40px_-10px_rgba(59,130,246,0.4)]"
-                        >
-                            料金プランを見る <ArrowRight className="w-5 h-5" />
-                        </a>
-                        <a
-                            href="#contact"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-800 font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-colors"
-                        >
-                            無料で相談する
-                        </a>
+                        <div className="flex items-center gap-3 mb-10">
+                            <div className="w-12 h-px bg-amber-500" />
+                            <span className="text-amber-500 text-xs font-semibold tracking-[0.3em] uppercase">AI Transformation Partner</span>
+                        </div>
+
+                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] tracking-tight mb-8">
+                            御社に、<br />
+                            <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(135deg, #f59e0b, #d97706, #b45309)' }}>
+                                AI部門
+                            </span>を<br />
+                            インストールする。
+                        </h1>
+
+                        <p className="text-stone-400 text-lg md:text-xl max-w-xl leading-relaxed mb-12">
+                            アドバイスで終わらない。<br />
+                            戦略を立て、AIが自動で実装し、<br />
+                            成果を数字で証明する。
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <motion.a
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                href="#pricing"
+                                className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-amber-500 text-stone-950 font-bold text-base tracking-wide hover:bg-amber-400 transition-colors"
+                            >
+                                料金プランを見る <ArrowRight className="w-4 h-4" />
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                href="#contact"
+                                className="inline-flex items-center justify-center gap-3 px-8 py-5 border border-stone-700 text-stone-300 font-medium text-base hover:border-stone-500 hover:text-white transition-colors"
+                            >
+                                無料で相談する
+                            </motion.a>
+                        </div>
                     </motion.div>
 
-                    {/* Trust badges */}
+                    {/* Trust strip */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-slate-500 font-medium"
+                        transition={{ delay: 0.8, duration: 1 }}
+                        className="mt-24 flex flex-wrap gap-8 text-xs text-stone-500 tracking-wide uppercase"
                     >
-                        <span className="flex items-center gap-2"><Building2 className="w-4 h-4 text-blue-500" />東証グロース上場企業の顧問実績</span>
-                        <span className="flex items-center gap-2"><Users className="w-4 h-4 text-blue-500" />7,000人規模のAI普及を主導</span>
-                        <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-blue-500" />補助金対応</span>
+                        <span className="flex items-center gap-2"><Building2 className="w-3.5 h-3.5 text-amber-600" />東証グロース上場企業の顧問実績</span>
+                        <span className="flex items-center gap-2"><Users className="w-3.5 h-3.5 text-amber-600" />7,000人規模のAI普及を主導</span>
+                        <span className="flex items-center gap-2"><Shield className="w-3.5 h-3.5 text-amber-600" />補助金対応</span>
                     </motion.div>
-                </div>
-            </section>
-
-            {/* ===== PAIN POINTS ===== */}
-            <section className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10 mb-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                        AI導入、こんな<span className="text-red-500">失敗</span>していませんか？
-                    </h2>
-                    <p className="text-slate-600 font-medium">AI導入企業の8割が直面する課題</p>
                 </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {painPoints.map((p, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className="bg-red-50/50 border border-red-100 rounded-2xl p-8 text-center"
-                        >
-                            <div className="w-14 h-14 bg-red-100 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-5">
-                                {p.icon}
-                            </div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-3 whitespace-pre-line">{p.title}</h3>
-                            <p className="text-slate-600 font-medium text-sm">{p.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
             </section>
 
-            {/* ===== 3 LAYERS ===== */}
-            <section className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10 mb-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <div className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
-                        WHY WaiWai AI
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                        3つのレイヤーで、<span className="text-blue-600">確実に変える</span>
-                    </h2>
-                    <p className="text-slate-600 font-medium max-w-2xl mx-auto">
-                        「アドバイスだけ」で終わらない。戦略・実装・定着まで一気通貫で支援します。
-                    </p>
-                </motion.div>
-
-                <div className="space-y-8">
-                    {layers.map((layer, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ delay: i * 0.15 }}
-                            className="bg-white rounded-3xl p-8 md:p-12 border border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(59,130,246,0.15)] transition-all duration-300"
-                        >
-                            <div className="flex flex-col md:flex-row gap-6 items-start">
-                                <div className="flex items-center gap-5 md:w-1/3">
-                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-${layer.color}-50 text-${layer.color}-600 border border-${layer.color}-100 shrink-0`}>
-                                        {layer.icon}
-                                    </div>
-                                    <div>
-                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">Layer {i + 1}</div>
-                                        <h3 className="text-2xl font-bold text-slate-900">{layer.title}</h3>
-                                        <p className="text-blue-600 font-bold text-sm">{layer.subtitle}</p>
-                                    </div>
-                                </div>
-                                <p className="md:w-2/3 text-slate-600 text-lg leading-relaxed font-medium">
-                                    {layer.desc}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ===== TRACK RECORD ===== */}
-            <section className="py-24 bg-slate-900 relative overflow-hidden mb-0">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px]" />
-                <div className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
+            {/* ═══════ PAIN POINTS — Stark, editorial grid ═══════ */}
+            <section className="py-32 bg-white relative">
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="text-center mb-16"
+                        className="mb-20"
                     >
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
-                            実績が証明する、<span className="text-sky-400">圧倒的な再現性</span>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-red-500" />
+                            <span className="text-red-500 text-xs font-semibold tracking-[0.3em] uppercase">Problem</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900 leading-tight">
+                            AI導入企業の<span className="text-red-500">8割</span>が<br />直面する壁。
                         </h2>
-                        <p className="text-slate-400 font-medium">大企業からスタートアップまで、規模を問わず成果を出してきました。</p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-stone-200">
                         {[
-                            { number: '7,000', unit: '人', label: '規模の企業でAI普及率60%超を達成', sub: '社内AI「ChatPCA」を主導。プロンプト研修・認定試験まで設計し、全社に定着させた実績。' },
-                            { number: '3', unit: '割増', label: '面接進出率の向上を実現', sub: 'AI活用により職務経歴書の品質が向上。応募者の面接到達率が約30%改善。' },
-                            { number: '101', unit: '億円', label: '東証グロース上場企業のAI顧問', sub: '全国24拠点を持つ人材企業のAI導入ロードマップを設計。経営層と直接対話しながら推進。' },
-                        ].map((stat, i) => (
+                            { icon: <AlertTriangle className="w-5 h-5" />, num: '01', title: 'アドバイスだけで実装してくれない', desc: '「こうしましょう」で終わるコンサル。結局、社内で誰もやらない。' },
+                            { icon: <Clock className="w-5 h-5" />, num: '02', title: '導入したけど成果が見えない', desc: 'AIに投資したのに、何が変わったか説明できない。' },
+                            { icon: <Users className="w-5 h-5" />, num: '03', title: '社内に推進者がいない', desc: 'ツールを導入しても使いこなせる人がおらず放置される。' },
+                        ].map((p, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15 }}
-                                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center"
+                                className="p-10 md:p-12 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 border-stone-200 group hover:bg-stone-50 transition-colors"
                             >
-                                <div className="text-5xl font-black text-white mb-1">
-                                    {stat.number}<span className="text-2xl text-sky-400">{stat.unit}</span>
-                                </div>
-                                <div className="text-sky-400 font-bold text-sm mb-4">{stat.label}</div>
-                                <p className="text-slate-400 text-sm font-medium">{stat.sub}</p>
+                                <span className="text-6xl font-black text-stone-100 group-hover:text-red-50 transition-colors block mb-6">{p.num}</span>
+                                <div className="text-red-500 mb-4">{p.icon}</div>
+                                <h3 className="text-lg font-bold text-stone-900 mb-3 leading-snug">{p.title}</h3>
+                                <p className="text-stone-500 text-sm leading-relaxed">{p.desc}</p>
                             </motion.div>
                         ))}
                     </div>
+                </div>
+            </section>
 
+            {/* ═══════ 3 LAYERS — Overlapping editorial cards ═══════ */}
+            <section className="py-32 bg-stone-50 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent" />
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-10"
+                        className="mb-20"
                     >
-                        <h3 className="text-white font-bold text-lg mb-6 text-center">3つの世界を同時に見ている、唯一の存在</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {[
-                                { icon: <Building2 className="w-6 h-6" />, title: '大企業', desc: '7,000人組織でのAI導入・普及。部門間調整やガバナンスの知見。' },
-                                { icon: <TrendingUp className="w-6 h-6" />, title: '上場企業', desc: '東証グロース上場企業の経営課題を理解。コンプライアンスを踏まえた提案。' },
-                                { icon: <Rocket className="w-6 h-6" />, title: '1人AI会社', desc: '自ら社員ゼロ+AIエージェントで会社運営。理論ではなく実践の人。' },
-                            ].map((item, i) => (
-                                <div key={i} className="flex gap-4 items-start">
-                                    <div className="w-12 h-12 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center shrink-0">
-                                        {item.icon}
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-amber-500" />
+                            <span className="text-amber-600 text-xs font-semibold tracking-[0.3em] uppercase">Solution</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900 leading-tight max-w-2xl">
+                            3つのレイヤーで、<br />確実に変える。
+                        </h2>
+                    </motion.div>
+
+                    <div className="space-y-6">
+                        {[
+                            { icon: <Brain className="w-7 h-7" />, layer: 'Layer 01', title: '頭脳', sub: '戦略 & 判断', desc: '7,000人規模企業でAI普及率60%を達成した経験に基づき、「何をAI化すべきか」「どの順番で進めるか」を的確に判断。現場で実証済みの知見でロードマップを設計。', accent: 'amber' },
+                            { icon: <Cpu className="w-7 h-7" />, layer: 'Layer 02', title: '手足', sub: 'AIエージェントが自動実装', desc: '戦略を立てるだけでは終わりません。AIエージェントが自動でツールを開発し、業務自動化を実装。通常の開発会社より圧倒的に速く、低コストで実現。', accent: 'stone' },
+                            { icon: <Repeat className="w-7 h-7" />, layer: 'Layer 03', title: '定着', sub: '仕組み化 & 改善', desc: 'KPIを自動計測し成果を数字で可視化。社内にAI推進者を育て、四半期ごとに次のフェーズへ進む仕組みを構築。作って終わりにしない。', accent: 'stone' },
+                        ].map((l, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                                className="bg-white border border-stone-200 hover:border-amber-300 transition-all duration-500 group"
+                            >
+                                <div className="flex flex-col md:flex-row">
+                                    <div className="md:w-1/3 p-10 md:p-12 border-b md:border-b-0 md:border-r border-stone-200 flex flex-col justify-center">
+                                        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-stone-400 mb-4">{l.layer}</span>
+                                        <div className="text-amber-600 mb-4 group-hover:scale-110 transition-transform duration-500">{l.icon}</div>
+                                        <h3 className="text-3xl font-bold text-stone-900 mb-1">{l.title}</h3>
+                                        <p className="text-amber-600 font-medium text-sm">{l.sub}</p>
                                     </div>
+                                    <div className="md:w-2/3 p-10 md:p-12 flex items-center">
+                                        <p className="text-stone-600 text-lg leading-relaxed">{l.desc}</p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════ TRACK RECORD — Dark, cinematic numbers ═══════ */}
+            <section className="py-32 bg-stone-950 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'1\'/%3E%3C/svg%3E")', backgroundRepeat: 'repeat', backgroundSize: '128px' }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full bg-amber-500/3 blur-[200px]" />
+
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="mb-20"
+                    >
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-amber-500" />
+                            <span className="text-amber-500 text-xs font-semibold tracking-[0.3em] uppercase">Track Record</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+                            実績が証明する、<br />圧倒的な再現性。
+                        </h2>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-stone-800">
+                        {[
+                            { number: '7,000', unit: '人', label: 'AI普及率60%超を達成', sub: '社内AI「ChatPCA」を主導。プロンプト研修・認定試験まで設計し、全社に定着。' },
+                            { number: '30', unit: '%増', label: '面接進出率の向上', sub: 'AI活用による職務経歴書の品質向上。応募者の面接到達率が大幅に改善。' },
+                            { number: '101', unit: '億', label: '上場企業のAI顧問', sub: '全国24拠点の人材企業。経営層と直接対話しながらAI導入ロードマップを設計。' },
+                        ].map((stat, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.2, duration: 0.7 }}
+                                className="p-10 md:p-12 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 border-stone-800"
+                            >
+                                <div className="mb-6">
+                                    <span className="text-6xl md:text-7xl font-black text-white tracking-tight">{stat.number}</span>
+                                    <span className="text-2xl font-bold text-amber-500 ml-1">{stat.unit}</span>
+                                </div>
+                                <div className="text-amber-500 font-semibold text-sm mb-3 tracking-wide">{stat.label}</div>
+                                <p className="text-stone-500 text-sm leading-relaxed">{stat.sub}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* 3 perspectives */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mt-12 border border-stone-800 p-10 md:p-12"
+                    >
+                        <h3 className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-10">3つの世界を同時に見ている唯一の存在</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                            {[
+                                { icon: <Building2 className="w-5 h-5" />, title: '大企業', desc: '7,000人組織でのAI導入。部門間調整とガバナンスの知見。' },
+                                { icon: <TrendingUp className="w-5 h-5" />, title: '上場企業', desc: '東証グロース上場企業の経営課題。コンプライアンスを踏まえた提案。' },
+                                { icon: <Rocket className="w-5 h-5" />, title: '1人AI会社', desc: '社員ゼロ+AIエージェントで会社運営。理論ではなく実践の人。' },
+                            ].map((item, i) => (
+                                <div key={i} className="flex gap-4">
+                                    <div className="text-amber-500 mt-1 shrink-0">{item.icon}</div>
                                     <div>
-                                        <div className="text-white font-bold mb-1">{item.title}</div>
-                                        <p className="text-slate-400 text-sm font-medium">{item.desc}</p>
+                                        <div className="text-white font-bold mb-2">{item.title}</div>
+                                        <p className="text-stone-500 text-sm leading-relaxed">{item.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -348,212 +334,219 @@ export default function ATPPage() {
                 </div>
             </section>
 
-            {/* ===== COMPARISON ===== */}
-            <section className="py-24 container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                        他社との<span className="text-blue-600">比較</span>
-                    </h2>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="overflow-x-auto"
-                >
-                    <table className="w-full text-sm">
-                        <thead>
-                            <tr className="border-b-2 border-blue-100">
-                                <th className="text-left p-4 font-bold text-slate-400 uppercase tracking-widest text-xs" />
-                                <th className="p-4 text-center">
-                                    <div className="bg-blue-600 text-white font-bold py-2 px-4 rounded-xl text-base">WaiWai AI</div>
-                                </th>
-                                <th className="p-4 text-center font-bold text-slate-600">大手コンサル</th>
-                                <th className="p-4 text-center font-bold text-slate-600">フリーランス</th>
-                                <th className="p-4 text-center font-bold text-slate-600">AI顧問（他社）</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {comparisons.map((row, i) => (
-                                <tr key={i} className={`border-b border-slate-100 ${i % 2 === 0 ? 'bg-slate-50/50' : ''}`}>
-                                    <td className="p-4 font-bold text-slate-700">{row.label}</td>
-                                    <td className="p-4 text-center font-bold text-blue-600">{row.us}</td>
-                                    <td className="p-4 text-center text-slate-500">{row.bigConsul}</td>
-                                    <td className="p-4 text-center text-slate-500">{row.freelance}</td>
-                                    <td className="p-4 text-center text-slate-500">{row.other}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </motion.div>
-            </section>
-
-            {/* ===== PROCESS ===== */}
-            <section className="py-24 bg-blue-50/30 relative">
-                <div className="container mx-auto px-4 md:px-8 max-w-5xl relative z-10">
+            {/* ═══════ COMPARISON TABLE ═══════ */}
+            <section className="py-32 bg-white">
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="text-center mb-16"
+                        className="mb-16"
                     >
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                            導入の<span className="text-blue-600">流れ</span>
-                        </h2>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-stone-900" />
+                            <span className="text-stone-900 text-xs font-semibold tracking-[0.3em] uppercase">Comparison</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900">他社との比較。</h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="overflow-x-auto"
+                    >
+                        <table className="w-full text-sm min-w-[640px]">
+                            <thead>
+                                <tr className="border-b-2 border-stone-900">
+                                    <th className="text-left py-5 pr-6 font-semibold text-stone-400 uppercase tracking-widest text-xs w-1/5" />
+                                    <th className="py-5 px-4 text-center w-1/5">
+                                        <span className="inline-block bg-stone-950 text-amber-400 font-bold py-2 px-5 text-sm tracking-wide">WaiWai AI</span>
+                                    </th>
+                                    <th className="py-5 px-4 text-center font-medium text-stone-500 w-1/5">大手コンサル</th>
+                                    <th className="py-5 px-4 text-center font-medium text-stone-500 w-1/5">フリーランス</th>
+                                    <th className="py-5 px-4 text-center font-medium text-stone-500 w-1/5">AI顧問（他社）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {[
+                                    { label: '月額費用', us: '10〜50万円', a: '30〜100万円', b: '100万円〜', c: '10〜30万円' },
+                                    { label: '実装', us: 'AIが自動開発', a: '別会社に外注', b: '本人が手動', c: 'なし' },
+                                    { label: 'KPI計測', us: '自動', a: '手動レポート', b: 'なし', c: 'なし' },
+                                    { label: '対応速度', us: '即日〜翌日', a: '1〜2週間', b: '数日', c: '数日' },
+                                    { label: '放置リスク', us: 'なし', a: '高い', b: '低い', c: '高い' },
+                                ].map((row, i) => (
+                                    <tr key={i} className="border-b border-stone-100 hover:bg-stone-50/50 transition-colors">
+                                        <td className="py-5 pr-6 font-semibold text-stone-800">{row.label}</td>
+                                        <td className="py-5 px-4 text-center font-bold text-amber-700">{row.us}</td>
+                                        <td className="py-5 px-4 text-center text-stone-400">{row.a}</td>
+                                        <td className="py-5 px-4 text-center text-stone-400">{row.b}</td>
+                                        <td className="py-5 px-4 text-center text-stone-400">{row.c}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* ═══════ PROCESS — Horizontal editorial steps ═══════ */}
+            <section className="py-32 bg-stone-50 relative">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent" />
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="mb-20"
+                    >
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-amber-500" />
+                            <span className="text-amber-600 text-xs font-semibold tracking-[0.3em] uppercase">Process</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900">導入の流れ。</h2>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-0 border border-stone-200 bg-white">
                         {[
-                            { step: '01', icon: <Target className="w-6 h-6" />, title: '無料相談', desc: '30分で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝えします。', color: 'blue' },
-                            { step: '02', icon: <BarChart3 className="w-6 h-6" />, title: '業務診断', desc: '全業務を棚卸し。AI化の優先順位をインパクト×難易度のマトリクスで整理。', color: 'sky' },
-                            { step: '03', icon: <Zap className="w-6 h-6" />, title: '自動化実装', desc: 'AIエージェントが開発開始。最短1週間で最初の成果物をお届け。', color: 'indigo' },
-                            { step: '04', icon: <TrendingUp className="w-6 h-6" />, title: 'KPI計測 & 改善', desc: '成果を数字で見える化。毎月レポートをお届けし、次の施策を実行。', color: 'blue' },
+                            { step: '01', icon: <Target className="w-5 h-5" />, title: '無料相談', desc: '30分で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝え。' },
+                            { step: '02', icon: <BarChart3 className="w-5 h-5" />, title: '業務診断', desc: '全業務を棚卸し。インパクト×難易度で優先順位を整理。' },
+                            { step: '03', icon: <Zap className="w-5 h-5" />, title: '自動化実装', desc: 'AIエージェントが開発開始。最短1週間で最初の成果物。' },
+                            { step: '04', icon: <TrendingUp className="w-5 h-5" />, title: 'KPI計測', desc: '成果を数字で見える化。毎月レポート、次の施策を実行。' },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="bg-white rounded-2xl p-6 border border-blue-100 shadow-sm relative"
+                                transition={{ delay: i * 0.12 }}
+                                className="p-8 md:p-10 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 border-stone-200 group hover:bg-stone-50 transition-colors"
                             >
-                                <div className="text-5xl font-black text-blue-100 absolute top-4 right-4">{item.step}</div>
-                                <div className={`w-12 h-12 rounded-xl bg-${item.color}-50 text-${item.color}-600 flex items-center justify-center mb-4 border border-${item.color}-100`}>
-                                    {item.icon}
-                                </div>
-                                <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                                <p className="text-slate-600 text-sm font-medium">{item.desc}</p>
+                                <span className="text-5xl font-black text-stone-100 group-hover:text-amber-100 transition-colors block mb-6">{item.step}</span>
+                                <div className="text-amber-600 mb-4">{item.icon}</div>
+                                <h3 className="text-base font-bold text-stone-900 mb-2">{item.title}</h3>
+                                <p className="text-stone-500 text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ===== PRICING ===== */}
-            <section id="pricing" className="py-24 container mx-auto px-4 md:px-8 max-w-6xl relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <div className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
-                        PRICING
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                        料金プラン
-                    </h2>
-                    <p className="text-slate-600 font-medium">
-                        社員1人の採用コスト（月30〜40万円）より、確実に安い。
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                    {plans.map((plan, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 }}
-                            className={`rounded-3xl p-8 border relative ${plan.accent
-                                ? 'bg-blue-600 text-white border-blue-500 shadow-[0_20px_60px_-15px_rgba(59,130,246,0.4)] scale-[1.02]'
-                                : 'bg-white text-slate-900 border-blue-100 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.08)]'
-                                }`}
-                        >
-                            {plan.accent && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-400 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest">
-                                    Most Popular
-                                </div>
-                            )}
-                            <div className="mb-6">
-                                <h3 className={`text-lg font-bold mb-1 ${plan.accent ? 'text-blue-100' : 'text-blue-600'}`}>{plan.name}</h3>
-                                <div className="flex items-baseline gap-1 mb-2">
-                                    <span className="text-5xl font-black">{plan.price}</span>
-                                    <span className={`text-xl font-bold ${plan.accent ? 'text-blue-200' : 'text-slate-400'}`}>{plan.unit}</span>
-                                    <span className={`text-sm font-medium ${plan.accent ? 'text-blue-200' : 'text-slate-400'}`}>{plan.period}</span>
-                                </div>
-                                <p className={`font-bold ${plan.accent ? 'text-blue-200' : 'text-slate-500'}`}>{plan.description}</p>
-                            </div>
-                            <ul className="space-y-3 mb-8">
-                                {plan.features.map((f, fi) => (
-                                    <li key={fi} className="flex items-start gap-3">
-                                        <CheckCircle2 className={`w-5 h-5 shrink-0 ${plan.accent ? 'text-sky-300' : 'text-blue-500'}`} />
-                                        <span className={`font-medium text-sm ${plan.accent ? 'text-white' : 'text-slate-700'}`}>{f}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <a
-                                href="#contact"
-                                className={`block text-center py-4 rounded-2xl font-bold transition-colors ${plan.accent
-                                    ? 'bg-white text-blue-600 hover:bg-blue-50'
-                                    : 'bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white border border-blue-100'
-                                    }`}
-                            >
-                                {plan.cta}
-                            </a>
-                        </motion.div>
-                    ))}
-                </div>
-
-                {/* Spot products */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6"
-                >
-                    <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex gap-6 items-center">
-                        <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center border border-blue-100 shrink-0">
-                            <BarChart3 className="w-7 h-7" />
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-slate-900 mb-1">AI業務診断（単発）</h4>
-                            <p className="text-sm text-slate-600 font-medium">全業務を棚卸し、AI活用ロードマップを納品。</p>
-                            <div className="text-blue-600 font-bold mt-1">30万円（税別）</div>
-                        </div>
-                    </div>
-                    <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex gap-6 items-center">
-                        <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center border border-blue-100 shrink-0">
-                            <Users className="w-7 h-7" />
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-slate-900 mb-1">AI導入研修（単発）</h4>
-                            <p className="text-sm text-slate-600 font-medium">半日のオンライン研修。社内のAIリテラシーを底上げ。</p>
-                            <div className="text-blue-600 font-bold mt-1">15万円（税別）</div>
-                        </div>
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* ===== FAQ ===== */}
-            <section className="py-24 bg-blue-50/30 relative">
-                <div className="container mx-auto px-4 md:px-8 max-w-3xl relative z-10">
+            {/* ═══════ PRICING — Clean, decisive ═══════ */}
+            <section id="pricing" className="py-32 bg-white relative">
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="text-center mb-12"
+                        className="mb-20"
                     >
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-                            よくある質問
-                        </h2>
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-amber-500" />
+                            <span className="text-amber-600 text-xs font-semibold tracking-[0.3em] uppercase">Pricing</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4">料金プラン。</h2>
+                        <p className="text-stone-500 text-lg">社員1人の採用コストより、確実に安い。</p>
                     </motion.div>
-                    <div className="space-y-4">
-                        {faqs.map((faq, i) => (
-                            <FAQItem key={i} q={faq.q} a={faq.a} />
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-stone-200">
+                        {plans.map((plan, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.12 }}
+                                className={`p-10 md:p-12 border-b md:border-b-0 md:border-r last:border-r-0 last:border-b-0 border-stone-200 flex flex-col relative ${plan.accent ? 'bg-stone-950 text-white border-stone-800' : 'bg-white'}`}
+                            >
+                                {plan.accent && (
+                                    <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
+                                )}
+                                <div className="mb-8">
+                                    <span className={`text-xs font-semibold tracking-[0.3em] uppercase ${plan.accent ? 'text-amber-500' : 'text-stone-400'}`}>
+                                        {plan.name}
+                                    </span>
+                                </div>
+                                <div className="mb-2">
+                                    <span className="text-6xl font-black tracking-tight">{plan.price}</span>
+                                    <span className={`text-lg font-medium ml-1 ${plan.accent ? 'text-stone-400' : 'text-stone-400'}`}>万円<span className="text-sm">/月</span></span>
+                                </div>
+                                <p className={`text-sm mb-10 ${plan.accent ? 'text-stone-400' : 'text-stone-500'}`}>{plan.description}</p>
+
+                                <ul className="space-y-4 mb-10 flex-1">
+                                    {plan.features.map((f, fi) => (
+                                        <li key={fi} className="flex items-start gap-3">
+                                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${plan.accent ? 'text-amber-500' : 'text-amber-600'}`} />
+                                            <span className={`text-sm ${plan.accent ? 'text-stone-300' : 'text-stone-600'}`}>{f}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    href="#contact"
+                                    className={`block text-center py-4 font-bold text-sm tracking-wide transition-colors ${plan.accent
+                                        ? 'bg-amber-500 text-stone-950 hover:bg-amber-400'
+                                        : 'bg-stone-950 text-white hover:bg-stone-800'
+                                        }`}
+                                >
+                                    無料で相談する
+                                </motion.a>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* Spot products */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-stone-200 border-t-0">
+                        {[
+                            { icon: <BarChart3 className="w-5 h-5" />, title: 'AI業務診断', desc: '全業務を棚卸し、AI活用ロードマップを納品。', price: '30万円（税別）' },
+                            { icon: <Users className="w-5 h-5" />, title: 'AI導入研修', desc: '半日のオンライン研修。社内のAIリテラシーを底上げ。', price: '15万円（税別）' },
+                        ].map((s, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                className={`p-8 md:p-10 flex items-center gap-6 ${i === 0 ? 'md:border-r border-b md:border-b-0 border-stone-200' : ''}`}
+                            >
+                                <div className="text-amber-600 shrink-0">{s.icon}</div>
+                                <div className="flex-1">
+                                    <h4 className="font-bold text-stone-900 text-sm">{s.title}</h4>
+                                    <p className="text-stone-500 text-xs mt-1">{s.desc}</p>
+                                </div>
+                                <span className="text-amber-700 font-bold text-sm whitespace-nowrap">{s.price}</span>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ===== CTA ===== */}
+            {/* ═══════ FAQ — Minimal, editorial ═══════ */}
+            <section className="py-32 bg-stone-50 relative">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent" />
+                <div className="container mx-auto px-6 md:px-12 max-w-3xl">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="mb-16"
+                    >
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-stone-900" />
+                            <span className="text-stone-900 text-xs font-semibold tracking-[0.3em] uppercase">FAQ</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-stone-900">よくある質問。</h2>
+                    </motion.div>
+                    <div>
+                        {faqs.map((faq, i) => (
+                            <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════ CTA ═══════ */}
             <ContactCTA />
         </div>
     );
