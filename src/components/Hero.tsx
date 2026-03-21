@@ -64,25 +64,24 @@ export default function Hero() {
                         </h1>
 
                         <h2 className="font-display text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 mb-4">
-                            &ldquo;WaiWai AI&rdquo;がつくる、新しい<span className="text-blue-600">「豊かさ」</span>。
+                            &ldquo;WaiWai AI&rdquo;がつくる、
+                            <br className="sm:hidden" />
+                            新しい<span className="text-blue-600">「豊かさ」。</span>
                         </h2>
 
-                        <ul className="text-sm sm:text-base text-slate-600 mb-4 space-y-1">
+                        <ul className="text-sm sm:text-base text-slate-600 mb-4 space-y-1 text-left">
                             <li className="flex items-start gap-2">
                                 <span className="text-blue-500 mt-1 shrink-0">•</span>
-                                社名<strong className="text-slate-800">「WaiWai」</strong>は、ハワイ語で<strong className="text-blue-600">『豊かさ』</strong>。
+                                <span>社名<strong className="text-slate-800">「WaiWai」</strong>は、ハワイ語で<strong className="text-blue-600">『豊かさ』</strong>。</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <span className="text-blue-500 mt-1 shrink-0">•</span>
-                                幸運と繁栄の象徴<strong className="text-blue-600">「ホヌ（ウミガメ）」</strong>のように。
+                                <span>幸運と繁栄の象徴<strong className="text-blue-600">「ホヌ（ウミガメ）」</strong>のように。</span>
                             </li>
                         </ul>
 
-                        <p className="text-sm sm:text-base text-slate-500 leading-relaxed mb-7 max-w-lg">
-                            ハワイで愛されるホヌ（ウミガメ）のように、AIテクノロジーで
-                            クライアントの事業に長く確実な繁栄をもたらします。
-                            <br />
-                            本来のポテンシャルを発揮できる、豊かな未来を共に創り出します。
+                        <p className="text-sm sm:text-base text-slate-500 leading-relaxed mb-7 max-w-lg text-left">
+                            ハワイで愛されるホヌ（ウミガメ）のように、AIテクノロジーでクライアントの事業に長く確実な繁栄をもたらします。本来のポテンシャルを発揮できる、豊かな未来を共に創り出します。
                         </p>
 
                         <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
