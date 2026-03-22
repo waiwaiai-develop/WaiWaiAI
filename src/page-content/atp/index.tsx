@@ -671,9 +671,9 @@ export default function ATPPage() {
                                 </div>
 
                                 <p className="text-slate-600 leading-relaxed mb-8">
-                                    水のトラブルに「クラシアン」があるように、<br />
-                                    IT/AIのトラブルにもすぐ呼べる存在が必要です。<br />
-                                    AIで作ったものが動かない。そんなときに。
+                                    IT/AIのトラブルに、すぐ呼べる存在が必要です。<br />
+                                    AIで作ったものが動かない、設定がわからない。<br />
+                                    そんなときに頼れるパートナーがここにいます。
                                 </p>
 
                                 {/* Scenario examples */}
@@ -713,8 +713,8 @@ export default function ATPPage() {
                                 {/* Key message */}
                                 <div className="border-l-2 border-orange-400 pl-4 mb-10">
                                     <p className="text-sm text-slate-500 italic leading-relaxed">
-                                        一度助けてもらうと、安心感が生まれます。<br />
-                                        その信頼関係が、ATP月額契約につながります。
+                                        一度のサポートが、安心感と信頼につながります。<br />
+                                        継続的なAI活用支援もご相談ください。
                                     </p>
                                 </div>
 
