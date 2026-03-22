@@ -246,6 +246,7 @@ type SimulatorContentProps = {
     costReductionMonthly: number;
     costReductionAnnual: number;
     annualManDisplay: string;
+    compact?: boolean;
 };
 
 function SimulatorContent({
@@ -262,6 +263,7 @@ function SimulatorContent({
     costReductionMonthly,
     costReductionAnnual,
     annualManDisplay,
+    compact = false,
 }: SimulatorContentProps) {
     return (
         <div
@@ -273,9 +275,9 @@ function SimulatorContent({
                 border: '1px solid rgba(255,255,255,0.7)',
             }}
         >
-            <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-100/80">
+            <div className={`grid grid-cols-1 ${compact ? '' : 'lg:grid-cols-2'} divide-y ${compact ? '' : 'lg:divide-y-0 lg:divide-x'} divide-slate-100/80`}>
                 {/* Left: Inputs */}
-                <div className="p-7 md:p-9 space-y-8">
+                <div className={`${compact ? 'p-5 space-y-5' : 'p-7 md:p-9 space-y-8'}`}>
                     <div className="flex items-center gap-2 mb-2">
                         <span
                             className="w-8 h-8 rounded-xl flex items-center justify-center"
@@ -292,7 +294,7 @@ function SimulatorContent({
                     </div>
 
                     {/* Work Type Selector */}
-                    <div className="space-y-3">
+                    <div className={compact ? 'space-y-2' : 'space-y-3'}>
                         <label className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                             <span
                                 className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
@@ -305,39 +307,66 @@ function SimulatorContent({
                             </span>
                             AIに置き換えたい業務
                         </label>
-                        <div className="grid grid-cols-2 gap-2">
-                            {WORK_TYPES.map((wt) => (
-                                <button
-                                    key={wt.id}
-                                    type="button"
-                                    onClick={() => setSelectedWorkType(wt.id)}
-                                    className={`text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 ${
-                                        selectedWorkType === wt.id
-                                            ? 'text-blue-700 shadow-sm'
-                                            : 'text-slate-600 hover:bg-slate-50'
-                                    }`}
-                                    style={
-                                        selectedWorkType === wt.id
-                                            ? {
-                                                  background: 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(14,165,233,0.05))',
-                                                  border: '1.5px solid rgba(37,99,235,0.25)',
-                                              }
-                                            : {
-                                                  background: 'rgba(248,250,252,0.7)',
-                                                  border: '1px solid rgba(226,232,240,0.7)',
-                                              }
-                                    }
+                        {compact ? (
+                            <>
+                                <select
+                                    value={selectedWorkType}
+                                    onChange={(e) => setSelectedWorkType(e.target.value)}
+                                    className="w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-700 appearance-none bg-no-repeat cursor-pointer"
+                                    style={{
+                                        background: 'rgba(248,250,252,0.9)',
+                                        border: '1.5px solid rgba(37,99,235,0.2)',
+                                        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
+                                        backgroundPosition: 'right 12px center',
+                                    }}
                                 >
-                                    <span className="block leading-tight">{wt.label}</span>
-                                    <span className="block text-[10px] text-slate-400 mt-0.5 font-normal">
-                                        削減目安 {Math.round(wt.rate * 100)}%
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                        <p className="text-[10px] text-slate-400 leading-relaxed">
-                            {currentWorkType.description}
-                        </p>
+                                    {WORK_TYPES.map((wt) => (
+                                        <option key={wt.id} value={wt.id}>
+                                            {wt.label}（削減目安 {Math.round(wt.rate * 100)}%）
+                                        </option>
+                                    ))}
+                                </select>
+                                <p className="text-[10px] text-slate-400 leading-relaxed">
+                                    {currentWorkType.description}
+                                </p>
+                            </>
+                        ) : (
+                            <>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {WORK_TYPES.map((wt) => (
+                                        <button
+                                            key={wt.id}
+                                            type="button"
+                                            onClick={() => setSelectedWorkType(wt.id)}
+                                            className={`text-left px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 ${
+                                                selectedWorkType === wt.id
+                                                    ? 'text-blue-700 shadow-sm'
+                                                    : 'text-slate-600 hover:bg-slate-50'
+                                            }`}
+                                            style={
+                                                selectedWorkType === wt.id
+                                                    ? {
+                                                          background: 'linear-gradient(135deg, rgba(37,99,235,0.08), rgba(14,165,233,0.05))',
+                                                          border: '1.5px solid rgba(37,99,235,0.25)',
+                                                      }
+                                                    : {
+                                                          background: 'rgba(248,250,252,0.7)',
+                                                          border: '1px solid rgba(226,232,240,0.7)',
+                                                      }
+                                            }
+                                        >
+                                            <span className="block leading-tight">{wt.label}</span>
+                                            <span className="block text-[10px] text-slate-400 mt-0.5 font-normal">
+                                                削減目安 {Math.round(wt.rate * 100)}%
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                                <p className="text-[10px] text-slate-400 leading-relaxed">
+                                    {currentWorkType.description}
+                                </p>
+                            </>
+                        )}
                     </div>
 
                     <SliderField
@@ -383,8 +412,8 @@ function SimulatorContent({
                 </div>
 
                 {/* Right: Results */}
-                <div className="p-7 md:p-9 flex flex-col">
-                    <div className="flex items-center gap-2 mb-6">
+                <div className={`${compact ? 'p-5' : 'p-7 md:p-9'} flex flex-col`}>
+                    <div className={`flex items-center gap-2 ${compact ? 'mb-4' : 'mb-6'}`}>
                         <span
                             className="w-8 h-8 rounded-xl flex items-center justify-center"
                             style={{
@@ -434,7 +463,7 @@ function SimulatorContent({
                         initial={{ opacity: 0, scale: 0.97 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="mt-5 rounded-2xl p-5 text-center"
+                        className={`${compact ? 'mt-4 rounded-xl p-4' : 'mt-5 rounded-2xl p-5'} text-center`}
                         style={{
                             background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
                             boxShadow: '0 8px 24px rgba(37,99,235,0.3)',
@@ -577,7 +606,7 @@ export default function ROISimulator() {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-20 max-w-5xl mx-auto"
+                        className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-20 max-w-5xl mx-auto"
                     >
                         {VALUE_ITEMS.map((item) => (
                             <motion.div
@@ -719,8 +748,8 @@ export default function ROISimulator() {
                             </div>
 
                             {/* Simulator */}
-                            <div className="p-4">
-                                <SimulatorContent {...simulatorProps} />
+                            <div className="px-3 pb-6">
+                                <SimulatorContent {...simulatorProps} compact />
                             </div>
                         </motion.div>
                     </motion.div>
