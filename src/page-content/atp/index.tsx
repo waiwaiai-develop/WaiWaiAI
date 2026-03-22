@@ -57,7 +57,7 @@ export default function ATPPage() {
             price: '10',
             description: 'まず1つ、AIで変えてみる',
             features: [
-                '業務診断 & 1つの業務をAI化',
+                '業務診断 & 1つの業務をAI化（例: 日報・請求書・問い合わせ対応）',
                 '月1回のオンラインMTG',
                 'KPI設定 & 月次レポート',
                 'チャット相談（営業日）',
@@ -96,8 +96,8 @@ export default function ATPPage() {
         { q: '最低契約期間はありますか？', a: '3ヶ月からです。AI導入の効果を正しく測定するために必要な期間です。3ヶ月後は月単位で継続・解約が可能です。' },
         { q: 'ITに詳しい社員がいなくても大丈夫ですか？', a: 'はい。IT人材がいない企業こそ、このサービスの価値を最も感じていただけます。導入・運用・改善まですべてお任せいただけます。' },
         { q: '「自動実装」とは具体的に何ですか？', a: 'チャットボット、メール自動返信、レポート自動生成、データ入力自動化、SaaS間連携など。御社の業務に合わせたツールをAIエージェントが開発します。' },
-        { q: '補助金は使えますか？', a: 'IT導入支援事業者として登録予定です。デジタル化・AI導入補助金（最大450万円）やものづくり補助金（最大2,500万円）の活用を支援します。' },
-        { q: '大企業でも対応できますか？', a: 'Transformプランは上場企業向けに設計しています。7,000人規模でのAI推進経験があり、大規模組織特有の課題にも対応可能です。' },
+        { q: '補助金は使えますか？', a: 'はい。各種補助金・助成金の活用を支援しています。IT導入補助金（最大450万円）やリスキリング助成金など、御社に適した制度をご提案します。提携士業とも連携し、申請までサポートします。' },
+        { q: '大企業でも対応できますか？', a: 'Transformプランは上場企業向けに設計しています。大手企業でのAI推進プロジェクト経験があり、大規模組織特有の課題にも対応可能です。' },
     ];
 
     return (
@@ -166,7 +166,7 @@ export default function ATPPage() {
                     >
                         {[
                             { icon: <Building2 className="w-3.5 h-3.5 text-blue-500" />, label: '東証グロース上場企業の顧問実績' },
-                            { icon: <Users className="w-3.5 h-3.5 text-blue-500" />, label: '7,000人規模のAI普及を主導' },
+                            { icon: <Users className="w-3.5 h-3.5 text-blue-500" />, label: '大手企業でのAI推進経験あり' },
                             { icon: <Shield className="w-3.5 h-3.5 text-blue-500" />, label: '補助金対応' },
                         ].map((item, i) => (
                             <span key={i} className="glass flex items-center gap-2 px-4 py-2.5 rounded-full text-xs text-slate-600 tracking-wide uppercase font-medium">
@@ -591,7 +591,7 @@ export default function ATPPage() {
                                 </div>
 
                                 <p className="text-slate-600 leading-relaxed mb-8">
-                                    「Difyを入れたけど放置している」「ChatGPTに課金しているだけ」<br />
+                                    「AIツールを入れたけど放置している」「契約しているだけで活用できていない」<br />
                                     そんな企業に向けた、単発の現状診断サービスです。
                                 </p>
 
@@ -628,7 +628,7 @@ export default function ATPPage() {
                                 <div className="border-l-2 border-blue-400 pl-4 mb-10">
                                     <p className="text-sm text-slate-500 italic leading-relaxed">
                                         "AIの進化は早い。定期的なレビューが必要です。"<br />
-                                        このレビューが、月額ATPへの入口になります。
+                                        現状を把握することが、次の一歩につながります。
                                     </p>
                                 </div>
 
@@ -666,7 +666,7 @@ export default function ATPPage() {
                                     </div>
                                     <div>
                                         <h3 className="text-2xl font-bold text-slate-900 leading-tight">IT/AIレスキュー</h3>
-                                        <p className="text-orange-500 font-medium text-sm mt-1">困ったらZoomで即解決</p>
+                                        <p className="text-orange-500 font-medium text-sm mt-1">困ったらZoomで即解決 — 1回¥5,000〜</p>
                                     </div>
                                 </div>
 
