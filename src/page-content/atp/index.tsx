@@ -573,7 +573,7 @@ export default function ATPPage() {
                         >
                             {/* Top accent bar */}
                             <div className="h-1 bg-gradient-to-r from-blue-500 to-cyan-400" />
-                            <div className="p-10 md:p-12">
+                            <div className="p-10 md:p-12 flex flex-col h-full">
                                 {/* Badge */}
                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-8">
                                     <Sparkles className="w-3 h-3 text-blue-500" />
@@ -636,7 +636,7 @@ export default function ATPPage() {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     href="/#contact"
-                                    className="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 text-white font-bold text-sm tracking-wide hover:bg-blue-700 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)]"
+                                    className="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 text-white font-bold text-sm tracking-wide hover:bg-blue-700 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)] mt-auto"
                                 >
                                     レビューを依頼する <ArrowRight className="w-4 h-4" />
                                 </motion.a>
@@ -653,7 +653,7 @@ export default function ATPPage() {
                         >
                             {/* Top accent bar */}
                             <div className="h-1 bg-gradient-to-r from-orange-400 to-amber-400" />
-                            <div className="p-10 md:p-12">
+                            <div className="p-10 md:p-12 flex flex-col h-full">
                                 {/* Badge */}
                                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-100 mb-8">
                                     <LifeBuoy className="w-3 h-3 text-orange-500" />
@@ -722,7 +722,7 @@ export default function ATPPage() {
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     href="/#contact"
-                                    className="flex items-center justify-center gap-2 w-full py-4 bg-orange-500 text-white font-bold text-sm tracking-wide hover:bg-orange-600 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(234,88,12,0.3)]"
+                                    className="flex items-center justify-center gap-2 w-full py-4 bg-orange-500 text-white font-bold text-sm tracking-wide hover:bg-orange-600 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(234,88,12,0.3)] mt-auto"
                                 >
                                     今すぐ相談する <ArrowRight className="w-4 h-4" />
                                 </motion.a>
