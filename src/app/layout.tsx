@@ -35,12 +35,14 @@ export const metadata: Metadata = {
     template: '%s | WaiWai AI',
   },
   description:
-    'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進・RPA自動化を一気通貫で支援。社内AIチャットボット構築、フルスクラッチ開発、業務自動化で問い合わせ工数80%削減・成約率2.5倍などの実績。最先端の技術で、あなたのビジョンを形にします。',
+    '中小企業のAI導入・DX推進を支援するAIネイティブ開発会社。AI活用コンサルティング・AIシステム開発・RPA自動化を一気通貫で提供。IT人材不在でも導入可能。問い合わせ工数80%削減・成約率2.5倍などの実績。AI顧問サービスも月額対応。',
   keywords: [
-    'AI開発', 'AIネイティブ', 'ITコンサルティング', 'DX推進', 'RAG', 'LLM', 'RPA', 
+    'AI開発', 'AIネイティブ', 'ITコンサルティング', 'DX推進', 'RAG', 'LLM', 'RPA',
     '業務自動化', 'AIエージェント', 'チャットボット開発', '社内AI', 'Azure OpenAI',
     'システム開発', 'Next.js', 'React', 'フルスクラッチ開発', '業務効率化',
-    'コスト削減', 'AI導入支援', 'DXコンサル', 'IT投資', 'デジタルトランスフォーメーション'
+    'コスト削減', 'AI導入支援', 'DXコンサル', 'IT投資', 'デジタルトランスフォーメーション',
+    '中小企業 AI導入', '中小企業 DX', 'AI活用 コンサルティング', 'AI業務効率化',
+    'DX推進 中小企業', 'AI顧問', 'AIトランスフォーメーション', '中小企業向けAI'
   ],
   authors: [{ name: 'WaiWai AI 株式会社' }],
   creator: 'WaiWai AI 株式会社',
@@ -53,16 +55,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ja_JP',
+    url: 'https://waiwaiai.com',
     siteName: 'WaiWai AI 株式会社',
-    title: 'WaiWai AI 株式会社 | AIネイティブ開発・ITコンサルティング',
+    title: 'WaiWai AI 株式会社 | 中小企業のAI導入・DX推進支援',
     description:
-      'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進・RPA自動化を一気通貫で支援。問い合わせ工数80%削減・成約率2.5倍などの実績あり。',
+      '中小企業のAI導入・DX推進を支援するAIネイティブ開発会社。AI活用コンサルティング・AIシステム開発・RPA自動化を一気通貫で提供。IT人材不在でも対応可能。',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://waiwaiai.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'WaiWai AI 株式会社 - AIネイティブ開発・ITコンサルティング・DX推進',
+        alt: 'WaiWai AI 株式会社 - 中小企業のAI導入・DX推進支援',
       },
     ],
   },

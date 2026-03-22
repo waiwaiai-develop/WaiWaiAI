@@ -14,8 +14,9 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'AI Transformation Partner | WaiWai AI',
         description:
-            '御社専属のAI部門を月額10万円から。戦略・自動実装・KPI計測まで一気通貫で支援。',
+            '中小企業向けAI顧問サービス。月額10万円から御社専属のAI部門を。戦略・自動実装・KPI計測まで一気通貫で支援。',
         type: 'website',
+        url: 'https://waiwaiai.com/atp',
     },
     alternates: {
         canonical: 'https://waiwaiai.com/atp',
