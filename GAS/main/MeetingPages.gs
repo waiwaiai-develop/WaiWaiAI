@@ -303,7 +303,6 @@ function getBookingPageHtml_(prefill) {
   <script>
     const PREFILL = ${prefillJson};
     let selectedSlot = null;
-    const WEB_APP_URL = '${ScriptApp.getService().getUrl()}';
 
     window.onload = function() {
       if (PREFILL) {
@@ -315,48 +314,44 @@ function getBookingPageHtml_(prefill) {
     };
 
     function loadSlots() {
-      fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'getSlots' }),
-      })
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('loading').style.display = 'none';
+      google.script.run
+        .withSuccessHandler(function(data) {
+          document.getElementById('loading').style.display = 'none';
 
-        if (!data.slots || data.slots.length === 0) {
-          document.getElementById('step1').style.display = 'block';
-          document.getElementById('slotsContainer').innerHTML =
-            '<div class="no-slots"><p>現在ご予約可能な枠がありません</p><p style="margin-top:8px;font-size:13px;">お手数ですが、直接お問い合わせください</p></div>';
-          return;
-        }
+          if (!data.slots || data.slots.length === 0) {
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('slotsContainer').innerHTML =
+              '<div class="no-slots"><p>現在ご予約可能な枠がありません</p><p style="margin-top:8px;font-size:13px;">お手数ですが、直接お問い合わせください</p></div>';
+            return;
+          }
 
-        // Group by date
-        const grouped = {};
-        data.slots.forEach(s => {
-          if (!grouped[s.date]) grouped[s.date] = [];
-          grouped[s.date].push(s);
-        });
-
-        let html = '';
-        for (const date in grouped) {
-          html += '<div class="date-group">';
-          html += '<div class="date-label">' + date + '</div>';
-          html += '<div class="time-slots">';
-          grouped[date].forEach(s => {
-            html += '<button class="slot-btn" onclick="selectSlot(this, \\'' +
-              s.start + '\\', \\'' + s.end + '\\', \\'' + date + '\\', \\'' + s.time + '\\')">' +
-              s.time + '</button>';
+          var grouped = {};
+          data.slots.forEach(function(s) {
+            if (!grouped[s.date]) grouped[s.date] = [];
+            grouped[s.date].push(s);
           });
-          html += '</div></div>';
-        }
 
-        document.getElementById('slotsContainer').innerHTML = html;
-        document.getElementById('step1').style.display = 'block';
-      })
-      .catch(err => {
-        document.getElementById('loading').style.display = 'none';
-        showError('空き枠の取得に失敗しました: ' + err.message);
-      });
+          var html = '';
+          for (var date in grouped) {
+            html += '<div class="date-group">';
+            html += '<div class="date-label">' + date + '</div>';
+            html += '<div class="time-slots">';
+            grouped[date].forEach(function(s) {
+              html += '<button class="slot-btn" onclick="selectSlot(this, \\'' +
+                s.start + '\\', \\'' + s.end + '\\', \\'' + date + '\\', \\'' + s.time + '\\')">' +
+                s.time + '</button>';
+            });
+            html += '</div></div>';
+          }
+
+          document.getElementById('slotsContainer').innerHTML = html;
+          document.getElementById('step1').style.display = 'block';
+        })
+        .withFailureHandler(function(err) {
+          document.getElementById('loading').style.display = 'none';
+          showError('空き枠の取得に失敗しました: ' + err.message);
+        })
+        .getAvailableSlots();
     }
 
     function selectSlot(btn, start, end, date, time) {
@@ -400,35 +395,29 @@ function getBookingPageHtml_(prefill) {
       btn.disabled = true;
       btn.textContent = '予約を処理中...';
 
-      fetch(WEB_APP_URL, {
-        method: 'POST',
-        body: JSON.stringify({
-          action: 'book',
+      google.script.run
+        .withSuccessHandler(function(data) {
+          if (data.error) {
+            showError(data.error);
+            btn.disabled = false;
+            btn.textContent = '予約を確定する';
+            return;
+          }
+          document.querySelector('.container').innerHTML = getSuccessHtml(data, name, company);
+        })
+        .withFailureHandler(function(err) {
+          showError('予約に失敗しました: ' + err.message);
+          btn.disabled = false;
+          btn.textContent = '予約を確定する';
+        })
+        .bookMeeting({
           name: name,
           email: email,
           company: company,
           topic: topic,
           slotStart: selectedSlot.start,
           slotEnd: selectedSlot.end,
-        }),
-      })
-      .then(r => r.json())
-      .then(data => {
-        if (data.error) {
-          showError(data.error);
-          btn.disabled = false;
-          btn.textContent = '予約を確定する';
-          return;
-        }
-
-        // Show success page
-        document.querySelector('.container').innerHTML = getSuccessHtml(data, name, company);
-      })
-      .catch(err => {
-        showError('予約に失敗しました: ' + err.message);
-        btn.disabled = false;
-        btn.textContent = '予約を確定する';
-      });
+        });
     }
 
     function getSuccessHtml(data, name, company) {
@@ -536,22 +525,25 @@ function getCancelPageHtml_(token) {
   </div>
   <script>
     function doCancel() {
-      fetch('${ScriptApp.getService().getUrl()}', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'cancel', token: '${token}' }),
-      })
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('confirmView').style.display = 'none';
-        document.getElementById('resultView').style.display = 'block';
-        if (data.success) {
-          document.getElementById('resultTitle').textContent = '✅ キャンセル完了';
-          document.getElementById('resultMsg').textContent = '予約をキャンセルしました。';
-        } else {
+      google.script.run
+        .withSuccessHandler(function(data) {
+          document.getElementById('confirmView').style.display = 'none';
+          document.getElementById('resultView').style.display = 'block';
+          if (data.success) {
+            document.getElementById('resultTitle').textContent = '✅ キャンセル完了';
+            document.getElementById('resultMsg').textContent = '予約をキャンセルしました。';
+          } else {
+            document.getElementById('resultTitle').textContent = '❌ エラー';
+            document.getElementById('resultMsg').textContent = data.error;
+          }
+        })
+        .withFailureHandler(function(err) {
+          document.getElementById('confirmView').style.display = 'none';
+          document.getElementById('resultView').style.display = 'block';
           document.getElementById('resultTitle').textContent = '❌ エラー';
-          document.getElementById('resultMsg').textContent = data.error;
-        }
-      });
+          document.getElementById('resultMsg').textContent = err.message;
+        })
+        .cancelMeeting('${token}');
     }
   </script>
 </body>

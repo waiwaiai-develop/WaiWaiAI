@@ -3,7 +3,7 @@
  * 予約データをスプレッドシートに記録
  */
 
-const MEETING_MEETING_SHEET_NAME = 'MTG予約一覧';
+const MEETING_SHEET_NAME = 'MTG予約一覧';
 
 function getOrCreateSheet_() {
   const ss = SpreadsheetApp.getActive();

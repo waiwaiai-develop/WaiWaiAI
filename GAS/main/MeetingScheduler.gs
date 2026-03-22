@@ -15,6 +15,11 @@
  * - Spreadsheet recording
  */
 
+// ===== Public API (callable from google.script.run) =====
+function getAvailableSlots() { return getAvailableSlots_(); }
+function bookMeeting(data) { return bookMeeting_(data); }
+function cancelMeeting(token) { return cancelMeeting_(token); }
+
 // ===== Configuration =====
 const CONFIG = {
   CALENDAR_ID: 'primary',
@@ -117,9 +122,14 @@ function bookMeeting_(data) {
 
   const start = new Date(slotStart);
   const end = new Date(slotEnd);
-  const token = generateToken_();
 
+  // 予約時に再度重複チェック（同時予約防止）
   const cal = CalendarApp.getCalendarById(CONFIG.CALENDAR_ID);
+  if (hasConflict_(cal, start, end)) {
+    return { error: 'この時間帯は既に予約が入っています。別の時間を選択してください。' };
+  }
+
+  const token = generateToken_();
   const title = `【MTG】${company || ''} ${name}様`;
 
   const event = cal.createEvent(title, start, end, {
