@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import PainPoints from '@/components/PainPoints';
 import Services from '@/components/Services';
+import ROISimulator from '@/components/ROISimulator';
 import ProductsSection from '@/components/ProductsSection';
 import CompanySection from '@/components/CompanySection';
 import ContactSection from '@/components/ContactSection';
@@ -60,6 +61,7 @@ export default function HomePage() {
       <Hero />
       <PainPoints />
       <Services />
+      <ROISimulator />
       <ProductsSection />
       <CompanySection />
       <ContactSection />

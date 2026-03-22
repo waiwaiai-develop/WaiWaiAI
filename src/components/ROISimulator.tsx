@@ -1,0 +1,391 @@
+'use client';
+
+import { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Calculator, Clock, TrendingUp, Users, ArrowRight, BadgeJapaneseYen } from 'lucide-react';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
+
+function formatYen(amount: number): string {
+    if (amount >= 10000) {
+        const man = Math.floor(amount / 10000);
+        return `${man.toLocaleString()}万円`;
+    }
+    return `${amount.toLocaleString()}円`;
+}
+
+type SliderFieldProps = {
+    id: string;
+    label: string;
+    icon: React.ReactNode;
+    value: number;
+    min: number;
+    max: number;
+    step: number;
+    unit: string;
+    onChange: (value: number) => void;
+    formatDisplay?: (value: number) => string;
+};
+
+function SliderField({
+    id,
+    label,
+    icon,
+    value,
+    min,
+    max,
+    step,
+    unit,
+    onChange,
+    formatDisplay,
+}: SliderFieldProps) {
+    const percentage = ((value - min) / (max - min)) * 100;
+    const displayValue = formatDisplay ? formatDisplay(value) : `${value.toLocaleString()}${unit}`;
+
+    return (
+        <div className="space-y-3">
+            <div className="flex items-center justify-between">
+                <label
+                    htmlFor={id}
+                    className="flex items-center gap-2 text-sm font-semibold text-slate-700"
+                >
+                    <span
+                        className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                        style={{
+                            background: 'linear-gradient(135deg, #eff6ff, #dbeafe)',
+                            border: '1px solid rgba(59,130,246,0.15)',
+                        }}
+                    >
+                        {icon}
+                    </span>
+                    {label}
+                </label>
+                <span className="text-base font-bold text-blue-600 tabular-nums">
+                    {displayValue}
+                </span>
+            </div>
+            <div className="relative">
+                <div
+                    className="h-2 rounded-full overflow-hidden"
+                    style={{ background: 'rgba(226,232,240,0.8)' }}
+                >
+                    <div
+                        className="h-full rounded-full transition-all duration-150"
+                        style={{
+                            width: `${percentage}%`,
+                            background: 'linear-gradient(90deg, #2563eb 0%, #0ea5e9 100%)',
+                        }}
+                    />
+                </div>
+                <input
+                    id={id}
+                    type="range"
+                    min={min}
+                    max={max}
+                    step={step}
+                    value={value}
+                    onChange={(e) => onChange(Number(e.target.value))}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    aria-label={label}
+                    aria-valuemin={min}
+                    aria-valuemax={max}
+                    aria-valuenow={value}
+                    aria-valuetext={displayValue}
+                />
+                <div
+                    className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-md transition-all duration-150 pointer-events-none"
+                    style={{
+                        left: `calc(${percentage}% - 10px)`,
+                        background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                        boxShadow: '0 2px 8px rgba(37,99,235,0.35)',
+                    }}
+                />
+            </div>
+            <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+                <span>{min.toLocaleString()}{unit}</span>
+                <span>{max.toLocaleString()}{unit}</span>
+            </div>
+        </div>
+    );
+}
+
+type ResultCardProps = {
+    icon: React.ReactNode;
+    label: string;
+    value: string;
+    sub?: string;
+    highlight?: boolean;
+};
+
+function ResultCard({ icon, label, value, sub, highlight }: ResultCardProps) {
+    return (
+        <div
+            className="rounded-2xl p-4 flex items-start gap-3 transition-all duration-200"
+            style={
+                highlight
+                    ? {
+                          background: 'linear-gradient(135deg, rgba(37,99,235,0.07) 0%, rgba(14,165,233,0.05) 100%)',
+                          border: '1.5px solid rgba(37,99,235,0.2)',
+                      }
+                    : {
+                          background: 'rgba(248,250,252,0.7)',
+                          border: '1px solid rgba(226,232,240,0.7)',
+                      }
+            }
+        >
+            <span
+                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
+                style={
+                    highlight
+                        ? {
+                              background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                              boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                          }
+                        : {
+                              background: 'linear-gradient(135deg, #eff6ff, #dbeafe)',
+                              border: '1px solid rgba(59,130,246,0.15)',
+                          }
+                }
+            >
+                <span className={highlight ? 'text-white' : 'text-blue-600'}>{icon}</span>
+            </span>
+            <div className="min-w-0">
+                <p className="text-xs font-medium text-slate-500 leading-tight">{label}</p>
+                <p
+                    className={`text-xl font-bold tabular-nums leading-tight mt-0.5 ${
+                        highlight ? 'text-blue-700' : 'text-slate-800'
+                    }`}
+                >
+                    {value}
+                </p>
+                {sub && <p className="text-[11px] text-slate-400 mt-0.5">{sub}</p>}
+            </div>
+        </div>
+    );
+}
+
+const REDUCTION_RATE = 0.3;
+
+export default function ROISimulator() {
+    const [employees, setEmployees] = useState(10);
+    const [hoursPerPerson, setHoursPerPerson] = useState(40);
+    const [hourlyRate, setHourlyRate] = useState(2500);
+
+    const calculate = useCallback(() => {
+        const reducedHoursMonthly = hoursPerPerson * employees * REDUCTION_RATE;
+        const costReductionMonthly = reducedHoursMonthly * hourlyRate;
+        const costReductionAnnual = costReductionMonthly * 12;
+        return { reducedHoursMonthly, costReductionMonthly, costReductionAnnual };
+    }, [employees, hoursPerPerson, hourlyRate]);
+
+    const { reducedHoursMonthly, costReductionMonthly, costReductionAnnual } = calculate();
+
+    const annualMan = Math.floor(costReductionAnnual / 10000);
+
+    return (
+        <section className="py-24 lg:py-32 relative overflow-hidden">
+            {/* Background decoration */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                aria-hidden="true"
+                style={{
+                    background:
+                        'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(37,99,235,0.04) 0%, transparent 70%)',
+                }}
+            />
+
+            <div className="container mx-auto px-6 max-w-7xl relative z-10">
+                {/* Header */}
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="text-center mb-14 flex flex-col items-center"
+                >
+                    <motion.span
+                        variants={fadeInUp}
+                        className="text-blue-600 font-semibold text-xs tracking-widest uppercase mb-5"
+                    >
+                        ROI Simulator
+                    </motion.span>
+                    <motion.h2
+                        variants={fadeInUp}
+                        className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]"
+                    >
+                        AI導入で、<br />
+                        <span
+                            className="bg-clip-text text-transparent"
+                            style={{
+                                backgroundImage: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                            }}
+                        >
+                            いくら削減できる？
+                        </span>
+                    </motion.h2>
+                    <motion.p
+                        variants={fadeInUp}
+                        className="text-lg text-slate-600 max-w-xl mx-auto leading-relaxed"
+                    >
+                        御社の情報を入力するだけで、AI導入による<br className="hidden sm:block" />
+                        コスト削減効果をシミュレーションできます。
+                    </motion.p>
+                </motion.div>
+
+                {/* Simulator Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                    className="max-w-4xl mx-auto"
+                >
+                    <div
+                        className="rounded-2xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.08)]"
+                        style={{
+                            background: 'rgba(255,255,255,0.85)',
+                            backdropFilter: 'blur(40px)',
+                            WebkitBackdropFilter: 'blur(40px)',
+                            border: '1px solid rgba(255,255,255,0.7)',
+                        }}
+                    >
+                        <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-100/80">
+                            {/* Left: Inputs */}
+                            <div className="p-7 md:p-9 space-y-8">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span
+                                        className="w-8 h-8 rounded-xl flex items-center justify-center"
+                                        style={{
+                                            background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                                            boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                                        }}
+                                    >
+                                        <Calculator className="w-4 h-4 text-white" />
+                                    </span>
+                                    <h3 className="font-bold text-slate-800 text-base">
+                                        御社の情報を入力
+                                    </h3>
+                                </div>
+
+                                <SliderField
+                                    id="roi-employees"
+                                    label="従業員数"
+                                    icon={<Users className="w-3.5 h-3.5 text-blue-600" />}
+                                    value={employees}
+                                    min={1}
+                                    max={100}
+                                    step={1}
+                                    unit="名"
+                                    onChange={setEmployees}
+                                />
+
+                                <SliderField
+                                    id="roi-hours"
+                                    label="月間の事務作業時間（1人あたり）"
+                                    icon={<Clock className="w-3.5 h-3.5 text-blue-600" />}
+                                    value={hoursPerPerson}
+                                    min={10}
+                                    max={160}
+                                    step={5}
+                                    unit="時間"
+                                    onChange={setHoursPerPerson}
+                                />
+
+                                <SliderField
+                                    id="roi-rate"
+                                    label="平均時給"
+                                    icon={<BadgeJapaneseYen className="w-3.5 h-3.5 text-blue-600" />}
+                                    value={hourlyRate}
+                                    min={1000}
+                                    max={5000}
+                                    step={100}
+                                    unit="円"
+                                    onChange={setHourlyRate}
+                                    formatDisplay={(v) => `${v.toLocaleString()}円`}
+                                />
+
+                                <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+                                    ※ 削減見込みはAI導入による事務作業30%削減を前提とした保守的な試算値です。
+                                </p>
+                            </div>
+
+                            {/* Right: Results */}
+                            <div className="p-7 md:p-9 flex flex-col">
+                                <div className="flex items-center gap-2 mb-6">
+                                    <span
+                                        className="w-8 h-8 rounded-xl flex items-center justify-center"
+                                        style={{
+                                            background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                                            boxShadow: '0 4px 12px rgba(37,99,235,0.3)',
+                                        }}
+                                    >
+                                        <TrendingUp className="w-4 h-4 text-white" />
+                                    </span>
+                                    <h3 className="font-bold text-slate-800 text-base">
+                                        削減効果シミュレーション
+                                    </h3>
+                                </div>
+
+                                <div className="space-y-3 flex-1">
+                                    <ResultCard
+                                        icon={<Clock className="w-4 h-4" />}
+                                        label="月間削減見込み時間"
+                                        value={`${Math.round(reducedHoursMonthly).toLocaleString()} 時間`}
+                                        sub={`全社合計（1人あたり約${Math.round(reducedHoursMonthly / employees)}時間）`}
+                                    />
+                                    <ResultCard
+                                        icon={<BadgeJapaneseYen className="w-4 h-4" />}
+                                        label="月間コスト削減額"
+                                        value={formatYen(Math.round(costReductionMonthly))}
+                                    />
+                                    <ResultCard
+                                        icon={<TrendingUp className="w-4 h-4" />}
+                                        label="年間コスト削減額（推定）"
+                                        value={formatYen(Math.round(costReductionAnnual))}
+                                        highlight
+                                    />
+                                </div>
+
+                                {/* Highlight Banner */}
+                                <motion.div
+                                    key={annualMan}
+                                    initial={{ opacity: 0, scale: 0.97 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                                    className="mt-5 rounded-2xl p-5 text-center"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
+                                        boxShadow: '0 8px 24px rgba(37,99,235,0.3)',
+                                    }}
+                                >
+                                    <p className="text-blue-100 text-xs font-medium mb-1">
+                                        年間約
+                                    </p>
+                                    <p className="text-white text-4xl font-bold tabular-nums tracking-tight">
+                                        {annualMan.toLocaleString()}
+                                        <span className="text-2xl ml-1">万円</span>
+                                    </p>
+                                    <p className="text-blue-100 text-xs font-medium mt-1">
+                                        のコスト削減が見込めます
+                                    </p>
+                                </motion.div>
+
+                                {/* CTA */}
+                                <a
+                                    href="/#contact"
+                                    className="mt-4 w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm text-blue-700 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] group"
+                                    style={{
+                                        background: 'rgba(239,246,255,0.9)',
+                                        border: '1.5px solid rgba(37,99,235,0.2)',
+                                    }}
+                                >
+                                    無料相談で詳しく診断する
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}

@@ -4,7 +4,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import {
     Brain, Cpu, Repeat, CheckCircle2, ArrowRight, TrendingUp,
     Clock, AlertTriangle, BarChart3, Users, Zap, Shield,
-    Building2, Rocket, Target, ChevronDown, Minus, Plus
+    Building2, Rocket, Target, ChevronDown, Minus, Plus,
+    Search, RefreshCw, PhoneCall, Wrench, Sparkles, LifeBuoy
 } from 'lucide-react';
 import { useState, useRef } from 'react';
 import ContactCTA from '@/components/ContactCTA';
@@ -533,6 +534,201 @@ export default function ATPPage() {
                                 <span className="text-blue-600 font-bold text-sm whitespace-nowrap">{s.price}</span>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════ NEW ENTRY POINTS — AI Review + IT/AI Rescue ═══════ */}
+            <section className="py-32 bg-slate-50 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
+                <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/40 blur-[120px] translate-x-1/3 translate-y-1/3" />
+                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="mb-20"
+                    >
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-px bg-blue-500" />
+                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">New Services</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">
+                            まず、ここから始める。
+                        </h2>
+                        <p className="text-slate-500 text-lg max-w-xl">
+                            月額契約の前に、単発で試せる入口をご用意しました。
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        {/* Card 1: AI活用レビュー */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                            className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_12px_48px_-8px_rgba(37,99,235,0.2)] transition-all duration-500"
+                        >
+                            {/* Top accent bar */}
+                            <div className="h-1 bg-gradient-to-r from-blue-500 to-cyan-400" />
+                            <div className="p-10 md:p-12">
+                                {/* Badge */}
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-8">
+                                    <Sparkles className="w-3 h-3 text-blue-500" />
+                                    <span className="text-xs font-semibold text-blue-600 tracking-wide">導入済み企業向け</span>
+                                </div>
+
+                                <div className="flex items-start gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
+                                        <Search className="w-5 h-5 text-blue-500" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-slate-900 leading-tight">AI活用レビュー</h3>
+                                        <p className="text-blue-500 font-medium text-sm mt-1">現状診断 → 最適化提案</p>
+                                    </div>
+                                </div>
+
+                                <p className="text-slate-600 leading-relaxed mb-8">
+                                    「Difyを入れたけど放置している」「ChatGPTに課金しているだけ」<br />
+                                    そんな企業に向けた、単発の現状診断サービスです。
+                                </p>
+
+                                {/* Pain points */}
+                                <div className="space-y-3 mb-8">
+                                    {[
+                                        'AI導入したのに誰も使っていない',
+                                        'ツールはあるが業務に定着していない',
+                                        '何から改善すれば良いかわからない',
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-3">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                                            <span className="text-sm text-slate-500">{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Process */}
+                                <div className="glass rounded-xl p-6 mb-8 bg-blue-50/50">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <RefreshCw className="w-4 h-4 text-blue-500" />
+                                        <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">レビューの流れ</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-sm text-slate-600">
+                                        <span className="font-medium text-slate-800">現状確認</span>
+                                        <ArrowRight className="w-3 h-3 text-blue-400 shrink-0" />
+                                        <span className="font-medium text-slate-800">課題抽出</span>
+                                        <ArrowRight className="w-3 h-3 text-blue-400 shrink-0" />
+                                        <span className="font-medium text-slate-800">最適化提案</span>
+                                    </div>
+                                </div>
+
+                                {/* Key message */}
+                                <div className="border-l-2 border-blue-400 pl-4 mb-10">
+                                    <p className="text-sm text-slate-500 italic leading-relaxed">
+                                        "AIの進化は早い。定期的なレビューが必要です。"<br />
+                                        このレビューが、月額ATPへの入口になります。
+                                    </p>
+                                </div>
+
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    href="/#contact"
+                                    className="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 text-white font-bold text-sm tracking-wide hover:bg-blue-700 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)]"
+                                >
+                                    レビューを依頼する <ArrowRight className="w-4 h-4" />
+                                </motion.a>
+                            </div>
+                        </motion.div>
+
+                        {/* Card 2: IT/AIレスキュー */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                            className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_12px_48px_-8px_rgba(234,88,12,0.15)] transition-all duration-500"
+                        >
+                            {/* Top accent bar */}
+                            <div className="h-1 bg-gradient-to-r from-orange-400 to-amber-400" />
+                            <div className="p-10 md:p-12">
+                                {/* Badge */}
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-100 mb-8">
+                                    <LifeBuoy className="w-3 h-3 text-orange-500" />
+                                    <span className="text-xs font-semibold text-orange-600 tracking-wide">ITが苦手な方向け</span>
+                                </div>
+
+                                <div className="flex items-start gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-orange-100 transition-colors">
+                                        <PhoneCall className="w-5 h-5 text-orange-500" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-slate-900 leading-tight">IT/AIレスキュー</h3>
+                                        <p className="text-orange-500 font-medium text-sm mt-1">困ったらZoomで即解決</p>
+                                    </div>
+                                </div>
+
+                                <p className="text-slate-600 leading-relaxed mb-8">
+                                    水のトラブルに「クラシアン」があるように、<br />
+                                    IT/AIのトラブルにもすぐ呼べる存在が必要です。<br />
+                                    AIで作ったものが動かない。そんなときに。
+                                </p>
+
+                                {/* Scenario examples */}
+                                <div className="space-y-3 mb-8">
+                                    {[
+                                        '「AIで作ったけど突然動かなくなった！」',
+                                        '「設定しようとしたら画面が変わってわからない」',
+                                        '「エラーが出て何が何だか分からない」',
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-start gap-3">
+                                            <AlertTriangle className="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5" />
+                                            <span className="text-sm text-slate-500">{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Speed highlight */}
+                                <div className="glass rounded-xl p-6 mb-8 bg-orange-50/50">
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <Zap className="w-4 h-4 text-orange-500" />
+                                        <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide">スピード解決</span>
+                                    </div>
+                                    <div className="flex items-center gap-6">
+                                        <div className="text-center">
+                                            <span className="text-3xl font-black text-slate-900">5</span>
+                                            <span className="text-sm text-slate-400 ml-1">〜10分</span>
+                                            <p className="text-xs text-slate-400 mt-1">典型的な解決時間</p>
+                                        </div>
+                                        <div className="w-px h-10 bg-slate-200" />
+                                        <div className="text-sm text-slate-600 leading-relaxed">
+                                            Zoom画面共有で一緒に確認。<br />
+                                            その場で解決します。
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Key message */}
+                                <div className="border-l-2 border-orange-400 pl-4 mb-10">
+                                    <p className="text-sm text-slate-500 italic leading-relaxed">
+                                        一度助けてもらうと、安心感が生まれます。<br />
+                                        その信頼関係が、ATP月額契約につながります。
+                                    </p>
+                                </div>
+
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    href="/#contact"
+                                    className="flex items-center justify-center gap-2 w-full py-4 bg-orange-500 text-white font-bold text-sm tracking-wide hover:bg-orange-600 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(234,88,12,0.3)]"
+                                >
+                                    今すぐ相談する <ArrowRight className="w-4 h-4" />
+                                </motion.a>
+                            </div>
+                        </motion.div>
+
                     </div>
                 </div>
             </section>
