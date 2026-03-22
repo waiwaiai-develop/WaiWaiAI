@@ -53,28 +53,28 @@ const WORK_TYPES: WorkType[] = [
 const VALUE_ITEMS = [
     {
         icon: <Clock className="w-5 h-5" />,
-        title: '時間の創出',
-        description: '単純作業から解放。戦略的な仕事に集中できる',
+        title: '「また残業か…」が減る',
+        description: '毎日の転記・集計・報告書。AIに任せて定時で帰れる',
     },
     {
         icon: <Shield className="w-5 h-5" />,
-        title: '品質の安定化',
-        description: 'ヒューマンエラーを削減。24時間一定品質で稼働',
+        title: '「あ、やっちゃった」が減る',
+        description: '入力ミスや確認漏れ。AIが何度でも同じ精度でチェック',
     },
     {
         icon: <Globe className="w-5 h-5" />,
-        title: 'スケーラビリティ',
-        description: '人を増やさず業務を拡大。1人でも100社対応可能に',
+        title: '人を増やさず回せる',
+        description: '「人手が足りない」を採用ではなくAIで解決する選択肢',
     },
     {
         icon: <Brain className="w-5 h-5" />,
-        title: 'ナレッジの永続化',
-        description: '退職しても知識が残る。属人化を根本から解消',
+        title: '辞めても困らない',
+        description: '「あの人しか知らない」をなくす。ノウハウがAIに残る',
     },
     {
         icon: <Zap className="w-5 h-5" />,
-        title: '意思決定の高速化',
-        description: 'データ分析から判断材料が即座に。対応スピードが変わる',
+        title: '判断が早くなる',
+        description: '売上データも競合情報も、聞けばすぐ出てくる状態に',
     },
 ];
 
@@ -581,22 +581,22 @@ export default function ROISimulator() {
                             variants={fadeInUp}
                             className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.2]"
                         >
-                            コスト削減だけじゃない。<br />
+                            こんな「困った」、<br />
                             <span
                                 className="bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage: 'linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)',
                                 }}
                             >
-                                AIで「できること」が増える。
+                                AIで解決できます。
                             </span>
                         </motion.h2>
                         <motion.p
                             variants={fadeInUp}
                             className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed"
                         >
-                            AI導入の本質は、単なる業務効率化ではありません。<br className="hidden sm:block" />
-                            人が注力すべき仕事に集中できる環境をつくることです。
+                            「人手が足りない」「ミスが減らない」「あの人しかできない」<br className="hidden sm:block" />
+                            ——よくある悩み、実はAIの得意分野です。
                         </motion.p>
                     </motion.div>
 
