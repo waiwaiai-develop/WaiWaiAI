@@ -4,7 +4,7 @@ import ATPPageContent from '@/page-content/atp/index';
 export const metadata: Metadata = {
     title: 'AI Transformation Partner（ATP）| AI部門をインストールする',
     description:
-        '御社専属のAI部門を月額10万円から。7,000人規模企業でAI普及率60%を達成した実績を持つWaiWai AIが、戦略立案・AIによる自動実装・KPI計測まで一気通貫で支援。東証グロース上場企業の顧問実績あり。',
+        '御社専属のAI部門を月額10万円から。大手企業でAI普及率60%を達成した実績を持つWaiWai AIが、戦略立案・AIによる自動実装・KPI計測まで一気通貫で支援。東証グロース上場企業の顧問実績あり。',
     keywords: [
         'AI顧問', 'AI導入支援', 'AI業務改善', 'DX推進', 'AI自動化',
         'AI部門', 'AIトランスフォーメーション', '業務効率化',
