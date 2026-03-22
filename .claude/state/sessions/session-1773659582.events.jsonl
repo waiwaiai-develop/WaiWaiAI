@@ -1,0 +1,21 @@
+{"type":"session.start","ts":"2026-03-16T11:13:02Z","state":"initialized","data":{"cc_session_id":"3fa52fc8-7fb9-4112-9395-c049d3851c0e"}}
+{"id":"event-000001","type":"session.resume","ts":"2026-03-16T11:13:02Z","state":"initialized"}
+{"id":"event-000002","type":"tool.bash","ts":"2026-03-16T11:13:23Z","state":"initialized","data":{"command":"find . -type f -name "*.json" | head -20"}}
+{"id":"event-000003","type":"tool.bash","ts":"2026-03-16T11:13:27Z","state":"initialized","data":{"command":"pwd && ls -la /Users/kubotatoshi/dev/WaiWaiAI/ | head -20"}}
+{"id":"event-000004","type":"tool.bash","ts":"2026-03-16T11:13:32Z","state":"initialized","data":{"command":"find /Users/kubotatoshi/dev/WaiWaiAI -name "tailwind.config.*" -type f"}}
+{"id":"event-000005","type":"tool.bash","ts":"2026-03-16T11:13:36Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/next.config.ts"}}
+{"id":"event-000006","type":"tool.bash","ts":"2026-03-16T11:13:39Z","state":"initialized","data":{"command":"find /Users/kubotatoshi/dev/WaiWaiAI -maxdepth 2 -type f \( -name "*.css" -o -name "*tailwind*" -o -name "*.config.*" \) ! -path "*/node_modules/*" ! -path "*/.next/*""}}
+{"id":"event-000007","type":"tool.bash","ts":"2026-03-16T11:13:42Z","state":"initialized","data":{"command":"find /Users/kubotatoshi/dev/WaiWaiAI/src -type f -name "*.css" ! -path "*/node_modules/*""}}
+{"id":"event-000008","type":"tool.bash","ts":"2026-03-16T11:13:43Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/app/globals.css"}}
+{"id":"event-000009","type":"tool.bash","ts":"2026-03-16T11:13:46Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/Hero.tsx"}}
+{"id":"event-000010","type":"tool.bash","ts":"2026-03-16T11:13:47Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/Navbar.tsx"}}
+{"id":"event-000011","type":"tool.bash","ts":"2026-03-16T11:13:47Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/Services.tsx"}}
+{"id":"event-000012","type":"tool.bash","ts":"2026-03-16T11:13:52Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/ContactSection.tsx"}}
+{"id":"event-000013","type":"tool.bash","ts":"2026-03-16T11:13:52Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/FAQSection.tsx"}}
+{"id":"event-000014","type":"tool.bash","ts":"2026-03-16T11:13:57Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/components/PainPoints.tsx | head -150"}}
+{"id":"event-000015","type":"tool.bash","ts":"2026-03-16T11:13:57Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/app/layout.tsx"}}
+{"id":"event-000016","type":"tool.bash","ts":"2026-03-16T11:14:00Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/postcss.config.mjs"}}
+{"id":"event-000017","type":"tool.bash","ts":"2026-03-16T11:14:01Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/src/lib/animations.ts 2>/dev/null || echo "File not found""}}
+{"id":"event-000018","type":"tool.bash","ts":"2026-03-16T11:14:01Z","state":"initialized","data":{"command":"cat /Users/kubotatoshi/dev/WaiWaiAI/package.json"}}
+{"id":"event-000019","type":"tool.task","ts":"2026-03-16T11:14:25Z","state":"initialized"}
+{"id":"event-000020","type":"session.stop","ts":"2026-03-16T11:14:36Z","state":"stopped"}

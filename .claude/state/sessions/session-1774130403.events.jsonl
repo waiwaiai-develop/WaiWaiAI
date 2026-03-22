@@ -1,0 +1,4 @@
+{"type":"session.start","ts":"2026-03-21T22:00:03Z","state":"initialized","data":{"cc_session_id":"6c0ba697-6f96-467b-a72f-866a2d1823aa"}}
+{"id":"event-000001","type":"session.resume","ts":"2026-03-21T22:00:03Z","state":"initialized"}
+{"id":"event-000002","type":"tool.bash","ts":"2026-03-21T22:37:31Z","state":"initialized","data":{"command":"cd /Users/kubotatoshi/dev/WaiWaiAI && env -i HOME=/Users/kubotatoshi PATH="/opt/homebrew/opt/node@22/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" NODE_PATH="/opt/homebrew/opt/node@22/lib/node_m"}}
+{"id":"event-000003","type":"session.stop","ts":"2026-03-21T22:37:42Z","state":"stopped"}

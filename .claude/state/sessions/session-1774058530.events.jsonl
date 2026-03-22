@@ -1,0 +1,16 @@
+{"type":"session.start","ts":"2026-03-21T02:02:10Z","state":"initialized","data":{"cc_session_id":"3383d158-5c06-40e5-a13d-bf683a259dea"}}
+{"id":"event-000001","type":"session.resume","ts":"2026-03-21T02:02:10Z","state":"initialized"}
+{"id":"event-000002","type":"tool.bash","ts":"2026-03-21T02:02:22Z","state":"initialized","data":{"command":"ls /Users/kubotatoshi/dev/WaiWaiAI_Brain/06-knowledge/ 2>/dev/null | head -30"}}
+{"id":"event-000003","type":"tool.bash","ts":"2026-03-21T02:03:17Z","state":"initialized","data":{"command":"ls /Users/kubotatoshi/dev/WaiWaiAI/src/app/products* 2>/dev/null; ls /Users/kubotatoshi/dev/WaiWaiAI/src/content/products* 2>/dev/null; find /Users/kubotatoshi/dev/WaiWaiAI/src -name "*product*" -type"}}
+{"id":"event-000004","type":"tool.write","ts":"2026-03-21T02:04:21Z","state":"initialized","data":{"file_path":"/Users/kubotatoshi/dev/WaiWaiAI/src/content/blog/ai-recruitment-efficiency.mdx"}}
+{"id":"event-000005","type":"tool.bash","ts":"2026-03-21T02:04:45Z","state":"initialized","data":{"command":"cat > /tmp/blog-report.txt << 'REPORT_EOF'
+📝 ブログ記事を自動生成しました
+
+📌 タイトル: 採用業務にAIを活用する方法 — 応募対応・選考・日程調整の効率化
+🏷 カテゴリ: 人材
+🔑 狙いキーワード: 採用業務 AI活用
+
+📊 SEOポイント
+・titleにキーワード「採用業務」「AI」「活用」を前半に配置（35文字以内）
+・h2見出し4つにキーワー"}}
+{"id":"event-000006","type":"session.stop","ts":"2026-03-21T02:04:56Z","state":"stopped"}

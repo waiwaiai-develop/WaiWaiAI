@@ -1,24 +1,50 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-03-15T03:33:54.290Z",
+  "updatedAt": "2026-03-22T22:00:03.628Z",
   "skills": {
     "agent-browser": {
       "count": 1,
       "lastUsed": "2026-03-05T12:27:01.632Z"
+    },
+    "frontend-design": {
+      "count": 3,
+      "lastUsed": "2026-03-21T09:43:31.163Z"
+    },
+    "ayaka": {
+      "count": 1,
+      "lastUsed": "2026-03-21T09:05:31.904Z"
+    },
+    "harness-review": {
+      "count": 1,
+      "lastUsed": "2026-03-22T03:35:12.485Z"
     }
   },
-  "commands": {},
+  "commands": {
+    "frontend-design": {
+      "count": 2,
+      "lastUsed": "2026-03-21T04:41:02.130Z"
+    }
+  },
   "agents": {
     "Explore": {
-      "count": 7,
-      "lastUsed": "2026-03-07T07:23:57.814Z"
+      "count": 11,
+      "lastUsed": "2026-03-16T12:34:16.228Z"
+    },
+    "Plan": {
+      "count": 1,
+      "lastUsed": "2026-03-16T11:18:38.013Z"
     }
   },
   "hooks": {
     "session-init": {
-      "triggered": 5,
+      "triggered": 12,
       "blocked": 0,
-      "lastTriggered": "2026-03-15T03:33:54.287Z"
+      "lastTriggered": "2026-03-22T22:00:03.604Z"
+    },
+    "pretooluse-guard": {
+      "triggered": 15,
+      "blocked": 15,
+      "lastTriggered": "2026-03-22T21:51:10.772Z"
     }
   }
 }

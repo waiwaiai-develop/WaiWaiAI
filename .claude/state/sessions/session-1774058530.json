@@ -1,0 +1,45 @@
+{
+  "session_id": "session-1774058530",
+  "parent_session_id": null,
+  "state": "stopped",
+  "started_at": "2026-03-21T02:02:10Z",
+  "updated_at": "2026-03-21T02:04:56Z",
+  "event_seq": 6,
+  "last_event_id": "event-000006",
+  "state_version": 1,
+  "cwd": "/Users/kubotatoshi/dev/WaiWaiAI",
+  "project_name": "WaiWaiAI",
+  "resumed_at": "2026-03-21T02:02:10Z",
+  "git": {
+    "branch": "main",
+    "uncommitted_changes": 13,
+    "last_commit": "e1a5ae1"
+  },
+  "plans": {
+    "exists": false,
+    "last_modified": 0,
+    "wip_tasks": 0,
+    "todo_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 0
+  },
+  "orchestration": {
+    "max_state_retries": 3,
+    "retry_backoff_seconds": 10
+  },
+  "prompt_seq": 1,
+  "intent": "semantic",
+  "changes_this_session": [
+    {
+      "file": "src/content/blog/ai-recruitment-efficiency.mdx",
+      "action": "Write",
+      "timestamp": "2026-03-21T02:04:21Z",
+      "important": false
+    }
+  ],
+  "last_message_length": 430,
+  "last_message_hash": "2e8dfaddb93db592",
+  "ended_at": "2026-03-21T02:04:56Z",
+  "duration_minutes": 542,
+  "memory_logged": true
+}
