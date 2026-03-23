@@ -326,12 +326,12 @@ export default function ATPPage() {
                         className="rounded-2xl p-10 md:p-12"
                         style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
                     >
-                        <h3 className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-10">3つの世界を同時に見ている唯一の存在</h3>
+                        <h3 className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-10">3つの視点から、御社に最適な一手を</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                             {[
-                                { icon: <Building2 className="w-5 h-5" />, title: '大企業', desc: '大規模組織でのAI導入。部門間調整とガバナンスの知見。' },
-                                { icon: <TrendingUp className="w-5 h-5" />, title: '上場企業', desc: '東証グロース上場企業の経営課題。コンプライアンスを踏まえた提案。' },
-                                { icon: <Rocket className="w-5 h-5" />, title: '1人AI会社', desc: '社員ゼロ+AIエージェントで会社運営。理論ではなく実践の人。' },
+                                { icon: <Building2 className="w-5 h-5" />, title: '大企業のAI推進を主導', desc: '従業員7,000人規模の企業で、全社向けAIシステムの開発から導入・浸透までPMとして一貫して推進。' },
+                                { icon: <TrendingUp className="w-5 h-5" />, title: '上場企業のAI顧問を担当', desc: '上場企業で、経営層との戦略会議から現場への定着支援まで。机上の提案では終わらせない。' },
+                                { icon: <Rocket className="w-5 h-5" />, title: 'AIエージェントでチームを組成', desc: '自社は社員ゼロ、AIエージェントがチームとして稼働。ベンチャー企業のAI顧問として伴走もしており、AI×開発の最前線に立ち続けている。' },
                             ].map((item, i) => (
                                 <div key={i} className="flex gap-4">
                                     <div className="text-blue-200 mt-1 shrink-0">{item.icon}</div>
