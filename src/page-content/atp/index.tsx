@@ -14,16 +14,10 @@ import ContactCTA from '@/components/ContactCTA';
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
     const [open, setOpen] = useState(false);
     return (
-        <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-            className="glass-card rounded-2xl mb-3 overflow-hidden"
-        >
+        <div className="border-b border-slate-200 last:border-b-0 overflow-hidden">
             <button
                 onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between px-7 py-6 text-left group"
+                className="w-full flex items-center justify-between px-0 py-6 text-left group"
             >
                 <span className="font-medium text-slate-800 text-lg pr-6 group-hover:text-blue-600 transition-colors">{q}</span>
                 {open
@@ -37,11 +31,11 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="overflow-hidden"
             >
-                <div className="px-7 pb-6 text-slate-500 leading-relaxed max-w-2xl">
+                <div className="pb-6 text-slate-500 leading-relaxed max-w-2xl">
                     {a}
                 </div>
             </motion.div>
-        </motion.div>
+        </div>
     );
 }
 
@@ -103,7 +97,7 @@ export default function ATPPage() {
     return (
         <div className="relative overflow-hidden bg-white" style={{ fontFamily: "'Sora', 'Noto Sans JP', sans-serif" }}>
 
-            {/* ═══════ HERO — White glassmorphism, dramatic ═══════ */}
+            {/* ═══════ HERO ═══════ */}
             <section ref={heroRef} className="relative min-h-[100svh] flex items-center bg-white overflow-hidden">
                 {/* Ambient blue glows */}
                 <div className="absolute top-0 right-0 w-[70vw] h-[70vw] rounded-full bg-blue-100/60 blur-[140px] -translate-y-1/4 translate-x-1/4" />
@@ -118,11 +112,6 @@ export default function ATPPage() {
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                         className="max-w-4xl"
                     >
-                        <div className="flex items-center gap-3 mb-10">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-500 text-xs font-semibold tracking-[0.3em] uppercase">AI Transformation Partner</span>
-                        </div>
-
                         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 leading-[0.95] tracking-tight mb-8">
                             御社に、<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
@@ -157,7 +146,7 @@ export default function ATPPage() {
                         </div>
                     </motion.div>
 
-                    {/* Trust strip — glass badges */}
+                    {/* Trust strip */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -169,7 +158,7 @@ export default function ATPPage() {
                             { icon: <Users className="w-3.5 h-3.5 text-blue-500" />, label: '大手企業でのAI推進経験あり' },
                             { icon: <Shield className="w-3.5 h-3.5 text-blue-500" />, label: '補助金対応' },
                         ].map((item, i) => (
-                            <span key={i} className="glass flex items-center gap-2 px-4 py-2.5 rounded-full text-xs text-slate-600 tracking-wide uppercase font-medium">
+                            <span key={i} className="glass flex items-center gap-2 px-4 py-2.5 rounded-full text-xs text-slate-600 tracking-wide font-medium">
                                 {item.icon} {item.label}
                             </span>
                         ))}
@@ -177,68 +166,48 @@ export default function ATPPage() {
                 </motion.div>
             </section>
 
-            {/* ═══════ PAIN POINTS — White bg, glass cards ═══════ */}
+            {/* ═══════ PAIN POINTS ═══════ */}
             <section className="py-32 bg-white relative">
                 <div className="absolute inset-0 bg-dot-light opacity-30" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-red-500" />
-                            <span className="text-red-500 text-xs font-semibold tracking-[0.3em] uppercase">Problem</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
                             AI導入企業の<span className="text-red-500">8割</span>が<br />直面する壁。
                         </h2>
-                    </motion.div>
+                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div className="space-y-0 divide-y divide-slate-100">
                         {[
                             { icon: <AlertTriangle className="w-5 h-5" />, num: '01', title: 'アドバイスだけで実装してくれない', desc: '「こうしましょう」で終わるコンサル。結局、社内で誰もやらない。' },
                             { icon: <Clock className="w-5 h-5" />, num: '02', title: '導入したけど成果が見えない', desc: 'AIに投資したのに、何が変わったか説明できない。' },
                             { icon: <Users className="w-5 h-5" />, num: '03', title: '社内に推進者がいない', desc: 'ツールを導入しても使いこなせる人がおらず放置される。' },
                         ].map((p, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.15 }}
-                                className="glass-card rounded-2xl p-10 md:p-12 group hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] transition-all duration-500"
+                                className="flex gap-8 py-10 md:py-12"
                             >
-                                <span className="text-6xl font-black text-blue-50 group-hover:text-blue-100 transition-colors block mb-6">{p.num}</span>
-                                <div className="text-red-500 mb-4">{p.icon}</div>
-                                <h3 className="text-lg font-bold text-slate-900 mb-3 leading-snug">{p.title}</h3>
-                                <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
-                            </motion.div>
+                                <span className="text-5xl font-black text-slate-100 shrink-0 leading-none">{p.num}</span>
+                                <div className="flex-1">
+                                    <div className="text-red-500 mb-3">{p.icon}</div>
+                                    <h3 className="text-lg font-bold text-slate-900 mb-2 leading-snug">{p.title}</h3>
+                                    <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══════ 3 LAYERS — Glass panel cards ═══════ */}
+            {/* ═══════ 3 LAYERS ═══════ */}
             <section className="py-32 bg-slate-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="absolute top-1/2 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/50 blur-[100px] -translate-y-1/2 translate-x-1/3" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Solution</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight max-w-2xl">
                             3つのレイヤーで、<br />確実に変える。
                         </h2>
-                    </motion.div>
+                    </div>
 
                     <div className="space-y-5">
                         {[
@@ -246,17 +215,13 @@ export default function ATPPage() {
                             { icon: <Cpu className="w-7 h-7" />, layer: 'Layer 02', title: '手足', sub: 'AIエージェントが自動実装', desc: '戦略を立てるだけでは終わりません。AIエージェントが自動でツールを開発し、業務自動化を実装。通常の開発会社より圧倒的に速く、低コストで実現。' },
                             { icon: <Repeat className="w-7 h-7" />, layer: 'Layer 03', title: '定着', sub: '仕組み化 & 改善', desc: 'KPIを自動計測し成果を数字で可視化。社内にAI推進者を育て、四半期ごとに次のフェーズへ進む仕組みを構築。作って終わりにしない。' },
                         ].map((l, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                                 className="glass-panel rounded-2xl hover:shadow-[0_8px_40px_-8px_rgba(37,99,235,0.2)] transition-all duration-500 group"
                             >
                                 <div className="flex flex-col md:flex-row">
                                     <div className="md:w-1/3 p-10 md:p-12 border-b md:border-b-0 md:border-r border-white/60 flex flex-col justify-center">
-                                        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-slate-400 mb-4">{l.layer}</span>
+                                        <span className="text-xs font-semibold tracking-[0.2em] text-slate-400 mb-4">{l.layer}</span>
                                         <div className="text-blue-500 mb-4 group-hover:scale-110 transition-transform duration-500">{l.icon}</div>
                                         <h3 className="text-3xl font-bold text-slate-900 mb-1">{l.title}</h3>
                                         <p className="text-blue-500 font-medium text-sm">{l.sub}</p>
@@ -265,33 +230,24 @@ export default function ATPPage() {
                                         <p className="text-slate-600 text-lg leading-relaxed">{l.desc}</p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══════ TRACK RECORD — Blue-600 bg section ═══════ */}
+            {/* ═══════ TRACK RECORD ═══════ */}
             <section className="py-32 bg-blue-600 relative overflow-hidden">
                 {/* Background pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full bg-white/5 blur-[200px]" />
 
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-white/60" />
-                            <span className="text-white/70 text-xs font-semibold tracking-[0.3em] uppercase">Track Record</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                             実績が証明する、<br />圧倒的な再現性。
                         </h2>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
                         {[
@@ -299,13 +255,9 @@ export default function ATPPage() {
                             { number: '30', unit: '%増', label: '業務効率の向上', sub: 'AI活用によるドキュメント品質改善。業務プロセスの効率が大幅に向上。' },
                             { number: '100', unit: '億超', label: '上場企業のAI顧問', sub: '売上100億円超の上場企業で、経営層と直接対話しながらAI導入ロードマップを設計。' },
                         ].map((stat, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.2, duration: 0.7 }}
-                                className="glass rounded-2xl p-10 md:p-12"
+                                className="rounded-2xl p-10 md:p-12"
                                 style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
                             >
                                 <div className="mb-6">
@@ -314,19 +266,16 @@ export default function ATPPage() {
                                 </div>
                                 <div className="text-blue-200 font-semibold text-sm mb-3 tracking-wide">{stat.label}</div>
                                 <p className="text-blue-100/70 text-sm leading-relaxed">{stat.sub}</p>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 
                     {/* 3 perspectives */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                    <div
                         className="rounded-2xl p-10 md:p-12"
                         style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
                     >
-                        <h3 className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-10">3つの視点から、御社に最適な一手を</h3>
+                        <h3 className="text-white font-bold text-base mb-10">3つの視点から、御社に最適な一手を</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                             {[
                                 { icon: <Building2 className="w-5 h-5" />, title: '大企業のAI推進を主導', desc: '従業員7,000人規模の企業で、全社向けAIシステムの開発から導入・浸透までPMとして一貫して推進。' },
@@ -342,36 +291,22 @@ export default function ATPPage() {
                                 </div>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* ═══════ COMPARISON TABLE — Glass highlight ═══════ */}
+            {/* ═══════ COMPARISON TABLE ═══════ */}
             <section className="py-32 bg-white">
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-16"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-600" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Comparison</span>
-                        </div>
+                    <div className="mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">他社との比較。</h2>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="overflow-x-auto rounded-2xl glass-card"
-                    >
+                    <div className="overflow-x-auto">
                         <table className="w-full text-sm min-w-[640px]">
                             <thead>
-                                <tr className="border-b border-slate-200/80">
-                                    <th className="text-left py-5 pr-6 pl-6 font-semibold text-slate-400 uppercase tracking-widest text-xs w-1/5" />
+                                <tr className="border-b border-slate-200">
+                                    <th className="text-left py-5 pr-6 font-semibold text-slate-400 text-xs w-1/5" />
                                     <th className="py-5 px-4 text-center w-1/5">
                                         <span className="inline-block bg-blue-600 text-white font-bold py-2 px-5 text-sm tracking-wide rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)]">WaiWai AI</span>
                                     </th>
@@ -389,7 +324,7 @@ export default function ATPPage() {
                                     { label: '放置リスク', us: 'なし', a: '高い', b: '低い', c: '高い' },
                                 ].map((row, i) => (
                                     <tr key={i} className="border-b border-slate-100 last:border-b-0 hover:bg-blue-50/30 transition-colors">
-                                        <td className="py-5 pr-6 pl-6 font-semibold text-slate-800">{row.label}</td>
+                                        <td className="py-5 pr-6 font-semibold text-slate-800">{row.label}</td>
                                         <td className="py-5 px-4 text-center font-bold text-blue-600">{row.us}</td>
                                         <td className="py-5 px-4 text-center text-slate-400">{row.a}</td>
                                         <td className="py-5 px-4 text-center text-slate-400">{row.b}</td>
@@ -398,69 +333,51 @@ export default function ATPPage() {
                                 ))}
                             </tbody>
                         </table>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* ═══════ PROCESS — Glass step cards ═══════ */}
+            {/* ═══════ PROCESS ═══════ */}
             <section className="py-32 bg-slate-50 relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Process</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">導入の流れ。</h2>
-                    </motion.div>
+                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+                    <div className="space-y-0">
                         {[
                             { step: '01', icon: <Target className="w-5 h-5" />, title: '無料相談', desc: '1時間で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝え。' },
                             { step: '02', icon: <BarChart3 className="w-5 h-5" />, title: '業務診断', desc: '全業務を棚卸し。インパクト×難易度で優先順位を整理。' },
                             { step: '03', icon: <Zap className="w-5 h-5" />, title: '自動化実装', desc: 'AIエージェントが開発開始。最短1週間で最初の成果物。' },
                             { step: '04', icon: <TrendingUp className="w-5 h-5" />, title: 'KPI計測', desc: '成果を数字で見える化。毎月レポート、次の施策を実行。' },
                         ].map((item, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.12 }}
-                                className="glass-card rounded-2xl p-8 md:p-10 group hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.2)] transition-all duration-500"
+                                className="flex gap-8 py-10 border-b border-slate-200 last:border-b-0"
                             >
-                                <span className="text-5xl font-black text-blue-100 group-hover:text-blue-200 transition-colors block mb-6">{item.step}</span>
-                                <div className="text-blue-500 mb-4">{item.icon}</div>
-                                <h3 className="text-base font-bold text-slate-900 mb-2">{item.title}</h3>
-                                <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                            </motion.div>
+                                <span className="text-5xl font-black text-slate-100 shrink-0 leading-none w-16 text-center">{item.step}</span>
+                                <div className="flex-1 flex flex-col md:flex-row md:items-center md:gap-8">
+                                    <div className="flex items-center gap-3 mb-2 md:mb-0 md:w-48 shrink-0">
+                                        <div className="text-blue-500">{item.icon}</div>
+                                        <h3 className="text-base font-bold text-slate-900">{item.title}</h3>
+                                    </div>
+                                    <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══════ PRICING — Glass plan cards ═══════ */}
+            {/* ═══════ PRICING ═══════ */}
             <section id="pricing" className="py-32 bg-white relative">
                 <div className="absolute inset-0 bg-dot-light opacity-20" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Pricing</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">料金プラン。</h2>
                         <p className="text-slate-500 text-lg">社員1人の採用コストより、確実に安い。</p>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {plans.map((plan, i) => (
@@ -519,12 +436,9 @@ export default function ATPPage() {
                             { icon: <BarChart3 className="w-5 h-5" />, title: 'AI業務診断', desc: '全業務を棚卸し、AI活用ロードマップを納品。', price: '30万円（税別）' },
                             { icon: <Users className="w-5 h-5" />, title: 'AI導入研修', desc: '半日のオンライン研修。社内のAIリテラシーを底上げ。', price: '15万円（税別）' },
                         ].map((s, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                className="glass-card rounded-2xl p-8 md:p-10 flex items-center gap-6"
+                                className="flex items-center gap-6 py-6 border-b border-slate-100 last:border-b-0 md:border-b-0"
                             >
                                 <div className="text-blue-500 shrink-0">{s.icon}</div>
                                 <div className="flex-1">
@@ -532,34 +446,25 @@ export default function ATPPage() {
                                     <p className="text-slate-500 text-xs mt-1">{s.desc}</p>
                                 </div>
                                 <span className="text-blue-600 font-bold text-sm whitespace-nowrap">{s.price}</span>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══════ NEW ENTRY POINTS — AI Review + IT/AI Rescue ═══════ */}
+            {/* ═══════ NEW ENTRY POINTS ═══════ */}
             <section className="py-32 bg-slate-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/40 blur-[120px] translate-x-1/3 translate-y-1/3" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">New Services</span>
-                        </div>
+                    <div className="mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">
                             まず、ここから始める。
                         </h2>
                         <p className="text-slate-500 text-lg max-w-xl">
                             月額契約の前に、単発で試せる入口をご用意しました。
                         </p>
-                    </motion.div>
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -613,7 +518,7 @@ export default function ATPPage() {
                                 <div className="glass rounded-xl p-6 mb-8 bg-blue-50/50">
                                     <div className="flex items-center gap-2 mb-4">
                                         <RefreshCw className="w-4 h-4 text-blue-500" />
-                                        <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">レビューの流れ</span>
+                                        <span className="text-xs font-semibold text-blue-600 tracking-wide">レビューの流れ</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-sm text-slate-600">
                                         <span className="font-medium text-slate-800">現状確認</span>
@@ -694,7 +599,7 @@ export default function ATPPage() {
                                 <div className="glass rounded-xl p-6 mb-8 bg-orange-50/50">
                                     <div className="flex items-center gap-2 mb-4">
                                         <Zap className="w-4 h-4 text-orange-500" />
-                                        <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide">スピード解決</span>
+                                        <span className="text-xs font-semibold text-orange-600 tracking-wide">スピード解決</span>
                                     </div>
                                     <div className="flex items-center gap-6">
                                         <div className="text-center">
@@ -733,22 +638,12 @@ export default function ATPPage() {
                 </div>
             </section>
 
-            {/* ═══════ FAQ — Glass accordion ═══════ */}
-            <section className="py-32 bg-slate-50 relative">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
+            {/* ═══════ FAQ ═══════ */}
+            <section className="py-32 bg-white relative">
                 <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-16"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">FAQ</span>
-                        </div>
+                    <div className="mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">よくある質問。</h2>
-                    </motion.div>
+                    </div>
                     <div>
                         {faqs.map((faq, i) => (
                             <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
