@@ -727,7 +727,7 @@ export default function ROISimulator() {
                             animate={{ y: 0 }}
                             exit={{ y: '100%' }}
                             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="absolute inset-x-0 bottom-0 max-h-[92vh] overflow-y-auto rounded-t-3xl bg-white"
+                            className="absolute inset-x-0 top-12 bottom-0 overflow-y-auto rounded-t-3xl bg-white"
                             style={{ boxShadow: '0 -8px 40px rgba(0,0,0,0.15)' }}
                         >
                             {/* Modal header with close button */}
