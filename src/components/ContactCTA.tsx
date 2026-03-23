@@ -26,7 +26,7 @@ export default function ContactCTA() {
                         className="text-slate-600 text-lg md:text-xl font-normal mb-10 max-w-2xl leading-relaxed"
                     >
                         「どこまで自動化できる？」「費用対効果は？」<br className="hidden md:block" />
-                        まずは30分、御社の課題をお聞かせください。最適な進め方をご提案します。
+                        まずは1時間、御社の課題をお聞かせください。最適な進め方をご提案します。
                     </motion.p>
 
                     <motion.div
@@ -37,10 +37,8 @@ export default function ContactCTA() {
                         className="flex flex-col sm:flex-row gap-4 mb-10"
                     >
                         <a
-                            href="https://calendly.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Calendlyで無料相談を予約する"
+                            href="/booking"
+                            aria-label="無料相談を予約する"
                             className="group inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.16)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
                         >
                             無料で相談する

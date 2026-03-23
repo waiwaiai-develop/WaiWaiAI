@@ -107,7 +107,7 @@ export default function ContactSection() {
                         を。
                     </h2>
                     <p className="text-lg text-slate-700 font-medium max-w-2xl mx-auto leading-relaxed">
-                        まずは30分、御社の課題をお聞かせください。<br className="hidden md:block" />
+                        まずは1時間、御社の課題をお聞かせください。<br className="hidden md:block" />
                         最適な進め方をご提案します。
                     </p>
                 </motion.div>

@@ -421,7 +421,7 @@ export default function ATPPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
                         {[
-                            { step: '01', icon: <Target className="w-5 h-5" />, title: '無料相談', desc: '30分で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝え。' },
+                            { step: '01', icon: <Target className="w-5 h-5" />, title: '無料相談', desc: '1時間で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝え。' },
                             { step: '02', icon: <BarChart3 className="w-5 h-5" />, title: '業務診断', desc: '全業務を棚卸し。インパクト×難易度で優先順位を整理。' },
                             { step: '03', icon: <Zap className="w-5 h-5" />, title: '自動化実装', desc: 'AIエージェントが開発開始。最短1週間で最初の成果物。' },
                             { step: '04', icon: <TrendingUp className="w-5 h-5" />, title: 'KPI計測', desc: '成果を数字で見える化。毎月レポート、次の施策を実行。' },
