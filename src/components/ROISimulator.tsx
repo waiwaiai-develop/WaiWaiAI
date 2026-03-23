@@ -312,12 +312,15 @@ function SimulatorContent({
                                 <select
                                     value={selectedWorkType}
                                     onChange={(e) => setSelectedWorkType(e.target.value)}
-                                    className="w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-700 appearance-none bg-no-repeat cursor-pointer"
+                                    className="w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-700 appearance-none bg-no-repeat cursor-pointer [-webkit-appearance:none] [&::-ms-expand]:hidden"
                                     style={{
                                         background: 'rgba(248,250,252,0.9)',
                                         border: '1.5px solid rgba(37,99,235,0.2)',
                                         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
                                         backgroundPosition: 'right 12px center',
+                                        WebkitAppearance: 'none',
+                                        MozAppearance: 'none',
+                                        fontSize: '16px',
                                     }}
                                 >
                                     {WORK_TYPES.map((wt) => (
