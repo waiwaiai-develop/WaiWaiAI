@@ -167,10 +167,10 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ PAIN POINTS ═══════ */}
-            <section className="py-32 bg-white relative">
+            <section className="py-16 md:py-32 bg-white relative">
                 <div className="absolute inset-0 bg-dot-light opacity-30" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
                             AI導入企業の<span className="text-red-500">8割</span>が<br />直面する壁。
                         </h2>
@@ -199,11 +199,11 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ 3 LAYERS ═══════ */}
-            <section className="py-32 bg-slate-50 relative overflow-hidden">
+            <section className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="absolute top-1/2 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/50 blur-[100px] -translate-y-1/2 translate-x-1/3" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight max-w-2xl">
                             3つのレイヤーで、<br />確実に変える。
                         </h2>
@@ -237,13 +237,13 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ TRACK RECORD ═══════ */}
-            <section className="py-32 bg-blue-600 relative overflow-hidden">
+            <section className="py-16 md:py-32 bg-blue-600 relative overflow-hidden">
                 {/* Background pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full bg-white/5 blur-[200px]" />
 
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                             実績が証明する、<br />圧倒的な再現性。
                         </h2>
@@ -298,7 +298,7 @@ export default function ATPPage() {
             {/* ═══════ COMPARISON TABLE ═══════ */}
             <section className="py-32 bg-white">
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <div className="mb-16">
+                    <div className="mb-8 md:mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">他社との比較。</h2>
                     </div>
 
@@ -338,10 +338,10 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ PROCESS ═══════ */}
-            <section className="py-32 bg-slate-50 relative">
+            <section className="py-16 md:py-32 bg-slate-50 relative">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">導入の流れ。</h2>
                     </div>
 
@@ -371,10 +371,10 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ PRICING ═══════ */}
-            <section id="pricing" className="py-32 bg-white relative">
+            <section id="pricing" className="py-16 md:py-32 bg-white relative">
                 <div className="absolute inset-0 bg-dot-light opacity-20" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">料金プラン。</h2>
                         <p className="text-slate-500 text-lg">社員1人の採用コストより、確実に安い。</p>
                     </div>
@@ -453,11 +453,11 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ NEW ENTRY POINTS ═══════ */}
-            <section className="py-32 bg-slate-50 relative overflow-hidden">
+            <section className="py-16 md:py-32 bg-slate-50 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
                 <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/40 blur-[120px] translate-x-1/3 translate-y-1/3" />
                 <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <div className="mb-20">
+                    <div className="mb-10 md:mb-20">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">
                             まず、ここから始める。
                         </h2>
@@ -639,9 +639,9 @@ export default function ATPPage() {
             </section>
 
             {/* ═══════ FAQ ═══════ */}
-            <section className="py-32 bg-white relative">
+            <section className="py-16 md:py-32 bg-white relative">
                 <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-                    <div className="mb-16">
+                    <div className="mb-8 md:mb-16">
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">よくある質問。</h2>
                     </div>
                     <div>
