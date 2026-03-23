@@ -367,7 +367,7 @@ export default function BookingPageContent() {
                                                 onChange={handleFormChange}
                                                 placeholder="山田 太郎"
                                                 required
-                                                className="glass-input w-full px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                                                className="glass-input w-full px-4 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                                             />
                                         </div>
 
@@ -389,7 +389,7 @@ export default function BookingPageContent() {
                                                 onChange={handleFormChange}
                                                 placeholder="taro@example.com"
                                                 required
-                                                className="glass-input w-full px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                                                className="glass-input w-full px-4 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                                             />
                                         </div>
 
@@ -411,7 +411,7 @@ export default function BookingPageContent() {
                                                 onChange={handleFormChange}
                                                 placeholder="株式会社〇〇"
                                                 required
-                                                className="glass-input w-full px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                                                className="glass-input w-full px-4 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                                             />
                                         </div>
 
@@ -431,7 +431,7 @@ export default function BookingPageContent() {
                                                 value={form.topic}
                                                 onChange={handleFormChange}
                                                 placeholder="例: 問い合わせ対応を自動化したい / AIで何ができるか知りたい"
-                                                className="glass-input w-full px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
+                                                className="glass-input w-full px-4 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
                                             />
                                         </div>
                                     </div>
