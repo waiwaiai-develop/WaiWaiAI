@@ -410,6 +410,9 @@ function SimulatorContent({
                     />
 
                     <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+                        💡 月給目安: 25万→約1,560円 / 30万→約1,875円 / 40万→約2,500円（160h換算）
+                    </p>
+                    <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
                         ※ 削減率は業務タイプ別の目安値です。実際の効果は業務内容や導入方法により異なります。
                     </p>
                 </div>
