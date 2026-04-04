@@ -179,11 +179,12 @@ type ResultCardProps = {
     icon: React.ReactNode;
     label: string;
     value: string;
+    formula?: string;
     sub?: string;
     highlight?: boolean;
 };
 
-function ResultCard({ icon, label, value, sub, highlight }: ResultCardProps) {
+function ResultCard({ icon, label, value, formula, sub, highlight }: ResultCardProps) {
     return (
         <div
             className="rounded-2xl p-4 flex items-start gap-3 transition-all duration-200"
@@ -224,6 +225,7 @@ function ResultCard({ icon, label, value, sub, highlight }: ResultCardProps) {
                 >
                     {value}
                 </p>
+                {formula && <p className="text-[11px] text-slate-400 mt-1 font-mono">{formula}</p>}
                 {sub && <p className="text-[11px] text-slate-400 mt-0.5">{sub}</p>}
             </div>
         </div>
@@ -448,17 +450,20 @@ function SimulatorContent({
                             icon={<Clock className="w-4 h-4" />}
                             label="月間削減見込み時間"
                             value={`${Math.round(reducedHoursMonthly).toLocaleString()} 時間`}
+                            formula={`${hoursPerPerson}h × ${employees}人 × 削減率${Math.round(currentWorkType.rate * 100)}%`}
                             sub={`全社合計（1人あたり約${Math.round(reducedHoursMonthly / employees)}時間）`}
                         />
                         <ResultCard
                             icon={<BadgeJapaneseYen className="w-4 h-4" />}
                             label="月間コスト削減額"
                             value={formatYen(Math.round(costReductionMonthly))}
+                            formula={`${Math.round(reducedHoursMonthly).toLocaleString()}h × ¥${hourlyRate.toLocaleString()}`}
                         />
                         <ResultCard
                             icon={<TrendingUp className="w-4 h-4" />}
                             label="年間コスト削減額（推定）"
                             value={formatYen(Math.round(costReductionAnnual))}
+                            formula={`${formatYen(Math.round(costReductionMonthly))} × 12ヶ月`}
                             highlight
                         />
                     </div>

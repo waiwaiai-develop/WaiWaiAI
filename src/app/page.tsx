@@ -65,7 +65,7 @@ export default function HomePage() {
       <PainPoints />
       <Services />
       <ROISimulator />
-      <ProductsSection />
+      {/* <ProductsSection /> */}
       <CompanySection />
       <ContactSection />
     </>

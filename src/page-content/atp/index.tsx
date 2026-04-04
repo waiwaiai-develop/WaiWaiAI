@@ -124,7 +124,7 @@ export default function ATPPage() {
                         </div>
 
                         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 leading-[0.95] tracking-tight mb-8">
-                            御社に、<br />
+                            あなたの会社に、<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
                                 AI部門
                             </span>を<br />
@@ -242,7 +242,7 @@ export default function ATPPage() {
 
                     <div className="space-y-5">
                         {[
-                            { icon: <Brain className="w-7 h-7" />, layer: 'Layer 01', title: '頭脳', sub: '戦略 & 判断', desc: '数千名規模の企業でAI普及率60%を達成した経験に基づき、「何をAI化すべきか」「どの順番で進めるか」を的確に判断。現場で実証済みの知見でロードマップを設計。' },
+                            { icon: <Brain className="w-7 h-7" />, layer: 'Layer 01', title: '頭脳', sub: '戦略 & 判断', desc: '7,000人規模の企業でAI推進を主導した経験に基づき、「何をAI化すべきか」「どの順番で進めるか」を的確に判断。現場で実証済みの知見でロードマップを設計。' },
                             { icon: <Cpu className="w-7 h-7" />, layer: 'Layer 02', title: '手足', sub: 'AIエージェントが自動実装', desc: '戦略を立てるだけでは終わりません。AIエージェントが自動でツールを開発し、業務自動化を実装。通常の開発会社より圧倒的に速く、低コストで実現。' },
                             { icon: <Repeat className="w-7 h-7" />, layer: 'Layer 03', title: '定着', sub: '仕組み化 & 改善', desc: 'KPIを自動計測し成果を数字で可視化。社内にAI推進者を育て、四半期ごとに次のフェーズへ進む仕組みを構築。作って終わりにしない。' },
                         ].map((l, i) => (
@@ -293,56 +293,31 @@ export default function ATPPage() {
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+                    {/* 3 perspectives — step cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                         {[
-                            { number: '数千', unit: '名', label: 'AI普及率60%超を達成', sub: '大手企業の社内AI導入を主導。研修・認定試験まで設計し、全社に定着。' },
-                            { number: '30', unit: '%増', label: '業務効率の向上', sub: 'AI活用によるドキュメント品質改善。業務プロセスの効率が大幅に向上。' },
-                            { number: '100', unit: '億超', label: '上場企業のAI顧問', sub: '売上100億円超の上場企業で、経営層と直接対話しながらAI導入ロードマップを設計。' },
-                        ].map((stat, i) => (
+                            { num: '01', title: '大企業での推進経験', desc: '7,000人規模の企業でAI推進を主導' },
+                            { num: '02', title: '上場企業のAI顧問', desc: '経営層と直接対話しながらAI戦略を設計' },
+                            { num: '03', title: '自社もAIネイティブ', desc: '社員ゼロ、AIエージェントがチームとして稼働' },
+                        ].map((step, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.7 }}
-                                className="glass rounded-2xl p-10 md:p-12"
+                                className="rounded-2xl p-10 md:p-12 relative group"
                                 style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
                             >
-                                <div className="mb-6">
-                                    <span className="text-6xl md:text-7xl font-black text-white tracking-tight">{stat.number}</span>
-                                    <span className="text-2xl font-bold text-blue-200 ml-1">{stat.unit}</span>
+                                <span className="text-5xl md:text-6xl font-black text-white/10 absolute top-6 right-8 select-none">{step.num}</span>
+                                <div className="relative z-10">
+                                    <div className="text-blue-200 text-xs font-semibold tracking-[0.2em] uppercase mb-4">{step.num}</div>
+                                    <h3 className="text-white font-bold text-lg mb-3">{step.title}</h3>
+                                    <p className="text-blue-100/70 text-sm leading-relaxed">{step.desc}</p>
                                 </div>
-                                <div className="text-blue-200 font-semibold text-sm mb-3 tracking-wide">{stat.label}</div>
-                                <p className="text-blue-100/70 text-sm leading-relaxed">{stat.sub}</p>
                             </motion.div>
                         ))}
                     </div>
-
-                    {/* 3 perspectives */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="rounded-2xl p-10 md:p-12"
-                        style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
-                    >
-                        <h3 className="text-white font-bold text-sm tracking-[0.2em] uppercase mb-10">3つの視点から、御社に最適な一手を</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                            {[
-                                { icon: <Building2 className="w-5 h-5" />, title: '大企業のAI推進を主導', desc: '従業員7,000人規模の企業で、全社向けAIシステムの開発から導入・浸透までPMとして一貫して推進。' },
-                                { icon: <TrendingUp className="w-5 h-5" />, title: '上場企業のAI顧問を担当', desc: '上場企業で、経営層との戦略会議から現場への定着支援まで。机上の提案では終わらせない。' },
-                                { icon: <Rocket className="w-5 h-5" />, title: 'AIエージェントでチームを組成', desc: '自社は社員ゼロ、AIエージェントがチームとして稼働。ベンチャー企業のAI顧問として伴走もしており、AI×開発の最前線に立ち続けている。' },
-                            ].map((item, i) => (
-                                <div key={i} className="flex gap-4">
-                                    <div className="text-blue-200 mt-1 shrink-0">{item.icon}</div>
-                                    <div>
-                                        <div className="text-white font-bold mb-2">{item.title}</div>
-                                        <p className="text-blue-100/70 text-sm leading-relaxed">{item.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
                 </div>
             </section>
 
