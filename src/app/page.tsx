@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
-import PainPoints from '@/components/PainPoints';
-import Services from '@/components/Services';
 import ROISimulator from '@/components/ROISimulator';
-import ProductsSection from '@/components/ProductsSection';
 import CompanySection from '@/components/CompanySection';
-import ContactSection from '@/components/ContactSection';
+import HomeUseCases from '@/components/home/HomeUseCases';
+import HomeCaseStudy from '@/components/home/HomeCaseStudy';
+import HomeTechnology from '@/components/home/HomeTechnology';
+import HomeBottomCTA from '@/components/home/HomeBottomCTA';
 
 export const metadata: Metadata = {
   title: 'AIネイティブ開発・ITコンサルティング・DX推進 | WaiWai AI 株式会社',
@@ -62,12 +62,12 @@ export default function HomePage() {
         }}
       />
       <Hero />
-      <PainPoints />
-      <Services />
+      <HomeUseCases />
+      <HomeCaseStudy />
       <ROISimulator />
-      {/* <ProductsSection /> */}
+      <HomeTechnology />
+      <HomeBottomCTA />
       <CompanySection />
-      <ContactSection />
     </>
   );
 }

@@ -101,7 +101,7 @@ export default function CompanySection() {
                                 お問い合わせ
                             </div>
                             <div className="md:w-2/3 text-slate-700 font-medium">
-                                <a href="#contact" className="text-blue-600 hover:text-blue-800 font-bold underline underline-offset-4 decoration-blue-200 hover:decoration-blue-400 transition-colors inline-flex items-center gap-1 group">
+                                <a href="/booking" className="text-blue-600 hover:text-blue-800 font-bold underline underline-offset-4 decoration-blue-200 hover:decoration-blue-400 transition-colors inline-flex items-center gap-1 group">
                                     お問い合わせフォームより承っております <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </a>
                             </div>
