@@ -101,8 +101,21 @@ function rescheduleMeeting_(data) {
   const old = JSON.parse(bookingJson);
   if (old.status === 'cancelled') return { error: 'この予約は既にキャンセルされています' };
 
-  // 旧予約のキャンセル
-  cancelMeeting_(token);
+  const newStart = new Date(slotStart);
+  const newEnd = new Date(slotEnd);
+
+  // 新しいスロットの空き状況を旧予約をキャンセルする前に確認
+  // （旧予約自身を除外して競合チェック）
+  const cal = CalendarApp.getCalendarById(CONFIG.CALENDAR_ID);
+  const eventsAtNewSlot = cal.getEvents(newStart, newEnd);
+  for (let i = 0; i < eventsAtNewSlot.length; i++) {
+    if (eventsAtNewSlot[i].getId() !== old.eventId) {
+      return { error: '選択した時間帯は既に予約が入っています。別の時間を選択してください。' };
+    }
+  }
+
+  // 旧予約のキャンセル（reschedule経由なので通知抑制）
+  cancelMeeting_(token, { silent: true });
 
   // 同じ顧客情報で新しい予約を作成
   const result = bookMeeting_({
@@ -582,7 +595,8 @@ function handleCancel_(token) {
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
-function cancelMeeting_(token) {
+function cancelMeeting_(token, options) {
+  const silent = !!(options && options.silent);
   const props = PropertiesService.getScriptProperties();
   const bookingJson = props.getProperty('booking_' + token);
 
@@ -608,13 +622,15 @@ function cancelMeeting_(token) {
   props.setProperty('booking_' + token, JSON.stringify(booking));
 
   updateBookingStatus_(token, 'キャンセル');
-  notifyCancelBooking_(booking);
 
-  MailApp.sendEmail({
-    to: CONFIG.ORGANIZER_EMAIL,
-    subject: '【キャンセル】' + booking.company + ' ' + booking.name + '様',
-    body: '以下のMTGがキャンセルされました。\n\nお名前: ' + booking.name + '様\n日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)),
-  });
+  if (!silent) {
+    notifyCancelBooking_(booking);
+    MailApp.sendEmail({
+      to: CONFIG.ORGANIZER_EMAIL,
+      subject: '【キャンセル】' + booking.company + ' ' + booking.name + '様',
+      body: '以下のMTGがキャンセルされました。\n\nお名前: ' + booking.name + '様\n日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)),
+    });
+  }
 
   return { success: true, message: '予約をキャンセルしました' };
 }

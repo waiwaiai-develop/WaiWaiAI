@@ -32,7 +32,8 @@ function doPost(e) {
   }
 
   // Meeting Scheduler のアクション
-  if (data && (data.action === 'getSlots' || data.action === 'book' || data.action === 'cancel')) {
+  const meetingActions = ['getSlots', 'book', 'cancel', 'getBooking', 'reschedule'];
+  if (data && meetingActions.indexOf(data.action) !== -1) {
     try {
       return handleMeetingPost_(data);
     } catch (err) {
