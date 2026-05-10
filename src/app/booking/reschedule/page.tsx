@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import BookingRescheduleContent from '@/page-content/booking/reschedule';
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function BookingReschedulePage() {
-    return <BookingRescheduleContent />;
+    return (
+        <Suspense fallback={null}>
+            <BookingRescheduleContent />
+        </Suspense>
+    );
 }
