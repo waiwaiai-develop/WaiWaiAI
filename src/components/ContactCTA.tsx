@@ -45,7 +45,7 @@ export default function ContactCTA() {
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </a>
                         <a
-                            href="/#contact-form"
+                            href="/contact"
                             aria-label="メールでお問い合わせする"
                             className="group inline-flex items-center justify-center gap-2 px-10 py-4 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-base transition-all duration-300 active:scale-[0.98]"
                         >

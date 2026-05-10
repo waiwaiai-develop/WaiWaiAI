@@ -23,13 +23,14 @@ function cancelMeeting(token) { return cancelMeeting_(token); }
 // ===== Configuration =====
 const CONFIG = {
   CALENDAR_ID: 'primary',
-  SLOT_KEYWORD: 'MTG可',
   MEETING_DURATION_MIN: 60,
+  BUSINESS_START_HOUR: 9,
+  BUSINESS_END_HOUR: 19,
   ORGANIZER_NAME: '久保田 慧',
   ORGANIZER_EMAIL: Session.getActiveUser().getEmail(),
   COMPANY_NAME: 'WaiWai AI株式会社',
   COMPANY_URL: 'https://waiwaiai.com',
-  DAYS_AHEAD: 30,
+  DAYS_AHEAD: 14,
   REMINDER_HOURS_BEFORE: 24,
 };
 
@@ -69,32 +70,29 @@ function handleMeetingPost_(data) {
 function getAvailableSlots_() {
   const cal = CalendarApp.getCalendarById(CONFIG.CALENDAR_ID);
   const now = new Date();
-  const endDate = new Date(now.getTime() + CONFIG.DAYS_AHEAD * 24 * 60 * 60 * 1000);
-
-  const events = cal.getEvents(now, endDate);
   const slots = [];
 
-  for (const event of events) {
-    if (event.getTitle().includes(CONFIG.SLOT_KEYWORD)) {
-      const start = event.getStartTime();
-      const end = event.getEndTime();
-      const slotDurationMs = CONFIG.MEETING_DURATION_MIN * 60 * 1000;
+  const slotDurationMs = CONFIG.MEETING_DURATION_MIN * 60 * 1000;
+  const slotDurationHours = CONFIG.MEETING_DURATION_MIN / 60;
 
-      let slotStart = new Date(start.getTime());
-      while (slotStart.getTime() + slotDurationMs <= end.getTime()) {
-        const slotEnd = new Date(slotStart.getTime() + slotDurationMs);
+  for (let dayOffset = 0; dayOffset < CONFIG.DAYS_AHEAD; dayOffset++) {
+    const day = new Date(now.getTime() + dayOffset * 24 * 60 * 60 * 1000);
 
-        if (!hasConflict_(cal, slotStart, slotEnd)) {
-          slots.push({
-            id: event.getId(),
-            start: slotStart.toISOString(),
-            end: slotEnd.toISOString(),
-            date: formatDateJP_(slotStart),
-            time: formatTimeJP_(slotStart) + ' - ' + formatTimeJP_(slotEnd),
-          });
-        }
-        slotStart = new Date(slotStart.getTime() + slotDurationMs);
-      }
+    for (let hour = CONFIG.BUSINESS_START_HOUR;
+         hour + slotDurationHours <= CONFIG.BUSINESS_END_HOUR;
+         hour++) {
+      const slotStart = new Date(day.getFullYear(), day.getMonth(), day.getDate(), hour, 0, 0, 0);
+      const slotEnd = new Date(slotStart.getTime() + slotDurationMs);
+
+      if (slotStart.getTime() <= now.getTime()) continue;
+      if (hasConflict_(cal, slotStart, slotEnd)) continue;
+
+      slots.push({
+        start: slotStart.toISOString(),
+        end: slotEnd.toISOString(),
+        date: formatDateJP_(slotStart),
+        time: formatTimeJP_(slotStart) + ' - ' + formatTimeJP_(slotEnd),
+      });
     }
   }
 
@@ -102,13 +100,7 @@ function getAvailableSlots_() {
 }
 
 function hasConflict_(cal, start, end) {
-  const events = cal.getEvents(start, end);
-  for (const event of events) {
-    if (!event.getTitle().includes(CONFIG.SLOT_KEYWORD)) {
-      return true;
-    }
-  }
-  return false;
+  return cal.getEvents(start, end).length > 0;
 }
 
 // ===== Booking =====

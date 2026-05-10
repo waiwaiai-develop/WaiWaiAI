@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CalendarDays, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, MessageSquareText } from 'lucide-react';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -20,7 +20,7 @@ export default function Hero() {
                 className="absolute inset-0"
                 style={{
                     background:
-                        'radial-gradient(circle at 82% 36%, rgba(147,197,253,0.5), transparent 28%), linear-gradient(135deg, #ffffff 0%, #f8fbff 38%, #eef6ff 100%)',
+                        'linear-gradient(135deg, #ffffff 0%, #f8fbff 36%, #edf6ff 100%)',
                 }}
                 aria-hidden="true"
             />
@@ -90,22 +90,15 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.95, ease }}
-                            className="flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+                            className="flex w-full justify-center lg:justify-start"
                         >
                             <a
-                                href="/booking"
-                                className="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-blue-700 px-7 text-sm font-bold text-white shadow-[0_14px_30px_-18px_rgba(0,45,150,0.85)] transition hover:-translate-y-0.5 hover:bg-blue-800"
+                                href="/contact"
+                                className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-blue-700 px-7 text-sm font-bold text-white shadow-[0_14px_30px_-18px_rgba(0,45,150,0.85)] transition hover:-translate-y-0.5 hover:bg-blue-800"
                             >
-                                <CalendarDays className="h-5 w-5" />
-                                無料で相談する
-                                <ArrowRight className="h-4 w-4" />
-                            </a>
-                            <a
-                                href="#services"
-                                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white/80 px-6 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:text-blue-700"
-                            >
-                                さらに詳しく
-                                <ArrowRight className="h-4 w-4" />
+                                <MessageSquareText className="h-5 w-5" />
+                                相談・問い合わせをする
+                                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </a>
                         </motion.div>
 

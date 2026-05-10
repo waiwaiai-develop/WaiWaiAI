@@ -4,7 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ChatBot from '@/components/ChatBot';
+import FloatingConsultCTA from '@/components/FloatingConsultCTA';
 
 const GA_MEASUREMENT_ID = 'G-PCFC14QV8B';
 
@@ -271,7 +271,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
-        <ChatBot />
+        <FloatingConsultCTA />
 
         {/* JSON-LD Structured Data */}
         <script

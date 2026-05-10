@@ -1,16 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { CalendarDays, Menu, X } from 'lucide-react';
+import { MessageSquareText, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const navLinks = [
     { href: '/#services', label: 'サービス' },
     { href: '/atp', label: 'AI顧問' },
-    { href: '/cases', label: '導入事例' },
     { href: '/blog', label: 'ブログ' },
-    { href: '/#company', label: '会社概要' },
+    { href: '/company', label: '会社概要' },
 ];
 
 export default function Navbar() {
@@ -33,7 +32,7 @@ export default function Navbar() {
                     : 'bg-white/70 backdrop-blur-md'
             }`} />
 
-            <div className="relative z-10 mx-auto flex max-w-[912px] items-center justify-between px-5 sm:px-6 lg:px-0">
+            <div className="relative z-10 mx-auto flex max-w-[1120px] items-center justify-between px-5 sm:px-6 lg:px-0">
                 <Link href="/" className="relative z-50 group">
                     <img
                         src="/logo-horizontal.png"
@@ -61,10 +60,10 @@ export default function Navbar() {
 
                 <div className="hidden md:flex">
                     <a
-                        href="/booking"
+                        href="/contact"
                         className="inline-flex min-h-12 items-center gap-3 rounded-lg bg-blue-700 px-6 text-sm font-bold tracking-wide text-white shadow-[0_14px_30px_-18px_rgba(0,45,150,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-800"
                     >
-                        <CalendarDays className="h-5 w-5" />
+                        <MessageSquareText className="h-5 w-5" />
                         無料で相談する
                     </a>
                 </div>
@@ -106,7 +105,7 @@ export default function Navbar() {
                             })}
                             <div className="pt-6 border-t border-white/30 mt-4">
                                 <a
-                                    href="/booking"
+                                    href="/contact"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="block w-full rounded-xl bg-blue-700 py-5 text-center text-xl font-bold text-white shadow-lg shadow-blue-500/30 transition-colors hover:bg-blue-800"
                                 >

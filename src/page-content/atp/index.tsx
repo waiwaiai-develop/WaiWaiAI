@@ -1,739 +1,412 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 import {
-    Brain, Cpu, Repeat, CheckCircle2, ArrowRight, TrendingUp,
-    Clock, AlertTriangle, BarChart3, Users, Zap, Shield,
-    Building2, Rocket, Target, ChevronDown, Minus, Plus,
-    Search, RefreshCw, PhoneCall, Wrench, Sparkles, LifeBuoy
+    ArrowRight,
+    Building2,
+    CalendarDays,
+    CheckCircle2,
+    Rocket,
+    ShieldCheck,
+    Trophy,
 } from 'lucide-react';
-import { useState, useRef } from 'react';
-import ContactCTA from '@/components/ContactCTA';
 
-/* ── FAQ Accordion ── */
-function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
-    const [open, setOpen] = useState(false);
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+const problems = [
+    {
+        number: '01',
+        title: '提案書で止まり、業務に入らない',
+    },
+    {
+        number: '02',
+        title: '削減時間が見えず、継続判断できない',
+    },
+    {
+        number: '03',
+        title: '担当者任せで、社内に定着しない',
+    },
+];
+
+const layers = [
+    {
+        title: '業務診断',
+    },
+    {
+        title: '小さく実装',
+    },
+    {
+        title: '運用改善',
+    },
+];
+
+const useCases = [
+    {
+        title: '問い合わせ・予約対応',
+        before: 'LINE・メール確認と日程調整に毎日追われる',
+        after: '一次返信、候補日整理、担当者通知まで自動化',
+    },
+    {
+        title: '日報・売上データ集計',
+        before: '転記と集計が属人化し、月次確認が遅れる',
+        after: '入力整形、集計、週次レポート作成まで自動化',
+    },
+    {
+        title: '採用・営業の一次対応',
+        before: '応募者・見込み客への確認や資料送付が遅れる',
+        after: '条件確認、資料作成、次アクション通知まで自動化',
+    },
+];
+
+const records = [
+    {
+        icon: Building2,
+        title: '大企業でのAI推進経験',
+        stat: '7,000人規模',
+        body: '全社横断の業務変革で、AI活用テーマの設計と推進を経験。',
+    },
+    {
+        icon: Trophy,
+        title: '経営層とのAI顧問実績',
+        stat: '上場企業支援',
+        body: '経営課題から逆算して、AI導入の優先順位と実行計画を整理。',
+    },
+    {
+        icon: Rocket,
+        title: '自社業務での実装運用',
+        stat: '実務で検証済み',
+        body: '自社の問い合わせ、営業、情報整理にもAIを組み込み、実運用で改善。',
+    },
+];
+
+const plans = [
+    {
+        name: 'ENTRY',
+        price: '10',
+        body: '最初の1業務を選び、実装前の設計まで固めるプラン',
+        features: ['AI化できる業務の棚卸し', '削減見込みと優先順位の整理', '月1回の相談・改善提案'],
+    },
+    {
+        name: 'STANDARD',
+        price: '25',
+        body: '問い合わせ・集計などを実際に1〜2本作る標準プラン',
+        features: ['月1〜2件の自動化実装', '月2回の定例MTG', '削減時間と改善状況のレポート', 'チャットでの随時相談'],
+        recommended: true,
+    },
+    {
+        name: 'TRANSFORM',
+        price: '50',
+        body: '複数業務をまとめて改善し、社内展開まで進めるプラン',
+        features: ['週1回の推進MTG', '複数業務の自動化・改善運用', '経営向けの進捗レポート', '四半期ロードマップ作成'],
+    },
+];
+
+function SectionHeading({
+    label,
+    title,
+    body,
+    align = 'left',
+    tone = 'light',
+}: {
+    label: string;
+    title: ReactNode;
+    body?: string;
+    align?: 'left' | 'center';
+    tone?: 'light' | 'dark';
+}) {
+    return (
+        <div className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-xl'}>
+            <p className={`mb-4 text-[11px] font-black uppercase tracking-[0.24em] ${tone === 'dark' ? 'text-blue-200' : 'text-blue-700'}`}>
+                {label}
+            </p>
+            <h2 className={`text-3xl font-black leading-tight tracking-tight sm:text-4xl ${tone === 'dark' ? 'text-white' : 'text-slate-950'}`}>
+                {title}
+            </h2>
+            {body && (
+                <p className={`mt-4 text-sm font-medium leading-7 ${tone === 'dark' ? 'text-blue-100/80' : 'text-slate-600'}`}>
+                    {body}
+                </p>
+            )}
+        </div>
+    );
+}
+
+function HeroAmbientVisual() {
     return (
         <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.08, duration: 0.5 }}
-            className="glass-card rounded-2xl mb-3 overflow-hidden"
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.85, delay: 0.12, ease }}
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
+            aria-hidden="true"
         >
-            <button
-                onClick={() => setOpen(!open)}
-                className="w-full flex items-center justify-between px-7 py-6 text-left group"
-            >
-                <span className="font-medium text-slate-800 text-lg pr-6 group-hover:text-blue-600 transition-colors">{q}</span>
-                {open
-                    ? <Minus className="w-5 h-5 text-blue-500 shrink-0" />
-                    : <Plus className="w-5 h-5 text-slate-400 group-hover:text-blue-500 shrink-0 transition-colors" />
-                }
-            </button>
+            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/72 to-transparent" />
+            <motion.img
+                src="/atp-hero-ai-chip.png"
+                alt=""
+                className="absolute right-[-6%] top-10 w-[760px] max-w-none opacity-48 mix-blend-multiply"
+                animate={{ y: [0, -10, 0], scale: [1, 1.015, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+                style={{
+                    WebkitMaskImage: 'radial-gradient(ellipse 66% 58% at 58% 42%, black 38%, transparent 78%)',
+                    maskImage: 'radial-gradient(ellipse 66% 58% at 58% 42%, black 38%, transparent 78%)',
+                }}
+            />
             <motion.div
-                initial={false}
-                animate={{ height: open ? 'auto' : 0, opacity: open ? 1 : 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-            >
-                <div className="px-7 pb-6 text-slate-500 leading-relaxed max-w-2xl">
-                    {a}
-                </div>
-            </motion.div>
+                className="absolute right-[8%] top-24 h-64 w-[520px] bg-[linear-gradient(115deg,transparent,rgba(37,99,235,0.14),transparent)]"
+                animate={{ x: [-80, 90, -80] }}
+                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+            />
         </motion.div>
     );
 }
 
 export default function ATPPage() {
-    const heroRef = useRef(null);
-    const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-    const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-    const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-    const plans = [
-        {
-            name: 'Entry',
-            price: '10',
-            description: 'まず1つ、AIで変えてみる',
-            features: [
-                '業務診断 & 1つの業務をAI化（例: 日報・請求書・問い合わせ対応）',
-                '月1回のオンラインMTG',
-                'KPI設定 & 月次レポート',
-                'チャット相談（営業日）',
-            ],
-            accent: false,
-        },
-        {
-            name: 'Standard',
-            price: '25',
-            description: 'AI部門を月額でレンタル',
-            features: [
-                '月2回の戦略 & レビューMTG',
-                '月3件の業務自動化を実装',
-                'KPIダッシュボード & 月次レポート',
-                'チャット相談（営業日）',
-                '社内向けマニュアル作成',
-            ],
-            accent: true,
-        },
-        {
-            name: 'Transform',
-            price: '50',
-            description: '会社ごとAI化する',
-            features: [
-                '週1回MTG + 臨時MTG無制限',
-                '自動化ツール実装 無制限',
-                '経営ダッシュボード構築',
-                '社内AI推進者の育成',
-                '四半期ロードマップ策定',
-            ],
-            accent: false,
-        },
-    ];
-
-    const faqs = [
-        { q: '最低契約期間はありますか？', a: '3ヶ月からです。AI導入の効果を正しく測定するために必要な期間です。3ヶ月後は月単位で継続・解約が可能です。' },
-        { q: 'ITに詳しい社員がいなくても大丈夫ですか？', a: 'はい。IT人材がいない企業こそ、このサービスの価値を最も感じていただけます。導入・運用・改善まですべてお任せいただけます。' },
-        { q: '「自動実装」とは具体的に何ですか？', a: 'チャットボット、メール自動返信、レポート自動生成、データ入力自動化、SaaS間連携など。御社の業務に合わせたツールをAIエージェントが開発します。' },
-        { q: '補助金は使えますか？', a: 'はい。各種補助金・助成金の活用を支援しています。IT導入補助金（最大450万円）やリスキリング助成金など、御社に適した制度をご提案します。提携士業とも連携し、申請までサポートします。' },
-        { q: '大企業でも対応できますか？', a: 'Transformプランは上場企業向けに設計しています。大手企業でのAI推進プロジェクト経験があり、大規模組織特有の課題にも対応可能です。' },
-    ];
-
     return (
-        <div className="relative overflow-hidden bg-white" style={{ fontFamily: "'Sora', 'Noto Sans JP', sans-serif" }}>
+        <div className="relative overflow-hidden bg-white text-slate-950">
+            <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-12 pt-28 lg:pb-16">
+                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(37,99,235,0.045)_1px,transparent_1px),linear-gradient(0deg,rgba(37,99,235,0.045)_1px,transparent_1px)] bg-[size:58px_58px]" aria-hidden="true" />
+                <div className="absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-blue-50 to-transparent" aria-hidden="true" />
+                <HeroAmbientVisual />
 
-            {/* ═══════ HERO — White glassmorphism, dramatic ═══════ */}
-            <section ref={heroRef} className="relative min-h-[100svh] flex items-center bg-white overflow-hidden">
-                {/* Ambient blue glows */}
-                <div className="absolute top-0 right-0 w-[70vw] h-[70vw] rounded-full bg-blue-100/60 blur-[140px] -translate-y-1/4 translate-x-1/4" />
-                <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] rounded-full bg-blue-50/80 blur-[120px] translate-y-1/4 -translate-x-1/4" />
-                {/* Subtle grid */}
-                <div className="absolute inset-0 bg-grid-light opacity-40" />
-
-                <motion.div style={{ y: heroY, opacity: heroOpacity }} className="container mx-auto px-6 md:px-12 max-w-7xl relative z-10 py-40">
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="max-w-4xl"
-                    >
-                        <div className="flex items-center gap-3 mb-10">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-500 text-xs font-semibold tracking-[0.3em] uppercase">AI Transformation Partner</span>
-                        </div>
-
-                        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-slate-900 leading-[0.95] tracking-tight mb-8">
-                            あなたの会社に、<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500">
-                                AI部門
-                            </span>を<br />
-                            インストールする。
-                        </h1>
-
-                        <p className="text-slate-500 text-lg md:text-xl max-w-xl leading-relaxed mb-12">
-                            アドバイスで終わらない。<br />
-                            戦略を立て、AIが自動で実装し、<br />
-                            成果を数字で証明する。
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <motion.a
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                href="#pricing"
-                                className="inline-flex items-center justify-center gap-3 px-8 py-5 bg-blue-600 text-white font-bold text-base tracking-wide hover:bg-blue-700 transition-colors rounded-2xl shadow-[0_8px_32px_-8px_rgba(37,99,235,0.5)]"
-                            >
-                                料金プランを見る <ArrowRight className="w-4 h-4" />
-                            </motion.a>
-                            <motion.a
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
-                                href="#contact"
-                                className="inline-flex items-center justify-center gap-3 px-8 py-5 glass font-medium text-base text-slate-700 hover:text-blue-600 transition-colors rounded-2xl"
-                            >
-                                無料で相談する
-                            </motion.a>
-                        </div>
-                    </motion.div>
-
-                    {/* Trust strip — glass badges */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8, duration: 1 }}
-                        className="mt-24 flex flex-wrap gap-4"
-                    >
-                        {[
-                            { icon: <Building2 className="w-3.5 h-3.5 text-blue-500" />, label: '東証グロース上場企業の顧問実績' },
-                            { icon: <Users className="w-3.5 h-3.5 text-blue-500" />, label: '大手企業でのAI推進経験あり' },
-                            { icon: <Shield className="w-3.5 h-3.5 text-blue-500" />, label: '補助金対応' },
-                        ].map((item, i) => (
-                            <span key={i} className="glass flex items-center gap-2 px-4 py-2.5 rounded-full text-xs text-slate-600 tracking-wide uppercase font-medium">
-                                {item.icon} {item.label}
+                <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-0">
+                    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.72, ease }}>
+                        <p className="mb-5 text-[11px] font-black uppercase tracking-[0.24em] text-blue-700">AI Implementation Partner</p>
+                        <h1 className="text-[44px] font-black leading-[1.06] tracking-tight text-slate-950 sm:text-6xl lg:text-[56px]">
+                            <span className="block lg:whitespace-nowrap">人手が足りない</span>
+                            <span className="block lg:whitespace-nowrap">
+                                業務を、<span className="text-blue-700">AI</span>で
                             </span>
-                        ))}
-                    </motion.div>
-                </motion.div>
-            </section>
-
-            {/* ═══════ PAIN POINTS — White bg, glass cards ═══════ */}
-            <section className="py-32 bg-white relative">
-                <div className="absolute inset-0 bg-dot-light opacity-30" />
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-red-500" />
-                            <span className="text-red-500 text-xs font-semibold tracking-[0.3em] uppercase">Problem</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-                            AI導入企業の<span className="text-red-500">8割</span>が<br />直面する壁。
-                        </h2>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {[
-                            { icon: <AlertTriangle className="w-5 h-5" />, num: '01', title: 'アドバイスだけで実装してくれない', desc: '「こうしましょう」で終わるコンサル。結局、社内で誰もやらない。' },
-                            { icon: <Clock className="w-5 h-5" />, num: '02', title: '導入したけど成果が見えない', desc: 'AIに投資したのに、何が変わったか説明できない。' },
-                            { icon: <Users className="w-5 h-5" />, num: '03', title: '社内に推進者がいない', desc: 'ツールを導入しても使いこなせる人がおらず放置される。' },
-                        ].map((p, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.15 }}
-                                className="glass-card rounded-2xl p-10 md:p-12 group hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.15)] transition-all duration-500"
-                            >
-                                <span className="text-6xl font-black text-blue-50 group-hover:text-blue-100 transition-colors block mb-6">{p.num}</span>
-                                <div className="text-red-500 mb-4">{p.icon}</div>
-                                <h3 className="text-lg font-bold text-slate-900 mb-3 leading-snug">{p.title}</h3>
-                                <p className="text-slate-500 text-sm leading-relaxed">{p.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══════ 3 LAYERS — Glass panel cards ═══════ */}
-            <section className="py-32 bg-slate-50 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
-                <div className="absolute top-1/2 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/50 blur-[100px] -translate-y-1/2 translate-x-1/3" />
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Solution</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight max-w-2xl">
-                            3つのレイヤーで、<br />確実に変える。
-                        </h2>
-                    </motion.div>
-
-                    <div className="space-y-5">
-                        {[
-                            { icon: <Brain className="w-7 h-7" />, layer: 'Layer 01', title: '頭脳', sub: '戦略 & 判断', desc: '7,000人規模の企業でAI推進を主導した経験に基づき、「何をAI化すべきか」「どの順番で進めるか」を的確に判断。現場で実証済みの知見でロードマップを設計。' },
-                            { icon: <Cpu className="w-7 h-7" />, layer: 'Layer 02', title: '手足', sub: 'AIエージェントが自動実装', desc: '戦略を立てるだけでは終わりません。AIエージェントが自動でツールを開発し、業務自動化を実装。通常の開発会社より圧倒的に速く、低コストで実現。' },
-                            { icon: <Repeat className="w-7 h-7" />, layer: 'Layer 03', title: '定着', sub: '仕組み化 & 改善', desc: 'KPIを自動計測し成果を数字で可視化。社内にAI推進者を育て、四半期ごとに次のフェーズへ進む仕組みを構築。作って終わりにしない。' },
-                        ].map((l, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                                className="glass-panel rounded-2xl hover:shadow-[0_8px_40px_-8px_rgba(37,99,235,0.2)] transition-all duration-500 group"
-                            >
-                                <div className="flex flex-col md:flex-row">
-                                    <div className="md:w-1/3 p-10 md:p-12 border-b md:border-b-0 md:border-r border-white/60 flex flex-col justify-center">
-                                        <span className="text-xs font-semibold tracking-[0.3em] uppercase text-slate-400 mb-4">{l.layer}</span>
-                                        <div className="text-blue-500 mb-4 group-hover:scale-110 transition-transform duration-500">{l.icon}</div>
-                                        <h3 className="text-3xl font-bold text-slate-900 mb-1">{l.title}</h3>
-                                        <p className="text-blue-500 font-medium text-sm">{l.sub}</p>
-                                    </div>
-                                    <div className="md:w-2/3 p-10 md:p-12 flex items-center">
-                                        <p className="text-slate-600 text-lg leading-relaxed">{l.desc}</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══════ TRACK RECORD — Blue-600 bg section ═══════ */}
-            <section className="py-32 bg-blue-600 relative overflow-hidden">
-                {/* Background pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px] opacity-20" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full bg-white/5 blur-[200px]" />
-
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-white/60" />
-                            <span className="text-white/70 text-xs font-semibold tracking-[0.3em] uppercase">Track Record</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                            実績が証明する、<br />圧倒的な再現性。
-                        </h2>
-                    </motion.div>
-
-                    {/* 3 perspectives — step cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {[
-                            { num: '01', title: '大企業での推進経験', desc: '7,000人規模の企業でAI推進を主導' },
-                            { num: '02', title: '上場企業のAI顧問', desc: '経営層と直接対話しながらAI戦略を設計' },
-                            { num: '03', title: '自社もAIネイティブ', desc: '社員ゼロ、AIエージェントがチームとして稼働' },
-                        ].map((step, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.2, duration: 0.7 }}
-                                className="rounded-2xl p-10 md:p-12 relative group"
-                                style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)' }}
-                            >
-                                <span className="text-5xl md:text-6xl font-black text-white/10 absolute top-6 right-8 select-none">{step.num}</span>
-                                <div className="relative z-10">
-                                    <div className="text-blue-200 text-xs font-semibold tracking-[0.2em] uppercase mb-4">{step.num}</div>
-                                    <h3 className="text-white font-bold text-lg mb-3">{step.title}</h3>
-                                    <p className="text-blue-100/70 text-sm leading-relaxed">{step.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══════ COMPARISON TABLE — Glass highlight ═══════ */}
-            <section className="py-32 bg-white">
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-16"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-600" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Comparison</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">他社との比較。</h2>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="overflow-x-auto rounded-2xl glass-card"
-                    >
-                        <table className="w-full text-sm min-w-[640px]">
-                            <thead>
-                                <tr className="border-b border-slate-200/80">
-                                    <th className="text-left py-5 pr-6 pl-6 font-semibold text-slate-400 uppercase tracking-widest text-xs w-1/5" />
-                                    <th className="py-5 px-4 text-center w-1/5">
-                                        <span className="inline-block bg-blue-600 text-white font-bold py-2 px-5 text-sm tracking-wide rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)]">WaiWai AI</span>
-                                    </th>
-                                    <th className="py-5 px-4 text-center font-medium text-slate-400 w-1/5">大手コンサル</th>
-                                    <th className="py-5 px-4 text-center font-medium text-slate-400 w-1/5">フリーランス</th>
-                                    <th className="py-5 px-4 text-center font-medium text-slate-400 w-1/5">AI顧問（他社）</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {[
-                                    { label: '月額費用', us: '10〜50万円', a: '30〜100万円', b: '100万円〜', c: '10〜30万円' },
-                                    { label: '実装', us: 'AIが自動開発', a: '別会社に外注', b: '本人が手動', c: 'なし' },
-                                    { label: 'KPI計測', us: '自動', a: '手動レポート', b: 'なし', c: 'なし' },
-                                    { label: '対応速度', us: '即日〜翌日', a: '1〜2週間', b: '数日', c: '数日' },
-                                    { label: '放置リスク', us: 'なし', a: '高い', b: '低い', c: '高い' },
-                                ].map((row, i) => (
-                                    <tr key={i} className="border-b border-slate-100 last:border-b-0 hover:bg-blue-50/30 transition-colors">
-                                        <td className="py-5 pr-6 pl-6 font-semibold text-slate-800">{row.label}</td>
-                                        <td className="py-5 px-4 text-center font-bold text-blue-600">{row.us}</td>
-                                        <td className="py-5 px-4 text-center text-slate-400">{row.a}</td>
-                                        <td className="py-5 px-4 text-center text-slate-400">{row.b}</td>
-                                        <td className="py-5 px-4 text-center text-slate-400">{row.c}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ═══════ PROCESS — Glass step cards ═══════ */}
-            <section className="py-32 bg-slate-50 relative">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Process</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">導入の流れ。</h2>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-                        {[
-                            { step: '01', icon: <Target className="w-5 h-5" />, title: '無料相談', desc: '30分で御社の課題をヒアリング。AI化のポテンシャルをその場でお伝え。' },
-                            { step: '02', icon: <BarChart3 className="w-5 h-5" />, title: '業務診断', desc: '全業務を棚卸し。インパクト×難易度で優先順位を整理。' },
-                            { step: '03', icon: <Zap className="w-5 h-5" />, title: '自動化実装', desc: 'AIエージェントが開発開始。最短1週間で最初の成果物。' },
-                            { step: '04', icon: <TrendingUp className="w-5 h-5" />, title: 'KPI計測', desc: '成果を数字で見える化。毎月レポート、次の施策を実行。' },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.12 }}
-                                className="glass-card rounded-2xl p-8 md:p-10 group hover:shadow-[0_8px_32px_-8px_rgba(37,99,235,0.2)] transition-all duration-500"
-                            >
-                                <span className="text-5xl font-black text-blue-100 group-hover:text-blue-200 transition-colors block mb-6">{item.step}</span>
-                                <div className="text-blue-500 mb-4">{item.icon}</div>
-                                <h3 className="text-base font-bold text-slate-900 mb-2">{item.title}</h3>
-                                <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══════ PRICING — Glass plan cards ═══════ */}
-            <section id="pricing" className="py-32 bg-white relative">
-                <div className="absolute inset-0 bg-dot-light opacity-20" />
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">Pricing</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">料金プラン。</h2>
-                        <p className="text-slate-500 text-lg">社員1人の採用コストより、確実に安い。</p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        {plans.map((plan, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.12 }}
-                                className={`glass-card rounded-2xl p-10 md:p-12 flex flex-col relative ${plan.accent
-                                    ? 'border-blue-400 shadow-[0_8px_32px_-8px_rgba(37,99,235,0.3)]'
-                                    : ''
-                                    }`}
-                            >
-                                {plan.accent && (
-                                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-t-2xl" />
-                                )}
-                                <div className="mb-8">
-                                    <span className={`text-xs font-semibold tracking-[0.3em] uppercase ${plan.accent ? 'text-blue-500' : 'text-slate-400'}`}>
-                                        {plan.name}
-                                    </span>
-                                </div>
-                                <div className="mb-2">
-                                    <span className="text-6xl font-black tracking-tight text-slate-900">{plan.price}</span>
-                                    <span className="text-lg font-medium ml-1 text-slate-400">万円<span className="text-sm">/月</span></span>
-                                </div>
-                                <p className="text-sm mb-10 text-slate-500">{plan.description}</p>
-
-                                <ul className="space-y-4 mb-10 flex-1">
-                                    {plan.features.map((f, fi) => (
-                                        <li key={fi} className="flex items-start gap-3">
-                                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${plan.accent ? 'text-blue-500' : 'text-blue-400'}`} />
-                                            <span className="text-sm text-slate-600">{f}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <motion.a
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    href="#contact"
-                                    className={`block text-center py-4 font-bold text-sm tracking-wide transition-colors rounded-xl ${plan.accent
-                                        ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)]'
-                                        : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
-                                        }`}
-                                >
-                                    無料で相談する
-                                </motion.a>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Spot products */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-                        {[
-                            { icon: <BarChart3 className="w-5 h-5" />, title: 'AI業務診断', desc: '全業務を棚卸し、AI活用ロードマップを納品。', price: '30万円（税別）' },
-                            { icon: <Users className="w-5 h-5" />, title: 'AI導入研修', desc: '半日のオンライン研修。社内のAIリテラシーを底上げ。', price: '15万円（税別）' },
-                        ].map((s, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                className="glass-card rounded-2xl p-8 md:p-10 flex items-center gap-6"
-                            >
-                                <div className="text-blue-500 shrink-0">{s.icon}</div>
-                                <div className="flex-1">
-                                    <h4 className="font-bold text-slate-900 text-sm">{s.title}</h4>
-                                    <p className="text-slate-500 text-xs mt-1">{s.desc}</p>
-                                </div>
-                                <span className="text-blue-600 font-bold text-sm whitespace-nowrap">{s.price}</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══════ NEW ENTRY POINTS — AI Review + IT/AI Rescue ═══════ */}
-            <section className="py-32 bg-slate-50 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
-                <div className="absolute bottom-0 right-0 w-[40vw] h-[40vw] rounded-full bg-blue-100/40 blur-[120px] translate-x-1/3 translate-y-1/3" />
-                <div className="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-20"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">New Services</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-4">
-                            まず、ここから始める。
-                        </h2>
-                        <p className="text-slate-500 text-lg max-w-xl">
-                            月額契約の前に、単発で試せる入口をご用意しました。
+                            <span className="block lg:hidden">
+                                回る仕組みに
+                                <br />
+                                変える。
+                            </span>
+                            <span className="hidden whitespace-nowrap lg:block">回る仕組みに変える。</span>
+                        </h1>
+                        <p className="mt-6 max-w-md text-base font-bold leading-8 text-slate-800">
+                            問い合わせ、集計、資料作成から小さく自動化。設計だけで終わらせず、現場で使えるところまで一緒に作ります。
                         </p>
+
+                        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                            <a
+                                href="/contact"
+                                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-blue-700 px-7 text-sm font-black text-white shadow-[0_18px_38px_-20px_rgba(37,99,235,0.9)] transition hover:-translate-y-0.5 hover:bg-blue-800"
+                            >
+                                <CalendarDays className="h-5 w-5" />
+                                無料で相談する
+                                <ArrowRight className="h-4 w-4" />
+                            </a>
+                            <a href="#pricing" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-2 text-sm font-black text-slate-700 transition hover:text-blue-700">
+                                料金を見る
+                                <ArrowRight className="h-4 w-4" />
+                            </a>
+                        </div>
+
+                        <div className="mt-8 grid gap-3 text-xs font-bold text-slate-700 sm:grid-cols-3 lg:max-w-xl">
+                            {['上場企業の顧問実績', '実装まで伴走', '補助金・助成金相談可'].map((item) => (
+                                <span key={item} className="inline-flex items-center gap-2">
+                                    <CheckCircle2 className="h-4 w-4 text-blue-700" />
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
                     </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                        {/* Card 1: AI活用レビュー */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                            className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_12px_48px_-8px_rgba(37,99,235,0.2)] transition-all duration-500"
-                        >
-                            {/* Top accent bar */}
-                            <div className="h-1 bg-gradient-to-r from-blue-500 to-cyan-400" />
-                            <div className="p-10 md:p-12 flex flex-col h-full">
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-8">
-                                    <Sparkles className="w-3 h-3 text-blue-500" />
-                                    <span className="text-xs font-semibold text-blue-600 tracking-wide">導入済み企業向け</span>
-                                </div>
-
-                                <div className="flex items-start gap-4 mb-6">
-                                    <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
-                                        <Search className="w-5 h-5 text-blue-500" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-slate-900 leading-tight">AI活用レビュー</h3>
-                                        <p className="text-blue-500 font-medium text-sm mt-1">現状診断 → 最適化提案</p>
-                                    </div>
-                                </div>
-
-                                <p className="text-slate-600 leading-relaxed mb-8">
-                                    「AIツールを入れたけど放置している」「契約しているだけで活用できていない」<br />
-                                    そんな企業に向けた、単発の現状診断サービスです。
-                                </p>
-
-                                {/* Pain points */}
-                                <div className="space-y-3 mb-8">
-                                    {[
-                                        'AI導入したのに誰も使っていない',
-                                        'ツールはあるが業務に定着していない',
-                                        '何から改善すれば良いかわからない',
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
-                                            <span className="text-sm text-slate-500">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Process */}
-                                <div className="glass rounded-xl p-6 mb-8 bg-blue-50/50">
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <RefreshCw className="w-4 h-4 text-blue-500" />
-                                        <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">レビューの流れ</span>
-                                    </div>
-                                    <div className="flex items-center gap-3 text-sm text-slate-600">
-                                        <span className="font-medium text-slate-800">現状確認</span>
-                                        <ArrowRight className="w-3 h-3 text-blue-400 shrink-0" />
-                                        <span className="font-medium text-slate-800">課題抽出</span>
-                                        <ArrowRight className="w-3 h-3 text-blue-400 shrink-0" />
-                                        <span className="font-medium text-slate-800">最適化提案</span>
-                                    </div>
-                                </div>
-
-                                {/* Key message */}
-                                <div className="border-l-2 border-blue-400 pl-4 mb-10">
-                                    <p className="text-sm text-slate-500 italic leading-relaxed">
-                                        "AIの進化は早い。定期的なレビューが必要です。"<br />
-                                        現状を把握することが、次の一歩につながります。
-                                    </p>
-                                </div>
-
-                                <motion.a
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    href="/#contact"
-                                    className="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 text-white font-bold text-sm tracking-wide hover:bg-blue-700 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(37,99,235,0.4)] mt-auto"
-                                >
-                                    レビューを依頼する <ArrowRight className="w-4 h-4" />
-                                </motion.a>
-                            </div>
-                        </motion.div>
-
-                        {/* Card 2: IT/AIレスキュー */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                            className="glass-card rounded-2xl overflow-hidden group hover:shadow-[0_12px_48px_-8px_rgba(234,88,12,0.15)] transition-all duration-500"
-                        >
-                            {/* Top accent bar */}
-                            <div className="h-1 bg-gradient-to-r from-orange-400 to-amber-400" />
-                            <div className="p-10 md:p-12 flex flex-col h-full">
-                                {/* Badge */}
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-100 mb-8">
-                                    <LifeBuoy className="w-3 h-3 text-orange-500" />
-                                    <span className="text-xs font-semibold text-orange-600 tracking-wide">ITが苦手な方向け</span>
-                                </div>
-
-                                <div className="flex items-start gap-4 mb-6">
-                                    <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center shrink-0 group-hover:bg-orange-100 transition-colors">
-                                        <PhoneCall className="w-5 h-5 text-orange-500" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-slate-900 leading-tight">IT/AIレスキュー</h3>
-                                        <p className="text-orange-500 font-medium text-sm mt-1">困ったらZoomで即解決</p>
-                                    </div>
-                                </div>
-
-                                <p className="text-slate-600 leading-relaxed mb-8">
-                                    IT/AIのトラブルに、すぐ呼べる存在が必要です。<br />
-                                    AIで作ったものが動かない、設定がわからない。<br />
-                                    そんなときに頼れるパートナーがここにいます。
-                                </p>
-
-                                {/* Scenario examples */}
-                                <div className="space-y-3 mb-8">
-                                    {[
-                                        '「AIで作ったけど突然動かなくなった！」',
-                                        '「設定しようとしたら画面が変わってわからない」',
-                                        '「エラーが出て何が何だか分からない」',
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-start gap-3">
-                                            <AlertTriangle className="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5" />
-                                            <span className="text-sm text-slate-500">{item}</span>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                {/* Speed highlight */}
-                                <div className="glass rounded-xl p-6 mb-8 bg-orange-50/50">
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <Zap className="w-4 h-4 text-orange-500" />
-                                        <span className="text-xs font-semibold text-orange-600 uppercase tracking-wide">スピード解決</span>
-                                    </div>
-                                    <div className="flex items-center gap-6">
-                                        <div className="text-center">
-                                            <span className="text-3xl font-black text-slate-900">最短</span>
-                                            <span className="text-sm text-slate-400 ml-1">即日</span>
-                                            <p className="text-xs text-slate-400 mt-1">お問い合わせ当日に対応</p>
-                                        </div>
-                                        <div className="w-px h-10 bg-slate-200" />
-                                        <div className="text-sm text-slate-600 leading-relaxed">
-                                            Zoom画面共有で一緒に確認。<br />
-                                            その場で解決します。
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Key message */}
-                                <div className="border-l-2 border-orange-400 pl-4 mb-10">
-                                    <p className="text-sm text-slate-500 italic leading-relaxed">
-                                        一度のサポートが、安心感と信頼につながります。<br />
-                                        継続的なAI活用支援もご相談ください。
-                                    </p>
-                                </div>
-
-                                <motion.a
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    href="/#contact"
-                                    className="flex items-center justify-center gap-2 w-full py-4 bg-orange-500 text-white font-bold text-sm tracking-wide hover:bg-orange-600 transition-colors rounded-xl shadow-[0_4px_16px_-4px_rgba(234,88,12,0.3)] mt-auto"
-                                >
-                                    今すぐ相談する <ArrowRight className="w-4 h-4" />
-                                </motion.a>
-                            </div>
-                        </motion.div>
-
-                    </div>
                 </div>
             </section>
 
-            {/* ═══════ FAQ — Glass accordion ═══════ */}
-            <section className="py-32 bg-slate-50 relative">
-                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent" />
-                <div className="container mx-auto px-6 md:px-12 max-w-3xl">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        className="mb-16"
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-px bg-blue-500" />
-                            <span className="text-blue-600 text-xs font-semibold tracking-[0.3em] uppercase">FAQ</span>
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-slate-900">よくある質問。</h2>
-                    </motion.div>
-                    <div>
-                        {faqs.map((faq, i) => (
-                            <FAQItem key={i} q={faq.q} a={faq.a} index={i} />
+            <section className="bg-slate-50 py-12">
+                <div className="mx-auto grid max-w-[1120px] gap-8 px-5 sm:px-6 lg:grid-cols-[0.78fr_1.62fr] lg:items-start lg:px-0">
+                    <SectionHeading
+                        label="Problem"
+                        title={
+                            <>
+                                AI導入が止まる理由は、
+                                <br />
+                                だいたい現場にある。
+                            </>
+                        }
+                    />
+                    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+                        {problems.map((problem) => (
+                            <div
+                                key={problem.number}
+                                className="grid gap-3 border-b border-slate-200 p-5 last:border-b-0 md:grid-cols-[72px_1fr] md:items-center"
+                            >
+                                <div className="flex items-center gap-3 text-blue-700">
+                                    <span className="text-xl font-black tracking-tight">{problem.number}</span>
+                                </div>
+                                <h3 className="text-lg font-black leading-7 text-slate-950">{problem.title}</h3>
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══════ CTA ═══════ */}
-            <ContactCTA />
+            <section className="border-y border-slate-200 bg-white py-14">
+                <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-0">
+                    <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+                        <SectionHeading
+                            label="What We Do"
+                            title={
+                                <>
+                                    最初に減らす業務を
+                                    <br />
+                                    30分で絞る。
+                                </>
+                            }
+                            body="ツール名ではなく、毎日発生している作業から整理します。効果が見えやすい業務から小さく作ります。"
+                        />
+                    </div>
+
+                    <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-white">
+                        <div className="hidden grid-cols-[0.72fr_1fr_1fr] bg-slate-50 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-400 md:grid">
+                            <span>業務</span>
+                            <span>今</span>
+                            <span>AI化後</span>
+                        </div>
+                        {useCases.map((useCase) => (
+                            <div key={useCase.title} className="grid gap-3 border-b border-slate-200 p-5 last:border-b-0 md:grid-cols-[0.72fr_1fr_1fr] md:items-center">
+                                <h3 className="text-base font-black leading-7 text-slate-950">{useCase.title}</h3>
+                                <div>
+                                    <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 md:hidden">今</p>
+                                    <p className="text-sm font-medium leading-7 text-slate-600">{useCase.before}</p>
+                                </div>
+                                <div className="rounded-lg bg-blue-50 px-4 py-3">
+                                    <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700 md:hidden">AI化後</p>
+                                    <p className="text-sm font-bold leading-7 text-slate-900">{useCase.after}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-5 flex flex-col gap-3 rounded-lg border border-blue-100 bg-blue-50 px-5 py-4 text-sm font-black text-slate-900 md:flex-row md:items-center">
+                        <span className="shrink-0 text-blue-700">進め方</span>
+                        <div className="flex flex-wrap items-center gap-2">
+                            {layers.map((layer, index) => (
+                                <span key={layer.title} className="inline-flex items-center gap-2">
+                                    {layer.title}
+                                    {index < layers.length - 1 && <ArrowRight className="h-4 w-4 text-blue-700" />}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="relative overflow-hidden bg-white py-16">
+                <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-blue-50/70 to-transparent" aria-hidden="true" />
+                <div className="relative mx-auto grid max-w-[1120px] gap-10 px-5 sm:px-6 lg:grid-cols-[0.78fr_1.52fr] lg:items-stretch lg:px-0">
+                    <SectionHeading
+                        label="Track Record"
+                        title={
+                            <>
+                                実務で使える形まで、
+                                <br />
+                                作って運用する。
+                            </>
+                        }
+                        body="机上のAI活用ではなく、自社業務と顧問先で使ってきた実装知をもとに、運用まで落とし込みます。"
+                    />
+                    <div className="grid gap-4 md:grid-cols-3">
+                        {records.map((record) => {
+                            const Icon = record.icon;
+                            return (
+                                <div key={record.title} className="rounded-lg border border-blue-100 bg-white p-6 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.45)]">
+                                    <div className="mb-6 flex items-center justify-between">
+                                        <Icon className="h-8 w-8 text-blue-700" />
+                                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">{record.stat}</span>
+                                    </div>
+                                    <h3 className="text-xl font-black leading-7 text-slate-950">{record.title}</h3>
+                                    <p className="mt-4 text-sm font-medium leading-7 text-slate-600">{record.body}</p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            <section id="pricing" className="bg-slate-50 py-16">
+                <div className="mx-auto grid max-w-[1120px] gap-9 px-5 sm:px-6 lg:grid-cols-[0.68fr_1.62fr] lg:px-0">
+                    <SectionHeading
+                        label="Pricing"
+                        title="作る業務と伴走範囲で選ぶ。"
+                        body="最初に対象業務と削減見込みを整理し、作る量に合わせてプランを選びます。まずは1業務から始められます。"
+                    />
+                    <div>
+                        <div className="grid gap-5 md:grid-cols-3">
+                            {plans.map((plan) => (
+                                <div
+                                    key={plan.name}
+                                    className={`relative rounded-lg border bg-white p-6 shadow-[0_20px_64px_-54px_rgba(15,23,42,0.5)] ${
+                                        plan.recommended ? 'border-blue-700 ring-1 ring-blue-700' : 'border-slate-200'
+                                    }`}
+                                >
+                                    {plan.recommended && (
+                                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-blue-700 px-5 py-1 text-xs font-black text-white">
+                                            おすすめ
+                                        </span>
+                                    )}
+                                    <p className="text-[11px] font-black uppercase tracking-[0.2em] text-blue-700">{plan.name}</p>
+                                    <div className="mt-4 flex items-end gap-1">
+                                        <span className="text-5xl font-black tracking-tight text-slate-950">{plan.price}</span>
+                                        <span className="pb-1 text-sm font-black text-slate-800">万円/月〜</span>
+                                    </div>
+                                    <p className="mt-4 min-h-16 text-sm font-black leading-6 text-slate-700">{plan.body}</p>
+                                    <div className="mt-5 border-t border-slate-100 pt-5">
+                                        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">含まれること</p>
+                                        <ul className="space-y-2">
+                                            {plan.features.map((feature) => (
+                                                <li key={feature} className="flex gap-2 text-xs font-bold leading-5 text-slate-700">
+                                                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-blue-700" />
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <a
+                                        href="/contact"
+                                        className={`mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg text-sm font-black transition ${
+                                            plan.recommended
+                                                ? 'bg-blue-700 text-white hover:bg-blue-800'
+                                                : 'border border-slate-200 text-slate-800 hover:border-blue-200 hover:text-blue-700'
+                                        }`}
+                                    >
+                                        このプランで相談する
+                                        <ArrowRight className="h-4 w-4" />
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="bg-white px-5 py-16 sm:px-6 lg:px-0">
+                <div className="mx-auto grid max-w-[1120px] gap-7 rounded-lg border border-blue-100 bg-gradient-to-r from-slate-950 to-blue-900 p-7 text-white shadow-[0_28px_82px_-60px_rgba(15,23,42,0.65)] md:grid-cols-[1fr_auto] md:items-center">
+                    <div>
+                        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-black text-blue-100">
+                            <ShieldCheck className="h-4 w-4" />
+                            Free AI Consultation
+                        </div>
+                        <h2 className="text-3xl font-black leading-tight tracking-tight">
+                            まずは30分で、減らせる業務を特定する。
+                        </h2>
+                        <p className="mt-3 max-w-2xl text-sm font-medium leading-7 text-blue-100/85">
+                            どの業務からAI化すべきか、どれくらい削減できそうか、最初に作るべき仕組みまで整理します。問い合わせも同じページから選べます。
+                        </p>
+                    </div>
+                    <a
+                        href="/contact"
+                        className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-white px-7 text-sm font-black text-blue-800 transition hover:-translate-y-0.5 hover:bg-blue-50"
+                    >
+                        <CalendarDays className="h-5 w-5" />
+                        相談・問い合わせへ
+                        <ArrowRight className="h-4 w-4" />
+                    </a>
+                </div>
+            </section>
         </div>
     );
 }

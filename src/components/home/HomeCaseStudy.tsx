@@ -49,10 +49,10 @@ export default function HomeCaseStudy() {
             ))}
           </div>
           <a
-            href="/cases"
+            href="/contact"
             className="mt-3 inline-flex items-center gap-2 text-xs font-bold text-blue-700 transition hover:text-blue-900"
           >
-            事例の詳細を見る
+            同じような相談をする
             <ArrowRight className="h-4 w-4" />
           </a>
         </motion.div>

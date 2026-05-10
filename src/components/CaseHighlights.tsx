@@ -114,11 +114,11 @@ export default function CaseHighlights() {
                     className="text-center"
                 >
                     <Link
-                        href="/cases"
-                        aria-label="すべての導入事例を見る"
+                        href="/contact"
+                        aria-label="同じような相談をする"
                         className="group inline-flex items-center gap-3 px-10 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base transition-all shadow-[0_8px_24px_-8px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.16)] hover:-translate-y-0.5"
                     >
-                        すべての事例を見る
+                        同じような相談をする
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>
                 </motion.div>

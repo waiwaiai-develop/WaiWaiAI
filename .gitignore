@@ -24,3 +24,9 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Design source files (mockups, not for production)
+デザイン/
+
+# Vercel env pulls (contains secrets)
+.env.vercel*

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updatedAt": "2026-03-22T22:00:03.628Z",
+  "updatedAt": "2026-04-02T22:00:03.606Z",
   "skills": {
     "agent-browser": {
       "count": 1,
@@ -17,12 +17,20 @@
     "harness-review": {
       "count": 1,
       "lastUsed": "2026-03-22T03:35:12.485Z"
+    },
+    "frontend-slides": {
+      "count": 1,
+      "lastUsed": "2026-03-23T12:18:09.593Z"
     }
   },
   "commands": {
     "frontend-design": {
       "count": 2,
       "lastUsed": "2026-03-21T04:41:02.130Z"
+    },
+    "Users/kubotatoshi/Downloads/google_cloud_gen_ai_09_customer_case_studies_": {
+      "count": 1,
+      "lastUsed": "2026-03-23T11:26:16.286Z"
     }
   },
   "agents": {
@@ -37,14 +45,14 @@
   },
   "hooks": {
     "session-init": {
-      "triggered": 12,
+      "triggered": 23,
       "blocked": 0,
-      "lastTriggered": "2026-03-22T22:00:03.604Z"
+      "lastTriggered": "2026-04-02T22:00:03.602Z"
     },
     "pretooluse-guard": {
-      "triggered": 15,
-      "blocked": 15,
-      "lastTriggered": "2026-03-22T21:51:10.772Z"
+      "triggered": 76,
+      "blocked": 76,
+      "lastTriggered": "2026-03-23T14:46:13.343Z"
     }
   }
 }

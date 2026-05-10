@@ -34,7 +34,7 @@ const aboutPageSchema = {
     description: 'AIネイティブ開発会社。AIシステム開発・導入コンサルティング・DX推進を一気通貫で支援。',
     url: 'https://waiwaiai.com',
     logo: 'https://waiwaiai.com/logo-horizontal.png',
-    foundingDate: '2024',
+    foundingDate: '2025-01-23',
     address: {
       '@type': 'PostalAddress',
       postalCode: '150-0043',
