@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Calendar,
@@ -59,6 +59,7 @@ export default function BookingPageContent() {
     const [step, setStep] = useState<'slots' | 'form' | 'done'>('slots');
     const [slots, setSlots] = useState<Slot[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<Slot | null>(null);
+    const [selectedDate, setSelectedDate] = useState<string | null>(null);
     const [loadingSlots, setLoadingSlots] = useState(true);
     const [slotError, setSlotError] = useState('');
     const [submitting, setSubmitting] = useState(false);
@@ -71,6 +72,28 @@ export default function BookingPageContent() {
         company: '',
         topic: '',
     });
+
+    // Group slots by date, preserving chronological order
+    const dateGroups = useMemo(() => {
+        const map = new Map<string, Slot[]>();
+        for (const slot of slots) {
+            if (!map.has(slot.date)) map.set(slot.date, []);
+            map.get(slot.date)!.push(slot);
+        }
+        return Array.from(map.entries()).map(([date, slots]) => ({ date, slots }));
+    }, [slots]);
+
+    const selectedDateSlots = useMemo(
+        () => dateGroups.find((g) => g.date === selectedDate)?.slots ?? [],
+        [dateGroups, selectedDate]
+    );
+
+    // Auto-select first available date once slots load
+    useEffect(() => {
+        if (!selectedDate && dateGroups.length > 0) {
+            setSelectedDate(dateGroups[0].date);
+        }
+    }, [dateGroups, selectedDate]);
 
     useEffect(() => {
         const fetchSlots = async () => {
@@ -240,7 +263,7 @@ export default function BookingPageContent() {
                 )}
 
                 <AnimatePresence mode="wait">
-                    {/* Step 1: Slot selection */}
+                    {/* Step 1: Slot selection (TimeRex-style: date list + time slots) */}
                     {step === 'slots' && (
                         <motion.div
                             key="slots"
@@ -249,14 +272,7 @@ export default function BookingPageContent() {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4, ease }}
                         >
-                            <div className="glass-panel p-8 md:p-10 shadow-[0_8px_40px_rgba(0,0,0,0.07)]">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <Calendar className="w-5 h-5 text-blue-600 shrink-0" />
-                                    <h2 className="font-display text-xl font-bold text-slate-900">
-                                        ご希望の日時を選択してください
-                                    </h2>
-                                </div>
-
+                            <div className="glass-panel p-6 md:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.07)]">
                                 {loadingSlots && (
                                     <div className="flex flex-col items-center justify-center py-16 gap-3">
                                         <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
@@ -282,32 +298,75 @@ export default function BookingPageContent() {
                                 )}
 
                                 {!loadingSlots && !slotError && slots.length > 0 && (
-                                    <div className="grid gap-3 sm:grid-cols-2">
-                                        {slots.map((slot, idx) => (
-                                            <motion.button
-                                                key={slot.start}
-                                                initial={{ opacity: 0, y: 12 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.35, delay: idx * 0.04, ease }}
-                                                onClick={() => handleSlotSelect(slot)}
-                                                className="group w-full text-left p-4 rounded-2xl border border-slate-100 bg-white/70 hover:bg-white hover:border-blue-200 hover:shadow-md hover:shadow-blue-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                            >
-                                                <div className="flex items-start justify-between gap-3">
-                                                    <div>
-                                                        <p className="font-semibold text-slate-900 text-sm mb-1 group-hover:text-blue-700 transition-colors">
-                                                            {slot.date}
-                                                        </p>
-                                                        <div className="flex items-center gap-1.5 text-slate-500">
-                                                            <Clock className="w-3.5 h-3.5" />
-                                                            <span className="text-sm">{slot.time}</span>
-                                                        </div>
-                                                    </div>
-                                                    <div className="w-8 h-8 rounded-full bg-blue-50 group-hover:bg-blue-100 flex items-center justify-center transition-colors shrink-0">
-                                                        <ArrowRight className="w-4 h-4 text-blue-500" />
-                                                    </div>
+                                    <div className="grid gap-6 md:grid-cols-[260px_1fr]">
+                                        {/* Date list (left) */}
+                                        <div className="md:border-r md:border-slate-100 md:pr-6">
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <Calendar className="w-4 h-4 text-blue-600 shrink-0" />
+                                                <h2 className="font-display text-base font-bold text-slate-900">
+                                                    日付を選ぶ
+                                                </h2>
+                                            </div>
+                                            <div className="flex flex-col gap-1.5 max-h-[420px] overflow-y-auto pr-1">
+                                                {dateGroups.map((group) => {
+                                                    const isActive = selectedDate === group.date;
+                                                    return (
+                                                        <button
+                                                            key={group.date}
+                                                            onClick={() => setSelectedDate(group.date)}
+                                                            className={`text-left px-4 py-3 rounded-xl border transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                                                                isActive
+                                                                    ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-200'
+                                                                    : 'bg-white/70 border-slate-100 hover:border-blue-200 hover:bg-white text-slate-800'
+                                                            }`}
+                                                        >
+                                                            <div className="flex items-center justify-between">
+                                                                <span className="text-sm font-semibold">
+                                                                    {group.date}
+                                                                </span>
+                                                                <span
+                                                                    className={`text-xs ${
+                                                                        isActive ? 'text-blue-100' : 'text-slate-400'
+                                                                    }`}
+                                                                >
+                                                                    {group.slots.length}枠
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+
+                                        {/* Time slots (right) */}
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <Clock className="w-4 h-4 text-blue-600 shrink-0" />
+                                                <h2 className="font-display text-base font-bold text-slate-900">
+                                                    時間を選ぶ
+                                                </h2>
+                                            </div>
+                                            {selectedDateSlots.length > 0 ? (
+                                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[420px] overflow-y-auto pr-1">
+                                                    {selectedDateSlots.map((slot) => (
+                                                        <button
+                                                            key={slot.start}
+                                                            onClick={() => handleSlotSelect(slot)}
+                                                            className="px-3 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm font-medium hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 active:scale-[0.98] transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                                        >
+                                                            {slot.time.split(' - ')[0]}
+                                                        </button>
+                                                    ))}
                                                 </div>
-                                            </motion.button>
-                                        ))}
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center py-12 text-center">
+                                                    <Calendar className="w-10 h-10 text-slate-200 mb-3" />
+                                                    <p className="text-sm text-slate-400">
+                                                        左側から日付を選択してください
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 )}
                             </div>

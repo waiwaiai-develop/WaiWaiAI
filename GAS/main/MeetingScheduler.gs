@@ -30,7 +30,7 @@ const CONFIG = {
   ORGANIZER_EMAIL: Session.getActiveUser().getEmail(),
   COMPANY_NAME: 'WaiWai AI株式会社',
   COMPANY_URL: 'https://waiwaiai.com',
-  DAYS_AHEAD: 14,
+  DAYS_AHEAD: 7,
   REMINDER_HOURS_BEFORE: 24,
 };
 
@@ -75,6 +75,14 @@ function getAvailableSlots_() {
   const slotDurationMs = CONFIG.MEETING_DURATION_MIN * 60 * 1000;
   const slotDurationHours = CONFIG.MEETING_DURATION_MIN / 60;
 
+  // 期間全体の予定を一括取得（API呼び出しを1回にまとめる）
+  const rangeStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+  const rangeEnd = new Date(rangeStart.getTime() + CONFIG.DAYS_AHEAD * 24 * 60 * 60 * 1000);
+  const events = cal.getEvents(rangeStart, rangeEnd);
+  const busy = events.map(function (ev) {
+    return { start: ev.getStartTime().getTime(), end: ev.getEndTime().getTime() };
+  });
+
   for (let dayOffset = 0; dayOffset < CONFIG.DAYS_AHEAD; dayOffset++) {
     const day = new Date(now.getTime() + dayOffset * 24 * 60 * 60 * 1000);
 
@@ -85,7 +93,7 @@ function getAvailableSlots_() {
       const slotEnd = new Date(slotStart.getTime() + slotDurationMs);
 
       if (slotStart.getTime() <= now.getTime()) continue;
-      if (hasConflict_(cal, slotStart, slotEnd)) continue;
+      if (overlapsBusy_(busy, slotStart.getTime(), slotEnd.getTime())) continue;
 
       slots.push({
         start: slotStart.toISOString(),
@@ -97,6 +105,13 @@ function getAvailableSlots_() {
   }
 
   return { slots: slots };
+}
+
+function overlapsBusy_(busy, start, end) {
+  for (let i = 0; i < busy.length; i++) {
+    if (busy[i].start < end && busy[i].end > start) return true;
+  }
+  return false;
 }
 
 function hasConflict_(cal, start, end) {

@@ -184,7 +184,7 @@ export default function ContactSection() {
                     ))}
                 </div>
 
-                <div id="contact-form" className="mt-12 grid gap-8 lg:grid-cols-[320px_1fr] lg:items-start">
+                <div className="mt-12 grid gap-8 lg:grid-cols-[320px_1fr] lg:items-start">
                     <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-[0_20px_70px_-60px_rgba(15,23,42,0.7)] lg:sticky lg:top-28">
                         <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Guide</p>
                         <h2 className="mt-4 text-2xl font-black leading-tight text-slate-950">
@@ -202,13 +202,7 @@ export default function ContactSection() {
                         </p>
                     </aside>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="rounded-lg border border-slate-200 bg-white p-5 shadow-[0_24px_90px_-68px_rgba(15,23,42,0.7)] sm:p-8"
-                    >
+                    <div id="contact-form" className="scroll-mt-28 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_24px_90px_-68px_rgba(15,23,42,0.7)] sm:p-8">
                         <AnimatePresence mode="wait">
                             {status === 'success' ? (
                                 <motion.div
@@ -335,7 +329,7 @@ export default function ContactSection() {
                                 </motion.form>
                             )}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>
