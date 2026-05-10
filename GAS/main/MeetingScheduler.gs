@@ -60,9 +60,60 @@ function handleMeetingPost_(data) {
       return jsonResponse_(bookMeeting_(data));
     case 'cancel':
       return jsonResponse_(cancelMeeting_(data.token));
+    case 'getBooking':
+      return jsonResponse_(getBookingByToken_(data.token));
+    case 'reschedule':
+      return jsonResponse_(rescheduleMeeting_(data));
     default:
       return jsonResponse_({ error: 'Unknown action' });
   }
+}
+
+function getBookingByToken_(token) {
+  if (!token) return { error: 'トークンが指定されていません' };
+  const props = PropertiesService.getScriptProperties();
+  const bookingJson = props.getProperty('booking_' + token);
+  if (!bookingJson) return { error: '予約が見つかりません' };
+  const booking = JSON.parse(bookingJson);
+  return {
+    success: true,
+    name: booking.name,
+    email: booking.email,
+    company: booking.company,
+    topic: booking.topic,
+    start: booking.start,
+    end: booking.end,
+    date: formatDateJP_(new Date(booking.start)),
+    time: formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)),
+    meetLink: booking.meetLink,
+    status: booking.status,
+  };
+}
+
+function rescheduleMeeting_(data) {
+  const { token, slotStart, slotEnd } = data;
+  if (!token || !slotStart || !slotEnd) {
+    return { error: '必須項目が不足しています' };
+  }
+  const props = PropertiesService.getScriptProperties();
+  const bookingJson = props.getProperty('booking_' + token);
+  if (!bookingJson) return { error: '予約が見つかりません' };
+  const old = JSON.parse(bookingJson);
+  if (old.status === 'cancelled') return { error: 'この予約は既にキャンセルされています' };
+
+  // 旧予約のキャンセル
+  cancelMeeting_(token);
+
+  // 同じ顧客情報で新しい予約を作成
+  const result = bookMeeting_({
+    name: old.name,
+    email: old.email,
+    company: old.company,
+    topic: old.topic,
+    slotStart: slotStart,
+    slotEnd: slotEnd,
+  });
+  return result;
 }
 
 // ===== Slot Management =====
@@ -169,12 +220,13 @@ function bookMeeting_(data) {
     JSON.stringify(bookingData)
   );
 
-  recordBooking_(bookingData);
-  sendConfirmationEmail_(bookingData);
-  sendOrganizerNotification_(bookingData);
-  notifyNewBooking_(bookingData);
-  setupReminder_(bookingData);
-  setupPostMeetingTrigger_(bookingData);
+  // 補助処理は失敗してもレスポンスを壊さない
+  safeRun_('recordBooking_', function () { recordBooking_(bookingData); });
+  safeRun_('sendConfirmationEmail_', function () { sendConfirmationEmail_(bookingData); });
+  safeRun_('sendOrganizerNotification_', function () { sendOrganizerNotification_(bookingData); });
+  safeRun_('notifyNewBooking_', function () { notifyNewBooking_(bookingData); });
+  safeRun_('setupReminder_', function () { setupReminder_(bookingData); });
+  safeRun_('setupPostMeetingTrigger_', function () { setupPostMeetingTrigger_(bookingData); });
 
   return {
     success: true,
@@ -183,6 +235,14 @@ function bookMeeting_(data) {
     date: formatDateJP_(start),
     time: formatTimeJP_(start) + ' - ' + formatTimeJP_(end),
   };
+}
+
+function safeRun_(label, fn) {
+  try {
+    fn();
+  } catch (e) {
+    Logger.log(label + ' failed: ' + e.message + '\n' + (e.stack || ''));
+  }
 }
 
 // ===== Google Meet =====
@@ -230,8 +290,8 @@ function getEventMeetLink_(event) {
 
 function updateEventWithMeetInfo_(event, meetLink, name, email, company, topic, token) {
   const description = buildEventDescription_(name, email, company, topic, token) +
-    '\n\n📹 Google Meet: ' + meetLink +
-    '\n\n⚙️ 録画設定: 自動録画ON / Gemini文字起こし・要約ON' +
+    '\n\nGoogle Meet: ' + meetLink +
+    '\n\n録画設定: 自動録画ON / Gemini文字起こし・要約ON' +
     '\n※ Google Workspace管理者設定で録画・Gemini機能を有効にしてください';
   event.setDescription(description);
 }
@@ -239,15 +299,15 @@ function updateEventWithMeetInfo_(event, meetLink, name, email, company, topic, 
 function buildEventDescription_(name, email, company, topic, token) {
   return [
     '━━━━━━━━━━━━━━━━━━━━',
-    '📋 予約情報',
+    '予約情報',
     '━━━━━━━━━━━━━━━━━━━━',
     '',
-    '👤 お名前: ' + name,
-    '📧 メール: ' + email,
-    '🏢 会社名: ' + (company || '未記入'),
-    '💬 議題: ' + (topic || '未記入'),
+    'お名前: ' + name,
+    'メール: ' + email,
+    '会社名: ' + (company || '未記入'),
+    '議題: ' + (topic || '未記入'),
     '',
-    '🔑 予約トークン: ' + token,
+    '予約トークン: ' + token,
     '',
     '━━━━━━━━━━━━━━━━━━━━',
     CONFIG.COMPANY_NAME,
@@ -258,9 +318,8 @@ function buildEventDescription_(name, email, company, topic, token) {
 // ===== Email Templates =====
 
 function sendConfirmationEmail_(booking) {
-  const webAppUrl = ScriptApp.getService().getUrl();
-  const cancelUrl = webAppUrl + '?page=cancel&token=' + booking.token;
-  const rescheduleUrl = webAppUrl + '?page=reschedule&token=' + booking.token;
+  const cancelUrl = CONFIG.COMPANY_URL + '/booking/cancel?token=' + booking.token;
+  const rescheduleUrl = CONFIG.COMPANY_URL + '/booking/reschedule?token=' + booking.token;
 
   const subject = '【ご予約確定】' + CONFIG.COMPANY_NAME + ' オンラインMTG';
 
@@ -268,25 +327,25 @@ function sendConfirmationEmail_(booking) {
     'この度はお時間をいただきありがとうございます。\n' +
     '以下の内容でオンラインMTGのご予約を承りました。\n\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
-    '📅 日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
-    '📹 Google Meet: ' + booking.meetLink + '\n' +
-    '💬 議題: ' + (booking.topic || '未記入') + '\n' +
+    '日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
+    'Google Meet: ' + booking.meetLink + '\n' +
+    '議題: ' + (booking.topic || '未記入') + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n\n' +
     '※ このMTGはサービス向上のため録画させていただきます。\n' +
     '※ 終了後、文字起こし・要約を自動でお送りいたします。\n\n' +
     'ご都合が悪くなった場合は、以下のリンクから変更・キャンセルが可能です。\n' +
-    '📝 日程変更: ' + rescheduleUrl + '\n' +
-    '❌ キャンセル: ' + cancelUrl + '\n\n' +
+    '日程変更: ' + rescheduleUrl + '\n' +
+    'キャンセル: ' + cancelUrl + '\n\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
     CONFIG.COMPANY_NAME + '\n' +
     CONFIG.COMPANY_URL + '\n\n' +
     '【WaiWai AIについて】\n' +
     '私たちは中小企業向けにAI導入支援・DX推進を行っています。\n' +
     '「AI部門をまるごとインストール」— 戦略立案から実装・定着まで一気通貫で支援します。\n\n' +
-    '🔹 AI業務診断（単発）\n' +
-    '🔹 AI導入研修\n' +
-    '🔹 AI活用家庭教師（月額）\n' +
-    '🔹 AIトランスフォーメーション・パートナー（月額顧問）\n\n' +
+    '・AI業務診断（単発）\n' +
+    '・AI導入研修\n' +
+    '・AI活用家庭教師（月額）\n' +
+    '・AIトランスフォーメーション・パートナー（月額顧問）\n\n' +
     '詳しくはこちら → ' + CONFIG.COMPANY_URL + '\n' +
     '━━━━━━━━━━━━━━━━━━━━';
 
@@ -300,13 +359,13 @@ function sendConfirmationEmail_(booking) {
 function sendOrganizerNotification_(booking) {
   const subject = '【新規予約】' + booking.company + ' ' + booking.name + '様';
 
-  const body = '新しいMTG予約が入りました！\n\n' +
-    '👤 ' + booking.name + ' 様\n' +
-    '🏢 ' + (booking.company || '未記入') + '\n' +
-    '📧 ' + booking.email + '\n' +
-    '📅 ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
-    '💬 議題: ' + (booking.topic || '未記入') + '\n' +
-    '📹 Meet: ' + booking.meetLink;
+  const body = '新しいMTG予約が入りました。\n\n' +
+    'お名前: ' + booking.name + ' 様\n' +
+    '会社名: ' + (booking.company || '未記入') + '\n' +
+    'メール: ' + booking.email + '\n' +
+    '日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
+    '議題: ' + (booking.topic || '未記入') + '\n' +
+    'Meet: ' + booking.meetLink;
 
   MailApp.sendEmail({
     to: CONFIG.ORGANIZER_EMAIL,
@@ -362,8 +421,8 @@ function sendReminderEmail_(booking) {
   const body = booking.name + ' 様\n\n' +
     '明日のオンラインMTGのリマインドです。\n\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
-    '📅 日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
-    '📹 Google Meet: ' + booking.meetLink + '\n' +
+    '日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
+    'Google Meet: ' + booking.meetLink + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n\n' +
     'お会いできることを楽しみにしております。\n\n' +
     CONFIG.COMPANY_NAME + '\n' +
@@ -491,15 +550,15 @@ function sendTranscriptEmail_(booking, transcriptData) {
     '先日はお時間をいただきありがとうございました。\n' +
     'MTGの記録をお送りいたします。\n\n' +
     '━━━━━━━━━━━━━━━━━━━━\n' +
-    '📅 日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
+    '日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)) + ' - ' + formatTimeJP_(new Date(booking.end)) + '\n' +
     '━━━━━━━━━━━━━━━━━━━━\n';
 
   if (transcriptData.summary) {
-    body += '\n📝 【要約】\n' + transcriptData.summary + '\n';
+    body += '\n【要約】\n' + transcriptData.summary + '\n';
   }
 
   if (transcriptData.transcript) {
-    body += '\n📄 【文字起こし】\n' + transcriptData.transcript + '\n';
+    body += '\n【文字起こし】\n' + transcriptData.transcript + '\n';
   }
 
   body += '\n━━━━━━━━━━━━━━━━━━━━\n' +
@@ -548,13 +607,13 @@ function cancelMeeting_(token) {
   booking.status = 'cancelled';
   props.setProperty('booking_' + token, JSON.stringify(booking));
 
-  updateBookingStatus_(token, '❌ キャンセル');
+  updateBookingStatus_(token, 'キャンセル');
   notifyCancelBooking_(booking);
 
   MailApp.sendEmail({
     to: CONFIG.ORGANIZER_EMAIL,
     subject: '【キャンセル】' + booking.company + ' ' + booking.name + '様',
-    body: '以下のMTGがキャンセルされました。\n\n👤 ' + booking.name + '様\n📅 ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)),
+    body: '以下のMTGがキャンセルされました。\n\nお名前: ' + booking.name + '様\n日時: ' + formatDateJP_(new Date(booking.start)) + ' ' + formatTimeJP_(new Date(booking.start)),
   });
 
   return { success: true, message: '予約をキャンセルしました' };

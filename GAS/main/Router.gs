@@ -23,19 +23,26 @@ function doGet(e) {
 }
 
 function doPost(e) {
+  let data = null;
   try {
-    const data = JSON.parse(e.postData.contents);
-
-    // Meeting Scheduler のアクション
-    if (data.action === 'getSlots' || data.action === 'book' || data.action === 'cancel') {
-      return handleMeetingPost_(data);
-    }
-
-    // それ以外は問い合わせフォーム
-    return handleContactPost(e);
-
+    data = JSON.parse(e.postData.contents);
   } catch (err) {
-    // JSON parseに失敗した場合も問い合わせフォームとして処理
+    // JSON parseに失敗した場合のみ問い合わせフォームへ
     return handleContactPost(e);
   }
+
+  // Meeting Scheduler のアクション
+  if (data && (data.action === 'getSlots' || data.action === 'book' || data.action === 'cancel')) {
+    try {
+      return handleMeetingPost_(data);
+    } catch (err) {
+      Logger.log('handleMeetingPost_ error: ' + err.message + '\n' + err.stack);
+      return ContentService
+        .createTextOutput(JSON.stringify({ success: false, error: err.message }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
+  // それ以外（フォーム由来など）は問い合わせフォーム
+  return handleContactPost(e);
 }
