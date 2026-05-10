@@ -340,9 +340,15 @@ export default function BookingPageContent() {
 
                                         {/* Calendar grid */}
                                         <div className="overflow-x-auto -mx-2 px-2">
-                                            <div className="min-w-[640px] rounded-xl border border-slate-200 bg-white/60 overflow-hidden">
+                                            <div
+                                                className="min-w-[720px] rounded-xl border border-slate-200 bg-white/60 overflow-hidden"
+                                                style={{ ['--grid' as never]: '56px repeat(7, minmax(0, 1fr)) 56px' }}
+                                            >
                                                 {/* Header row: empty | dates | empty */}
-                                                <div className="grid grid-cols-[56px_repeat(7,minmax(0,1fr))_56px] bg-slate-50/80 border-b border-slate-200">
+                                                <div
+                                                    className="grid bg-slate-50/80 border-b border-slate-200"
+                                                    style={{ gridTemplateColumns: 'var(--grid)' }}
+                                                >
                                                     <div></div>
                                                     {weekDates.map((d) => (
                                                         <div
@@ -359,7 +365,8 @@ export default function BookingPageContent() {
                                                 {HOURS.map((hour) => (
                                                     <div
                                                         key={hour}
-                                                        className="grid grid-cols-[56px_repeat(7,minmax(0,1fr))_56px] border-b border-slate-100 last:border-b-0"
+                                                        className="grid border-b border-slate-100 last:border-b-0"
+                                                        style={{ gridTemplateColumns: 'var(--grid)' }}
                                                     >
                                                         {/* Left hour label */}
                                                         <div className="flex items-start justify-end pr-2 pt-2 text-xs text-slate-500 font-medium">
