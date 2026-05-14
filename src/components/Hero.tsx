@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2, MessageSquareText } from 'lucide-react';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-const trustItems = ['30分の無料相談', '最適なAI活用をご提案', '現場に寄り添う伴走支援'];
+const trustItems = ['30分の無料相談', '代表が直接対応', '設計から実装まで一貫'];
 
 export default function Hero() {
     const { scrollY } = useScroll();
@@ -14,7 +14,7 @@ export default function Hero() {
     const yVideo = useTransform(scrollY, [0, 600], [0, 18]);
 
     return (
-        <section className="relative flex min-h-[600px] items-center overflow-hidden bg-white pb-10 pt-24 lg:min-h-[450px] lg:pb-0 lg:pt-20">
+        <section className="relative flex min-h-[520px] items-center overflow-hidden bg-white pb-8 pt-24 sm:min-h-[600px] sm:pb-10 lg:min-h-[450px] lg:pb-0 lg:pt-20">
             {/* Background */}
             <div
                 className="absolute inset-0"
@@ -49,47 +49,27 @@ export default function Hero() {
                             </video>
                         </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 24 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.1, ease }}
-                        >
-                            <h1 className="mb-6 text-5xl font-bold leading-[1.08] tracking-tight text-slate-950 sm:text-6xl lg:text-[48px] xl:text-[48px]">
-                                <motion.span
-                                    className="block"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.2, ease }}
-                                >
+                        <div>
+                            <h1 className="mb-5 text-[42px] font-bold leading-[1.08] tracking-tight text-slate-950 sm:mb-6 sm:text-6xl lg:text-[48px] xl:text-[48px]">
+                                <span className="block">
                                     AIを味方に、
-                                </motion.span>
-                                <motion.span
-                                    className="block text-blue-700"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.45, ease }}
-                                >
+                                </span>
+                                <span className="block text-blue-700">
                                     未来を豊かに。
-                                </motion.span>
+                                </span>
                             </h1>
-                        </motion.div>
+                        </div>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.7, ease }}
-                            className="mb-6 max-w-md text-base font-bold leading-8 text-slate-900"
+                        <p
+                            className="mb-5 max-w-md text-sm font-bold leading-7 text-slate-900 sm:mb-6 sm:text-base sm:leading-8"
                         >
-                            中小企業のAI導入を、
+                            エンジニアリングもAI活用も、
                             <br />
-                            戦略から実装・運用まで伴走します。
-                        </motion.p>
+                            代表自ら手を動かす開発会社です。
+                        </p>
 
                         {/* CTAs */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.95, ease }}
+                        <div
                             className="flex w-full justify-center lg:justify-start"
                         >
                             <a
@@ -100,21 +80,18 @@ export default function Hero() {
                                 相談・問い合わせをする
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                             </a>
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.15, ease }}
-                            className="mt-7 flex flex-wrap justify-center gap-x-7 gap-y-3 lg:justify-start"
+                        <div
+                            className="mt-5 grid w-full grid-cols-1 gap-2 text-left sm:mt-7 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-3 lg:justify-start"
                         >
                             {trustItems.map((item) => (
-                                <span key={item} className="inline-flex items-center gap-2 text-xs font-bold text-slate-700 sm:text-sm">
-                                    <CheckCircle2 className="h-5 w-5 text-blue-700" />
+                                <span key={item} className="inline-flex items-center justify-center gap-2 rounded-lg bg-white/65 px-3 py-2 text-xs font-bold text-slate-700 ring-1 ring-blue-100/70 sm:justify-start sm:bg-transparent sm:px-0 sm:py-0 sm:text-sm sm:ring-0">
+                                    <CheckCircle2 className="h-4 w-4 text-blue-700 sm:h-5 sm:w-5" />
                                     {item}
                                 </span>
                             ))}
-                        </motion.div>
+                        </div>
                     </motion.div>
 
                     {/* Honu video — desktop */}

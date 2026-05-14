@@ -46,23 +46,6 @@ export const productsData: Product[] = [
     ],
     relatedBlogSlug: 'solo-ceo-ai-agents',
   },
-  {
-    id: 'real-estate-ai-guide',
-    title: '不動産AI活用ガイド',
-    description:
-      '不動産業界に特化したAI活用の実践ガイド。物件情報管理の自動化、顧客対応AI、マッチング最適化など、現場で即使えるノウハウを凝縮。',
-    price: 4980,
-    category: 'guide',
-    tags: ['不動産', 'AI活用', 'DX'],
-    stripePaymentLink: '#',
-    features: [
-      '物件情報の自動収集・整理システム設計',
-      'AI顧客対応チャットボット導入ステップ',
-      '物件マッチングAIの構築方法',
-      '導入ROI計算シート付き',
-    ],
-    relatedBlogSlug: 'ai-real-estate',
-  },
 ];
 
 export const categoryLabels: Record<string, string> = {

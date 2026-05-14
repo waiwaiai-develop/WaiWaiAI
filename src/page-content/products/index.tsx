@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import ProductGrid from '@/components/products/ProductGrid';
 import ContactCTA from '@/components/ContactCTA';
 import { productsData } from '@/data/productsData';
@@ -11,29 +10,21 @@ export default function ProductsPageContent() {
       <div className="container mx-auto px-4 md:px-8 max-w-6xl relative z-10">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
             className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block bg-blue-50 px-4 py-2 rounded-full border border-blue-100"
           >
             DIGITAL PRODUCTS
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+          </div>
+          <h1
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-6"
           >
-            AI時代の<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">実戦テンプレート</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            現場で検証済みの<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500">AI実戦テンプレート</span>
+          </h1>
+          <p
             className="text-lg text-slate-600 max-w-2xl mx-auto font-medium leading-relaxed"
           >
-            WaiWai AIが実際に使っているテンプレートやノウハウをパッケージ化。すぐに使えるデジタル商品をお届けします。
-          </motion.p>
+            代表が自分で使い込んでいるテンプレートやノウハウをパッケージ化。現場で検証済みのものだけをお届けします。
+          </p>
         </div>
 
         {/* Products Grid */}

@@ -64,19 +64,19 @@ const records = [
         icon: Building2,
         title: '大企業でのAI推進経験',
         stat: '7,000人規模',
-        body: '全社横断の業務変革で、AI活用テーマの設計と推進を経験。',
+        body: '従業員7,000人規模の企業で、全社横断のAI導入プロジェクトを主導。',
     },
     {
         icon: Trophy,
-        title: '経営層とのAI顧問実績',
-        stat: '上場企業支援',
+        title: '経営層へのAI顧問',
+        stat: '上場企業の実績あり',
         body: '経営課題から逆算して、AI導入の優先順位と実行計画を整理。',
     },
     {
         icon: Rocket,
         title: '自社業務での実装運用',
-        stat: '実務で検証済み',
-        body: '自社の問い合わせ、営業、情報整理にもAIを組み込み、実運用で改善。',
+        stat: '自分で使って検証',
+        body: '自社の問い合わせ対応、情報整理、開発ワークフローにAIを組み込み、日々改善。',
     },
 ];
 
@@ -134,10 +134,7 @@ function SectionHeading({
 
 function HeroAmbientVisual() {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.85, delay: 0.12, ease }}
+        <div
             className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
             aria-hidden="true"
         >
@@ -158,22 +155,22 @@ function HeroAmbientVisual() {
                 animate={{ x: [-80, 90, -80] }}
                 transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
             />
-        </motion.div>
+        </div>
     );
 }
 
 export default function ATPPage() {
     return (
         <div className="relative overflow-hidden bg-white text-slate-950">
-            <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-12 pt-28 lg:pb-16">
+            <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-9 pt-24 sm:pb-12 sm:pt-28 lg:pb-16">
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(37,99,235,0.045)_1px,transparent_1px),linear-gradient(0deg,rgba(37,99,235,0.045)_1px,transparent_1px)] bg-[size:58px_58px]" aria-hidden="true" />
                 <div className="absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-blue-50 to-transparent" aria-hidden="true" />
                 <HeroAmbientVisual />
 
                 <div className="relative z-10 mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-0">
-                    <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.72, ease }}>
-                        <p className="mb-5 text-[11px] font-black uppercase tracking-[0.24em] text-blue-700">AI Implementation Partner</p>
-                        <h1 className="text-[44px] font-black leading-[1.06] tracking-tight text-slate-950 sm:text-6xl lg:text-[56px]">
+                    <div>
+                        <p className="mb-4 text-[10px] font-black uppercase tracking-[0.22em] text-blue-700 sm:mb-5 sm:text-[11px]">AI Implementation Partner</p>
+                        <h1 className="text-[40px] font-black leading-[1.06] tracking-tight text-slate-950 sm:text-6xl lg:text-[56px]">
                             <span className="block lg:whitespace-nowrap">人手が足りない</span>
                             <span className="block lg:whitespace-nowrap">
                                 業務を、<span className="text-blue-700">AI</span>で
@@ -185,11 +182,11 @@ export default function ATPPage() {
                             </span>
                             <span className="hidden whitespace-nowrap lg:block">回る仕組みに変える。</span>
                         </h1>
-                        <p className="mt-6 max-w-md text-base font-bold leading-8 text-slate-800">
-                            問い合わせ、集計、資料作成から小さく自動化。設計だけで終わらせず、現場で使えるところまで一緒に作ります。
+                        <p className="mt-5 max-w-md text-sm font-bold leading-7 text-slate-800 sm:mt-6 sm:text-base sm:leading-8">
+                            問い合わせ、集計、資料作成から小さく自動化。代表自ら設計・実装まで手を動かし、現場で使えるところまで一緒に作ります。
                         </p>
 
-                        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:items-center">
                             <a
                                 href="/contact"
                                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-blue-700 px-7 text-sm font-black text-white shadow-[0_18px_38px_-20px_rgba(37,99,235,0.9)] transition hover:-translate-y-0.5 hover:bg-blue-800"
@@ -204,19 +201,19 @@ export default function ATPPage() {
                             </a>
                         </div>
 
-                        <div className="mt-8 grid gap-3 text-xs font-bold text-slate-700 sm:grid-cols-3 lg:max-w-xl">
-                            {['上場企業の顧問実績', '実装まで伴走', '補助金・助成金相談可'].map((item) => (
-                                <span key={item} className="inline-flex items-center gap-2">
+                        <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-700 sm:mt-8 sm:grid sm:grid-cols-3 sm:gap-3 lg:max-w-xl">
+                            {['代表が直接対応', '実装まで伴走', '補助金・助成金相談可'].map((item) => (
+                                <span key={item} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white/70 px-3 py-2 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
                                     <CheckCircle2 className="h-4 w-4 text-blue-700" />
                                     {item}
                                 </span>
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-slate-50 py-12">
+            <section className="bg-slate-50 py-10 sm:py-12">
                 <div className="mx-auto grid max-w-[1120px] gap-8 px-5 sm:px-6 lg:grid-cols-[0.78fr_1.62fr] lg:items-start lg:px-0">
                     <SectionHeading
                         label="Problem"
@@ -244,7 +241,7 @@ export default function ATPPage() {
                 </div>
             </section>
 
-            <section className="border-y border-slate-200 bg-white py-14">
+            <section className="border-y border-slate-200 bg-white py-12 sm:py-14">
                 <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-0">
                     <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
                         <SectionHeading
@@ -260,20 +257,20 @@ export default function ATPPage() {
                         />
                     </div>
 
-                    <div className="mt-8 overflow-hidden rounded-lg border border-slate-200 bg-white">
+                    <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-white sm:mt-8">
                         <div className="hidden grid-cols-[0.72fr_1fr_1fr] bg-slate-50 px-5 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-slate-400 md:grid">
                             <span>業務</span>
                             <span>今</span>
                             <span>AI化後</span>
                         </div>
                         {useCases.map((useCase) => (
-                            <div key={useCase.title} className="grid gap-3 border-b border-slate-200 p-5 last:border-b-0 md:grid-cols-[0.72fr_1fr_1fr] md:items-center">
+                            <div key={useCase.title} className="grid gap-2 border-b border-slate-200 p-4 last:border-b-0 sm:gap-3 sm:p-5 md:grid-cols-[0.72fr_1fr_1fr] md:items-center">
                                 <h3 className="text-base font-black leading-7 text-slate-950">{useCase.title}</h3>
                                 <div>
                                     <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-slate-400 md:hidden">今</p>
                                     <p className="text-sm font-medium leading-7 text-slate-600">{useCase.before}</p>
                                 </div>
-                                <div className="rounded-lg bg-blue-50 px-4 py-3">
+                                <div className="rounded-lg bg-blue-50 px-3 py-2.5 sm:px-4 sm:py-3">
                                     <p className="mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-blue-700 md:hidden">AI化後</p>
                                     <p className="text-sm font-bold leading-7 text-slate-900">{useCase.after}</p>
                                 </div>
@@ -295,31 +292,31 @@ export default function ATPPage() {
                 </div>
             </section>
 
-            <section className="relative overflow-hidden bg-white py-16">
+            <section className="relative overflow-hidden bg-white py-12 sm:py-16">
                 <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-blue-50/70 to-transparent" aria-hidden="true" />
                 <div className="relative mx-auto grid max-w-[1120px] gap-10 px-5 sm:px-6 lg:grid-cols-[0.78fr_1.52fr] lg:items-stretch lg:px-0">
                     <SectionHeading
                         label="Track Record"
                         title={
                             <>
-                                実務で使える形まで、
+                                自分で使ってきたから、
                                 <br />
-                                作って運用する。
+                                現場で動くものを作れる。
                             </>
                         }
-                        body="机上のAI活用ではなく、自社業務と顧問先で使ってきた実装知をもとに、運用まで落とし込みます。"
+                        body="大企業でのAI推進から自社業務での実装運用まで、手を動かしてきた経験がベースにあります。"
                     />
-                    <div className="grid gap-4 md:grid-cols-3">
+                    <div className="grid gap-3 md:grid-cols-3 md:gap-4">
                         {records.map((record) => {
                             const Icon = record.icon;
                             return (
-                                <div key={record.title} className="rounded-lg border border-blue-100 bg-white p-6 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.45)]">
-                                    <div className="mb-6 flex items-center justify-between">
-                                        <Icon className="h-8 w-8 text-blue-700" />
+                                <div key={record.title} className="rounded-lg border border-blue-100 bg-white p-4 shadow-[0_24px_72px_-56px_rgba(15,23,42,0.45)] sm:p-6">
+                                    <div className="mb-4 flex items-center justify-between sm:mb-6">
+                                        <Icon className="h-7 w-7 text-blue-700 sm:h-8 sm:w-8" />
                                         <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">{record.stat}</span>
                                     </div>
-                                    <h3 className="text-xl font-black leading-7 text-slate-950">{record.title}</h3>
-                                    <p className="mt-4 text-sm font-medium leading-7 text-slate-600">{record.body}</p>
+                                    <h3 className="text-lg font-black leading-7 text-slate-950 sm:text-xl">{record.title}</h3>
+                                    <p className="mt-2 text-sm font-medium leading-7 text-slate-600 sm:mt-4">{record.body}</p>
                                 </div>
                             );
                         })}
@@ -327,7 +324,7 @@ export default function ATPPage() {
                 </div>
             </section>
 
-            <section id="pricing" className="bg-slate-50 py-16">
+            <section id="pricing" className="bg-slate-50 py-12 sm:py-16">
                 <div className="mx-auto grid max-w-[1120px] gap-9 px-5 sm:px-6 lg:grid-cols-[0.68fr_1.62fr] lg:px-0">
                     <SectionHeading
                         label="Pricing"

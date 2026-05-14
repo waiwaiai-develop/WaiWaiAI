@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const navLinks = [
-    { href: '/#services', label: 'サービス' },
+    { href: '/', label: 'TOP' },
+    { href: '/services', label: 'サービス' },
     { href: '/atp', label: 'AI顧問' },
     { href: '/blog', label: 'ブログ' },
     { href: '/company', label: '会社概要' },
