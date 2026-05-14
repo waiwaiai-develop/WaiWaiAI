@@ -5,6 +5,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FloatingConsultCTA from '@/components/FloatingConsultCTA';
+import AIChatWidget from '@/components/AIChatWidget';
 
 const GA_MEASUREMENT_ID = 'G-PCFC14QV8B';
 
@@ -272,6 +273,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <FloatingConsultCTA />
+        <AIChatWidget />
 
         {/* JSON-LD Structured Data */}
         <script
