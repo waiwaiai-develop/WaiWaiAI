@@ -185,7 +185,7 @@ export default function BookingPageContent() {
     };
 
     return (
-        <section className="relative min-h-screen py-24 lg:py-32 overflow-hidden">
+        <section className="relative min-h-[calc(100svh-80px)] overflow-hidden pb-12 pt-24 sm:pb-20 lg:py-32">
             {/* Background */}
             <div
                 className="absolute inset-0"
@@ -211,16 +211,16 @@ export default function BookingPageContent() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, ease }}
-                    className="text-center mb-12"
+                    className="mb-8 text-center sm:mb-12"
                 >
-                    <span className="inline-block text-blue-600 font-semibold text-xs tracking-widest uppercase mb-5">
+                    <span className="mb-3 inline-block text-xs font-semibold uppercase tracking-widest text-blue-600 sm:mb-5">
                         Free Consultation
                     </span>
-                    <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-5 leading-[1.2]">
+                    <h1 className="font-display mb-4 text-3xl font-bold leading-[1.2] tracking-tight text-slate-900 sm:mb-5 sm:text-4xl md:text-5xl">
                         無料相談を<br />
                         <span className="text-gradient-deep">予約する</span>
                     </h1>
-                    <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">
+                    <p className="mx-auto max-w-xl text-sm leading-7 text-slate-600 sm:text-lg sm:leading-relaxed">
                         空き枠を選んで、お名前とメールを入力するだけ。<br className="hidden sm:block" />
                         Google Meet のリンクをすぐにお送りします。
                     </p>
@@ -231,7 +231,7 @@ export default function BookingPageContent() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1, ease }}
-                    className="flex items-center justify-center gap-3 mb-10"
+                    className="mb-7 flex items-center justify-center gap-2 sm:mb-10 sm:gap-3"
                 >
                     {(
                         [
@@ -246,10 +246,10 @@ export default function BookingPageContent() {
                         const isActive = step === s.key;
                         const isPast = myIdx < currentIdx;
                         return (
-                            <div key={s.key} className="flex items-center gap-3">
+                            <div key={s.key} className="flex items-center gap-2 sm:gap-3">
                                 <div className="flex flex-col items-center gap-1.5">
                                     <span
-                                        className={`text-xs font-medium ${
+                                        className={`hidden text-xs font-medium sm:block ${
                                             isActive || isPast ? 'text-slate-800' : 'text-slate-400'
                                         }`}
                                     >
@@ -273,7 +273,7 @@ export default function BookingPageContent() {
                                 </div>
                                 {i < arr.length - 1 && (
                                     <div
-                                        className={`w-12 sm:w-20 h-px ${
+                                        className={`h-px w-16 sm:w-20 ${
                                             isPast ? 'bg-emerald-300' : 'bg-slate-200'
                                         }`}
                                     />
@@ -293,7 +293,7 @@ export default function BookingPageContent() {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4, ease }}
                         >
-                            <div className="glass-panel p-5 sm:p-6 md:p-8 shadow-[0_8px_40px_rgba(0,0,0,0.07)]">
+                            <div className="glass-panel p-5 shadow-[0_8px_40px_rgba(0,0,0,0.07)] sm:p-6 md:p-8">
                                 {/* Section heading */}
                                 <div className="mb-4">
                                     <h2 className="font-display text-lg sm:text-xl font-bold text-slate-900 mb-1">
@@ -313,19 +313,47 @@ export default function BookingPageContent() {
                                 )}
 
                                 {slotError && (
-                                    <div className="flex items-start gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
-                                        <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                                        <p className="text-sm text-red-700">{slotError}</p>
+                                    <div className="rounded-xl border border-red-100 bg-red-50 p-4">
+                                        <div className="flex items-start gap-3">
+                                            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
+                                            <div>
+                                                <p className="text-sm font-bold text-red-700">{slotError}</p>
+                                                <p className="mt-2 text-xs leading-6 text-red-700/80">
+                                                    急ぎの場合は通常問い合わせから希望日時を書いて送ってください。
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => window.location.reload()}
+                                                className="min-h-11 rounded-lg border border-red-200 bg-white px-4 text-sm font-bold text-red-700 transition hover:bg-red-100"
+                                            >
+                                                再読み込みする
+                                            </button>
+                                            <a
+                                                href="/contact#contact-form"
+                                                className="inline-flex min-h-11 items-center justify-center rounded-lg bg-blue-700 px-4 text-sm font-bold text-white transition hover:bg-blue-800"
+                                            >
+                                                フォームで送る
+                                            </a>
+                                        </div>
                                     </div>
                                 )}
 
                                 {!loadingSlots && !slotError && slots.length === 0 && (
-                                    <div className="text-center py-16">
-                                        <Calendar className="w-12 h-12 text-slate-200 mx-auto mb-4" />
+                                    <div className="py-10 text-center sm:py-16">
+                                        <Calendar className="mx-auto mb-4 h-12 w-12 text-slate-200" />
                                         <p className="text-slate-500 font-medium mb-2">現在空き枠がありません</p>
                                         <p className="text-sm text-slate-400">
                                             お問い合わせフォームよりご連絡ください。
                                         </p>
+                                        <a
+                                            href="/contact#contact-form"
+                                            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg bg-blue-700 px-5 text-sm font-bold text-white transition hover:bg-blue-800"
+                                        >
+                                            希望日時を送る
+                                        </a>
                                     </div>
                                 )}
 
@@ -418,7 +446,7 @@ export default function BookingPageContent() {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.4, ease }}
                         >
-                            <div className="glass-panel p-8 md:p-10 shadow-[0_8px_40px_rgba(0,0,0,0.07)]">
+                            <div className="glass-panel p-5 shadow-[0_8px_40px_rgba(0,0,0,0.07)] sm:p-8 md:p-10">
                                 {/* Selected slot summary */}
                                 <div className="flex items-center gap-3 p-4 rounded-2xl bg-blue-50/80 border border-blue-100 mb-8">
                                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center shrink-0">

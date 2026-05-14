@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import ROISimulator from '@/components/ROISimulator';
-import HomeUseCases from '@/components/home/HomeUseCases';
 import HomeCaseStudy from '@/components/home/HomeCaseStudy';
 import HomeTechnology from '@/components/home/HomeTechnology';
 
@@ -60,7 +59,6 @@ export default function HomePage() {
         }}
       />
       <Hero />
-      <HomeUseCases />
       <HomeCaseStudy />
       <ROISimulator />
       <HomeTechnology />

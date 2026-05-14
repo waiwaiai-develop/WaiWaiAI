@@ -1,97 +1,111 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Bot, Cable, Layers3, Workflow } from 'lucide-react';
+import { ArrowRight, Bot, Cable, FileCheck2, Gauge } from 'lucide-react';
 
-const solutions = [
+const buildSteps = [
   {
-    icon: Layers3,
-    title: 'RAG（検索拡張生成）',
-    description: '社内データやマニュアルを活用し、正確な情報をもとに回答。',
-  },
-  {
-    icon: Bot,
-    title: 'AI Agent（エージェント）',
-    description: '自律的にタスクを実行し、複雑な業務も自動化。',
-  },
-  {
-    icon: Workflow,
-    title: 'Workflow Automation',
-    description: '業務フローを自動化し、繰り返し作業を削減。',
+    icon: FileCheck2,
+    title: '業務を分解する',
+    body: '何に時間がかかっているか、どこまでAIに任せるか、最初に作る範囲を決めます。',
   },
   {
     icon: Cable,
-    title: 'システム・ツール連携',
-    description: '既存のツールやシステムと連携し、業務に組み込みます。',
+    title: '今のツールにつなぐ',
+    body: 'LINE、Slack、Google Workspace、スプレッドシートなど、現場が使っている入口に組み込みます。',
+  },
+  {
+    icon: Bot,
+    title: 'AIが動く仕組みにする',
+    body: '返信、分類、要約、転記、レポート作成などを、人の確認を挟みながら自動化します。',
+  },
+  {
+    icon: Gauge,
+    title: '数字を見て改善する',
+    body: '削減時間、対応件数、利用状況を見ながら、使われる形に調整していきます。',
   },
 ];
 
-const tools = ['LINE', 'Google Workspace', 'Google Apps Script', 'Dify', 'OpenAI', 'AWS', 'その他各種API'];
+const outputs = ['問い合わせ一次対応', '日報・売上レポート', '社内ナレッジ検索', '資料作成補助', 'データ転記', '担当者通知'];
+const tools = ['LINE', 'Slack', 'Google Workspace', 'GAS', 'Dify', 'OpenAI', 'AWS', '各種API'];
 
 export default function HomeTechnology() {
   return (
-    <section className="bg-white py-12 lg:py-14">
-      <div className="mx-auto max-w-[912px] px-5 sm:px-6 lg:px-0">
-        <div className="grid gap-8 lg:grid-cols-[230px_1fr] lg:items-start">
+    <section className="bg-slate-950 py-16 text-white lg:py-20">
+      <div className="mx-auto max-w-[1120px] px-5 sm:px-6 lg:px-0">
+        <div className="grid gap-10 lg:grid-cols-[360px_1fr] lg:items-start">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-700">
-              Technology & Solution
-            </p>
-            <h2 className="text-2xl font-bold leading-tight tracking-tight text-slate-950">
-              どんな環境でも、
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.22em] text-blue-300">Implementation</p>
+            <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+              作って終わりではなく、
               <br />
-              AIを組み込みます。
+              業務に残る形まで。
             </h2>
+            <p className="mt-5 text-sm font-bold leading-7 text-blue-100/80">
+              RAGやAIエージェントという言葉より、実際に現場で動くかを重視します。小さく作り、数字を見て、改善します。
+            </p>
           </motion.div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {solutions.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="border-l border-slate-200 pl-5"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-700">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-sm font-bold text-slate-950">{item.title}</h3>
-                <p className="mt-2 text-xs leading-6 text-slate-600">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+          <div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {buildSteps.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
+                  >
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/15 text-blue-200">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-xs font-black text-blue-200">0{index + 1}</span>
+                    </div>
+                    <h3 className="text-base font-black">{item.title}</h3>
+                    <p className="mt-2 text-xs font-bold leading-6 text-blue-100/70">{item.body}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
 
-        <div className="mt-10 border-t border-slate-200 pt-7">
-          <p className="mb-5 text-xs font-bold text-slate-700">連携可能なツール（一例）</p>
-          <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
-            {tools.map((tool) => (
-              <span
-                key={tool}
-                className={`text-lg font-bold ${
-                  tool === 'LINE'
-                    ? 'text-green-600'
-                    : tool === 'OpenAI'
-                      ? 'text-slate-900'
-                      : tool === 'AWS'
-                        ? 'text-slate-800'
-                        : 'text-slate-600'
-                }`}
-              >
-                {tool}
-              </span>
-            ))}
+            <div className="mt-6 rounded-lg border border-white/10 bg-white/[0.04] p-5">
+              <p className="text-sm font-black">たとえば、こういう仕組みを作れます</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {outputs.map((item) => (
+                  <span key={item} className="rounded-full bg-white px-3 py-1.5 text-xs font-black text-slate-950">
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-5 border-t border-white/10 pt-5">
+                <p className="text-xs font-black text-blue-200">連携できる主なツール</p>
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                  {tools.map((tool) => (
+                    <span key={tool} className="text-sm font-black text-blue-100/75">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="/contact"
+              className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 text-sm font-black text-white shadow-[0_18px_40px_-22px_rgba(37,99,235,0.9)] transition hover:-translate-y-0.5 hover:bg-blue-500"
+            >
+              自社でできることを相談する
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-          <p className="mt-5 text-xs leading-6 text-slate-400">
-            ※ 各サービスのロゴ・名称は各社の商標または登録商標です。当社が提携・代理店であることを示すものではありません。
-          </p>
         </div>
       </div>
     </section>

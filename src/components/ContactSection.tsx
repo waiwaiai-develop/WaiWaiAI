@@ -7,10 +7,7 @@ import {
     ArrowRight,
     CalendarDays,
     CheckCircle2,
-    ClipboardList,
-    HelpCircle,
     Loader2,
-    Mail,
     MessageSquareText,
     Send,
 } from 'lucide-react';
@@ -39,8 +36,10 @@ const inquiryTypes = [
 ];
 
 const supportItems = ['最短1営業日で返信', '予約前の質問OK', 'NDA締結可能'];
+type ContactMethod = 'booking' | 'form';
 
 export default function ContactSection() {
+    const [contactMethod, setContactMethod] = useState<ContactMethod>('form');
     const [formData, setFormData] = useState({
         company: '',
         name: '',
@@ -52,6 +51,7 @@ export default function ContactSection() {
 
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const selectedInquiry = inquiryTypes.find((item) => item.value === formData.category);
 
     const handleChange = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -65,6 +65,16 @@ export default function ContactSection() {
             setStatus('idle');
             setErrorMessage('');
         }
+    };
+
+    const selectContactMethod = (method: ContactMethod) => {
+        setContactMethod(method);
+        if (status === 'success') {
+            setStatus('idle');
+        }
+        window.requestAnimationFrame(() => {
+            document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
     };
 
     const handleSubmit = async (e: FormEvent) => {
@@ -127,84 +137,133 @@ export default function ContactSection() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end"
+                    className="rounded-lg border border-blue-100 bg-white/90 p-4 shadow-[0_24px_90px_-64px_rgba(15,23,42,0.65)] sm:p-7 lg:grid lg:grid-cols-[0.72fr_1fr] lg:items-center lg:gap-8"
                 >
-                    <div>
-                        <p className="mb-5 text-[11px] font-black uppercase tracking-[0.24em] text-blue-700">Contact</p>
-                        <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-5xl">
-                            相談・問い合わせを、
-                            <br />
-                            迷わず送れるように。
+                    <div className="border-b border-slate-100 pb-5 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
+                        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-blue-700 sm:mb-4">Contact</p>
+                        <h1 className="text-[28px] font-black leading-tight tracking-tight text-slate-950 sm:text-4xl">
+                            まず、連絡方法を
+                            <br className="hidden sm:block" />
+                            選んでください。
                         </h1>
-                        <p className="mt-6 max-w-xl text-base font-bold leading-8 text-slate-700">
-                            日程を決めて話したい方は無料相談へ。文章で内容を送っておきたい方はフォームへ。
-                            迷った場合は、フォームから送っていただければこちらで進め方を整理します。
+                        <p className="mt-4 max-w-xl text-sm font-bold leading-7 text-slate-700 sm:mt-5">
+                            相談予約と通常問い合わせは別の入口です。内容が固まっていない場合は、フォームから送っていただければこちらで整理して返信します。
                         </p>
                     </div>
 
-                    <div className="grid gap-3 rounded-lg border border-blue-100 bg-white p-3 shadow-[0_24px_90px_-62px_rgba(15,23,42,0.6)] sm:grid-cols-2">
-                        <a
-                            href="/booking"
-                            className="group rounded-lg bg-blue-700 p-5 text-white transition hover:-translate-y-0.5 hover:bg-blue-800"
+                    <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:mt-0">
+                        <button
+                            type="button"
+                            onClick={() => selectContactMethod('form')}
+                            aria-pressed={contactMethod === 'form'}
+                            className={`group rounded-lg p-4 text-left transition hover:-translate-y-0.5 sm:p-5 ${
+                                contactMethod === 'form'
+                                    ? 'bg-blue-700 text-white shadow-[0_18px_42px_-24px_rgba(0,45,150,0.9)]'
+                                    : 'border border-slate-200 bg-slate-50 text-slate-950 hover:border-blue-200 hover:bg-white'
+                            }`}
                         >
-                            <CalendarDays className="h-7 w-7" />
-                            <h2 className="mt-5 text-xl font-black">30分の無料相談を予約</h2>
-                            <p className="mt-3 text-sm font-medium leading-7 text-blue-100">
-                                画面越しに相談したい、進め方を一緒に整理したい方向け。
+                            <div className="flex items-center justify-between gap-3">
+                                <MessageSquareText className={`h-7 w-7 ${contactMethod === 'form' ? 'text-white' : 'text-blue-700'}`} />
+                                <span className={`rounded-full px-2.5 py-1 text-[11px] font-black ${contactMethod === 'form' ? 'bg-white/15 text-white' : 'bg-blue-50 text-blue-700'}`}>
+                                    文章で送る
+                                </span>
+                            </div>
+                            <h2 className="mt-4 text-xl font-black sm:mt-5">通常問い合わせ</h2>
+                            <p className={`mt-2 text-sm font-medium leading-6 sm:mt-3 sm:leading-7 ${contactMethod === 'form' ? 'text-blue-100' : 'text-slate-600'}`}>
+                                予約前の質問、資料請求、協業・取材などを先に文章で送りたい方。
                             </p>
-                            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black">
-                                日程を選ぶ
+                            <span className="mt-4 inline-flex items-center gap-2 text-sm font-black sm:mt-5">
+                                下にフォームを表示
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                             </span>
-                        </a>
+                        </button>
 
-                        <a
-                            href="#contact-form"
-                            className="group rounded-lg border border-slate-200 bg-slate-50 p-5 text-slate-950 transition hover:-translate-y-0.5 hover:bg-white"
+                        <button
+                            type="button"
+                            onClick={() => selectContactMethod('booking')}
+                            aria-pressed={contactMethod === 'booking'}
+                            className={`group rounded-lg p-4 text-left transition hover:-translate-y-0.5 sm:p-5 ${
+                                contactMethod === 'booking'
+                                    ? 'bg-blue-700 text-white shadow-[0_18px_42px_-24px_rgba(0,45,150,0.9)]'
+                                    : 'border border-slate-200 bg-slate-50 text-slate-950 hover:border-blue-200 hover:bg-white'
+                            }`}
                         >
-                            <MessageSquareText className="h-7 w-7 text-blue-700" />
-                            <h2 className="mt-5 text-xl font-black">フォームで問い合わせ</h2>
-                            <p className="mt-3 text-sm font-medium leading-7 text-slate-600">
-                                予約前の質問、資料請求、協業相談などを文章で送りたい方向け。
+                            <div className="flex items-center justify-between gap-3">
+                                <CalendarDays className="h-7 w-7" />
+                                <span className={`rounded-full px-2.5 py-1 text-[11px] font-black ${contactMethod === 'booking' ? 'bg-white/15 text-white' : 'bg-blue-50 text-blue-700'}`}>
+                                    日程を決める
+                                </span>
+                            </div>
+                            <h2 className="mt-4 text-xl font-black sm:mt-5">30分の無料相談</h2>
+                            <p className={`mt-2 text-sm font-medium leading-6 sm:mt-3 sm:leading-7 ${contactMethod === 'booking' ? 'text-blue-100' : 'text-slate-600'}`}>
+                                画面越しに話しながら、AI化できる業務や進め方を整理したい方。
                             </p>
-                            <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-700">
-                                入力へ進む
+                            <span className="mt-4 inline-flex items-center gap-2 text-sm font-black sm:mt-5">
+                                下に予約案内を表示
                                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                             </span>
-                        </a>
+                        </button>
                     </div>
                 </motion.div>
 
-                <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                <div className="mt-5 flex gap-2 overflow-x-auto pb-1 sm:mt-8 sm:grid sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:pb-0">
                     {supportItems.map((item) => (
-                        <div key={item} className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700">
+                        <div key={item} className="flex shrink-0 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-xs font-bold text-slate-700 sm:px-4 sm:py-3 sm:text-sm">
                             <CheckCircle2 className="h-4 w-4 text-blue-700" />
                             {item}
                         </div>
                     ))}
                 </div>
 
-                <div className="mt-12 grid gap-8 lg:grid-cols-[320px_1fr] lg:items-start">
-                    <aside className="rounded-lg border border-slate-200 bg-white p-6 shadow-[0_20px_70px_-60px_rgba(15,23,42,0.7)] lg:sticky lg:top-28">
-                        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Guide</p>
-                        <h2 className="mt-4 text-2xl font-black leading-tight text-slate-950">
-                            何を書けばいいか
-                            <br />
-                            迷ったら。
-                        </h2>
-                        <div className="mt-6 space-y-4">
-                            <GuideItem icon={ClipboardList} title="状況" text="今どんな業務に時間がかかっているか" />
-                            <GuideItem icon={HelpCircle} title="希望" text="相談したい、見積もりたい、資料が欲しいなど" />
-                            <GuideItem icon={Mail} title="返信先" text="連絡が取りやすいメールアドレス" />
-                        </div>
-                        <p className="mt-6 rounded-lg bg-blue-50 p-4 text-sm font-bold leading-7 text-slate-700">
-                            詳細が固まっていなくても大丈夫です。箇条書きや一言だけでも送れます。
-                        </p>
-                    </aside>
-
-                    <div id="contact-form" className="scroll-mt-28 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_24px_90px_-68px_rgba(15,23,42,0.7)] sm:p-8">
+                <div className="mt-8 sm:mt-12">
+                    <div id="contact-form" className="mx-auto max-w-[880px] scroll-mt-28 rounded-lg border border-slate-200 bg-white p-5 shadow-[0_24px_90px_-68px_rgba(15,23,42,0.7)] sm:p-8">
                         <AnimatePresence mode="wait">
-                            {status === 'success' ? (
+                            {contactMethod === 'booking' ? (
+                                <motion.div
+                                    key="booking"
+                                    initial={{ opacity: 0, y: 12 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -8 }}
+                                    transition={{ duration: 0.25 }}
+                                    className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+                                >
+                                    <div>
+                                        <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Selected</p>
+                                        <h2 className="mt-3 text-3xl font-black leading-tight tracking-tight text-slate-950">
+                                            30分の無料相談を
+                                            <br />
+                                            予約する
+                                        </h2>
+                                        <p className="mt-5 text-sm font-bold leading-7 text-slate-700">
+                                            画面越しに話しながら、AI化できる業務、削減できそうな時間、最初に作るべき仕組みを整理します。
+                                        </p>
+                                    </div>
+                                    <div className="rounded-lg border border-blue-100 bg-blue-50 p-5">
+                                        <div className="space-y-3">
+                                            {['相談内容が固まっていなくてもOK', 'オンラインで30分', '無理な営業なし'].map((item) => (
+                                                <div key={item} className="flex items-center gap-2 text-sm font-black text-slate-800">
+                                                    <CheckCircle2 className="h-4 w-4 text-blue-700" />
+                                                    {item}
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <a
+                                            href="/booking"
+                                            className="mt-6 flex min-h-14 items-center justify-center gap-3 rounded-lg bg-blue-700 px-6 text-base font-black text-white shadow-[0_18px_42px_-22px_rgba(0,45,150,0.9)] transition hover:-translate-y-0.5 hover:bg-blue-800"
+                                        >
+                                            予約ページへ進む
+                                            <ArrowRight className="h-4 w-4" />
+                                        </a>
+                                        <button
+                                            type="button"
+                                            onClick={() => selectContactMethod('form')}
+                                            className="mt-3 w-full rounded-lg px-4 py-3 text-sm font-black text-blue-700 transition hover:bg-white"
+                                        >
+                                            文章で問い合わせたい場合はこちら
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            ) : status === 'success' ? (
                                 <motion.div
                                     key="success"
                                     initial={{ opacity: 0, scale: 0.97 }}
@@ -228,45 +287,109 @@ export default function ContactSection() {
                             ) : (
                                 <motion.form
                                     key="form"
-                                    initial={{ opacity: 0 }}
+                                    initial={false}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     onSubmit={handleSubmit}
                                     className="space-y-7"
                                 >
-                                    <div>
+                                    <fieldset>
                                         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                                             <div>
-                                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Step 1</p>
-                                                <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">相談内容を選ぶ</h2>
+                                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">通常問い合わせ</p>
+                                                <legend className="mt-2 text-2xl font-black tracking-tight text-slate-950">問い合わせ内容を1つ選ぶ</legend>
+                                                <p className="mt-2 text-sm font-bold leading-7 text-slate-600">一番近いものを選ぶだけで大丈夫です。</p>
                                             </div>
                                             <p className="text-xs font-bold text-slate-500">必須</p>
                                         </div>
-                                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                                        <div className="mt-4 md:hidden">
+                                            <label htmlFor="contact-category" className="sr-only">
+                                                問い合わせ内容
+                                            </label>
+                                            <select
+                                                id="contact-category"
+                                                name="category"
+                                                required
+                                                aria-required="true"
+                                                value={formData.category}
+                                                onChange={handleChange}
+                                                disabled={status === 'submitting'}
+                                                className="w-full rounded-lg border border-slate-200 bg-white px-4 py-3.5 text-base font-black text-slate-950 outline-none transition focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+                                            >
+                                                <option value="">選択してください</option>
+                                                {inquiryTypes.map((item) => (
+                                                    <option key={item.value} value={item.value}>
+                                                        {item.title}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            {selectedInquiry && (
+                                                <p className="mt-2 text-sm font-bold leading-6 text-slate-600">
+                                                    {selectedInquiry.description}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="mt-4 hidden overflow-hidden rounded-lg border border-slate-200 bg-white md:block" role="radiogroup" aria-label="相談内容の種類">
                                             {inquiryTypes.map((item) => {
                                                 const isSelected = formData.category === item.value;
                                                 return (
-                                                    <button
+                                                    <label
                                                         key={item.value}
-                                                        type="button"
-                                                        onClick={() => selectCategory(item.value)}
-                                                        className={`rounded-lg border p-4 text-left transition ${
+                                                        className={`group relative flex cursor-pointer gap-4 border-b border-slate-100 p-4 transition last:border-b-0 sm:p-5 ${
                                                             isSelected
-                                                                ? 'border-blue-700 bg-blue-50 shadow-[inset_0_0_0_1px_rgba(29,78,216,1)]'
-                                                                : 'border-slate-200 bg-white hover:border-blue-200 hover:bg-slate-50'
+                                                                ? 'bg-blue-50 shadow-[inset_4px_0_0_rgba(29,78,216,1)]'
+                                                                : 'bg-white hover:bg-slate-50'
                                                         }`}
-                                                        aria-pressed={isSelected}
                                                     >
-                                                        <span className="flex items-center justify-between gap-3">
-                                                            <span className="text-sm font-black text-slate-950">{item.title}</span>
-                                                            {isSelected && <CheckCircle2 className="h-5 w-5 shrink-0 text-blue-700" />}
+                                                        <input
+                                                            type="radio"
+                                                            name="category"
+                                                            value={item.value}
+                                                            checked={isSelected}
+                                                            onChange={() => selectCategory(item.value)}
+                                                            disabled={status === 'submitting'}
+                                                            className="sr-only"
+                                                            required
+                                                        />
+                                                        <span
+                                                            className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
+                                                                isSelected ? 'border-blue-700 bg-blue-700' : 'border-slate-300 bg-white group-hover:border-blue-500'
+                                                            }`}
+                                                            aria-hidden="true"
+                                                        >
+                                                            {isSelected && <span className="h-2 w-2 rounded-full bg-white" />}
                                                         </span>
-                                                        <span className="mt-2 block text-xs font-medium leading-6 text-slate-600">{item.description}</span>
-                                                    </button>
+                                                        <span className="min-w-0 flex-1">
+                                                            <span className="flex flex-wrap items-center justify-between gap-2">
+                                                                <span className="text-base font-black text-slate-950">{item.title}</span>
+                                                                {isSelected && (
+                                                                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-700 px-2.5 py-1 text-[11px] font-black text-white">
+                                                                        <CheckCircle2 className="h-3.5 w-3.5" />
+                                                                        選択済み
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                            <span className="mt-2 block text-sm font-medium leading-6 text-slate-600">{item.description}</span>
+                                                        </span>
+                                                    </label>
                                                 );
                                             })}
                                         </div>
-                                    </div>
+                                        <div
+                                            className={`mt-3 rounded-lg px-4 py-3 text-sm font-bold leading-6 ${
+                                                selectedInquiry ? 'bg-blue-50 text-blue-900' : 'bg-slate-50 text-slate-600'
+                                            }`}
+                                            aria-live="polite"
+                                        >
+                                            {selectedInquiry ? (
+                                                <>
+                                                    現在の選択: <span className="text-blue-700">{selectedInquiry.title}</span>
+                                                </>
+                                            ) : (
+                                                <>未選択です。迷ったら「その他の問い合わせ」を選んでください。内容を見てこちらで振り分けます。</>
+                                            )}
+                                        </div>
+                                    </fieldset>
 
                                     {status === 'error' && (
                                         <div className="flex gap-3 rounded-lg border border-red-100 bg-red-50 p-4 text-sm font-bold leading-6 text-red-700">
@@ -278,7 +401,7 @@ export default function ContactSection() {
                                     <div>
                                         <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-700">Step 2</p>
                                         <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">連絡先を入力する</h2>
-                                        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                                        <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4">
                                             <TextField label="会社名" name="company" value={formData.company} onChange={handleChange} placeholder="WaiWai AI 株式会社" required disabled={status === 'submitting'} />
                                             <TextField label="ご担当者名" name="name" value={formData.name} onChange={handleChange} placeholder="山田 太郎" required disabled={status === 'submitting'} />
                                             <TextField label="メールアドレス" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="info@example.com" required disabled={status === 'submitting'} />
@@ -304,7 +427,7 @@ export default function ContactSection() {
                                             rows={6}
                                             placeholder="現在の課題や相談したいことを入力してください。箇条書きでも大丈夫です。"
                                             disabled={status === 'submitting'}
-                                            className="mt-4 w-full rounded-lg border border-slate-200 bg-white px-4 py-3.5 font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
+                                            className="mt-4 min-h-36 w-full rounded-lg border border-slate-200 bg-white px-4 py-3.5 font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100"
                                         />
                                     </div>
 
@@ -333,28 +456,6 @@ export default function ContactSection() {
                 </div>
             </div>
         </section>
-    );
-}
-
-function GuideItem({
-    icon: Icon,
-    title,
-    text,
-}: {
-    icon: typeof ClipboardList;
-    title: string;
-    text: string;
-}) {
-    return (
-        <div className="flex gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <Icon className="h-5 w-5" />
-            </div>
-            <div>
-                <p className="text-sm font-black text-slate-950">{title}</p>
-                <p className="mt-1 text-xs font-medium leading-6 text-slate-600">{text}</p>
-            </div>
-        </div>
     );
 }
 

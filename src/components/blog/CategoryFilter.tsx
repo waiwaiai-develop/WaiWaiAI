@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 interface CategoryFilterProps {
   categories: string[];
   selected: string | null;
@@ -10,17 +8,13 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ categories, selected, onSelect }: CategoryFilterProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="flex overflow-x-auto gap-2 mb-10 pb-1 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap scrollbar-none"
-    >
+    <div className="mb-8 flex max-w-full gap-2 overflow-x-auto border-b border-slate-200 py-4 md:mb-10 md:flex-wrap scrollbar-none">
       <button
         onClick={() => onSelect(null)}
-        className={`shrink-0 px-4 py-2 rounded-full text-sm font-bold transition-all border ${
+        className={`min-h-10 shrink-0 rounded-lg border px-4 text-sm font-black transition-all ${
           selected === null
-            ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-            : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
+            ? 'border-blue-700 bg-blue-700 text-white shadow-[0_12px_30px_-20px_rgba(37,99,235,0.9)]'
+            : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-700'
         }`}
       >
         すべて
@@ -29,15 +23,15 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
         <button
           key={cat}
           onClick={() => onSelect(cat)}
-          className={`px-4 py-2 rounded-full text-sm font-bold transition-all border ${
+          className={`min-h-10 shrink-0 rounded-lg border px-4 text-sm font-black transition-all ${
             selected === cat
-              ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-              : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:text-blue-600'
+              ? 'border-blue-700 bg-blue-700 text-white shadow-[0_12px_30px_-20px_rgba(37,99,235,0.9)]'
+              : 'border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:text-blue-700'
           }`}
         >
           {cat}
         </button>
       ))}
-    </motion.div>
+    </div>
   );
 }
