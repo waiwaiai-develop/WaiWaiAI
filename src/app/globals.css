@@ -96,6 +96,17 @@
   100% { background-position: 200% 0; }
 }
 
+@keyframes nalu-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -3px, 0) scale(1.002); }
+}
+
+@keyframes lounge-current {
+  0% { transform: translateX(-18%) scaleX(0.7); opacity: 0; }
+  18% { opacity: 0.18; }
+  100% { transform: translateX(118%) scaleX(1.12); opacity: 0; }
+}
+
 @keyframes orb-float-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
   25% { transform: translate(50px, -30px) scale(1.1); }
@@ -222,8 +233,11 @@
 
   /* 光の反射効果 */
   .glass-shimmer {
-    position: relative;
     overflow: hidden;
+  }
+
+  .glass-shimmer:not(.absolute):not(.fixed):not(.sticky) {
+    position: relative;
   }
 
   .glass-shimmer::before {
@@ -241,6 +255,40 @@
     background-size: 200% 100%;
     animation: glass-shimmer 8s ease-in-out infinite;
     pointer-events: none;
+  }
+
+  .nalu-breathe {
+    animation: nalu-breathe 8.5s ease-in-out infinite;
+    transform-origin: 54% 74%;
+    will-change: transform;
+  }
+
+  .nalu-breathe::after {
+    content: '';
+    position: absolute;
+    left: 14%;
+    right: 8%;
+    bottom: 6%;
+    height: 22%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.36), transparent);
+    filter: blur(18px);
+    animation: lounge-current 10s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .nalu-focus-glow {
+    background:
+      radial-gradient(ellipse at 50% 48%, rgba(255,255,255,0.58), rgba(134,209,235,0.22) 42%, transparent 72%);
+    filter: blur(18px);
+    mix-blend-mode: screen;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nalu-breathe,
+    .nalu-breathe::after,
+    .glass-shimmer::before {
+      animation: none;
+    }
   }
 
   /* 背景パターン */

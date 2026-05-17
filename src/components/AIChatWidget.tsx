@@ -26,8 +26,8 @@ export default function AIChatWidget() {
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
-    // Hide on contact/booking pages
-    if (pathname === '/contact' || pathname === '/booking') {
+    // Home uses the Nalu lounge interaction instead of a floating chat widget.
+    if (pathname === '/' || pathname === '/contact' || pathname === '/booking') {
         return null;
     }
 

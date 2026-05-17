@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FloatingConsultCTA from '@/components/FloatingConsultCTA';
 import AIChatWidget from '@/components/AIChatWidget';
+import PageAssemblyStage from '@/components/PageAssemblyStage';
 
 const GA_MEASUREMENT_ID = 'G-PCFC14QV8B';
 
@@ -269,7 +270,7 @@ export default function RootLayout({
       <body className="antialiased font-sans text-slate-900 overflow-x-hidden bg-white">
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <PageAssemblyStage>{children}</PageAssemblyStage>
           <Footer />
         </div>
         <FloatingConsultCTA />

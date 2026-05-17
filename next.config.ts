@@ -8,6 +8,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname, './'),
   pageExtensions: ['ts', 'tsx', 'mdx'],
+  devIndicators: false,
   images: {
     formats: ['image/webp'],
   },

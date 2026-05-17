@@ -11,7 +11,7 @@ export default function FloatingConsultCTA() {
   const opacity = useTransform(scrollY, [120, 260], [0, 1]);
   const y = useTransform(scrollY, [120, 260], [18, 0]);
 
-  if (pathname === '/booking' || pathname === '/contact') {
+  if (pathname === '/' || pathname === '/booking' || pathname === '/contact') {
     return null;
   }
 

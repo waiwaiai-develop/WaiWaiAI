@@ -2,6 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import {
     AlertCircle,
     ArrowRight,
@@ -39,6 +40,7 @@ const supportItems = ['最短1営業日で返信', '予約前の質問OK', 'NDA�
 type ContactMethod = 'booking' | 'form';
 
 export default function ContactSection() {
+    const router = useRouter();
     const [contactMethod, setContactMethod] = useState<ContactMethod>('form');
     const [formData, setFormData] = useState({
         company: '',
@@ -113,6 +115,7 @@ export default function ContactSection() {
                 category: '',
                 message: '',
             });
+            router.push('/contact/thanks');
         } catch {
             setStatus('error');
             setErrorMessage('送信に失敗しました。時間をおいて再度お試しください。');

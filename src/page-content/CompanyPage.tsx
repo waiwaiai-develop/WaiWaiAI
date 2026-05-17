@@ -149,59 +149,55 @@ const techCategories = [
 
 export default function CompanyPage() {
     return (
-        <div className="overflow-hidden bg-white text-slate-950">
-            <section className="relative overflow-hidden border-b border-slate-100 bg-white pb-12 pt-24 sm:pb-16 sm:pt-28 lg:pb-20">
-                <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(37,99,235,0.045)_1px,transparent_1px),linear-gradient(0deg,rgba(37,99,235,0.045)_1px,transparent_1px)] bg-[size:58px_58px]" aria-hidden="true" />
-                <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-blue-50 to-transparent" aria-hidden="true" />
+        <div className="overflow-hidden bg-[#f8fbfd] text-[#0f2238]">
+            <section className="relative overflow-hidden border-b border-white/70 bg-[#f8fbfd] pb-12 pt-24 sm:pb-16 sm:pt-28 lg:pb-20">
+                <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(238,247,251,0.94),rgba(247,241,232,0.74),rgba(255,255,255,0.98))]" aria-hidden="true" />
+                <div className="absolute right-[-10%] top-20 h-[420px] w-[54%] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(123,211,232,0.18),transparent_68%)]" aria-hidden="true" />
                 <div className="pointer-events-none absolute right-[-6%] top-8 hidden h-[420px] w-[58%] lg:block" aria-hidden="true">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#f8fbfd] via-white/74 to-transparent" />
                     <img
                         src="/brand/logo-symbol.png"
                         alt=""
-                        className="absolute right-16 top-8 h-80 w-80 object-contain opacity-[0.08]"
+                        className="absolute right-16 top-8 h-80 w-80 object-contain opacity-[0.07]"
                     />
-                    <div className="absolute bottom-8 right-24 h-px w-[540px] bg-gradient-to-r from-transparent via-blue-300/70 to-transparent" />
-                    <div className="absolute bottom-16 right-36 h-px w-[420px] bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" />
                 </div>
 
                 <div className="relative z-10 mx-auto grid max-w-[1120px] gap-10 px-5 sm:px-6 lg:grid-cols-[1fr_0.78fr] lg:items-end lg:px-0">
                     <div>
-                        <p className="mb-4 text-[10px] font-black uppercase tracking-[0.22em] text-blue-700 sm:mb-5 sm:text-[11px]">Company</p>
-                        <h1 className="text-[40px] font-black leading-[1.08] tracking-tight text-slate-950 sm:text-6xl lg:text-[56px]">
-                            AIを、
+                        <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/70 px-4 py-2 text-sm font-bold text-[#0e7fa5] backdrop-blur-xl">Company</p>
+                        <h1 className="font-serif text-4xl font-medium leading-tight text-[#0f2238] sm:text-6xl">
+                            AIを味方に、
                             <br />
-                            現場で使える
-                            <br />
-                            仕組みに。
+                            未来を豊かに。
                         </h1>
-                        <p className="mt-6 max-w-xl text-sm font-bold leading-7 text-slate-800 sm:text-base sm:leading-8">
-                            エンジニアリングもAI活用も、代表自ら手を動かす開発会社です。大規模開発はパートナー企業と連携して対応します。
+                        <p className="mt-6 max-w-xl text-base font-medium leading-8 text-[#425466]">
+                            WaiWai AIは、AIを冷たいツールではなく、企業に寄り添う味方として設計する会社です。現場で使われる仕組みになるまで、実装と運用に伴走します。
                         </p>
                         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
                             <Link
                                 href="/contact"
-                                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-blue-700 px-7 text-sm font-black text-white shadow-[0_18px_38px_-20px_rgba(37,99,235,0.9)] transition hover:-translate-y-0.5 hover:bg-blue-800"
+                                className="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#0e7fa5] px-7 text-sm font-bold text-white shadow-[0_18px_38px_-20px_rgba(14,127,165,0.9)] transition hover:-translate-y-0.5 hover:bg-[#0b4f71]"
                             >
                                 <Mail className="h-5 w-5" />
                                 相談・問い合わせへ
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
-                            <a href="#company-info" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-2 text-sm font-black text-slate-700 transition hover:text-blue-700">
+                            <a href="#company-info" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white/70 px-5 text-sm font-bold text-[#0e7fa5] ring-1 ring-white/70 transition hover:-translate-y-0.5 hover:bg-white">
                                 会社情報を見る
                                 <ArrowRight className="h-4 w-4" />
                             </a>
                         </div>
                     </div>
 
-                    <div className="border-l-0 border-slate-200 bg-white/75 pt-2 lg:border-l lg:pl-10">
-                        <p className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-700">Origin</p>
-                        <h2 className="mt-4 text-2xl font-black leading-tight tracking-tight text-slate-950 sm:text-3xl">
+                    <div className="rounded-3xl border border-white/70 bg-white/76 p-6 shadow-[0_24px_70px_rgba(15,34,56,0.08)] backdrop-blur-xl">
+                        <p className="text-sm font-bold text-[#0e7fa5]">Origin</p>
+                        <h2 className="mt-4 text-2xl font-bold leading-tight text-[#0f2238] sm:text-3xl">
                             豊かさが、
                             <br />
                             循環する会社へ。
                         </h2>
-                        <p className="mt-5 text-sm font-medium leading-8 text-slate-700">
-                            「WaiWai」は、ハワイの言葉で「豊かさ」を意味します。ホヌのように長く伴走し、テクノロジーの力で人と組織が本来の力を発揮できる状態をつくります。
+                        <p className="mt-5 text-sm font-medium leading-8 text-[#425466]">
+                            「WaiWai」は、ハワイの言葉で豊かさを連想させる響き。人が集い、助け合い、笑顔になる状態を、AIの力で増やしていきます。
                         </p>
                     </div>
                 </div>

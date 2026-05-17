@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import CompanyPageContent from '@/page-content/CompanyPage';
+import Hero from '@/components/Hero';
 
 export const metadata: Metadata = {
   title: '会社概要・企業情報',
@@ -64,7 +64,7 @@ export default function CompanyPage() {
           __html: JSON.stringify(aboutPageSchema),
         }}
       />
-      <CompanyPageContent />
+      <Hero initialView="company" />
     </>
   );
 }
