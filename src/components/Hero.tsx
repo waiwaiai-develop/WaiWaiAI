@@ -372,7 +372,7 @@ export default function Hero({ initialView = 'home' }: HeroProps) {
                         isCompany
                             ? 'min-h-[860px] sm:min-h-[920px] lg:min-h-[620px] xl:min-h-[640px]'
                             : isServiceGuide
-                              ? 'min-h-[760px] sm:min-h-[780px] lg:min-h-[630px] xl:min-h-[650px]'
+                              ? 'min-h-[700px] sm:min-h-[740px] lg:min-h-[590px] xl:min-h-[610px]'
                             : 'min-h-[760px] sm:min-h-[790px] lg:min-h-[595px] xl:min-h-[600px]'
                     }`}
                 >
@@ -405,16 +405,18 @@ export default function Hero({ initialView = 'home' }: HeroProps) {
                             <br className="hidden sm:block" />
                             成果につながるAI活用を一緒に実現します。
                         </p>
-                        <motion.div
-                            className="mt-8 grid max-w-[520px] grid-cols-2 gap-2 sm:grid-cols-4 lg:mt-8"
-                            initial={{ opacity: 0, y: 18 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.72, delay: 0.16, ease: smoothEase }}
-                        >
-                            {heroPrinciples.map((item) => (
-                                <HeroPrinciple key={item.title} {...item} />
-                            ))}
-                        </motion.div>
+                        {!isServiceGuide && (
+                            <motion.div
+                                className="mt-8 grid max-w-[520px] grid-cols-2 gap-2 sm:grid-cols-4 lg:mt-8"
+                                initial={{ opacity: 0, y: 18 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.72, delay: 0.16, ease: smoothEase }}
+                            >
+                                {heroPrinciples.map((item) => (
+                                    <HeroPrinciple key={item.title} {...item} />
+                                ))}
+                            </motion.div>
+                        )}
                     </motion.div>
 
                     <motion.div
@@ -428,8 +430,10 @@ export default function Hero({ initialView = 'home' }: HeroProps) {
                             filter: 'blur(0px)',
                         }}
                         transition={{ duration: 0.92, delay: 0.04, ease: smoothEase }}
-                        className={`pointer-events-none absolute bottom-[110px] right-[-82px] z-20 w-[min(78vw,360px)] sm:bottom-[88px] sm:right-[6vw] sm:w-[min(58vw,560px)] md:right-[12vw] lg:bottom-auto lg:right-[clamp(330px,36vw,650px)] lg:top-[-78px] lg:w-[clamp(520px,45vw,660px)] lg:overflow-hidden ${
-                            isServiceGuide ? 'lg:h-[610px] xl:h-[630px]' : 'lg:h-[650px]'
+                        className={`pointer-events-none absolute bottom-[110px] right-[-82px] z-20 w-[min(78vw,360px)] sm:bottom-[88px] sm:right-[6vw] sm:w-[min(58vw,560px)] md:right-[12vw] lg:bottom-auto lg:overflow-hidden ${
+                            isServiceGuide
+                                ? 'lg:right-[clamp(470px,38vw,560px)] lg:top-[-44px] lg:h-[560px] lg:w-[clamp(420px,34vw,500px)] xl:h-[580px]'
+                                : 'lg:right-[clamp(330px,36vw,650px)] lg:top-[-78px] lg:h-[650px] lg:w-[clamp(520px,45vw,660px)]'
                         }`}
                     >
                         <div className="nalu-breathe relative h-full w-full">
@@ -458,8 +462,9 @@ export default function Hero({ initialView = 'home' }: HeroProps) {
                     </motion.div>
 
                     {!isCompany && (
-                        <aside className="relative z-40 mx-auto mt-8 w-full max-w-[min(720px,calc(100vw-2rem))] px-4 sm:px-8 lg:absolute lg:right-[clamp(28px,4.4vw,70px)] lg:top-[48px] lg:mt-0 lg:w-[475px] lg:min-w-[475px] lg:px-0">
-                            {isServiceGuide && <NaluConversationStack />}
+                        <aside className={`relative z-40 mx-auto mt-8 w-full max-w-[min(720px,calc(100vw-2rem))] px-4 sm:px-8 lg:absolute lg:right-[clamp(28px,4.4vw,70px)] lg:top-[48px] lg:mt-0 lg:px-0 ${
+                            isServiceGuide ? 'lg:w-[430px] lg:min-w-[430px]' : 'lg:w-[475px] lg:min-w-[475px]'
+                        }`}>
                             <AnimatePresence mode="wait">
                                 {isServiceGuide ? (
                                     <NaluServiceGuidePanel key="service-guide" onBack={() => switchView('home')} />
@@ -489,7 +494,15 @@ export default function Hero({ initialView = 'home' }: HeroProps) {
                         >
                             <div className="pointer-events-none absolute inset-x-0 top-[-74px] h-40 bg-[linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,0.96)_72%)]" aria-hidden="true" />
 
-                            <div className="relative z-30 mx-auto -mt-[38px] w-[min(85vw,1308px)] rounded-[18px] border border-white/78 bg-white/72 px-5 py-4 shadow-[0_26px_84px_-62px_rgba(34,74,124,0.72)] backdrop-blur-2xl sm:px-7">
+                            {isServiceGuide && (
+                                <div className="relative z-40 mx-auto -mt-[30px] w-[min(86vw,1120px)]">
+                                    <NaluDirectAskBand />
+                                </div>
+                            )}
+
+                            <div className={`relative z-30 mx-auto w-[min(85vw,1308px)] rounded-[18px] border border-white/78 bg-white/72 px-5 py-4 shadow-[0_26px_84px_-62px_rgba(34,74,124,0.72)] backdrop-blur-2xl sm:px-7 ${
+                                isServiceGuide ? 'mt-4' : '-mt-[38px]'
+                            }`}>
                                 <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:items-center">
                                     <div className="text-center lg:text-left">
                                         <p className="text-[10px] font-black tracking-[0.2em] text-[#2b82f3]">AI CONSULTING AREA</p>
@@ -631,32 +644,11 @@ function NaluChoicePanel({ onSelectView }: { onSelectView: (view: NaluView) => v
     );
 }
 
-function NaluConversationStack() {
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: 36, y: 10, scale: 0.97, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, x: 0, y: 0, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, x: 20, y: 6, scale: 0.98, filter: 'blur(8px)' }}
-            transition={{ duration: 0.5, ease: smoothEase }}
-            className="relative z-50 mb-3 max-w-[min(560px,100%)] lg:absolute lg:-left-[336px] lg:top-[70px] lg:mb-0 lg:w-[300px]"
-        >
-            <div className="relative rounded-[22px] border border-white/80 bg-white/80 px-5 py-4 shadow-[0_26px_64px_-44px_rgba(42,82,124,0.78)] backdrop-blur-xl">
-                <span className="absolute -right-1.5 top-8 hidden h-4 w-4 rotate-45 border-r border-t border-white/80 bg-white/80 lg:block" aria-hidden="true" />
-                <p className="text-[14px] font-black leading-6 text-[#142243]">ありがとうございます🌺</p>
-                <p className="mt-1 text-[12px] font-bold leading-6 text-[#30415c]">
-                    WaiWai AIについて、まずはサービスの全体像をご紹介します。
-                </p>
-            </div>
-            <NaluQuickAskPanel />
-        </motion.div>
-    );
-}
-
 function NaluServiceGuidePanel({ onBack }: { onBack: () => void }) {
     return (
         <motion.div
             data-nalu-panel="services"
-            initial={{ opacity: 0, x: 86, y: -18, rotate: 1.2, scale: 0.96, filter: 'blur(14px)' }}
+            initial={false}
             animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, filter: 'blur(0px)' }}
             exit={{ opacity: 0, x: -22, y: -10, scale: 0.98, filter: 'blur(8px)' }}
             transition={{ duration: 0.68, ease: smoothEase }}
@@ -724,7 +716,27 @@ function NaluServiceGuidePanel({ onBack }: { onBack: () => void }) {
     );
 }
 
-function NaluQuickAskPanel() {
+function NaluDirectAskBand() {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 22, scale: 0.985, filter: 'blur(12px)' }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.62, delay: 0.08, ease: smoothEase }}
+            className="grid gap-4 rounded-[18px] border border-white/80 bg-white/78 px-4 py-4 shadow-[0_28px_86px_-62px_rgba(34,74,124,0.78)] backdrop-blur-2xl sm:px-5 lg:grid-cols-[280px_1fr] lg:items-center"
+        >
+            <div>
+                <p className="text-[10px] font-black tracking-[0.2em] text-[#2b82f3]">ASK NALU</p>
+                <h2 className="mt-1 text-lg font-black leading-6 text-[#10234a]">Naluに直接聞いてみる</h2>
+                <p className="mt-1 text-[12px] font-bold leading-5 text-[#5d6f86]">
+                    業務の悩みを一言で送ると、相談の入口を整理します。
+                </p>
+            </div>
+            <NaluQuickAskPanel variant="band" />
+        </motion.div>
+    );
+}
+
+function NaluQuickAskPanel({ variant = 'compact' }: { variant?: 'compact' | 'band' }) {
     const [messages, setMessages] = useState<NaluPanelMessage[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -812,10 +824,14 @@ function NaluQuickAskPanel() {
             initial={{ opacity: 0, y: 16, scale: 0.98, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
             transition={{ duration: 0.52, delay: 0.05, ease: smoothEase }}
-            className="mt-3 rounded-[22px] border border-white/78 bg-white/78 p-2.5 shadow-[0_28px_70px_-52px_rgba(42,82,124,0.82)] backdrop-blur-xl"
+            className={
+                variant === 'band'
+                    ? 'rounded-[16px] border border-[#d6e6f8] bg-white/82 p-2.5 shadow-[0_18px_58px_-48px_rgba(42,82,124,0.82)]'
+                    : 'mt-3 rounded-[22px] border border-white/78 bg-white/78 p-2.5 shadow-[0_28px_70px_-52px_rgba(42,82,124,0.82)] backdrop-blur-xl'
+            }
         >
             {messages.length > 0 && (
-                <div ref={messageListRef} className="mb-3 max-h-[112px] space-y-2 overflow-y-auto pr-1">
+                <div ref={messageListRef} className={`${variant === 'band' ? 'max-h-[140px]' : 'max-h-[112px]'} mb-3 space-y-2 overflow-y-auto pr-1`}>
                     {messages.map((message, index) => (
                         <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                             <div
@@ -840,7 +856,7 @@ function NaluQuickAskPanel() {
                     rows={1}
                     disabled={isLoading}
                     placeholder="Naluに聞いてみる 例：採用業務を効率化したい"
-                    className="max-h-20 min-h-10 flex-1 resize-none rounded-[14px] border border-[#cfe0f6] bg-white/86 px-3.5 py-2.5 text-[13px] font-bold leading-5 text-[#142243] outline-none transition placeholder:text-[#8a99ad] focus:border-[#78aef5] focus:ring-2 focus:ring-[#d9ebff] disabled:opacity-60"
+                    className={`${variant === 'band' ? 'min-h-11' : 'min-h-10'} max-h-20 flex-1 resize-none rounded-[14px] border border-[#cfe0f6] bg-white/86 px-3.5 py-2.5 text-[13px] font-bold leading-5 text-[#142243] outline-none transition placeholder:text-[#8a99ad] focus:border-[#78aef5] focus:ring-2 focus:ring-[#d9ebff] disabled:opacity-60`}
                 />
                 <button
                     type="submit"
